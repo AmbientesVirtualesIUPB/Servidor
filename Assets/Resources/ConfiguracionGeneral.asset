@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f356f33bc006b2f439a2d95c47406cee, type: 3}
+  m_Name: ConfiguracionGeneral
+  m_EditorClassIdentifier: 
+  tipoGraficos: 0
+  plataformaObjetivo: 2
+  url: http://10.0.100.9/apiwebm/
+  ip: amvi.pascualbravo.edu.co
+  urlAPIArtcraft: http://localhost/artcraft/api/
+  notas: '10.0.100.9
+
+    127.0.0.1'
