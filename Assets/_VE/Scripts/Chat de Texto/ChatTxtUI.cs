@@ -7,7 +7,10 @@ public class ChatTxtUI : MonoBehaviour
     public GameObject prMensaje;
     public Transform padre;
     public MensajeChat msj;
-    public MessageOnly mensaje = new MessageOnly("Para que este componente funcione se requiere que algun elemento tenga el GestionChatTxt, que es un singleton", MessageTypeCustom.Info);
+    public InputField inpMensaje;
+
+
+    public MessageOnly mensaje = new MessageOnly("Para funcionar se requiere que algun elemento tenga el GestionChatTxt", MessageTypeCustom.Info);
 
     // Start is called before the first frame update
     void Start()
@@ -28,7 +31,33 @@ public class ChatTxtUI : MonoBehaviour
         MensajeChatUI msjUI = nuevoMSJ.GetComponent<MensajeChatUI>();
         if (msjUI != null)
         {
-            msjUI.Inicializar(msj);
+            msjUI.Inicializar(msj, false);
         }
+        nuevoMSJ.SetActive(true);
+    }
+
+    public void EnviarMensaje()
+    {
+        MensajeChat msj = new MensajeChat();
+        msj.nombreUsuario = "yo";
+        msj.msj = inpMensaje.text;
+
+        EnviarMensaje(inpMensaje.text);
+        inpMensaje.text = "";
+
+
+        GameObject nuevoMSJ = Instantiate(prMensaje, padre);
+        MensajeChatUI msjUI = nuevoMSJ.GetComponent<MensajeChatUI>();
+        if (msjUI != null)
+        {
+            msjUI.Inicializar(msj, true);
+        }
+        nuevoMSJ.SetActive(true);
+
+    }
+
+    void EnviarMensaje(string msj)
+    {
+        GestionChatTxt.singleton.EnviarMensaje(msj);
     }
 }

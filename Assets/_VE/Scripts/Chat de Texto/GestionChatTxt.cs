@@ -14,14 +14,17 @@ public class GestionChatTxt : MonoBehaviour
 
     public static GestionChatTxt singleton;
 
+    private void Awake()
+    {
+        //Pendiente terminar la estructura completa del singleton
+        singleton = this;
+    }
     /// Registrar funciones en el servidor
     private void Start()
     {
-        GestionMensajesServidor.singeton.RegistrarAccion("CDT00", RecibirMensaje);
+        GestionMensajesServidor.singeton.RegistrarAccion("CT00", RecibirMensaje);
         recibirMensaje += ImprimirMensaje;
 
-        //Pendiente terminar la estructura completa del singleton
-        singleton = this;
     }
 
     public void Inicializar(string _nombreUsuario)
@@ -34,7 +37,7 @@ public class GestionChatTxt : MonoBehaviour
         MensajeChat msjChat = new MensajeChat();
         msjChat.nombreUsuario = nombreUsuario;
         msjChat.msj = msj;
-        GestionMensajesServidor.singeton.EnviarMensaje(JsonUtility.ToJson(msj));
+        GestionMensajesServidor.singeton.EnviarMensaje("CT00", JsonUtility.ToJson(msjChat));
     }
 
     public void RecibirMensaje(string msj)
