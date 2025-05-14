@@ -1,13 +1,15 @@
 using UnityEngine;
+using TMPro;
 using UnityEngine.UI;
 
 [AddComponentMenu("Morion Servidor/Chat/Gestor UI")]
 public class ChatTxtUI : MonoBehaviour
 {
     public GameObject prMensaje;
+    public GameObject prespacio;
     public Transform padre;
     public MensajeChat msj;
-    public InputField inpMensaje;
+    public TMP_InputField inpMensaje;
 
 
     public MessageOnly mensaje = new MessageOnly("Para funcionar se requiere que algun elemento tenga el GestionChatTxt", MessageTypeCustom.Info);
@@ -34,10 +36,18 @@ public class ChatTxtUI : MonoBehaviour
             msjUI.Inicializar(msj, false);
         }
         nuevoMSJ.SetActive(true);
+        Invoke("Repintar", 0.01f);
+
+    }
+
+    void Repintar()
+    {
+        Destroy(Instantiate(prespacio, padre),0.1f);
     }
 
     public void EnviarMensaje()
     {
+        if (inpMensaje.text.Length < 1) return;
         MensajeChat msj = new MensajeChat();
         msj.nombreUsuario = "yo";
         msj.msj = inpMensaje.text;
@@ -53,6 +63,8 @@ public class ChatTxtUI : MonoBehaviour
             msjUI.Inicializar(msj, true);
         }
         nuevoMSJ.SetActive(true);
+
+        Invoke("Repintar", 0.01f);
 
     }
 
