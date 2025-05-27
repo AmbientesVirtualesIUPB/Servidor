@@ -63,4 +63,11 @@ public class MorionSubTransform : MonoBehaviour
         }
 
     }
+
+    public void ActualizarPosicionRotacion(DatoActualizableTransform dat)
+    {
+        transform.localPosition = Vector3.Lerp(transform.localPosition, dat.pos, 0.2f);
+        transform.localEulerAngles = Vector3.Lerp(transform.localEulerAngles, dat.rot, 0.2f);
+
+    }
 }

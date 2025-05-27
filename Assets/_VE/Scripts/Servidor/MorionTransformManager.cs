@@ -57,5 +57,12 @@ public class MorionTransformManager : MonoBehaviour
     public void GestionarMensaje(string msj)
     {
         DatosActualizablesServidor datos = JsonUtility.FromJson<DatosActualizablesServidor>(msj);
+        for (int i = 0; i < morionTransforms.Count; i++)
+        {
+            if (morionTransforms[i].morionID.GetID().Equals(datos.datosPropios.id) && !morionTransforms[i].morionID.GetOwner())
+            {
+                morionTransforms[i].datosActualizables = datos;
+            }
+        }
     }
 }

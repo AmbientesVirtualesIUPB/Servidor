@@ -23,6 +23,7 @@ public class MorionSubID : MorionID
 		{
 			GenerarID();
 		}
+		isOwner = morionID.isOwner;
 	}
 
 	public override void GenerarID()

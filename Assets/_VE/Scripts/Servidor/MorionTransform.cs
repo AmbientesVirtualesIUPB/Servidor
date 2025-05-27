@@ -50,6 +50,9 @@ public class MorionTransform : MonoBehaviour
     private void Start()
     {
         MorionTransformManager.singleton.morionTransforms.Add(this);
+        datosActualizables.datosPropios.id = morionID.GetID();
+        datosActualizables.datosPropios.pos = transform.localPosition;
+        datosActualizables.datosPropios.rot = transform.localEulerAngles;
         StartCoroutine(VerificarDatosAEnviar());
     }
     public IEnumerator VerificarDatosAEnviar()
@@ -61,6 +64,7 @@ public class MorionTransform : MonoBehaviour
             {
                 actualizar = false;
                 GestionMensajesServidor.singeton.EnviarMensaje("AT01", JsonUtility.ToJson(datosActualizables));
+                datosActualizables.datosActualizables.Clear();
             }
         }
     }
@@ -122,7 +126,37 @@ public class MorionTransform : MonoBehaviour
                 rotAnterior = transform.localEulerAngles;
             }
         }
+        else
+        {
+            ActualizarPosicionRotacion();
+        }
 
+    }
+
+
+    public void ActualizarPosicionRotacion()
+    {
+        transform.localPosition = Vector3.Lerp(transform.localPosition, datosActualizables.datosPropios.pos, 0.2f);
+        transform.localEulerAngles = Vector3.Lerp(transform.localEulerAngles, datosActualizables.datosPropios.rot, 0.2f);
+
+        for (int i = 0; i < datosActualizables.datosActualizables.Count; i++)
+        {
+            for (int j = 0; j < subTransforms.Count; j++)
+            {
+                if (datosActualizables.datosActualizables[i].id.Equals(subTransforms[j].morionID.GetID()))
+                {
+                    subTransforms[j].ActualizarPosicionRotacion(datosActualizables.datosActualizables[i]);
+                }
+            }
+        }
+    }
+
+    public void RecibirMensaje(DatosActualizablesServidor datos)
+    {
+        if (!morionID.GetOwner())
+        {
+            datosActualizables = datos;
+        }
     }
 
 }
