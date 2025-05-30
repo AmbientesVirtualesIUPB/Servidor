@@ -13,7 +13,6 @@ public class ChatTxtUI : MonoBehaviour
     public TMP_InputField inpMensaje;
     public string destinatario = "all";
     public GameObject SubChat;
-    string destinatarioSubChat = "all";//TEMPORALMENTE PARA PRUEBAS
 
 
 
@@ -48,17 +47,6 @@ public class ChatTxtUI : MonoBehaviour
 
     }
 
-    public void CrearSubChat()
-    {
-        GameObject sct = Instantiate(SubChat);
-        ChatTxtUI cti = sct.GetComponent<ChatTxtUI>();
-        cti.destinatario = destinatarioSubChat;
-        cti.Limpiar();
-    }
-    public void CambiarDestinatarioSubchat(string dest)
-    {
-        destinatarioSubChat = dest;
-    }
 
     public void Limpiar()
     {
