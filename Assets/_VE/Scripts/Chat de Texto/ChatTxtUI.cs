@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using System.Collections.Generic;
 
 [AddComponentMenu("Morion Servidor/Chat/Gestor UI")]
 public class ChatTxtUI : MonoBehaviour
@@ -10,6 +11,10 @@ public class ChatTxtUI : MonoBehaviour
     public Transform padre;
     public MensajeChat msj;
     public TMP_InputField inpMensaje;
+    public string destinatario = "all";
+    public GameObject SubChat;
+    string destinatarioSubChat = "all";//TEMPORALMENTE PARA PRUEBAS
+
 
 
     public MessageOnly mensaje = new MessageOnly("Para funcionar se requiere que algun elemento tenga el GestionChatTxt", MessageTypeCustom.Info);
@@ -29,15 +34,42 @@ public class ChatTxtUI : MonoBehaviour
 
     public void RecibirMensaje(MensajeChat msj)
     {
-        GameObject nuevoMSJ = Instantiate(prMensaje, padre);
-        MensajeChatUI msjUI = nuevoMSJ.GetComponent<MensajeChatUI>();
-        if (msjUI != null)
+        if (destinatario.Equals(msj.destinatario) && destinatario.Equals("all") || (msj.destinatario.Equals(GestionChatTxt.singleton.nombreUsuario)&&destinatario.Equals(msj.nombreUsuario)))
         {
-            msjUI.Inicializar(msj, false);
+            GameObject nuevoMSJ = Instantiate(prMensaje, padre);
+            MensajeChatUI msjUI = nuevoMSJ.GetComponent<MensajeChatUI>();
+            if (msjUI != null)
+            {
+                msjUI.Inicializar(msj, false);
+            }
+            nuevoMSJ.SetActive(true);
+            Invoke("Repintar", 0.01f);
         }
-        nuevoMSJ.SetActive(true);
-        Invoke("Repintar", 0.01f);
 
+    }
+
+    public void CrearSubChat()
+    {
+        GameObject sct = Instantiate(SubChat);
+        ChatTxtUI cti = sct.GetComponent<ChatTxtUI>();
+        cti.destinatario = destinatarioSubChat;
+        cti.Limpiar();
+    }
+    public void CambiarDestinatarioSubchat(string dest)
+    {
+        destinatarioSubChat = dest;
+    }
+
+    public void Limpiar()
+    {
+        Transform[] lista = padre.GetComponentsInChildren<Transform>();
+        for (int i = 0; i < lista.Length; i++)
+        {
+            if (padre.transform != lista[i].transform && lista[i].gameObject.activeSelf && lista[i].gameObject.name.Substring(0,1) != "E")
+            {
+                Destroy(lista[i].gameObject);
+            }
+        }
     }
 
     void Repintar()
@@ -70,6 +102,6 @@ public class ChatTxtUI : MonoBehaviour
 
     void EnviarMensaje(string msj)
     {
-        GestionChatTxt.singleton.EnviarMensaje(msj);
+        GestionChatTxt.singleton.EnviarMensaje(msj, destinatario);
     }
 }

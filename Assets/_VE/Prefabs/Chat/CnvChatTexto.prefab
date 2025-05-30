@@ -1256,7 +1256,10 @@ MonoBehaviour:
     id: 
     nombreUsuario: 
     msj: 
+    destinatario: 
   inpMensaje: {fileID: 3928597161077310591}
+  destinatario: all
+  SubChat: {fileID: 4561312466694309382}
   mensaje:
     message: Para que este componente funcione se requiere que algun elemento tenga
       el GestionChatTxt, que es un singleton
@@ -1682,7 +1685,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -204.91072}
+  m_AnchoredPosition: {x: 0, y: -204.91109}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &7889851286944215182
@@ -2281,7 +2284,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 78.91472, y: -19.968819}
-  m_SizeDelta: {x: 403.5598, y: 329.7186}
+  m_SizeDelta: {x: 500.921, y: 329.7186}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2446965790383640584
 CanvasRenderer:

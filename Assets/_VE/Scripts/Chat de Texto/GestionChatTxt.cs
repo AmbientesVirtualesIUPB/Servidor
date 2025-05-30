@@ -32,11 +32,12 @@ public class GestionChatTxt : MonoBehaviour
         nombreUsuario = _nombreUsuario;
     }
 
-    public void EnviarMensaje(string msj)
+    public void EnviarMensaje(string msj, string destinatario)
     {
         MensajeChat msjChat = new MensajeChat();
         msjChat.nombreUsuario = nombreUsuario;
         msjChat.msj = msj;
+        msjChat.destinatario = destinatario;
         GestionMensajesServidor.singeton.EnviarMensaje("CT00", JsonUtility.ToJson(msjChat));
     }
 
@@ -62,4 +63,5 @@ public class MensajeChat
     public string id;
     public string nombreUsuario;
     public string msj;
+    public string destinatario;
 }
