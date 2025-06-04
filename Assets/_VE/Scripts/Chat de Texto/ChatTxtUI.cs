@@ -12,6 +12,7 @@ public class ChatTxtUI : MonoBehaviour
     public MensajeChat msj;
     public TMP_InputField inpMensaje;
     public string destinatario = "all";
+    public int numeroMsjs = 0;
 
 
 
@@ -42,6 +43,7 @@ public class ChatTxtUI : MonoBehaviour
             }
             nuevoMSJ.SetActive(true);
             Invoke("Repintar", 0.01f);
+            numeroMsjs++;
         }
 
     }

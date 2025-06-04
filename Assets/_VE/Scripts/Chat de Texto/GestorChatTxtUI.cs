@@ -19,6 +19,18 @@ public class GestorChatTxtUI : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        if (GestionChatTxt.singleton != null)
+        {
+            GestionChatTxt.singleton.recibirMensaje += RecibirMensaje;
+        }
+        else
+        {
+            Debug.LogError("No se encuentra el gestor de mensajes como singleton en las escenas activas.");
+        }
+    }
+
     public void CrearSubChat(string destinatario)
     {
         if (diccionarioChats.ContainsKey(destinatario) && diccionarioChats[destinatario] == null)
@@ -41,4 +53,18 @@ public class GestorChatTxtUI : MonoBehaviour
 
     }
 
+    MensajeChat msj_bk;
+    public void RecibirMensaje(MensajeChat msj)
+    {
+        if (msj_bk!=msj && msj.destinatario.Equals(GestionChatTxt.singleton.nombreUsuario))
+        {
+            CrearSubChat(msj.nombreUsuario);
+
+            if (diccionarioChats.ContainsKey(msj.nombreUsuario) && diccionarioChats[msj.nombreUsuario].numeroMsjs < 1)
+            {
+                diccionarioChats[msj.nombreUsuario].RecibirMensaje(msj);
+            }
+        }
+
+    }
 }
