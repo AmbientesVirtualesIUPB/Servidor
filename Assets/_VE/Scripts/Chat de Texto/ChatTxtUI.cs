@@ -13,6 +13,7 @@ public class ChatTxtUI : MonoBehaviour
     public TMP_InputField inpMensaje;
     public string destinatario = "all";
     public int numeroMsjs = 0;
+    public Text txtTitulo;
 
 
 
@@ -29,6 +30,11 @@ public class ChatTxtUI : MonoBehaviour
         {
             Debug.LogError("No se encuentra el gestor de mensajes como singleton en las escenas activas.");
         }
+    }
+
+    public void Inicializar(string nombre)
+    {
+        txtTitulo.text = nombre;
     }
 
     public void RecibirMensaje(MensajeChat msj)

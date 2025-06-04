@@ -9,6 +9,11 @@ public class GestorChatTxtUI : MonoBehaviour
     public GameObject prChat;
     public string destinatarioSubChat = "all";
     public Dictionary<string, ChatTxtUI> diccionarioChats = new Dictionary<string, ChatTxtUI>();
+    public ChatTxtUI general;
+
+    public GameObject botonChats;
+    public Transform padreBotonesChats;
+
 
     private void Awake()
     {
@@ -16,6 +21,21 @@ public class GestorChatTxtUI : MonoBehaviour
         if (padre == null)
         {
             padre = transform;
+        }
+    }
+
+    public void MostrarOcultar(string nombre)
+    {
+        if (nombre == "all")
+        {
+            general.gameObject.SetActive(!general.gameObject.activeSelf);
+        }
+        else
+        {
+            if (diccionarioChats.ContainsKey(nombre))
+            {
+                diccionarioChats[nombre].gameObject.SetActive(!diccionarioChats[nombre].gameObject.activeSelf);
+            }
         }
     }
 
@@ -44,7 +64,10 @@ public class GestorChatTxtUI : MonoBehaviour
             ChatTxtUI cti = sct.GetComponent<ChatTxtUI>();
             cti.destinatario = destinatarioSubChat;
             cti.Limpiar();
+            cti.Inicializar(destinatarioSubChat);
             diccionarioChats.Add(destinatario, cti);
+            BtnChatMostrar btncm = Instantiate(botonChats, padreBotonesChats).GetComponent<BtnChatMostrar>();
+            btncm.nombre = destinatario;
         }
         else
         {

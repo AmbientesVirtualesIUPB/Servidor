@@ -19,7 +19,7 @@ public class UIDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        // Opcional: podrías bajar el alpha o desactivar raycasts aquí si necesitas
+        transform.SetAsLastSibling();
     }
 
     public void OnDrag(PointerEventData eventData)
