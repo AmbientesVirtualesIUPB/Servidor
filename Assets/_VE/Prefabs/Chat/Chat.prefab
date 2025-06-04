@@ -195,7 +195,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 6370817194291651008}
   m_HandleRect: {fileID: 3601193368649688459}
   m_Direction: 0
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -312,8 +312,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: NaN, y: -43.75798}
-  m_SizeDelta: {x: 236.80939, y: 0}
+  m_AnchoredPosition: {x: 200.2778, y: -44.116974}
+  m_SizeDelta: {x: 380.5556, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8114846148116279002
 CanvasRenderer:
@@ -625,7 +625,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: NaN, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 37.4962}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &4572752993265744903
@@ -717,7 +717,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: NaN, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 37.4962}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &5696955503874109455
@@ -1160,7 +1160,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1474678873064451291}
         m_TargetAssemblyTypeName: ChatTxtUI, Assembly-CSharp
         m_MethodName: EnviarMensaje
         m_Mode: 1
@@ -1483,7 +1483,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 5498437312573546144}
   m_Direction: 2
   m_Value: 0
-  m_Size: 1
+  m_Size: 0.99701035
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -1524,7 +1524,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -204.91081}
+  m_AnchoredPosition: {x: 0, y: -204.91077}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &3181320028455478567
@@ -1639,10 +1639,10 @@ RectTransform:
   - {fileID: 5267618968193732722}
   m_Father: {fileID: 109065208400577843}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: NaN, y: NaN}
-  m_SizeDelta: {x: 0, y: 100}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 220.2778, y: -30.816315}
+  m_SizeDelta: {x: 440.5556, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &3851336707347680379
 MonoBehaviour:
@@ -1714,6 +1714,7 @@ GameObject:
   - component: {fileID: 3358376802991035630}
   - component: {fileID: 9177180537080995172}
   - component: {fileID: 1474678873064451291}
+  - component: {fileID: 4773380889139953058}
   m_Layer: 5
   m_Name: Chat
   m_TagString: Untagged
@@ -1818,11 +1819,22 @@ MonoBehaviour:
     destinatario: 
   inpMensaje: {fileID: 7622267648777777975}
   destinatario: all
-  SubChat: {fileID: 0}
   mensaje:
     message: Para que este componente funcione se requiere que algun elemento tenga
       el GestionChatTxt, que es un singleton
     type: 0
+--- !u!114 &4773380889139953058
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7501330073989232619}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20a33fec1290a6b47a229e2199c0aca9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7687689110286888895
 GameObject:
   m_ObjectHideFlags: 0
@@ -1861,8 +1873,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: NaN, y: -30.576988}
-  m_SizeDelta: {x: 256.8094, y: 0}
+  m_AnchoredPosition: {x: 220.2778, y: -30.816315}
+  m_SizeDelta: {x: 400.5556, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2380995312621963542
 CanvasRenderer:
@@ -1892,8 +1904,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
-  m_Type: 0
+  m_Sprite: {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -2119,6 +2131,9 @@ GameObject:
   - component: {fileID: 9145837231279323278}
   - component: {fileID: 2947870896523180671}
   - component: {fileID: 2655935910208843262}
+  - component: {fileID: 1995264602739674586}
+  - component: {fileID: 2031794361680325365}
+  - component: {fileID: 9040524845073789556}
   m_Layer: 5
   m_Name: Text (Legacy)
   m_TagString: Untagged
@@ -2142,8 +2157,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: NaN, y: -17.395994}
-  m_SizeDelta: {x: 236.80939, y: 0}
+  m_AnchoredPosition: {x: 200.2778, y: -17.515657}
+  m_SizeDelta: {x: 380.5556, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &9145837231279323278
 CanvasRenderer:
@@ -2166,7 +2181,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 0, g: 0.01660925, b: 0.4245283, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2201,6 +2216,77 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_HorizontalFit: 0
   m_VerticalFit: 2
+--- !u!114 &1995264602739674586
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8981702948001776336}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 4
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 2031794361680325365}
+          m_TargetAssemblyTypeName: TituloChatTxt, Assembly-CSharp
+          m_MethodName: AbrirChat
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+--- !u!114 &2031794361680325365
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8981702948001776336}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cc44926a0b23654cb94a35d95f0d57e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  txtNombre: {fileID: 2947870896523180671}
+--- !u!114 &9040524845073789556
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8981702948001776336}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 3
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 2031794361680325365}
+          m_TargetAssemblyTypeName: TituloChatTxt, Assembly-CSharp
+          m_MethodName: AbrirChat
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &9183059172064275361
 GameObject:
   m_ObjectHideFlags: 0

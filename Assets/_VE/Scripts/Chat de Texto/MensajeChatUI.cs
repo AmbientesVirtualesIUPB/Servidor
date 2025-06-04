@@ -11,6 +11,8 @@ public class MensajeChatUI : MonoBehaviour
     public Text txtMsj;
     public GameObject espacio1;
     public GameObject espacio2;
+    bool esPropio;
+    string nombre;
 
     public void Inicializar(MensajeChat msj)
     {
@@ -22,9 +24,19 @@ public class MensajeChatUI : MonoBehaviour
         Inicializar(msj);
         espacio1.SetActive(propio);
         espacio2.SetActive(!propio);
+        esPropio = propio;
+        nombre = msj.nombreUsuario;
         if (propio)
         {
             img.color = new Color(0.3f, 1, 0.3f);
+        }
+    }
+
+    public void EntrarPrivado()
+    {
+        if (!esPropio)
+        {
+            GestorChatTxtUI.singleton.CrearSubChat(nombre);
         }
     }
 }

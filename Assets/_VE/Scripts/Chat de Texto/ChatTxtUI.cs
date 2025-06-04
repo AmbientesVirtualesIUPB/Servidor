@@ -12,7 +12,6 @@ public class ChatTxtUI : MonoBehaviour
     public MensajeChat msj;
     public TMP_InputField inpMensaje;
     public string destinatario = "all";
-    public GameObject SubChat;
 
 
 
