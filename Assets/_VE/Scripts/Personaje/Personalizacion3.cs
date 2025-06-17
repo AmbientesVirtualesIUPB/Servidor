@@ -38,6 +38,7 @@ public class Personalizacion3 : MonoBehaviour
     public ObjetoPersonalizable[] accesorios;
 
     public bool debugEnConsola = false;
+    public BlendShapeController blensShapeController;
 
     public MessageOnly mensajeX = new MessageOnly("Este Script de personalización aplica para una sola plataforma ", MessageTypeCustom.Info);
 
@@ -276,6 +277,11 @@ public class Personalizacion3 : MonoBehaviour
         personalizacion.genero = g;
 	}
 
+    public void CambiarTalla(float t)
+    {
+        personalizacion.talla = t;
+        blensShapeController.SetBlendShapeValue(t);
+    }
 
     public void CuerpoAleatorio()
 	{
@@ -329,6 +335,7 @@ public class PersonalizacionJSON
     public int zapatos;
     public int sombrero;
     public int accesorios;
+    public float talla;
 
 }
 public enum Genero
