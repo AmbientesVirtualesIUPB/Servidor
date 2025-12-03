@@ -36,6 +36,13 @@ public class ControlCamaraMotor : MonoBehaviour
         {
             Destroy(this);
         }
+
+        camara = Camera.main;
+    }
+
+    private void Start()
+    {
+        
     }
     private void Update()
     {
