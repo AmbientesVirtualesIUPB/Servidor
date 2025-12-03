@@ -43,7 +43,6 @@ public class ManagerCanvas : MonoBehaviour
     public bool activarTutorial;
     public static ManagerCanvas singleton;
 
-
     private void Awake()
     {
         // Configurar Singleton
@@ -59,13 +58,15 @@ public class ManagerCanvas : MonoBehaviour
 
     private void Start()
     {
+        movimientoJugador = ControlUsuarios.singleton.usuarioLocal.GetComponent<MovimientoJugador>();
+
         if (activarTutorial)
         {
             if (menuBienvenida != null)
             {
                 ActivarPausa();
             }
-        }    
+        }      
     }
     private void Update()
     {
