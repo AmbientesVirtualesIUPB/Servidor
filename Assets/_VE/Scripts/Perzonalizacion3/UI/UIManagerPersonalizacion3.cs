@@ -202,9 +202,9 @@ public class UIManagerPersonalizacion3 : MonoBehaviour
     [ContextMenu("Cargar")]
     public void Cargar()
     {
-        if (PersonajeBD.instance != null)
+        if (EnvioDatosBD.singleton != null)
         {
-            basePersonalizacion.CargarDesdeTexto(PersonajeBD.instance.usuario.personalizacion);
+            basePersonalizacion.CargarDesdeTexto(EnvioDatosBD.singleton.usuario.personalizacion);
 		}
 		else
         {

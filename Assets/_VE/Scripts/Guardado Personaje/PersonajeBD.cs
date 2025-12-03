@@ -17,7 +17,19 @@ public class PersonajeBD : MonoBehaviour
     public bool debugEnConsola; // Gestionador de mensajes
     public string datosPersonalizacion;
 
-    public DatosUsuario usuario;
+    public DatosUsuario usuario
+    {
+        get
+        {
+            return EnvioDatosBD.singleton.usuario;
+        }
+        set
+        {
+            EnvioDatosBD.singleton.usuario = value;
+        }
+    }
+
+
 
     // Método que se llama al iniciar la clase
     void Awake()
