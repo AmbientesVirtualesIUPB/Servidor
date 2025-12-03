@@ -39,7 +39,8 @@ public class SueloInteractivo : MonoBehaviour
     
     private void Awake()
     {
-        camera = camaraPrincipal.gameObject.GetComponent<Camera>(); // Obtenemos el componenete de la camara
+        camaraPrincipal = CamaraOrbital.singleton;
+        camera = Camera.main;// Obtenemos el componenete de la camara
     }
 
     private void Start()
