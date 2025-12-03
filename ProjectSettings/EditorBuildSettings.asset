@@ -11,9 +11,12 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Transforms.unity
     guid: 09b7b06964b84fc42ae29c4037c80db2
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Chat.unity
     guid: ece5ccb80ea231747a49c233105a22e1
+  - enabled: 1
+    path: Assets/_VE/Scenes/Constructores/C_Login.unity
+    guid: 211ca8a18014b2144b2c3b59881bbc53
   - enabled: 1
     path: Assets/_VE/Scenes/Constructores/C_Personalizacion.unity
     guid: 415aba4a38a52ac4f981fd0b13bb8394
@@ -29,4 +32,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_VE/Scenes/Interactivos/WI_Login.unity
     guid: 4a2d3a1d2329da5488231aacce4ef368
+  - enabled: 1
+    path: Assets/_VE/Scenes/Constructores/C_PlantillaBase.unity
+    guid: 2fda4eb4a30a6364189a584a21a23510
+  - enabled: 1
+    path: Assets/_VE/Scenes/Constructores/C_Lobby.unity
+    guid: dfbe8d46b73ca2c419b48f30f09f65ee
   m_configObjects: {}
