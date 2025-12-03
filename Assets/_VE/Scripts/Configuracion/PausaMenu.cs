@@ -1,5 +1,4 @@
 ﻿using TMPro;
-using UnityEditor.Animations;
 using UnityEngine;
 
 public class PausaMenu : MonoBehaviour
