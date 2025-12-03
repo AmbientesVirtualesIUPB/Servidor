@@ -6,8 +6,9 @@ using UnityEngine.UI;
 
 public class ExpansionRadial : MonoBehaviour
 {
-    public Sprite spriteExterno;
-    public Sprite spriteInterno;
+    public Sprite spriteExpandir;
+    public Sprite spriteContraer;
+    public Button btnExpasion;
 
     public float expansionRadius = 2f;
     public float expansionDuration = 1f;
@@ -27,8 +28,7 @@ public class ExpansionRadial : MonoBehaviour
     private Dictionary<Transform, Vector3> posicionesOriginales = new Dictionary<Transform, Vector3>();
     private Coroutine expandirCoroutine;
     private Coroutine contraerCoroutine;
-    private Sprite spriteActual;
-
+    
     private class SPInfo
     {
         public Transform spTransform;
@@ -174,6 +174,7 @@ public class ExpansionRadial : MonoBehaviour
 
         ManagerMinijuego.singleton.HabilitarBtnEnceder();
         txtBoton.text = "Contraer";
+        btnExpasion.image.sprite = spriteContraer;
         contraer = true;
         expandirCoroutine = null;
     }
@@ -236,33 +237,8 @@ public class ExpansionRadial : MonoBehaviour
         }
    
         txtBoton.text = "Expandir";
+        btnExpasion.image.sprite = spriteExpandir;
         expandir = false;
         contraerCoroutine = null;
-    }
-
-    public void CambioSpriteExpandir(Button boton)
-    {
-        if (piezasInternas)// Solo si son las piezas internas
-        {
-            spriteActual = boton.image.sprite;
-            boton.image.sprite = spriteInterno;
-        }
-        else
-        {
-            spriteActual = boton.image.sprite;
-            boton.image.sprite = spriteExterno;
-        }
-    }
-
-    public void CambioSpriteContraer(Button boton)
-    {
-        if (piezasInternas)// Solo si son las piezas internas
-        {
-            boton.image.sprite = spriteActual;
-        }
-        else
-        {
-            boton.image.sprite = spriteActual;
-        }
     }
 }
