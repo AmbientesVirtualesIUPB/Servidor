@@ -33,29 +33,21 @@ public class Usuario : MonoBehaviour
         if (autoGenerarID)
         {
             morionID.GenerarID();
-        }
+		}
+		else
+		{
+			if(EnvioDatosBD.singleton != null && EnvioDatosBD.singleton.usuario != null && EnvioDatosBD.singleton.usuario.id_usuario.Length > 0)
+			{
+                morionID.SetID(EnvioDatosBD.singleton.usuario.id_usuario);
+			}
+			
+		}
     }
 	IEnumerator Start()
     {
 		if (morionID.isOwner)
 		{
-			if (autoGenerarID)
-			{
-				//morionID.GenerarID();
-			}
-			else
-			{
-				//if (PersonajeBD.instance == null)
-				//{
-				//	morionID.GenerarID();
-				//	Debug.LogError("No se encuentra el PersonajeBD");
-				//}
-				//else
-				//{
-				//	///-morionID.SetID(PersonajeBD.instance.usuario.id_usuario);
-    //                ///-personaje.CargarDesdeTexto(PersonajeBD.instance.usuario.personalizacion);
-    //            }
-            }
+			
 			if (ControlUsuarios.singleton != null)
 			{
 				ControlUsuarios.singleton.usuarioLocal = this;
