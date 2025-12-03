@@ -33,6 +33,7 @@ Transform:
   m_Children:
   - {fileID: 3833911492993085911}
   - {fileID: 7551660185763362082}
+  - {fileID: 364390941726766705}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3630767524999706828
@@ -160,5 +161,120 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   usuarioLocal: {fileID: 0}
   usuarios: []
-  prUsuario: {fileID: 0}
+  prUsuario: {fileID: 8110232705206672939, guid: 58da88c63b3733f4f8020124e1a26815,
+    type: 3}
   debugEnConsola: 0
+--- !u!1001 &6039297063770869501
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 2238996506170168688}
+    m_Modifications:
+    - target: {fileID: 6251408664408701068, guid: c204b316c1006c6409cbdd57504e28cb,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6251408664408701068, guid: c204b316c1006c6409cbdd57504e28cb,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.11211982
+      objectReference: {fileID: 0}
+    - target: {fileID: 6251408664408701068, guid: c204b316c1006c6409cbdd57504e28cb,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.1927361
+      objectReference: {fileID: 0}
+    - target: {fileID: 6251408664408701068, guid: c204b316c1006c6409cbdd57504e28cb,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.505991
+      objectReference: {fileID: 0}
+    - target: {fileID: 6251408664408701068, guid: c204b316c1006c6409cbdd57504e28cb,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6251408664408701068, guid: c204b316c1006c6409cbdd57504e28cb,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6251408664408701068, guid: c204b316c1006c6409cbdd57504e28cb,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6251408664408701068, guid: c204b316c1006c6409cbdd57504e28cb,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6251408664408701068, guid: c204b316c1006c6409cbdd57504e28cb,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6251408664408701068, guid: c204b316c1006c6409cbdd57504e28cb,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6251408664408701068, guid: c204b316c1006c6409cbdd57504e28cb,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6251408664408701069, guid: c204b316c1006c6409cbdd57504e28cb,
+        type: 3}
+      propertyPath: graficos.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6251408664408701069, guid: c204b316c1006c6409cbdd57504e28cb,
+        type: 3}
+      propertyPath: plataformas.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6251408664408701069, guid: c204b316c1006c6409cbdd57504e28cb,
+        type: 3}
+      propertyPath: graficos.Array.data[0].escena
+      value: LP_Login
+      objectReference: {fileID: 0}
+    - target: {fileID: 6251408664408701069, guid: c204b316c1006c6409cbdd57504e28cb,
+        type: 3}
+      propertyPath: plataformas.Array.data[0].escena
+      value: WI_Login
+      objectReference: {fileID: 0}
+    - target: {fileID: 6251408664408701069, guid: c204b316c1006c6409cbdd57504e28cb,
+        type: 3}
+      propertyPath: plataformas.Array.data[1].escena
+      value: VR_Login
+      objectReference: {fileID: 0}
+    - target: {fileID: 6251408664408701069, guid: c204b316c1006c6409cbdd57504e28cb,
+        type: 3}
+      propertyPath: plataformas.Array.data[0].plataforma
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6251408664408701069, guid: c204b316c1006c6409cbdd57504e28cb,
+        type: 3}
+      propertyPath: plataformas.Array.data[1].plataforma
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6251408664408701070, guid: c204b316c1006c6409cbdd57504e28cb,
+        type: 3}
+      propertyPath: m_Name
+      value: Manwe
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c204b316c1006c6409cbdd57504e28cb, type: 3}
+--- !u!4 &364390941726766705 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6251408664408701068, guid: c204b316c1006c6409cbdd57504e28cb,
+    type: 3}
+  m_PrefabInstance: {fileID: 6039297063770869501}
+  m_PrefabAsset: {fileID: 0}
