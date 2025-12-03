@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class GestorChatTxtUI : MonoBehaviour
 {
-    public static GestorChatTxtUI singleton;
-    public Transform padre;
-    public GameObject prChat;
-    public string destinatarioSubChat = "all";
+    public static GestorChatTxtUI   singleton;
+    public Transform        padre;
+    public GameObject       prChat;
+    public string           destinatarioSubChat = "all";
     public Dictionary<string, ChatTxtUI> diccionarioChats = new Dictionary<string, ChatTxtUI>();
-    public ChatTxtUI general;
+    public ChatTxtUI        general;
 
-    public GameObject botonChats;
-    public Transform padreBotonesChats;
+    public GameObject       botonChats;
+    public Transform        padreBotonesChats;
 
 
     private void Awake()
@@ -24,6 +24,10 @@ public class GestorChatTxtUI : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Sirve para mostrar u ocultar un chat, por nombre de usuario
+    /// </summary>
+    /// <param name="nombre"></param>
     public void MostrarOcultar(string nombre)
     {
         if (nombre == "all")
@@ -51,6 +55,10 @@ public class GestorChatTxtUI : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Un subchat es un chat interno con un usuario especifico
+    /// </summary>
+    /// <param name="destinatario"></param>
     public void CrearSubChat(string destinatario)
     {
         if (diccionarioChats.ContainsKey(destinatario) && diccionarioChats[destinatario] == null)
@@ -75,7 +83,9 @@ public class GestorChatTxtUI : MonoBehaviour
         }
 
     }
-
+    /// <summary>
+    /// Qué hacer cuando se reciba un mensaje desde el servidor de node
+    /// </summary>
     MensajeChat msj_bk;
     public void RecibirMensaje(MensajeChat msj)
     {

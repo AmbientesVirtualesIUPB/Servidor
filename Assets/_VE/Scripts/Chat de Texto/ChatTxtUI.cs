@@ -6,18 +6,18 @@ using System.Collections.Generic;
 [AddComponentMenu("Morion Servidor/Chat/Gestor UI")]
 public class ChatTxtUI : MonoBehaviour
 {
-    public GameObject prMensaje;
-    public GameObject prespacio;
-    public Transform padre;
-    public MensajeChat msj;
+    public GameObject   prMensaje;
+    public GameObject   prespacio;
+    public Transform    padre;
+    public MensajeChat  msj;
     public TMP_InputField inpMensaje;
-    public string destinatario = "all";
-    public int numeroMsjs = 0;
-    public Text txtTitulo;
+    public string       destinatario = "all";
+    public int          numeroMsjs = 0;
+    public Text         txtTitulo;
 
 
 
-    public MessageOnly mensaje = new MessageOnly("Para funcionar se requiere que algun elemento tenga el GestionChatTxt", MessageTypeCustom.Info);
+    public MessageOnly  mensaje = new MessageOnly("Para funcionar se requiere que algun elemento tenga el GestionChatTxt", MessageTypeCustom.Info);
 
     // Start is called before the first frame update
     void Start()
