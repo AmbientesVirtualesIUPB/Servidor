@@ -9,7 +9,7 @@ public class ManangerLibelulas : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        GestionMensajesServidor.singeton.RegistrarAccion("BIS00", CreadorLibServidor);
+        GestionMensajesServidor.singeton.RegistrarAccion("BS00", CreadorLibServidor);
     }
 
     // Update is called once per frame
@@ -38,7 +38,7 @@ public class ManangerLibelulas : MonoBehaviour
         dl.idLid = morionID.GetID();
         dl.posicionLib = lib.transform.position;
         dl.indiceLib = cual;
-        GestionMensajesServidor.singeton.EnviarMensaje("BIS00", JsonUtility.ToJson(dl));
+        GestionMensajesServidor.singeton.EnviarMensaje("BS00", JsonUtility.ToJson(dl));
     }
 
     public void CreadorLibServidor(string msj)
