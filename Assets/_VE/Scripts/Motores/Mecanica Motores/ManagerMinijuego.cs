@@ -21,9 +21,7 @@ public class ManagerMinijuego : MonoBehaviour
     public TextMeshProUGUI txtTorques2; // Referencia al objeto de minujuegoTorque del canvas
     [InfoMessage("Este es una referencia importante, arrastrala del CanvasPrincipal", MessageTypeCustom.Warning)]
     public GameObject miniJuegoAtornillar; // Referencia al objeto de minujuegoTorque del canvas
-    [InfoMessage("Este es una referencia importante, arrastrala del CanvasPrincipal", MessageTypeCustom.Warning)]
     public GameObject herramientasRotatorias; // Referencia al objeto dentro de la camara
-    [InfoMessage("Este es una referencia importante, arrastrala del CanvasPrincipal", MessageTypeCustom.Warning)]
     public GameObject prensaValvulas; // Referencia al objeto dentro de la camara
     [InfoMessage("Este es una referencia importante, arrastrala del CanvasPrincipal", MessageTypeCustom.Warning)]
     public Button btnAplicarTorque; // Referencia al bt que aplica torque
@@ -516,90 +514,93 @@ public class ManagerMinijuego : MonoBehaviour
     {
         minijuegoTerminado = true; // indicamos que ya terminaron los minijuegos
 
-        // VALIDACION: Motor Diesel
-        for (int i = 0; i < torquesDieselBielas.Length; i++)
+        if (motorActivo == "Diesel")
         {
-            if (torquesDieselBielas[i] >= 88 && torquesDieselBielas[i] <= 95) // los torques Entre 88 y 95
+            // VALIDACION: Motor Diesel
+            for (int i = 0; i < torquesDieselBielas.Length; i++)
             {
-                puntajeTorque += 1;
+                if (torquesDieselBielas[i] >= 88 && torquesDieselBielas[i] <= 95) // los torques Entre 88 y 95
+                {
+                    puntajeTorque += 1;
+                }
+            }
+
+            for (int i = 0; i < torquesDieselValvulas.Length; i++)
+            {
+                if (torquesDieselValvulas[i] >= 70 && torquesDieselValvulas[i] <= 80) // los torques Entre 70 y 80
+                {
+                    puntajeTorque += 1;
+                }
+            }
+
+            for (int i = 0; i < torquesDieselBombaAgua.Length; i++)
+            {
+                if (torquesDieselBombaAgua[i] >= 52 && torquesDieselBombaAgua[i] <= 58) // los torques Entre 52 y 58
+                {
+                    puntajeTorque += 1;
+                }
             }
         }
-
-        for (int i = 0; i < torquesDieselValvulas.Length; i++)
+        else if (motorActivo == "Nissan")
         {
-            if (torquesDieselValvulas[i] >= 70 && torquesDieselValvulas[i] <= 80) // los torques Entre 70 y 80
+            // VALIDACION: Motor Nissan
+            for (int i = 0; i < torquesNissanCarterInferior.Length; i++)
             {
-                puntajeTorque += 1;
+                if (torquesNissanCarterInferior[i] >= 65 && torquesNissanCarterInferior[i] <= 70)
+                {
+                    puntajeTorque += 1;
+                }
+            }
+
+            for (int i = 0; i < torquesNissanBancadasCiguenal.Length; i++)
+            {
+                if (torquesNissanBancadasCiguenal[i] >= 52 && torquesNissanBancadasCiguenal[i] <= 57)
+                {
+                    puntajeTorque += 1;
+                }
+            }
+
+            for (int i = 0; i < torquesNissanBloque.Length; i++)
+            {
+                if (torquesNissanBloque[i] >= 42 && torquesNissanBloque[i] <= 47)
+                {
+                    puntajeTorque += 1;
+                }
+            }
+
+            for (int i = 0; i < torquesNissanEmpaqueCulata.Length; i++)
+            {
+                if (torquesNissanEmpaqueCulata[i] >= 88 && torquesNissanEmpaqueCulata[i] <= 93)
+                {
+                    puntajeTorque += 1;
+                }
+            }
+
+            for (int i = 0; i < torquesNissanValvulas.Length; i++)
+            {
+                if (torquesNissanValvulas[i] >= 50 && torquesNissanValvulas[i] <= 60)
+                {
+                    puntajeTorque += 1;
+                }
+            }
+
+            for (int i = 0; i < torquesNissanBancadaLevas.Length; i++)
+            {
+                if (torquesNissanBancadaLevas[i] >= 73 && torquesNissanBancadaLevas[i] <= 78)
+                {
+                    puntajeTorque += 1;
+                }
+            }
+
+            for (int i = 0; i < torquesNissanTapaCulata.Length; i++)
+            {
+                if (torquesNissanTapaCulata[i] >= 28 && torquesNissanTapaCulata[i] <= 33)
+                {
+                    puntajeTorque += 1;
+                }
             }
         }
-
-        for (int i = 0; i < torquesDieselBombaAgua.Length; i++)
-        {
-            if (torquesDieselBombaAgua[i] >= 52 && torquesDieselBombaAgua[i] <= 58) // los torques Entre 52 y 58
-            {
-                puntajeTorque += 1;
-            }
-        }
-
-
-        // VALIDACION: Motor Nissan
-        for (int i = 0; i < torquesNissanCarterInferior.Length; i++)
-        {
-            if (torquesNissanCarterInferior[i] >= 65 && torquesNissanCarterInferior[i] <= 70) 
-            {
-                puntajeTorque += 1;
-            }
-        }
-
-        for (int i = 0; i < torquesNissanBancadasCiguenal.Length; i++)
-        {
-            if (torquesNissanBancadasCiguenal[i] >= 52 && torquesNissanBancadasCiguenal[i] <= 57) 
-            {
-                puntajeTorque += 1;
-            }
-        }
-
-        for (int i = 0; i < torquesNissanBloque.Length; i++)
-        {
-            if (torquesNissanBloque[i] >= 42 && torquesNissanBloque[i] <= 47) 
-            {
-                puntajeTorque += 1;
-            }
-        }
-
-        for (int i = 0; i < torquesNissanEmpaqueCulata.Length; i++)
-        {
-            if (torquesNissanEmpaqueCulata[i] >= 88 && torquesNissanEmpaqueCulata[i] <= 93) 
-            {
-                puntajeTorque += 1;
-            }
-        }
-
-        for (int i = 0; i < torquesNissanValvulas.Length; i++)
-        {
-            if (torquesNissanValvulas[i] >= 50 && torquesNissanValvulas[i] <= 60) 
-            {
-                puntajeTorque += 1;
-            }
-        }
-
-        for (int i = 0; i < torquesNissanBancadaLevas.Length; i++)
-        {
-            if (torquesNissanBancadaLevas[i] >= 73 && torquesNissanBancadaLevas[i] <= 78) 
-            {
-                puntajeTorque += 1;
-            }
-        }
-
-        for (int i = 0; i < torquesNissanTapaCulata.Length; i++)
-        {
-            if (torquesNissanTapaCulata[i] >= 28 && torquesNissanTapaCulata[i] <= 33)
-            {
-                puntajeTorque += 1;
-            }
-        }
-
-
+        
         Debug.Log(puntajeTorque);
 
         // RESULTADO

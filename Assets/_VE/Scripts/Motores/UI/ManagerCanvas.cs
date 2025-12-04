@@ -41,6 +41,7 @@ public class ManagerCanvas : MonoBehaviour
     //[HideInInspector]
     public bool mensajeAlertaActivo;
     public bool activarTutorial;
+    public bool puedoPausar;
     public static ManagerCanvas singleton;
 
     private void Awake()
@@ -64,31 +65,35 @@ public class ManagerCanvas : MonoBehaviour
         {
             if (menuBienvenida != null)
             {
-                ActivarPausa();
+                movimientoJugador.DeneterJugador();
+                if (CamaraOrbital.singleton != null) CamaraOrbital.singleton.DeneterCamara();
             }
         }      
     }
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (puedoPausar)
         {
-            if (!juegoPausado)
+            if (Input.GetKeyDown(KeyCode.Escape))
             {
-                if (AudioManagerMotores.singleton != null) AudioManagerMotores.singleton.PlayEfectString("Menu"); // Ejecutamos el efecto nombrado
-                juegoPausado = true;
-                menuPausa.Escalar();
-                movimientoJugador.DeneterJugador();
-                if (CamaraOrbital.singleton != null) CamaraOrbital.singleton.DeneterCamara();
+                if (!juegoPausado)
+                {
+                    if (AudioManagerMotores.singleton != null) AudioManagerMotores.singleton.PlayEfectString("Menu"); // Ejecutamos el efecto nombrado
+                    juegoPausado = true;
+                    menuPausa.Escalar();
+                    movimientoJugador.DeneterJugador();
+                    if (CamaraOrbital.singleton != null) CamaraOrbital.singleton.DeneterCamara();
+                }
+                else
+                {
+                    if (AudioManagerMotores.singleton != null) AudioManagerMotores.singleton.PlayEfectString("Menu"); // Ejecutamos el efecto nombrado
+                    juegoPausado = false;
+                    menuPausa.Restaurar();
+                    movimientoJugador.HabilitarJugador();
+                    if (CamaraOrbital.singleton != null) CamaraOrbital.singleton.HabilitarCamara();
+                }
             }
-            else
-            {
-                if (AudioManagerMotores.singleton != null) AudioManagerMotores.singleton.PlayEfectString("Menu"); // Ejecutamos el efecto nombrado
-                juegoPausado = false;
-                menuPausa.Restaurar();
-                movimientoJugador.HabilitarJugador();
-                if (CamaraOrbital.singleton != null) CamaraOrbital.singleton.HabilitarCamara();
-            }
-        }
+        }   
     }
 
     /// <summary>
@@ -222,22 +227,25 @@ public class ManagerCanvas : MonoBehaviour
 
     public void ActivarPausa()
     {
-        if (!juegoPausado)
+        if (puedoPausar)
         {
-            if (AudioManagerMotores.singleton != null) AudioManagerMotores.singleton.PlayEfectString("Menu"); // Ejecutamos el efecto nombrado
-            juegoPausado = true;
-            menuPausa.Escalar();
-            movimientoJugador.DeneterJugador();
-            if (CamaraOrbital.singleton != null) CamaraOrbital.singleton.DeneterCamara();
-        }
-        else
-        {
-            if (AudioManagerMotores.singleton != null) AudioManagerMotores.singleton.PlayEfectString("Menu"); // Ejecutamos el efecto nombrado
-            juegoPausado = false;
-            menuPausa.Restaurar();
-            movimientoJugador.HabilitarJugador();
-            if (CamaraOrbital.singleton != null) CamaraOrbital.singleton.HabilitarCamara();
-        }
+            if (!juegoPausado)
+            {
+                if (AudioManagerMotores.singleton != null) AudioManagerMotores.singleton.PlayEfectString("Menu"); // Ejecutamos el efecto nombrado
+                juegoPausado = true;
+                menuPausa.Escalar();
+                movimientoJugador.DeneterJugador();
+                if (CamaraOrbital.singleton != null) CamaraOrbital.singleton.DeneterCamara();
+            }
+            else
+            {
+                if (AudioManagerMotores.singleton != null) AudioManagerMotores.singleton.PlayEfectString("Menu"); // Ejecutamos el efecto nombrado
+                juegoPausado = false;
+                menuPausa.Restaurar();
+                movimientoJugador.HabilitarJugador();
+                if (CamaraOrbital.singleton != null) CamaraOrbital.singleton.HabilitarCamara();
+            }
+        }    
     }
 
     /// <summary>
@@ -270,6 +278,20 @@ public class ManagerCanvas : MonoBehaviour
     public void DesactivarBTNEleccionMotor()
     {
         btnEleccionMotor.SetActive(false);
+    }
+
+    public void PuedoPausarJuego()
+    {
+        puedoPausar = true;
+        movimientoJugador.HabilitarJugador();
+        if (CamaraOrbital.singleton != null) CamaraOrbital.singleton.HabilitarCamara();
+    }
+
+    public void NoPuedoPausarJuego()
+    {
+        puedoPausar = false;
+        movimientoJugador.DeneterJugador();
+        if (CamaraOrbital.singleton != null) CamaraOrbital.singleton.DeneterCamara();
     }
 
     public void Salir()
