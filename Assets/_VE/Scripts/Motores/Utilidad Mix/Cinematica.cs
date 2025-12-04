@@ -1,11 +1,18 @@
 using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class Cinematica : MonoBehaviour
 {
+    public GameObject[] objetosCanvas;
     public Transform[] posicionesCamara;
-    public RotacionObjetoMotores[] llantasCarro;
+    public GameObject menuTutorial;
+    public GameObject menuCinematica;
+
+    public TextMeshProUGUI txtTitulo;
+    public RotacionObjetoMotores[] llantasCarroNegativas;
+    public RotacionObjetoMotores[] llantasCarroPositivas;
     public MoverObjeto carro;
     public MoverObjeto puerta;
 
@@ -36,12 +43,20 @@ public class Cinematica : MonoBehaviour
         CamaraOrbital.singleton.transform.position = posicionesCamara[0].transform.position;
         CamaraOrbital.singleton.transform.rotation = posicionesCamara[0].transform.rotation;
 
+        for (int i = 0; i < objetosCanvas.Length; i++)
+        {
+            objetosCanvas[i].gameObject.SetActive(false);
+        }
+
         StartCoroutine(CinematicaInicial());
     }
 
     IEnumerator CinematicaInicial()
     {
-        yield return new WaitForSeconds(0.5f);
+        IniciarFadeIn();
+
+        yield return new WaitForSeconds(1f);
+
         ControlCamaraMotor.singleton.IniciarMovimientoCamara(posicionesCamara[1], 5f);
 
         yield return new WaitForSeconds(3f);
@@ -49,6 +64,8 @@ public class Cinematica : MonoBehaviour
         IniciarFadeOut();
 
         yield return new WaitForSeconds(2f);
+
+        txtTitulo.text = "AL AMBIENTE VIRTUAL \n DE MECANICA Y MOTORES";
         CamaraOrbital.singleton.transform.position = posicionesCamara[2].transform.position;
         CamaraOrbital.singleton.transform.rotation = posicionesCamara[2].transform.rotation;
 
@@ -58,15 +75,75 @@ public class Cinematica : MonoBehaviour
 
         ControlCamaraMotor.singleton.IniciarMovimientoCamara(posicionesCamara[3], 5f);
 
+        yield return new WaitForSeconds(4f);
+
+        IniciarFadeOut();
+
+        yield return new WaitForSeconds(2f);
+
+        txtTitulo.text = "DESARROLLADO POR EL EQUIPO \n DE AMBIENTES VIRTUALES";
+        CamaraOrbital.singleton.transform.position = posicionesCamara[4].transform.position;
+        CamaraOrbital.singleton.transform.rotation = posicionesCamara[4].transform.rotation;
+
+        IniciarFadeIn();
+
+        yield return new WaitForSeconds(1f);
+
+        ControlCamaraMotor.singleton.IniciarMovimientoCamara(posicionesCamara[5], 5f);
+
+
+        yield return new WaitForSeconds(4f);
+
+        IniciarFadeOut();
+
+        yield return new WaitForSeconds(2f);
+
+        txtTitulo.text = "DE LA INSTITUCION UNIVERSITARIA \n PASCUAL BRAVO";
+        CamaraOrbital.singleton.transform.position = posicionesCamara[6].transform.position;
+        CamaraOrbital.singleton.transform.rotation = posicionesCamara[6].transform.rotation;
+
+        IniciarFadeIn();
+
+        yield return new WaitForSeconds(1f);
+
+        ControlCamaraMotor.singleton.IniciarMovimientoCamara(posicionesCamara[7], 5f);
+        puerta.IniciarDesplazamientoObjeto();
+        carro.IniciarDesplazamientoObjeto();
+
+        for (int i = 0; i < llantasCarroNegativas.Length; i++)
+        {
+            llantasCarroNegativas[i].velocidadRotacion = -60;
+            llantasCarroPositivas[i].velocidadRotacion = 60;
+        }
+
+        yield return new WaitForSeconds(8f);
+
+        ControlCamaraMotor.singleton.IniciarMovimientoCamara(posicionesCamara[8], 5f);
+        puerta.RetornarPosicionOriginal();
+
+        yield return new WaitForSeconds(2f);
+
+        for (int i = 0; i < llantasCarroNegativas.Length; i++)
+        {
+            llantasCarroNegativas[i].velocidadRotacion = 0;
+            llantasCarroPositivas[i].velocidadRotacion = 0;
+        }
+
         yield return new WaitForSeconds(3f);
 
         IniciarFadeOut();
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        yield return new WaitForSeconds(2f);
+
+        for (int i = 0; i < objetosCanvas.Length; i++)
+        {
+            objetosCanvas[i].gameObject.SetActive(true);
+        }
+
+        menuTutorial.SetActive(true);
+        txtTitulo.text = "BIENVENIDO";
+        menuCinematica.SetActive(false);
+        IniciarFadeIn();
     }
 
     [ContextMenu("in")]
@@ -111,5 +188,31 @@ public class Cinematica : MonoBehaviour
             imagen.color = new Color(c.r, c.g, c.b, alpha);
             yield return null;
         }
+    }
+
+    public void DetenerCinematica()
+    {
+        if (coroutine != null) StopCoroutine(coroutine);
+        StopCoroutine(CinematicaInicial());
+
+        puerta.RetornarPosicionOriginal();
+        carro.RegresarPosicionOriginal();
+
+        for (int i = 0; i < llantasCarroNegativas.Length; i++)
+        {
+            llantasCarroNegativas[i].velocidadRotacion = 0;
+            llantasCarroPositivas[i].velocidadRotacion = 0;
+        }
+
+        for (int i = 0; i < objetosCanvas.Length; i++)
+        {
+            objetosCanvas[i].gameObject.SetActive(true);
+        }
+
+        ControlCamaraMotor.singleton.DetenerMovimientosCamara();
+        menuTutorial.SetActive(true);
+        txtTitulo.text = "BIENVENIDO";
+        menuCinematica.SetActive(false);
+        this.gameObject.SetActive(false);
     }
 }

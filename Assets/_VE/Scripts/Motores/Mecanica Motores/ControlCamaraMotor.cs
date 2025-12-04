@@ -156,6 +156,14 @@ public class ControlCamaraMotor : MonoBehaviour
         miCoroutine = StartCoroutine(MoverCamara(posicionDeseada, duracion));
     }
 
+    public void DetenerMovimientosCamara()
+    {
+        if (miCoroutine != null)
+        {
+            StopCoroutine(miCoroutine);
+        }
+    }
+
     /// <summary>
     /// Currutina encargada del movimiento de la pieza suavizado
     /// </summary>
