@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class ManagerCanvas : MonoBehaviour
 {
     [Header("ESTA ES UNA CLASE SINGLETON")]
-    [InfoMessage("Este es una referencia importante, arrastrala del CanvasPrincipal", MessageTypeCustom.Warning)]
+    
     public MovimientoJugador movimientoJugador; // Referencia al movimiento jugador principal
     [InfoMessage("Este es una referencia importante, arrastrala del CanvasPrincipal", MessageTypeCustom.Warning)]
     public EscaladorUI menuBienvenida; // Referencia al Menu de bienvenida del canvas principal

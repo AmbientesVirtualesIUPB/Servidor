@@ -29,6 +29,11 @@ public class Atornillar : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        rotacionAngularObjeto = RotacionAngularObjeto.singleton;
+    }
+
     void Update()
     {
         float valorConvertido = sliderVelocidad.value * 100f;

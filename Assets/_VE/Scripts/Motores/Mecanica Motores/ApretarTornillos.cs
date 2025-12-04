@@ -56,8 +56,17 @@ public class ApretarTornillos : MonoBehaviour
     [ContextMenu("activar")]
     public void HabilitarSliderPrueba()
     {
-        startPos = transform.localPosition;
-        sliderPrueba.onValueChanged.AddListener(OnSliderValueChanged);
+        if (prensaValvula)
+        {
+            startPos = transform.localPosition;
+            ManagerMinijuego.singleton.sliderTorqueMinijuego.onValueChanged.AddListener(OnSliderValueChanged);
+        }
+        else
+        {
+            startPos = transform.localPosition;
+            sliderPrueba.onValueChanged.AddListener(OnSliderValueChanged);
+        }
+        
     }
 
     public void HabilitarSlider(Slider slider)

@@ -1,6 +1,5 @@
 using UnityEngine;
 using System.Collections;
-using System.Collections.Generic;
 
 /// <summary>
 /// Tipos posibles de herramientas.
@@ -81,6 +80,8 @@ public class HerramientaArmable : MonoBehaviour
             // Guardamos el material original
             materialesOriginales = meshRenderer.materials;
         }
+
+        rotacionAngularObjeto = RotacionAngularObjeto.singleton;
     }
 
     /// <summary>

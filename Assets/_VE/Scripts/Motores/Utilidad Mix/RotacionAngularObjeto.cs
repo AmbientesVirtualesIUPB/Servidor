@@ -8,6 +8,9 @@ public class RotacionAngularObjeto : MonoBehaviour
     [Header("Parámetros")]
     public float anguloMaximo = 15f;
     public GameObject[] herramientasManipulables; // Para referenciar a cada tido de herramienta con la que podemos interactuar
+    public GameObject prensaValvula;
+    public MoverObjeto botellaAceite;
+    public ParticleSystem aceite;
 
     [HideInInspector]
     public float velocidad = 0f; // valor que se actualizará desde fuera

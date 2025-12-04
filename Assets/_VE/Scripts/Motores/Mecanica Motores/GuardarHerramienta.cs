@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class GuardarHerramienta : MonoBehaviour
 {
+
     public RotacionAngularObjeto rotacionAngularObjeto;
     public bool llaveInglesa;
     public bool prensaValvula;
@@ -44,6 +45,8 @@ public class GuardarHerramienta : MonoBehaviour
             // Guardamos el material original
             materialesOriginales = meshRenderer.materials;
         }
+
+        rotacionAngularObjeto = RotacionAngularObjeto.singleton;
     }
 
     /// <summary>

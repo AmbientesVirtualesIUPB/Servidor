@@ -135,6 +135,21 @@ public class ManagerMinijuego : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        herramientasRotatorias = RotacionAngularObjeto.singleton.gameObject;
+        prensaValvulas = RotacionAngularObjeto.singleton.prensaValvula.gameObject;
+        botellaAceite = RotacionAngularObjeto.singleton.botellaAceite;
+        aceite = RotacionAngularObjeto.singleton.aceite;
+
+        StartCoroutine(ActivarComponentesIniciales());
+    }
+
+    IEnumerator ActivarComponentesIniciales()
+    {
+        yield return new WaitForSeconds(1f);
+        herramientasRotatorias.SetActive(false);
+    }
     /// <summary>
     /// Para habilitar el interactuable del boton btnEncenderMotor donde se requiera
     /// </summary>
