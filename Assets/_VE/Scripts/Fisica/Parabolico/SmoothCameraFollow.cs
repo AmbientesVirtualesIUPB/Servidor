@@ -201,17 +201,17 @@ public class SmoothCameraFollow : MonoBehaviour
         }
 
         Gizmos.DrawWireSphere(desiredPosition, 0.3f);
+        
+        //// Mostrar la distancia al target
+        //UnityEditor.Handles.Label(transform.position + Vector3.up,
+        //    $"Distancia: {Vector3.Distance(transform.position, target.position):F2}m");
 
-        // Mostrar la distancia al target
-        UnityEditor.Handles.Label(transform.position + Vector3.up,
-            $"Distancia: {Vector3.Distance(transform.position, target.position):F2}m");
-
-        if (useYLimit && target.position.y + offset.y < minYPosition)
-        {
-            UnityEditor.Handles.Label(transform.position + Vector3.up * 0.5f,
-                "🔒 CÁMARA BLOQUEADA",
-                new GUIStyle() { normal = new GUIStyleState() { textColor = Color.red }, fontSize = 12, fontStyle = FontStyle.Bold });
-        }
+        //if (useYLimit && target.position.y + offset.y < minYPosition)
+        //{
+        //    UnityEditor.Handles.Label(transform.position + Vector3.up * 0.5f,
+        //        "🔒 CÁMARA BLOQUEADA",
+        //        new GUIStyle() { normal = new GUIStyleState() { textColor = Color.red }, fontSize = 12, fontStyle = FontStyle.Bold });
+        //}
     }
 
     // Context Menu para testing rápido
