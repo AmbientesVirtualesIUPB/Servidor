@@ -973,6 +973,8 @@ GameObject:
   - component: {fileID: 7298219980750669090}
   - component: {fileID: 7897896562676562619}
   - component: {fileID: 5653961727609398352}
+  - component: {fileID: -9028389552431977042}
+  - component: {fileID: 8328207621552844647}
   m_Layer: 7
   m_Name: Tapas De Bancada - 1
   m_TagString: Untagged
@@ -1112,6 +1114,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c488d3aece86cfa499f969f606f0e2ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: 2
+  piezaExterna: 0
   puedoValidar: 0
   piezaColocada: 0
   piezaFinal: 0
@@ -1156,3 +1160,47 @@ MonoBehaviour:
   - {fileID: 2398562647727415287}
   - {fileID: 4252268343012708743}
   - {fileID: 2992450299805042799}
+--- !u!114 &-9028389552431977042
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9107665622741938256}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d87b980c55d88c947b0b5dcabdcfd22c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  idPersonalizada: 0
+  isOwner: 0
+  ID: 
+--- !u!114 &8328207621552844647
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9107665622741938256}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ab9a1b8254401a4ca757de1bfb310be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mTransformManager: {fileID: 0}
+  debugEnConsola: 0
+  opcionesAvanzadas: 0
+  posicionObjetivo: {x: 0, y: 0, z: 0}
+  rotacionObjetivo: {x: 0, y: 0, z: 0}
+  toleranciaPosicion: 0.2
+  toleranciaRotacion: 10
+  velRotacion: 5
+  velTranslacion: 10
+  periodoEsperas: 0.2
+  morionID: {fileID: 0}
+  datosActualizables:
+    datosPropios:
+      id: 
+      pos: {x: 0, y: 0, z: 0}
+      rot: {x: 0, y: 0, z: 0}
+    datosActualizables: []
