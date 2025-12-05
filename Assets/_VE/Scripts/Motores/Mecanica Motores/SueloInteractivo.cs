@@ -131,6 +131,8 @@ public class SueloInteractivo : MonoBehaviour
         {
             if (other.CompareTag("Player"))
             {
+                if (!ValidarOwner(other)) return;
+
                 interactuar = true; // Indicamos que podemos interactuar
                 canvasWorldSpace.SetActive(true); // Activamos canvas visual
 
@@ -142,15 +144,33 @@ public class SueloInteractivo : MonoBehaviour
         {
             if (other.CompareTag("Player"))
             {
+                if (!ValidarOwner(other)) return;
                 ManagerCanvas.singleton.DesactivarBTNEleccionMotor();
             }
         }   
+    }
+
+    public bool ValidarOwner(Collider other)
+    {
+        MorionID morionID = other.GetComponent<MorionID>();
+
+        if (morionID != null && !morionID.isOwner)
+        {
+            return false;
+        }
+        else
+        {
+            morionID = other.GetComponentInChildren<MorionID>();
+            if (morionID != null && !morionID.isOwner) return false;
+        }
+        return true;
     }
 
     private void OnTriggerStay(Collider other)
     {
         if (other.CompareTag("Player"))
         {
+            if (!ValidarOwner(other)) return;
             movimientoJugador = other.GetComponent<MovimientoJugador>();  // Obtenemos una referencia al movimiento del jugador que interactua
         }     
     }
@@ -163,6 +183,8 @@ public class SueloInteractivo : MonoBehaviour
         {
             if (other.CompareTag("Player"))
             {
+                if (!ValidarOwner(other)) return;
+
                 interactuar = false; // Indicamos que no podemos interactuar
                 canvasWorldSpace.SetActive(false);  // Desactivamos canvas visual
 
@@ -174,6 +196,7 @@ public class SueloInteractivo : MonoBehaviour
         {
             if (other.CompareTag("Player"))
             {
+                if (!ValidarOwner(other)) return;
                 ManagerCanvas.singleton.ActivarBTNEleccionMotor();
             }
         }     
