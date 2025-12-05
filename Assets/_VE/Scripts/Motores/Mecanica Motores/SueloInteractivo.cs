@@ -31,7 +31,7 @@ public class SueloInteractivo : MonoBehaviour
     private int playerLayer; // Para guardar el numero de layer
     private Vector3 posicionOriginal; // para guardar la posicion original
     private Quaternion rotacionOriginal; // para guardar la rotacion original
-    private bool interactuar; // Para validar si estoy interactuando
+    public bool interactuar; // Para validar si estoy interactuando
     [HideInInspector]
     public bool salirInteraccion; // Para validar si salgo de la interaccion
     private bool plataformaAbajo; // Para validar si salgo bajando la plataforma
@@ -223,7 +223,7 @@ public class SueloInteractivo : MonoBehaviour
             camaraPrincipal.CursorInvisible(); // Habilitamos la vista del cursor
             ActivarMovimientoJugador(movimientoJugador); // Activamos el movimiento del jugador que interactua
             salirInteraccion = false; // Indicamos que ya no estamos interactuando
-            interactuar = true; // Indicamos que nuevamente puede interactura aun sin salir del trigger
+            if (movimientoJugador != null) interactuar = true; // Indicamos que nuevamente puede interactura aun sin salir del trigger
         }
         else
         {
@@ -367,7 +367,16 @@ public class SueloInteractivo : MonoBehaviour
     /// <param name="movimiento"> script de movimiento </param>
     public void ActivarMovimientoJugador(MovimientoJugador movimiento)
     {
-        movimiento.enabled = true;
+        if (movimiento != null)
+        {
+            movimiento.enabled = true;
+        }
+        else
+        {
+            ManagerCanvas.singleton.movimientoJugador.enabled = true;
+            ManagerCanvas.singleton.movimientoJugador.HabilitarJugador();
+            TrigerExit();
+        }
     }
 
     /// <summary>
@@ -376,7 +385,15 @@ public class SueloInteractivo : MonoBehaviour
     /// <param name="movimiento"> script de movimiento </param>
     public void DesactivarMovimientoJugador(MovimientoJugador movimiento)
     {
-        movimiento.enabled = false;
+        if (movimiento != null)
+        {
+            movimiento.enabled = false;
+        }
+        else
+        {
+            ManagerCanvas.singleton.movimientoJugador.enabled = false;
+            ManagerCanvas.singleton.movimientoJugador.DeneterJugador();
+        }    
     }
 
     /// <summary>
