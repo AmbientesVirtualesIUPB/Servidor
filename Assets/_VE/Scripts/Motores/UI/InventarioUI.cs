@@ -61,7 +61,7 @@ public class InventarioUI : MonoBehaviour
     /// <param name="icono"> El icono que tendrá el boton</param>
     /// <param name="prefab"> El prefab que instanciará ese boton </param>
     /// <param name="nombreBoton"> El nombre del objeto que tendrá el boton </param>
-    public void AgregarAlInventario(Sprite icono, GameObject prefab, string nombreBoton, string nombrePieza, string descripcionPieza, bool piezaExterna)
+    public void AgregarAlInventario(Sprite icono, GameObject prefab, string nombreBoton, string nombrePieza, string descripcionPieza, bool piezaExterna, int id)
     {
         if (contadorInstancias < 12) // Si hay menos de 13 piezas en el inventario
         {
@@ -89,6 +89,7 @@ public class InventarioUI : MonoBehaviour
             
             btnInventario.descripcion = descripcionPieza; // Agregamos la descripcion de la pieza
             btnInventario.nombre = nombrePieza; // Agregamos la descripcion de la pieza
+            btnInventario.idPieza = id; // Agregamos la descripcion de la pieza
    
             Button btn = nuevoBoton.GetComponent<Button>(); // Obtenemos el componenete button
             btn.onClick.AddListener(btnInventario.InstanciarPiezaMotor); // Agregamos la acción al botón

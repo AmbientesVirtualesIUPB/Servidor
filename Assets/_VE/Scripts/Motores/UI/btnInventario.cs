@@ -4,6 +4,7 @@ using UnityEngine.EventSystems;
 
 public class btnInventario : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
+    public int idPieza;
     public Image imagenIcono;
     public GameObject prebafInstancia; //Prefab a instanciar
     public Transform posicionInstancia; // Punto en el que vamos a realizar la instancia
@@ -44,6 +45,8 @@ public class btnInventario : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
             InventarioUI.singleton.contadorInstancias -= 1; // Liberamos espacio en el inventario
             Destroy(this.gameObject); // Destruimos el boton
+
+            Debug.Log("se instanbcio la pieza con id: " + idPieza);
         }
         else
         {

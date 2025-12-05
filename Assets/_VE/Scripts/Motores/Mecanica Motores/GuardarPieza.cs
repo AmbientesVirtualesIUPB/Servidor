@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class GuardarPieza : MonoBehaviour
 {
+    public int idPieza;
     public string nombrePiezaBoton; // Nombre para asignarle al boton de la piza
     public string nombrePieza; // Nombre completo de la pieza para el titulo
     [TextArea(3, 10)]
@@ -95,7 +96,7 @@ public class GuardarPieza : MonoBehaviour
 
                 puedoInteractuar = true;
 
-                InventarioUI.singleton.AgregarAlInventario(icono, prefabInstancia, nombrePiezaBoton, nombrePieza, descripcionPieza, piezaExterna); // instanciamos en el inventario
+                InventarioUI.singleton.AgregarAlInventario(icono, prefabInstancia, nombrePiezaBoton, nombrePieza, descripcionPieza, piezaExterna, idPieza); // instanciamos en el inventario
 
                 if (coroutine != null)
                 {
