@@ -3,6 +3,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.Networking;
 using TMPro;
+using UnityEngine.UI;
 
 
 /// <summary>
@@ -14,6 +15,7 @@ public class ConsumirAPI : MonoBehaviour
     public TMP_InputField inputUsuario;
     public TMP_InputField inputPassword;
     public GameObject imgCarga;  // Asignar desde el Inspector
+    public Toggle recordar;
 
     // Establecemos las variables, con los datos de la url a consumir y su llave de autenticacion
     private string apiUrl = "https://sicau.pascualbravo.edu.co/SICAU/API/ServicioLogin/LoginAmbientesVirtuales";
@@ -25,6 +27,13 @@ public class ConsumirAPI : MonoBehaviour
 
     public bool debugEnConsola; // Gestionador de mensajes
 
+
+    private void Start()
+    {
+        inputUsuario.text = PlayerPrefs.GetString("usuario", "");
+        inputPassword.text = PlayerPrefs.GetString("pss", "");
+        if (inputPassword.text.Length > 0) recordar.isOn = true;
+    }
     /// <summary>
     /// Metodo invocado desde el botón Iniciar en el Login para consumir el servicio
     /// </summary>
@@ -35,8 +44,19 @@ public class ConsumirAPI : MonoBehaviour
         {
             Email = inputUsuario.text + "@pascualbravo.edu.co",
             Contraseña = inputPassword.text
+            
         };
 
+        if (recordar.isOn)
+        {
+            PlayerPrefs.SetString("usuario", inputUsuario.text);
+            PlayerPrefs.SetString("pss", inputPassword.text);
+        }
+        else
+        {
+            PlayerPrefs.SetString("usuario", "");
+            PlayerPrefs.SetString("pss", "");
+        }
         // Convertir el objeto a JSON
         string jsonDato = JsonUtility.ToJson(solicitudLogin);
 
