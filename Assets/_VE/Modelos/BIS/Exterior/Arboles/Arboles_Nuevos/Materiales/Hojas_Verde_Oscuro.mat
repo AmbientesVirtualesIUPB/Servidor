@@ -100,7 +100,7 @@ Material:
     m_Floats:
     - _AlphaClip: 0
     - _AlphaToMask: 0
-    - _Alpha_Clip: -0.98
+    - _Alpha_Clip: 0.1
     - _Ambient_Oclusion: 0
     - _Blend: 0
     - _BlendModePreserveSpecular: 1
@@ -141,7 +141,7 @@ Material:
     - _ZWrite: 1
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Color: {r: 0.6603774, g: 0.6603774, b: 0.6603774, a: 1}
     - _Color_Emisivo: {r: 0, g: 0, b: 0, a: 0}
     - _Direccion: {r: 3, g: 3, b: 0, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 0}
