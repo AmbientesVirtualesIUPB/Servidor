@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class ServidorMotores : MonoBehaviour
 {
-    public List<GuardarPieza> partes;
+    public List<MoverPieza> partes;
     public Transform[] padresInstancia;
     public bool esArmador = false;
 
@@ -38,10 +38,10 @@ public class ServidorMotores : MonoBehaviour
     {
         for (int i = 0; i < partes.Count; i++)
         {
-            if (parte.id == partes[i].idPieza)
+            if (parte.id == partes[i].id)
             {
                 GameObject pieza = Instantiate(partes[i].gameObject,parte.pos,Quaternion.identity);
-                pieza.transform.parent = padresInstancia[pieza.GetComponent<GuardarPieza>().piezaExterna ? 0 : 1];
+                pieza.transform.parent = padresInstancia[pieza.GetComponent<MoverPieza>().piezaExterna ? 0 : 1];
             }
         }
     }

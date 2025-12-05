@@ -2,7 +2,9 @@ using System.Collections;
 using UnityEngine;
 
 public class MoverPieza : MonoBehaviour
-{
+{ 
+    public int id;
+    public bool piezaExterna; // Para identificar si instanciamos en el punto de instancia interno o externo
     [HideInInspector]
     public bool puedoValidar; // Para validar la colocacion de la pieza al momento de soltar el click y  no mientras arrastro
     //[HideInInspector]
