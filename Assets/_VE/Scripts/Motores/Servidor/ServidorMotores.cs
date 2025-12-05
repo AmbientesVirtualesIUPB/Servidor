@@ -42,6 +42,7 @@ public class ServidorMotores : MonoBehaviour
             {
                 GameObject pieza = Instantiate(partes[i].gameObject,parte.pos,Quaternion.identity);
                 pieza.transform.parent = padresInstancia[pieza.GetComponent<MoverPieza>().piezaExterna ? 0 : 1];
+                pieza.GetComponent<MorionID>().SetID(parte.idServidor);
             }
         }
     }
