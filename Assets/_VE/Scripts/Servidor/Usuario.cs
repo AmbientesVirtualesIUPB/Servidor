@@ -112,7 +112,7 @@ public class Usuario : MonoBehaviour
 		transform.eulerAngles = p.rotacion;
 		morionID.SetID(p.id_con);
 		gameObject.name = "Personaje - " + p.id_con;
-
+		
 		/////////////////////////////////////////// Falta configurar la plataforma y el id usuario
 		
 		if (morionTransform != null)
