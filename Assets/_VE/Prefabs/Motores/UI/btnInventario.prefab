@@ -283,8 +283,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: BOTON
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 6372f17e1a3108540bb1f834503f7d88, type: 2}
-  m_sharedMaterial: {fileID: -6950733293232851705, guid: 6372f17e1a3108540bb1f834503f7d88,
+  m_fontAsset: {fileID: 11400000, guid: 3e62b0887546c5643accd398e8d7fd33, type: 2}
+  m_sharedMaterial: {fileID: -3269393265180772482, guid: 3e62b0887546c5643accd398e8d7fd33,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -293,10 +293,10 @@ MonoBehaviour:
     serializedVersion: 2
     rgba: 4294967295
   m_fontColor: {r: 1, g: 1, b: 1, a: 1}
-  m_enableVertexGradient: 1
+  m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
-    topLeft: {r: 0.37197024, g: 0.9622642, b: 0.040850822, a: 1}
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
     topRight: {r: 0.37254903, g: 0.9647059, b: 0.043137256, a: 1}
     bottomLeft: {r: 0.4968328, g: 0.9528302, b: 0.23820755, a: 1}
     bottomRight: {r: 0.35952392, g: 0.8962264, b: 0.063412234, a: 1}
@@ -309,8 +309,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 20.68
-  m_fontSizeBase: 20.68
+  m_fontSize: 17
+  m_fontSizeBase: 17
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -319,9 +319,9 @@ MonoBehaviour:
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
-  m_characterSpacing: 5
+  m_characterSpacing: -3.31
   m_wordSpacing: 0
-  m_lineSpacing: 0
+  m_lineSpacing: -18.93
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
