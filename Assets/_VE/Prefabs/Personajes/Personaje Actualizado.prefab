@@ -883,6 +883,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37744d97f9d951d409d24c6f2f2195ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  velocidadInicial: 0
   velocidad: 2
   camaraOrbital: {fileID: 0}
 --- !u!1 &945894123051012440
@@ -17169,6 +17170,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68bc486b218f3454b8c7aa76c0f1ef8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  movimientoJugador: {fileID: 5854001977220497929}
+  velocidadCorrer: 5
+  tiempoSprint: 5
+  velocidadSuperCorrer: 8
   posicionAnterior: {x: 0, y: 0, z: 0}
 --- !u!1 &8311219235793859577
 GameObject:
