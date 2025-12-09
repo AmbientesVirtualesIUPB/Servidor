@@ -156,12 +156,23 @@ public class Recolectable : MonoBehaviour
 
     private void IntentarRecolectar()
     {
-        // Validar si estamos en fase de recolección Y si este objeto es parte de los objetivos
         bool aceptado = GestorMisiones.instancia.RecogerObjeto(objetoAsociado);
 
         if (aceptado)
         {
-            UI_Recoleccion.instancia.OcultarMensaje(); // <--- agregamos esto
+            // 1. Sumar cantidad del objeto al registro del jugador
+            GestorObjetos.instancia.SumarCantidad(objetoAsociado);
+
+            // 2. Marcar como descubierto si es la primera vez
+            GestorObjetos.instancia.MarcarDescubierto(objetoAsociado);
+
+            // 3. Si la misión completó todos los requeridos → desbloquear info
+            if (GestorMisiones.instancia.ObjetivoDeRecoleccionYaCompleto(objetoAsociado))
+            {
+                GestorObjetos.instancia.DesbloquearInformacion(objetoAsociado);
+            }
+
+            UI_Recoleccion.instancia.OcultarMensaje();
             Destroy(gameObject);
         }
         else
@@ -169,6 +180,9 @@ public class Recolectable : MonoBehaviour
             Debug.Log("Este objeto no es parte de la misión actual.");
         }
     }
+
+   
+
 
     private bool EsParteDeLaMisionActual()
     {
