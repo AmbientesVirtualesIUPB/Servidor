@@ -43,17 +43,17 @@ public class btnInventario : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
             // Aplicar desplazamiento en espacio local respecto al padre
             nuevaPieza.transform.localPosition += offsetLocal;
 
-            // INSTANCIA SERVIDOR
-            PartesMotores parte = new PartesMotores();
-            parte.id = idPieza;
-            parte.pos = nuevaPieza.transform.position;
+            //// INSTANCIA SERVIDOR
+            //PartesMotores parte = new PartesMotores();
+            //parte.id = idPieza;
+            //parte.pos = nuevaPieza.transform.position;
 
-            MorionID morionID = nuevaPieza.GetComponent<MorionID>();
-            morionID.SetID(idPieza + "p" + Random.Range(1111, 9999));
-            morionID.isOwner = true;
-            parte.idServidor = morionID.GetID();
+            //MorionID morionID = nuevaPieza.GetComponent<MorionID>();
+            //morionID.SetID(idPieza + "p" + Random.Range(1111, 9999));
+            //morionID.isOwner = true;
+            //parte.idServidor = morionID.GetID();
 
-            GestionMensajesServidor.singeton.EnviarMensaje("MS00", JsonUtility.ToJson(parte));
+            //GestionMensajesServidor.singeton.EnviarMensaje("MS00", JsonUtility.ToJson(parte));
 
             InventarioUI.singleton.contadorInstancias -= 1; // Liberamos espacio en el inventario
             Destroy(this.gameObject); // Destruimos el boton

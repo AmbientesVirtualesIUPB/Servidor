@@ -22,6 +22,8 @@ public class BrazoMecanico : MonoBehaviour
     [SerializeField, Range(0f, 5f)]
     float offsetDistancia = 0.5f; // distancia mínima al target
 
+    private bool yaNotifiqueCercania = false;
+
 
     void Start()
     {
@@ -45,6 +47,25 @@ public class BrazoMecanico : MonoBehaviour
     {
         if (puedoValidar || targetPositions == null) return;
         SolveIK();
+
+        // --- DETECTAR CUANDO EL BRAZO LLEGA AL TARGET ---
+        float distancia = Vector3.Distance(
+            bones[bones.Length - 1].position,
+            targetPositions.position
+        );
+
+        // Si está suficientemente cerca y aún no lo hemos notificado
+        if (distancia <= offsetDistancia + 0.05f && !yaNotifiqueCercania)
+        {
+            Debug.Log("Brazo llegó lo más cerca posible del target.");
+            yaNotifiqueCercania = true;
+        }
+
+        // Si vuelve a alejarse, reseteamos la notificación
+        if (distancia > offsetDistancia + 0.1f)
+        {
+            yaNotifiqueCercania = false;
+        }
     }
 
     public void OnDrawGizmos()

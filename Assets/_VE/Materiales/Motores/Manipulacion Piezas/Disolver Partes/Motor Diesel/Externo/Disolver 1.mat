@@ -21,7 +21,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Disolver 1
-  m_Shader: {fileID: -6465566751694194690, guid: 2f8661793aaed9a41a99672a274b9976,
+  m_Shader: {fileID: -6465566751694194690, guid: f8e7477e6a897a1439710f6cd5e98180,
     type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -131,11 +131,11 @@ Material:
     - _DstBlendAlpha: 0
     - _Ejecucion: -1.44
     - _EnvironmentReflections: 1
-    - _Frecuencia: -1.13
+    - _Frecuencia: -0.9
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
-    - _Intensidad_Brillo: 4
+    - _Intensidad_Brillo: 1.56
     - _Intensidad_Metal: 1.2
     - _Metallic: 0
     - _OcclusionStrength: 1
@@ -155,7 +155,7 @@ Material:
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _Color_Borde: {r: 0, g: 15.999997, b: 12.238943, a: 0}
+    - _Color_Borde: {r: 0.81559086, g: 15.7186575, b: 12.285491, a: 0.48235294}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []
