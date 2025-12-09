@@ -185,6 +185,7 @@ GameObject:
   - component: {fileID: 4246882659260005244}
   - component: {fileID: 8257543915892267539}
   - component: {fileID: 3094763935554105310}
+  - component: {fileID: 2377928844983549114}
   m_Layer: 6
   m_Name: Personaje2
   m_TagString: Player
@@ -333,6 +334,20 @@ MonoBehaviour:
   camara: {fileID: 7505787553747952473}
   debugEnConsola: 0
   tiempoVida: 60
+--- !u!114 &2377928844983549114
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8110232705206672939}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff85e18bedb52f54ea8a816b696eb39a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  basePersonalizacion: {fileID: 4718483297078583934}
+  morionID: {fileID: 4246882659260005244}
 --- !u!1001 &2007162690958538128
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1415,3 +1430,15 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2007162690958538128}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &4718483297078583934 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6530699234947864558, guid: 041dc674bb41bed458debfe67d86579e,
+    type: 3}
+  m_PrefabInstance: {fileID: 2007162690958538128}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3529451201485847377}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bff4b208a94f5eb4eba111080bd19418, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
