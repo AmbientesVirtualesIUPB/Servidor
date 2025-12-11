@@ -30,18 +30,35 @@ public class UI_Enciclopedia : MonoBehaviour
     // ----------------------------------------------------------------------
     public void MostrarObjeto(ObjetoMisionBase obj)
     {
+        if (obj == null)
+        {
+            Debug.LogWarning("[UI_Enciclopedia] Objeto nulo.");
+            return;
+        }
+
         if (panel != null)
             panel.SetActive(true);
 
         // TÍTULO
-        textoTitulo.text = obj.nombreObjeto;
+        if (textoTitulo != null)
+            textoTitulo.text = obj.nombreObjeto;
+
+        // Comprobar GestorObjetos
+        bool infoDesbloqueada = false;
+        if (GestorObjetos.instancia != null)
+        {
+            infoDesbloqueada = GestorObjetos.instancia.InfoDesbloqueada(obj);
+        }
+        else
+        {
+            Debug.LogWarning("[UI_Enciclopedia] No hay GestorObjetos en la escena. Se mostrará texto codificado.");
+        }
+
+        Debug.Log($"[Enciclopedia] Mostrando {obj.nombreObjeto} | Desbloqueada: {infoDesbloqueada} | Desc: '{obj.descripcion}'");
 
         // DESCRIPCIÓN
-        bool infoDesbloqueada = GestorObjetos.instancia.InfoDesbloqueada(obj);
-
-        textoDescripcion.text = infoDesbloqueada
-            ? obj.descripcion
-            : textoCodificado;
+        if (textoDescripcion != null)
+            textoDescripcion.text = infoDesbloqueada ? obj.descripcion : textoCodificado;
 
         // IMAGEN SOLO SI EXISTE
         if (imagenIcono != null)

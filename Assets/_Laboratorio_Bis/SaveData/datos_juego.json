@@ -1,18 +1,63 @@
 {
     "misiones": {
-        "misionActivaID": 3,
-        "faseActiva": 2,
-        "progresoFase": [
-            0,
-            0
-        ],
+        "misionActivaID": -1,
+        "faseActiva": 0,
+        "progresoFase": [],
         "misionesCompletadas": [
-            1,
-            4
+            1
         ]
     },
     "objetos": {
-        "objetos": []
+        "objetos": [
+            {
+                "idObjeto": "1017",
+                "descubierto": false,
+                "infoDesbloqueada": false,
+                "cantidad": 0
+            },
+            {
+                "idObjeto": "1012",
+                "descubierto": false,
+                "infoDesbloqueada": false,
+                "cantidad": 0
+            },
+            {
+                "idObjeto": "1013",
+                "descubierto": false,
+                "infoDesbloqueada": false,
+                "cantidad": 0
+            },
+            {
+                "idObjeto": "1016",
+                "descubierto": false,
+                "infoDesbloqueada": false,
+                "cantidad": 0
+            },
+            {
+                "idObjeto": "1014",
+                "descubierto": false,
+                "infoDesbloqueada": false,
+                "cantidad": 0
+            },
+            {
+                "idObjeto": "1018",
+                "descubierto": false,
+                "infoDesbloqueada": false,
+                "cantidad": 0
+            },
+            {
+                "idObjeto": "1015",
+                "descubierto": false,
+                "infoDesbloqueada": false,
+                "cantidad": 0
+            },
+            {
+                "idObjeto": "1011",
+                "descubierto": true,
+                "infoDesbloqueada": true,
+                "cantidad": 3
+            }
+        ]
     },
     "analisis": {
         "analisis": []
