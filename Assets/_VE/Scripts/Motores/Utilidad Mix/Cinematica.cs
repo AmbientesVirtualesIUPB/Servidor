@@ -7,6 +7,7 @@ public class Cinematica : MonoBehaviour
 {
     public GameObject[] objetosCanvas;
     public Transform[] posicionesCamara;
+    public GameObject[] luces;
     public GameObject menuTutorial;
     public GameObject menuCinematica;
 
@@ -115,13 +116,19 @@ public class Cinematica : MonoBehaviour
             llantasCarroNegativas[i].velocidadRotacion = -60;
             llantasCarroPositivas[i].velocidadRotacion = 60;
         }
-
+    
         yield return new WaitForSeconds(8f);
 
         ControlCamaraMotor.singleton.IniciarMovimientoCamara(posicionesCamara[8], 5f);
         puerta.RetornarPosicionOriginal();
 
-        yield return new WaitForSeconds(2f);
+
+        yield return new WaitForSeconds(1f);
+        for (int i = 0; i < luces.Length; i++)
+        {
+            yield return new WaitForSeconds(0.5f);
+            luces[i].SetActive(true);
+        }
 
         for (int i = 0; i < llantasCarroNegativas.Length; i++)
         {

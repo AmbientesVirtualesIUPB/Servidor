@@ -183,6 +183,11 @@ public class ManagerMinijuego : MonoBehaviour
         MesaMotor.singleton.DesactivarHumo();
         ManagerDesplazamientoMotor.singleton.ReinicioMotores();
 
+        for (int i = 0; i < Cinematica.singleton.luces.Length; i++)
+        {
+            Cinematica.singleton.luces[i].SetActive(true);
+        }
+
         btnAplicarTorque.onClick.RemoveAllListeners(); // Removemos todos los listener
         btnEncenderMotor.onClick.RemoveAllListeners(); // Removemos todos los listener
 
