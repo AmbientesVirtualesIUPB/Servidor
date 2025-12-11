@@ -31,13 +31,22 @@ public class BotonObjetoInfo : MonoBehaviour
     {
         if (objeto == null)
         {
-            Debug.LogWarning("Botón sin objeto asignado.");
+            Debug.LogWarning($"[BotonObjetoInfo] {name} sin objeto asignado.");
             return;
         }
 
         // Nombre del botón
         if (textoNombre != null)
             textoNombre.text = objeto.nombreObjeto;
+
+        // ¿Tenemos GestorObjetos?
+        if (GestorObjetos.instancia == null)
+        {
+            Debug.LogWarning("[BotonObjetoInfo] No hay GestorObjetos en la escena. El aviso 'nuevo' se desactiva.");
+            if (avisoNuevo != null)
+                avisoNuevo.SetActive(false);
+            return;
+        }
 
         // Estados del objeto
         bool infoDesbloqueada = GestorObjetos.instancia.InfoDesbloqueada(objeto);
@@ -52,7 +61,20 @@ public class BotonObjetoInfo : MonoBehaviour
     // -------------------------------------------------------------------
     private void AbrirInformacion()
     {
-        UI_Enciclopedia.instancia.MostrarObjeto(objeto);
+        if (objeto == null)
+        {
+            Debug.LogWarning("[BotonObjetoInfo] Intento de abrir info sin objeto asignado.");
+            return;
+        }
+
+        if (UI_Enciclopedia.instancia != null)
+        {
+            UI_Enciclopedia.instancia.MostrarObjeto(objeto);
+        }
+        else
+        {
+            Debug.LogWarning("[BotonObjetoInfo] No hay UI_Enciclopedia en la escena.");
+        }
 
         // Quitar aviso de "nuevo"
         if (avisoNuevo != null)

@@ -24,7 +24,7 @@ public class UI_AlertaInfo : MonoBehaviour
 
     private System.Collections.IEnumerator Desvanecer()
     {
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(3.5f);
         panel.SetActive(false);
     }
 }

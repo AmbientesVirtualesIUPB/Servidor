@@ -13,8 +13,16 @@ MonoBehaviour:
   m_Name: FaseRecoleccionCubos
   m_EditorClassIdentifier: 
   idFase: 1
-  nombreFase: Recolecta los cubos
-  descripcionFase: Prueba con los cubos rojos esta vez, aprende a recogerlos isisis
+  nombreFase: Recolecta las muestras de agua
+  descripcionFase: "Hoy empezamos la misi\xF3n de recolecci\xF3n de agua residual.
+    Camino con cuidado entre las tuber\xEDas y desag\xFCes del laboratorio, buscando
+    los puntos donde el agua usada se acumula. Cada muestra que recojo no es solo
+    \u201Cagua sucia\u201D: es informaci\xF3n sobre lo que estamos consumiendo, desperdiciando
+    y devolviendo al ambiente. Etiqueto los frascos uno por uno, anoto la hora y
+    el lugar exacto de la toma, porque despu\xE9s estos datos ser\xE1n clave para
+    el an\xE1lisis. Mientras lleno el \xFAltimo contenedor, pienso que, si entendemos
+    mejor estas aguas, tambi\xE9n podremos dise\xF1ar formas m\xE1s inteligentes
+    y responsables de usarlas en el futuro."
   objetivos:
   - objeto: {fileID: 11400000, guid: e8b98586f0d36b045bcc65e392eb5666, type: 2}
     cantidadRequerida: 3

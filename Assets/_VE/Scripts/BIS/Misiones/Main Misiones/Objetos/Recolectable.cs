@@ -23,7 +23,6 @@ public class Recolectable : MonoBehaviour
     private Material fresnelMaterial;
 
     private bool jugadorCerca = false;
-    private bool interactuable = false;
 
     private void Start()
     {
@@ -35,7 +34,6 @@ public class Recolectable : MonoBehaviour
 
         var mats = meshRenderer.materials;
 
-        // Buscamos automáticamente el material que tenga el shader del fresnel
         for (int i = 0; i < mats.Length; i++)
         {
             if (mats[i].shader.name.Contains("Fresnel") ||
@@ -66,10 +64,8 @@ public class Recolectable : MonoBehaviour
         }
     }
 
-
     private void Update()
     {
-        // 1. Si no hay fresnel, no hacemos efectos visuales pero seguimos dejando recolección funcionando
         bool tieneFresnel = fresnelMaterial != null;
 
         // 2. Si no es fase de recolección
@@ -92,8 +88,10 @@ public class Recolectable : MonoBehaviour
         {
             if (tieneFresnel)
             {
-                fresnelMaterial.SetFloat("_Escala_Fresnel", Mathf.Lerp(fresnelMaterial.GetFloat("_Escala_Fresnel"), fresnelMin, Time.deltaTime * velocidadTransicion));
-                fresnelMaterial.SetFloat("_Opacidad", Mathf.Lerp(fresnelMaterial.GetFloat("_Opacidad"), opacidadMin, Time.deltaTime * velocidadTransicion));
+                fresnelMaterial.SetFloat("_Escala_Fresnel", Mathf.Lerp(
+                    fresnelMaterial.GetFloat("_Escala_Fresnel"), fresnelMin, Time.deltaTime * velocidadTransicion));
+                fresnelMaterial.SetFloat("_Opacidad", Mathf.Lerp(
+                    fresnelMaterial.GetFloat("_Opacidad"), opacidadMin, Time.deltaTime * velocidadTransicion));
             }
             return;
         }
@@ -103,8 +101,10 @@ public class Recolectable : MonoBehaviour
         {
             if (tieneFresnel)
             {
-                fresnelMaterial.SetFloat("_Escala_Fresnel", Mathf.Lerp(fresnelMaterial.GetFloat("_Escala_Fresnel"), fresnelMin, Time.deltaTime * velocidadTransicion));
-                fresnelMaterial.SetFloat("_Opacidad", Mathf.Lerp(fresnelMaterial.GetFloat("_Opacidad"), opacidadMin, Time.deltaTime * velocidadTransicion));
+                fresnelMaterial.SetFloat("_Escala_Fresnel", Mathf.Lerp(
+                    fresnelMaterial.GetFloat("_Escala_Fresnel"), fresnelMin, Time.deltaTime * velocidadTransicion));
+                fresnelMaterial.SetFloat("_Opacidad", Mathf.Lerp(
+                    fresnelMaterial.GetFloat("_Opacidad"), opacidadMin, Time.deltaTime * velocidadTransicion));
             }
             return;
         }
@@ -115,8 +115,10 @@ public class Recolectable : MonoBehaviour
             float objetivoFresnel = jugadorCerca ? fresnelMax : fresnelMin;
             float objetivoOpacidad = jugadorCerca ? opacidadMax : opacidadMin;
 
-            fresnelMaterial.SetFloat("_Escala_Fresnel", Mathf.Lerp(fresnelMaterial.GetFloat("_Escala_Fresnel"), objetivoFresnel, Time.deltaTime * velocidadTransicion));
-            fresnelMaterial.SetFloat("_Opacidad", Mathf.Lerp(fresnelMaterial.GetFloat("_Opacidad"), objetivoOpacidad, Time.deltaTime * velocidadTransicion));
+            fresnelMaterial.SetFloat("_Escala_Fresnel", Mathf.Lerp(
+                fresnelMaterial.GetFloat("_Escala_Fresnel"), objetivoFresnel, Time.deltaTime * velocidadTransicion));
+            fresnelMaterial.SetFloat("_Opacidad", Mathf.Lerp(
+                fresnelMaterial.GetFloat("_Opacidad"), objetivoOpacidad, Time.deltaTime * velocidadTransicion));
         }
 
         // 6. Recolección
@@ -129,7 +131,6 @@ public class Recolectable : MonoBehaviour
         }
     }
 
-
     private void OnTriggerEnter(Collider other)
     {
         if (!other.CompareTag("Player")) return;
@@ -137,52 +138,48 @@ public class Recolectable : MonoBehaviour
         if (!EsParteDeLaMisionActual()) return;
         if (GestorMisiones.instancia.ObjetivoDeRecoleccionYaCompleto(objetoAsociado)) return;
 
-
         jugadorCerca = true;
 
-        UI_Recoleccion.instancia.MostrarMensaje("Presiona E para recolectar " + objetoAsociado.nombreObjeto);
+        UI_Recoleccion.instancia.MostrarMensaje(
+            "Presiona E para recolectar " + objetoAsociado.nombreObjeto);
     }
-
 
     private void OnTriggerExit(Collider other)
     {
         if (!other.CompareTag("Player")) return;
 
         jugadorCerca = false;
-
-        // Ocultar UI
         UI_Recoleccion.instancia.OcultarMensaje();
     }
 
+    // ---------------------------------------------------------
+    // AQUÍ ES DONDE DESBLOQUEAMOS LA INFO
+    // ---------------------------------------------------------
     private void IntentarRecolectar()
     {
+        // 1. Preguntar al gestor de misiones si este objeto cuenta
         bool aceptado = GestorMisiones.instancia.RecogerObjeto(objetoAsociado);
 
-        if (aceptado)
+        if (!aceptado)
         {
-            // 1. Sumar cantidad del objeto al registro del jugador
-            GestorObjetos.instancia.SumarCantidad(objetoAsociado);
-
-            // 2. Marcar como descubierto si es la primera vez
-            GestorObjetos.instancia.MarcarDescubierto(objetoAsociado);
-
-            // 3. Si la misión completó todos los requeridos → desbloquear info
-            if (GestorMisiones.instancia.ObjetivoDeRecoleccionYaCompleto(objetoAsociado))
-            {
-                GestorObjetos.instancia.DesbloquearInformacion(objetoAsociado);
-            }
-
-            UI_Recoleccion.instancia.OcultarMensaje();
-            Destroy(gameObject);
+            Debug.Log("Este objeto no es parte de la misión actual o el objetivo ya está completo.");
+            return;
         }
-        else
+
+        // 2. Guardar en sistema de objetos
+        GestorObjetos.instancia.SumarCantidad(objetoAsociado);
+        GestorObjetos.instancia.MarcarDescubierto(objetoAsociado);
+
+        // 3. Si NO requiere análisis → desbloquear info al recoger
+        if (!objetoAsociado.requiereAnalisisParaInfo)
         {
-            Debug.Log("Este objeto no es parte de la misión actual.");
+            GestorObjetos.instancia.DesbloquearInformacion(objetoAsociado);
         }
+
+        // 4. Cerrar UI y destruir el objeto físico
+        UI_Recoleccion.instancia.OcultarMensaje();
+        Destroy(gameObject);
     }
-
-   
-
 
     private bool EsParteDeLaMisionActual()
     {
@@ -194,5 +191,4 @@ public class Recolectable : MonoBehaviour
         return GestorMisiones.instancia != null &&
                GestorMisiones.instancia.FaseActualEsRecoleccion();
     }
-
 }
