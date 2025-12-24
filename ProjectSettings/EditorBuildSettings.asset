@@ -38,4 +38,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_VE/Scenes/Constructores/C_Lobby.unity
     guid: dfbe8d46b73ca2c419b48f30f09f65ee
-  m_configObjects: {}
+  m_configObjects:
+    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 0c743baaf857fdd4eba4502bab334a74,
+      type: 2}
+    com.unity.xr.openxr.settings4: {fileID: 11400000, guid: bf30995cc0f956745ac895ded76f03f1,
+      type: 2}
