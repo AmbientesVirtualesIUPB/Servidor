@@ -33,6 +33,37 @@ Transform:
   - {fileID: 1615674741801276074}
   m_Father: {fileID: 878769694765744920}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &4641587789113817250
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1650570381900659511}
+  m_Layer: 6
+  m_Name: LookAt
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1650570381900659511
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4641587789113817250}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 878769694765744920}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7505787553747952473
 GameObject:
   m_ObjectHideFlags: 0
@@ -74,7 +105,7 @@ Camera:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7505787553747952473}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_ClearFlags: 1
   m_BackGroundColor: {r: 0, g: 0, b: 0, a: 1}
@@ -125,7 +156,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7505787553747952473}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!114 &6411248568212942858
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -186,6 +217,7 @@ GameObject:
   - component: {fileID: 8257543915892267539}
   - component: {fileID: 3094763935554105310}
   - component: {fileID: 2377928844983549114}
+  - component: {fileID: 5758801707770744617}
   m_Layer: 6
   m_Name: Personaje2
   m_TagString: Player
@@ -207,6 +239,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7251594986973126381}
+  - {fileID: 1650570381900659511}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!136 &4421974620422499323
@@ -347,6 +380,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   basePersonalizacion: {fileID: 4718483297078583934}
+  morionID: {fileID: 4246882659260005244}
+  url_consulta_p: CRUD/Read/leer_datos_personalizacion.php
+  datosPersonalizacion: 
+--- !u!114 &5758801707770744617
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8110232705206672939}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37744d97f9d951d409d24c6f2f2195ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  velocidadInicial: 0
+  velocidad: 3
+  camaraOrbital: {fileID: 0}
+  noMover: 0
 --- !u!1001 &2007162690958538128
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1422,6 +1474,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68bc486b218f3454b8c7aa76c0f1ef8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  movimientoJugador: {fileID: 5758801707770744617}
+  velocidadCorrer: 5
+  tiempoSprint: 5
+  velocidadSuperCorrer: 8
   posicionAnterior: {x: 0, y: 0, z: 0}
 --- !u!4 &4301203203679314411 stripped
 Transform:
