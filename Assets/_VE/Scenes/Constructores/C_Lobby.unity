@@ -297,33 +297,12 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 5671650096859667332}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2132035716}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a6cdaf4026ccafa4d851dc215bf180d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &2132035716 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8110232705206672939, guid: 58da88c63b3733f4f8020124e1a26815,
-    type: 3}
-  m_PrefabInstance: {fileID: 5671650096859667332}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &2132035717
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2132035716}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 37744d97f9d951d409d24c6f2f2195ac, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  velocidad: 3
-  camaraOrbital: {fileID: 438059642128860943}
-  detener: 0
 --- !u!4 &2132035723 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 878769694765744920, guid: 58da88c63b3733f4f8020124e1a26815,
@@ -6479,6 +6458,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5054027406161356807, guid: 294a79cbdf1697046a0889abc298ad00,
+        type: 3}
+      propertyPath: puerto
+      value: 8086
+      objectReference: {fileID: 0}
     - target: {fileID: 5331145527272921560, guid: 294a79cbdf1697046a0889abc298ad00,
         type: 3}
       propertyPath: prUsuario
@@ -7207,6 +7191,16 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4718483297078583935, guid: 58da88c63b3733f4f8020124e1a26815,
+        type: 3}
+      propertyPath: finalScaleReference
+      value: 0.8843792
+      objectReference: {fileID: 0}
+    - target: {fileID: 5758801707770744617, guid: 58da88c63b3733f4f8020124e1a26815,
+        type: 3}
+      propertyPath: camaraOrbital
+      value: 
+      objectReference: {fileID: 438059642128860943}
     - target: {fileID: 8110232705206672939, guid: 58da88c63b3733f4f8020124e1a26815,
         type: 3}
       propertyPath: m_Name
@@ -7220,11 +7214,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 8110232705206672939, guid: 58da88c63b3733f4f8020124e1a26815,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2132035717}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 58da88c63b3733f4f8020124e1a26815, type: 3}
 --- !u!33 &5766557287110422390
 MeshFilter:
