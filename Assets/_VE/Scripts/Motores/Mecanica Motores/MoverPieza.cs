@@ -11,13 +11,14 @@ public class MoverPieza : MonoBehaviour
     public bool piezaColocada; // Para validar si la pieza ya fue colocada   
 
     [Header("CONFIGURACION INICIAL")]
-    public bool piezaFinal; // Para validar si el prefab activa minijuego
+    public bool piezaFinal; // Para validar si es la ultima pieza del motor
     public Vector3 posicionObjetivo;  // La posicion en la cual dejaremos la pieza colocada
     public Material[] materialesSeleccion; // Para los materiales de seleccion verde y rojo
     public Material materialDisolver; // Para el material de disolucion
     public float tiempoDisolver; // Para controlar el tiempo de disolver 
     public GameObject[] snappsParaActivar; // Los puntos de contacto que se activan al momento de colocar una pieza
     public GameObject[] snappsParaDesactivar; // Los puntos de contacto que se desactivan al momento de colocar una pieza
+    public AgregarDisolver esferaDisolver;
     [TextArea(3, 4)]
     public string pista;
 
@@ -83,11 +84,11 @@ public class MoverPieza : MonoBehaviour
         {
             if (transform.localPosition.x > 0)
             {
-                ManagerBrazos.singleton.AsignarTargetDerecho(this.transform); // Le asignamos este transform como target a los brazos
+                ManagerBrazos.singleton.AsignarTargetDerecho(this.transform, esferaDisolver); // Le asignamos este transform como target a los brazos
             }
             else
             {
-                ManagerBrazos.singleton.AsignarTargetIzquierdo(this.transform); // Le asignamos este transform como target a los brazos
+                ManagerBrazos.singleton.AsignarTargetIzquierdo(this.transform, esferaDisolver); // Le asignamos este transform como target a los brazos
             }
         }
     }
@@ -157,6 +158,7 @@ public class MoverPieza : MonoBehaviour
         {
             validarBrazo = false; // Indicamos que ya no estamos validando el brazo
             ManagerBrazos.singleton.RetornarBrazos(); // Le asignamos este transform como target a los brazis
+            ManagerBrazos.singleton.EfectoDisolverInversa(); // Le retiramos el efecto de disolver
 
             puedoValidar = true;
             QuitarMateriales();

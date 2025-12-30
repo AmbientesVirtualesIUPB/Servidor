@@ -1,6 +1,7 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class ManagerCanvas : MonoBehaviour
 {
@@ -297,5 +298,20 @@ public class ManagerCanvas : MonoBehaviour
     public void Salir()
     {
         Application.Quit();
+    }
+
+    /// <summary>
+    /// Cambia de escena según el nombre recibido
+    /// </summary>
+    /// <param name="sceneName">Nombre exacto de la escena</param>
+    public void CambiarEscena(string sceneName)
+    {
+        if (string.IsNullOrEmpty(sceneName))
+        {
+            Debug.LogWarning(" El nombre de la escena está vacío o es nulo");
+            return;
+        }
+
+        SceneManager.LoadScene(sceneName);
     }
 }

@@ -120,7 +120,10 @@ public class MoverObjeto : MonoBehaviour
     [ContextMenu("Reiniciar")]
     public void RegresarPosicionOriginal()
     {
-        transform.localPosition = PuntoInicio.localPosition; //  Guardamos la posicion de inicial
-        transform.localRotation = PuntoInicio.localRotation; //  Guardamos la rotacion de inicial  
+        if (PuntoInicio != null)
+        {
+            transform.localPosition = PuntoInicio.localPosition; //  Guardamos la posicion de inicial
+            transform.localRotation = PuntoInicio.localRotation; //  Guardamos la rotacion de inicial  
+        }      
     }
 }

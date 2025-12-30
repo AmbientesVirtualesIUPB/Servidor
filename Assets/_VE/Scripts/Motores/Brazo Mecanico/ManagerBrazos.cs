@@ -3,6 +3,7 @@ using UnityEngine;
 public class ManagerBrazos : MonoBehaviour
 {
     public BrazoMecanico[] brazosMecanicos;
+    private AgregarDisolver esferaDisolver;
 
     public static ManagerBrazos singleton;
     private void Awake()
@@ -39,14 +40,16 @@ public class ManagerBrazos : MonoBehaviour
         }
     }
 
-    public void AsignarTargetDerecho(Transform nuevoTarget)
+    public void AsignarTargetDerecho(Transform nuevoTarget, AgregarDisolver esfera)
     {
+        esferaDisolver = esfera;
         brazosMecanicos[0].AsignarTarget(nuevoTarget);
         brazosMecanicos[1].RegresarAPosicionInicial();
     }
 
-    public void AsignarTargetIzquierdo(Transform nuevoTarget)
+    public void AsignarTargetIzquierdo(Transform nuevoTarget, AgregarDisolver esfera)
     {
+        esferaDisolver = esfera;
         brazosMecanicos[1].AsignarTarget(nuevoTarget);
         brazosMecanicos[0].RegresarAPosicionInicial();
     }
@@ -65,5 +68,21 @@ public class ManagerBrazos : MonoBehaviour
         {
             brazosMecanicos[i].gameObject.SetActive(true);
         }
+    }
+
+    public void EfectoDisolver()
+    {
+        if (esferaDisolver != null)
+        {
+            esferaDisolver.Disolver();
+        }      
+    }
+
+    public void EfectoDisolverInversa()
+    {
+        if (esferaDisolver != null)
+        {
+            esferaDisolver.Restaurar();
+        }     
     }
 }

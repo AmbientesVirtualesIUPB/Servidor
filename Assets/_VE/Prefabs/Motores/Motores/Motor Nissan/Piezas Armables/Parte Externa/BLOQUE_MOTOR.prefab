@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 1668029742826236811}
   - component: {fileID: 4055331753044104054}
   - component: {fileID: 7912408557428528744}
+  - component: {fileID: -7501294346495178917}
+  - component: {fileID: -1356270606290044765}
   m_Layer: 7
   m_Name: BLOQUE_MOTOR
   m_TagString: Untagged
@@ -150,7 +152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c488d3aece86cfa499f969f606f0e2ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 0
+  id: 38
   piezaExterna: 0
   puedoValidar: 0
   piezaColocada: 0
@@ -165,6 +167,7 @@ MonoBehaviour:
   - {fileID: 9138386354393286189}
   snappsParaDesactivar:
   - {fileID: 5220472113702371805}
+  esferaDisolver: {fileID: 2631856504838426206}
   pista: "Con la estructura ya formada, debes fijar el bloque y el c\xE1rter para
     sellar completamente la base del motor. Estos tornillos garantizan la rigidez
     del conjunto y previenen fugas en la zona inferior."
@@ -191,6 +194,50 @@ MonoBehaviour:
     type: 0
   meshRendererHijos:
   - {fileID: 2525369223035085999}
+--- !u!114 &-7501294346495178917
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3825201507924492118}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d87b980c55d88c947b0b5dcabdcfd22c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  idPersonalizada: 0
+  isOwner: 0
+  ID: 
+--- !u!114 &-1356270606290044765
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3825201507924492118}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ab9a1b8254401a4ca757de1bfb310be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mTransformManager: {fileID: 0}
+  debugEnConsola: 0
+  opcionesAvanzadas: 0
+  posicionObjetivo: {x: 0, y: 0, z: 0}
+  rotacionObjetivo: {x: 0, y: 0, z: 0}
+  toleranciaPosicion: 0.2
+  toleranciaRotacion: 10
+  velRotacion: 5
+  velTranslacion: 10
+  periodoEsperas: 0.2
+  morionID: {fileID: 0}
+  datosActualizables:
+    datosPropios:
+      id: 
+      pos: {x: 0, y: 0, z: 0}
+      rot: {x: 0, y: 0, z: 0}
+    datosActualizables: []
 --- !u!1 &4933819429685660859
 GameObject:
   m_ObjectHideFlags: 0
@@ -706,6 +753,18 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fb6af6340ec7ee644b5650d975113044, type: 3}
+--- !u!114 &2631856504838426206 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2647218294476850463, guid: fb6af6340ec7ee644b5650d975113044,
+    type: 3}
+  m_PrefabInstance: {fileID: 16594445336529729}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8facab4b706acb4e8d562ee24f4995a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &8504351337841425000 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8520655415436947753, guid: fb6af6340ec7ee644b5650d975113044,

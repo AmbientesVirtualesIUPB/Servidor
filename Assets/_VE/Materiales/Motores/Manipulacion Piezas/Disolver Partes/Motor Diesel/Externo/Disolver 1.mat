@@ -117,7 +117,7 @@ Material:
     m_Floats:
     - _AlphaClip: 0
     - _AlphaToMask: 0
-    - _Ancho_Borde: 0.05
+    - _Ancho_Borde: 0.01
     - _Blend: 0
     - _BlendModePreserveSpecular: 1
     - _BumpScale: 1
@@ -131,7 +131,7 @@ Material:
     - _DstBlendAlpha: 0
     - _Ejecucion: -1.44
     - _EnvironmentReflections: 1
-    - _Frecuencia: -0.76
+    - _Frecuencia: 1
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
@@ -143,7 +143,7 @@ Material:
     - _QueueControl: 0
     - _QueueOffset: 0
     - _ReceiveShadows: 1
-    - _Ruido: 50
+    - _Ruido: 200
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
@@ -155,7 +155,7 @@ Material:
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _Color_Borde: {r: 0.81559086, g: 15.7186575, b: 12.285491, a: 0.48235294}
+    - _Color_Borde: {r: 0, g: 3.7484877, b: 19.005865, a: 0.48235294}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []

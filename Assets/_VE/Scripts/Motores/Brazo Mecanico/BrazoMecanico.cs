@@ -2,6 +2,8 @@
 
 public class BrazoMecanico : MonoBehaviour
 {
+    public MoverObjeto[] dedos;
+
     [SerializeField]
     Transform[] bones;
     float[] bonesLengths;
@@ -55,9 +57,14 @@ public class BrazoMecanico : MonoBehaviour
         );
 
         // Si está suficientemente cerca y aún no lo hemos notificado
-        if (distancia <= offsetDistancia + 0.05f && !yaNotifiqueCercania)
+        if (distancia <= offsetDistancia + 0.05f && !yaNotifiqueCercania && targetPositions != targetPositionInicial) 
         {
-            Debug.Log("Brazo llegó lo más cerca posible del target.");
+            for (int i = 0; i < dedos.Length; i++)
+            {
+                dedos[i].IniciarDesplazamientoObjeto();
+            }
+
+            ManagerBrazos.singleton.EfectoDisolver(); // Le retiramos el efecto de disolver
             yaNotifiqueCercania = true;
         }
 
@@ -165,6 +172,11 @@ public class BrazoMecanico : MonoBehaviour
     public void RegresarAPosicionInicial()
     {
         targetPositions = targetPositionInicial;
+
+        for (int i = 0; i < dedos.Length; i++)
+        {
+            dedos[i].RetornarPosicionOriginal();
+        }
     }
 
     // Lógica de interpolación al volver a la posicion inicial

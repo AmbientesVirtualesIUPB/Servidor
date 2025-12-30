@@ -1,15 +1,16 @@
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
 
 public class AgregarDisolver : MonoBehaviour
 {
-    [Header("CONFIGURACI�N")]
+    [Header("CONFIGURACIÓN")]
     public Material materialDisolver;
     public float tiempoDisolver = 1f;
 
     [Header("OPCIONAL")]
     public MeshRenderer[] meshRendererHijos;
 
+    private bool disolucionAplicada;
     private MeshRenderer meshRenderer;
     private Material[] materialesOriginales;
     private Coroutine coroutine;
@@ -32,16 +33,30 @@ public class AgregarDisolver : MonoBehaviour
             materialesOriginales = meshRenderer.materials;
         }
     }
+
     [ContextMenu("Disolver")]
     public void Disolver()
     {
-        AplicarDisolver(true);
+        if (!disolucionAplicada)
+        {
+            disolucionAplicada = true;
+            AplicarDisolver(true);
+        }   
     }
+
+    [ContextMenu("Restaurar")]
+    public void Restaurar()
+    {
+        if (disolucionAplicada)
+        {
+            AplicarDisolver(false);
+        }  
+    }
+
     /// <summary>
-    /// Aplica el material de disolver
+    /// true = disolver (1 → -1)
+    /// false = aparecer (-1 → 1 y restaurar)
     /// </summary>
-    /// <param name="disolverAdentro">true = disolver, false = aparecer</param>
-    
     public void AplicarDisolver(bool disolverAdentro)
     {
         if (!gameObject.activeInHierarchy || materialDisolver == null)
@@ -53,45 +68,23 @@ public class AgregarDisolver : MonoBehaviour
         coroutine = StartCoroutine(DisolverCoroutine(disolverAdentro));
     }
 
-    /// <summary>
-    /// Restaura los materiales originales
-    /// </summary>
-    [ContextMenu("Restaurar")]
-    public void RestaurarMateriales()
-    {
-        if (coroutine != null)
-            StopCoroutine(coroutine);
-
-        if (meshRendererHijos != null && meshRendererHijos.Length > 0)
-        {
-            foreach (var r in meshRendererHijos)
-            {
-                r.materials = materialesOriginales;
-            }
-        }
-        else if (meshRenderer != null)
-        {
-            meshRenderer.materials = materialesOriginales;
-        }
-
-        coroutine = null;
-    }
-
     private IEnumerator DisolverCoroutine(bool disolverAdentro)
     {
-        // Crear instancia del material
+        // Crear instancia del material de disolver
         instanciaDisolver = new Material(materialDisolver);
-        instanciaDisolver.SetFloat("_Frecuencia", disolverAdentro ? 1f : -1f);
+
+        float valorInicial = disolverAdentro ? 1f : -1f;
+        float valorFinal = disolverAdentro ? -1f : 1f;
+
+        instanciaDisolver.SetFloat("_Frecuencia", valorInicial);
 
         Material[] nuevosMateriales = new Material[] { instanciaDisolver };
 
-        // Asignar material
+        // Asignar material de disolver
         if (meshRendererHijos != null && meshRendererHijos.Length > 0)
         {
             foreach (var r in meshRendererHijos)
-            {
                 r.materials = nuevosMateriales;
-            }
         }
         else if (meshRenderer != null)
         {
@@ -103,10 +96,7 @@ public class AgregarDisolver : MonoBehaviour
         while (tiempo < tiempoDisolver)
         {
             float t = tiempo / tiempoDisolver;
-
-            float valor = disolverAdentro
-                ? Mathf.Lerp(1f, -1f, t)
-                : Mathf.Lerp(-1f, 1f, t);
+            float valor = Mathf.Lerp(valorInicial, valorFinal, t);
 
             instanciaDisolver.SetFloat("_Frecuencia", valor);
 
@@ -114,8 +104,29 @@ public class AgregarDisolver : MonoBehaviour
             yield return null;
         }
 
-        instanciaDisolver.SetFloat("_Frecuencia", disolverAdentro ? -1f : 1f);
+        instanciaDisolver.SetFloat("_Frecuencia", valorFinal);
+
+        // SOLO si estamos restaurando, devolvemos los materiales originales
+        if (!disolverAdentro)
+        {
+            RestaurarMaterialesInstantaneo();
+        }
 
         coroutine = null;
+    }
+
+    private void RestaurarMaterialesInstantaneo()
+    {
+        if (meshRendererHijos != null && meshRendererHijos.Length > 0)
+        {
+            foreach (var r in meshRendererHijos)
+                r.materials = materialesOriginales;
+        }
+        else if (meshRenderer != null)
+        {
+            meshRenderer.materials = materialesOriginales;
+        }
+
+        disolucionAplicada = false;
     }
 }
