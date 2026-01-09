@@ -21,7 +21,7 @@ public class MovimientoJugador : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (!detener)
+        if (!detener && camaraOrbital != null)
         {
             // Leer entrada horizontal (A/D) y vertical (W/S)
             float horizontal = Input.GetAxis("Horizontal");

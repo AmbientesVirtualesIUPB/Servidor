@@ -34,7 +34,8 @@ public class SueloInteractivo : MonoBehaviour
     public bool interactuar; // Para validar si estoy interactuando
     [HideInInspector]
     public bool salirInteraccion; // Para validar si salgo de la interaccion
-    private bool plataformaAbajo; // Para validar si salgo bajando la plataforma
+    [HideInInspector]
+    public bool plataformaAbajo; // Para validar si salgo bajando la plataforma
     private Coroutine coroutine;
     
     private void Awake()
@@ -84,8 +85,9 @@ public class SueloInteractivo : MonoBehaviour
 
                     if (plataformaAbajo)
                     {
+                        GestionMensajesServidor.singeton.EnviarMensaje("MS01", "Subiendo plataforma");
                         EntornoMecanica.singleton.AbrirCompuerta(posicionObjetivoCamara);
-                        plataformaAbajo = false;
+                        plataformaAbajo = false;                       
                     }
                     else
                     {
@@ -374,6 +376,7 @@ public class SueloInteractivo : MonoBehaviour
         {
             plataformaAbajo = true;
             SalirInteraccion();
+            GestionMensajesServidor.singeton.EnviarMensaje("MS02", "Bajando plataforma");
             EntornoMecanica.singleton.CerrarCompuerta();       
             btnBajarPlataforma.gameObject.SetActive(false);       
         }  

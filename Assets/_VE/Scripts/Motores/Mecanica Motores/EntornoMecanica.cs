@@ -183,7 +183,12 @@ public class EntornoMecanica : MonoBehaviour
         }
 
         ControlCamaraMotor.singleton.IniciarMovimientoCamara(posicionDeseada[2], 1);
-        sueloInteractivo.IngresandoInteraccion();
+
+        if (!ServidorMotores.singleton.plataformaIniciada)
+        {
+            sueloInteractivo.IngresandoInteraccion();
+        }
+        
         iniciarCompuertas = null;
     }
 
