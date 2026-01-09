@@ -25,13 +25,10 @@ public class IluminarMaterial : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (sueloInteractivo.puedoInteractuarInicialmente)
+        if (other.CompareTag("Player"))
         {
-            if (other.CompareTag("Player"))
-            {
-                StopCoroutine(BajarEmission()); // Detenemos currutina actual
-                StartCoroutine(SubirEmission()); // Iniciamos nueva currutina
-            }
+            StopCoroutine(BajarEmission()); // Detenemos currutina actual
+            StartCoroutine(SubirEmission()); // Iniciamos nueva currutina
         }
     }
 

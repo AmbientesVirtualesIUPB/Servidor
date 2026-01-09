@@ -27,7 +27,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 2100000, guid: 78cbbcf8df46c6642a36f2709c3f3e6e, type: 2}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 36c5537898a636445a601eb56555c46e, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -462,7 +462,7 @@ Transform:
   m_GameObject: {fileID: 6128480285035725012}
   serializedVersion: 2
   m_LocalRotation: {x: 0.078459114, y: -0, z: -0, w: 0.99691737}
-  m_LocalPosition: {x: 0, y: 1.356, z: -12.942}
+  m_LocalPosition: {x: -12.61, y: 35.63, z: -125.06}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -7139,17 +7139,17 @@ PrefabInstance:
     - target: {fileID: 878769694765744920, guid: 58da88c63b3733f4f8020124e1a26815,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.07
+      value: -12.679999
       objectReference: {fileID: 0}
     - target: {fileID: 878769694765744920, guid: 58da88c63b3733f4f8020124e1a26815,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.21
+      value: 34.484
       objectReference: {fileID: 0}
     - target: {fileID: 878769694765744920, guid: 58da88c63b3733f4f8020124e1a26815,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -6.4
+      value: -118.518
       objectReference: {fileID: 0}
     - target: {fileID: 878769694765744920, guid: 58da88c63b3733f4f8020124e1a26815,
         type: 3}
@@ -7512,7 +7512,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.01
-  far clip plane: 50
+  far clip plane: 500
   field of view: 60
   orthographic: 0
   orthographic size: 5
