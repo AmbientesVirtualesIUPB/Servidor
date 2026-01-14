@@ -1,0 +1,304 @@
+fileFormatVersion: 2
+guid: c3a53c9a582b7594f962bf9017df1a60
+ModelImporter:
+  serializedVersion: 22200
+  internalIDToNameTable: []
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_CONCRETO
+    second: {fileID: 2100000, guid: 24df29ef5e5dc9b40afacce8db8f565c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_MARCO_MUELLE
+    second: {fileID: 2100000, guid: 445b44d506d60b1408db39c933a187a5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_MARCO_Trans_MUELLE
+    second: {fileID: 2100000, guid: 813e0a7ef4c1b6340b5cabec05bb7562, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_MODULO_PARED
+    second: {fileID: 2100000, guid: bc0a7578852fa24458ad7503a5cc1d79, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_MODULO_PUERTA_PEATONAL
+    second: {fileID: 2100000, guid: 0e607c8c8e637414e95fe8bc1ac607e4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_PLATAFORMA
+    second: {fileID: 2100000, guid: 90cbbb3b62a02be4abccc9cc170313a8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_PUERTA_MUELLE
+    second: {fileID: 2100000, guid: ca43bbbfea373d449a5566a4cc8e53cf, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_Trans_MODULO_PUERTA_PEATONAL
+    second: {fileID: 2100000, guid: 660ffb91e97656744a82a589da2e40bd, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_Trans_PUERTA_MUELLE
+    second: {fileID: 2100000, guid: 118efc42344cb2c44ba97955a4bffc9d, type: 2}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: M_CONCRETO_Metallic
+    second: {fileID: 2800000, guid: f68b6f09c5f895a479e6e134c06dcc3e, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: M_CONCRETO_Normal_OpenGL
+    second: {fileID: 2800000, guid: 2c8d135c639d9fe4cac9038e9fcc5b54, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: M_CONCRETO_Roughness
+    second: {fileID: 2800000, guid: 1b16c8ed61a897041962ad311ee8772b, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: M_MARCO_MUELLE_Metallic
+    second: {fileID: 2800000, guid: ab9a288ce67dcc046a2f4b0fa535bb67, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: M_MARCO_MUELLE_Normal_OpenGL
+    second: {fileID: 2800000, guid: 72ffbbd101b3afc44aea99c280bdfd8c, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: M_MARCO_MUELLE_Roughness
+    second: {fileID: 2800000, guid: 979f521b75212524c98bb8c3da91dc0e, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: M_MARCO_Trans_MUELLE_Metallic
+    second: {fileID: 2800000, guid: d5fabff065065884883ec3c0697932ac, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: M_MARCO_Trans_MUELLE_Normal_OpenGL
+    second: {fileID: 2800000, guid: f2b6701996e3f284e8a728b540f20187, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: M_MARCO_Trans_MUELLE_Opacity
+    second: {fileID: 2800000, guid: 7112cba303d399b4ebf5dbf4288bdb94, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: M_MARCO_Trans_MUELLE_Roughness
+    second: {fileID: 2800000, guid: 4e02e295869083144b6aef0139eafbb3, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: M_MODULO_PARED_Metallic
+    second: {fileID: 2800000, guid: d366d5c4209367a4a95781d51cb3f416, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: M_MODULO_PARED_Normal_OpenGL
+    second: {fileID: 2800000, guid: b3241778a66b2a544acef6a593635605, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: M_MODULO_PARED_Roughness
+    second: {fileID: 2800000, guid: 2cc2d3ec6efaa564d922a9a1ae739b45, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: M_MODULO_PUERTA_PEATONAL_Metallic
+    second: {fileID: 2800000, guid: 81ed6316ebdbeb940a8a9b66f02b2029, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: M_MODULO_PUERTA_PEATONAL_Normal_OpenGL
+    second: {fileID: 2800000, guid: 806ccfe552d784746a4b470e60f1af6f, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: M_MODULO_PUERTA_PEATONAL_Roughness
+    second: {fileID: 2800000, guid: 35d8eb777fec8ab4294527dbdc94eda6, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: M_PLATAFORMA_Base_color
+    second: {fileID: 2800000, guid: 7b8fad5cc59cb064c83391491d61beef, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: M_PLATAFORMA_Metallic
+    second: {fileID: 2800000, guid: f7724b23a2a1a8d498a21f85cbfb7436, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: M_PLATAFORMA_Normal_OpenGL
+    second: {fileID: 2800000, guid: fdd95a249860d7745a9c58d57c8d2696, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: M_PLATAFORMA_Roughness
+    second: {fileID: 2800000, guid: 8a60dd27a8aa457428099de3a91d4be0, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: M_PUERTA_MUELLE_Metallic
+    second: {fileID: 2800000, guid: e5d4244cba27d0f44b33852e0ed03d64, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: M_PUERTA_MUELLE_Normal_OpenGL
+    second: {fileID: 2800000, guid: 62e0ac8ef38816045bf5ce16215254dd, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: M_PUERTA_MUELLE_Roughness
+    second: {fileID: 2800000, guid: ac138023cf20ccd4482b120770dbe4df, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: M_Trans_MODULO_PUERTA_PEATONAL_Metallic
+    second: {fileID: 2800000, guid: 997e05fc47894a0498dd2e87e1558cdb, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: M_Trans_MODULO_PUERTA_PEATONAL_Normal_OpenGL
+    second: {fileID: 2800000, guid: e71569ca41bfd2949a6539a07c428c90, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: M_Trans_MODULO_PUERTA_PEATONAL_Roughness
+    second: {fileID: 2800000, guid: 32f3b5b72277a374f9d638872f42f3bc, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: M_Trans_PUERTA_MUELLE_Metallic
+    second: {fileID: 2800000, guid: 16c0427a097684346ba3413ea4570289, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: M_Trans_PUERTA_MUELLE_Normal_OpenGL
+    second: {fileID: 2800000, guid: f8e4a20c7d6671942985ebd955ab87e1, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: M_Trans_PUERTA_MUELLE_Opacity
+    second: {fileID: 2800000, guid: 346f70bbe8d83f442bfe88203f828ab4, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: M_Trans_PUERTA_MUELLE_Roughness
+    second: {fileID: 2800000, guid: 83d66add691138d46a73082678cdc4f1, type: 3}
+  materials:
+    materialImportMode: 2
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    removeConstantScaleCurves: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importPhysicalCameras: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    nodeNameCollisionStrategy: 1
+    fileIdsGeneration: 2
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    bakeAxisConversion: 0
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    optimizeBones: 1
+    meshOptimizationFlags: -1
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 1
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    strictVertexDataChecks: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 1
+  humanDescription:
+    serializedVersion: 3
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 1
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
+  humanoidOversampling: 1
+  avatarSetup: 0
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 1
+  importBlendShapeDeformPercent: 1
+  remapMaterialsIfMaterialImportModeIsNone: 0
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,0 +1,314 @@
+fileFormatVersion: 2
+guid: 9b4609b319e416844bd3d385cd314961
+ModelImporter:
+  serializedVersion: 22200
+  internalIDToNameTable: []
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Logo
+    second: {fileID: 2100000, guid: d29d9fadffdba534589c6926f816cf03, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_CONCRETO
+    second: {fileID: 2100000, guid: b179746dd2163024a896b4a4d4e5c999, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_Dome_TECHO
+    second: {fileID: 2100000, guid: 311de8544e1b01041bf98d10d14495a3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_Fachada
+    second: {fileID: 2100000, guid: d344a861036d9704e9d0ded25a1c8789, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_Lobby_ALUMINIO
+    second: {fileID: 2100000, guid: 0831ded3ba61c52479a15e6a695b3685, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_Lobby_Structure
+    second: {fileID: 2100000, guid: d1e0b88e3572500409ef055b5a2646b8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_Lobby_VIDRIO
+    second: {fileID: 2100000, guid: d2fd2a59a6eb75a40a6d6bd76209b23b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_PISO_BODEGA
+    second: {fileID: 2100000, guid: 90a7a6e05353bd24cac3438f94471569, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_Trans_Dome_TECHO
+    second: {fileID: 2100000, guid: a2501edaa7c19bd48a6f4362412ac009, type: 2}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Logo_Base_color
+    second: {fileID: 2800000, guid: 368d114d58a553f4a89203780edc2ba5, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Logo_Metallic
+    second: {fileID: 2800000, guid: 96f2ddf046e96d547be726b8a0646aaa, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Logo_Normal_OpenGL
+    second: {fileID: 2800000, guid: 0c6f12cff33480648aa36f7349736064, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Logo_Roughness
+    second: {fileID: 2800000, guid: c2e07b8a1d8cc1f4b8721c681564ac36, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: M_CONCRETO_Metallic
+    second: {fileID: 2800000, guid: 1bc1d7c6d824cab4ca653d7556243613, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: M_CONCRETO_Normal_OpenGL
+    second: {fileID: 2800000, guid: 92461b294911db540ba8893ea02e424b, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: M_CONCRETO_Roughness
+    second: {fileID: 2800000, guid: f9361882ea98ae743b4eaf8a2a76fbc7, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: M_Dome_TECHO_Metallic
+    second: {fileID: 2800000, guid: 26b428d0aaa7ceb44a077359015aa042, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: M_Dome_TECHO_Normal_OpenGL
+    second: {fileID: 2800000, guid: d574f3a04e95a0d46b9fd497b6b610df, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: M_Dome_TECHO_Roughness
+    second: {fileID: 2800000, guid: 9caf84a0ecdbb3c41a446284e957b46e, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: M_Fachada_Metallic
+    second: {fileID: 2800000, guid: 9c2dcb421238c104ba42e9c692e12781, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: M_Fachada_Normal_OpenGL
+    second: {fileID: 2800000, guid: 6ccc3348e41ec774aa3d870a91de7a7e, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: M_Fachada_Roughness
+    second: {fileID: 2800000, guid: b3a62559a5041df4ba22ca7385293017, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: M_Lobby_ALUMINIO_Base_color
+    second: {fileID: 2800000, guid: fb9a2f30021f37f46a58ed7773198d1a, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: M_Lobby_ALUMINIO_Metallic
+    second: {fileID: 2800000, guid: 601eb19f2dfe5ec4991a248bf90bfa2a, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: M_Lobby_ALUMINIO_Normal_OpenGL
+    second: {fileID: 2800000, guid: 546b8d0febc9ecb49a6d68beb04a8fda, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: M_Lobby_ALUMINIO_Roughness
+    second: {fileID: 2800000, guid: 415fd70fbe989704eb2833b9df700aad, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: M_Lobby_Structure_Base_color
+    second: {fileID: 2800000, guid: 4e1c67bfafb3e6847b155bfde8f1f27a, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: M_Lobby_Structure_Emissive
+    second: {fileID: 2800000, guid: b87e00b241bf05643a6bfc1317deb217, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: M_Lobby_Structure_Metallic
+    second: {fileID: 2800000, guid: 9c10647472219d640be8451da35ac034, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: M_Lobby_Structure_Normal_OpenGL
+    second: {fileID: 2800000, guid: 65715d250c2d6824e8b37925246bef2c, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: M_Lobby_Structure_Roughness
+    second: {fileID: 2800000, guid: 7fc0da2d193872247b4cee102d28f1ce, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: M_Lobby_VIDRIO_Base_color
+    second: {fileID: 2800000, guid: cbe0d3c87c1aad44895293cb7065c264, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: M_Lobby_VIDRIO_Metallic
+    second: {fileID: 2800000, guid: 5b106913e9493b14bb0de689b62066c1, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: M_Lobby_VIDRIO_Normal_OpenGL
+    second: {fileID: 2800000, guid: f5b9b86e5414f7d4fa90a33e575e3a5c, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: M_Lobby_VIDRIO_Roughness
+    second: {fileID: 2800000, guid: 89a67394e69a00744a34fe64f5987b75, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: M_PISO_BODEGA_Metallic
+    second: {fileID: 2800000, guid: d82cf5dfae3937541b53b693bb1c6b8a, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: M_PISO_BODEGA_Normal_OpenGL
+    second: {fileID: 2800000, guid: 8840708d53a7a1446b33c2912171a6d6, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: M_PISO_BODEGA_Roughness
+    second: {fileID: 2800000, guid: de881af6a58a7a14cb905e802453d8e9, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: M_Trans_Dome_TECHO_Base_color
+    second: {fileID: 2800000, guid: 0ad80e8e671112940ae4637fcdda71fe, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: M_Trans_Dome_TECHO_Metallic
+    second: {fileID: 2800000, guid: e679cc5b33dbebd468f043167b3c4342, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: M_Trans_Dome_TECHO_Normal_OpenGL
+    second: {fileID: 2800000, guid: 213a4f902234bc4418208af3d31dc8cb, type: 3}
+  materials:
+    materialImportMode: 2
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    removeConstantScaleCurves: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importPhysicalCameras: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    nodeNameCollisionStrategy: 1
+    fileIdsGeneration: 2
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    bakeAxisConversion: 0
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    optimizeBones: 1
+    meshOptimizationFlags: -1
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 1
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    strictVertexDataChecks: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 1
+  humanDescription:
+    serializedVersion: 3
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 1
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
+  humanoidOversampling: 1
+  avatarSetup: 0
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 1
+  importBlendShapeDeformPercent: 1
+  remapMaterialsIfMaterialImportModeIsNone: 0
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
