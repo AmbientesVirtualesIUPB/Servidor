@@ -43,6 +43,9 @@ public class btnInventario : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
             // Aplicar desplazamiento en espacio local respecto al padre
             nuevaPieza.transform.localPosition += offsetLocal;
 
+            // Guardamos el ID instanciado
+            ManagerMinijuego.singleton.IDInstanciados.Add(nuevaPieza.GetComponent<MoverPieza>());
+
             // INSTANCIA SERVIDOR
             PartesMotores parte = new PartesMotores();
             parte.id = idPieza;

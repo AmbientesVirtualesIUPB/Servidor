@@ -23,6 +23,9 @@ public class EntornoMecanica : MonoBehaviour
     public MeshRenderer[] meshBrazoMecanico;
     public ExpansionRadial expansionRadialPiezasInternas;
 
+    [HideInInspector]
+    public bool noAbroYo;
+
     public static EntornoMecanica singleton;
     private Coroutine iniciarCompuertas;
 
@@ -59,7 +62,7 @@ public class EntornoMecanica : MonoBehaviour
             compuertas[i].IniciarDesplazamientoObjeto();
         }
 
-        ControlCamaraMotor.singleton.IniciarMovimientoCamara(posicionDeseada[0],1.5f);
+        if (!noAbroYo) ControlCamaraMotor.singleton.IniciarMovimientoCamara(posicionDeseada[0], 1.5f);
 
         for (int i = 0; i < particulasHumo.Length; i++)
         {
@@ -77,7 +80,7 @@ public class EntornoMecanica : MonoBehaviour
         mesa.IniciarDesplazamientoObjeto();
         rotacionObjeto.enabled = true;
 
-        if (VibracionCamara.singleton != null)
+        if (VibracionCamara.singleton != null && !noAbroYo)
         {
             VibracionCamara.singleton.IniciarVibracion(1f, 0.007f);
         }
@@ -85,7 +88,7 @@ public class EntornoMecanica : MonoBehaviour
         yield return new WaitForSeconds(1f);
 
         if (AudioManagerMotores.singleton != null) AudioManagerMotores.singleton.PlayEfectString("Particulas"); // Ejecutamos el efecto nombrado
-        if (VibracionCamara.singleton != null)
+        if (VibracionCamara.singleton != null && !noAbroYo)
         {
             VibracionCamara.singleton.MoverCamaraConVibracion(posicionDeseada[1],5f,0.007f);
         }
@@ -140,7 +143,7 @@ public class EntornoMecanica : MonoBehaviour
 
         yield return new WaitForSeconds(2f);
 
-        if (ControlCamaraMotor.singleton != null) // Si es diferente de null habilitamos el script del movimiento de camaras
+        if (ControlCamaraMotor.singleton != null && !noAbroYo) // Si es diferente de null habilitamos el script del movimiento de camaras
         {
             ControlCamaraMotor.singleton.enabled = true;
 
@@ -182,7 +185,7 @@ public class EntornoMecanica : MonoBehaviour
             if (MesaMotor.singleton != null && ManagerMinijuego.singleton.minijuegoValidadoAceiteMal) MesaMotor.singleton.ActivarHumo();
         }
 
-        ControlCamaraMotor.singleton.IniciarMovimientoCamara(posicionDeseada[2], 1);
+        if (!noAbroYo) ControlCamaraMotor.singleton.IniciarMovimientoCamara(posicionDeseada[2], 1);
 
         if (!ServidorMotores.singleton.plataformaIniciada)
         {
@@ -238,7 +241,7 @@ public class EntornoMecanica : MonoBehaviour
             }
         }
 
-        if (VibracionCamara.singleton != null)
+        if (VibracionCamara.singleton != null && MesaMotor.singleton.estoyArmando)
         {
             VibracionCamara.singleton.IniciarVibracion(3f, 0.004f);
         }
@@ -269,7 +272,7 @@ public class EntornoMecanica : MonoBehaviour
         if (AudioManagerMotores.singleton != null) AudioManagerMotores.singleton.PlayEfectString("Compuerta"); // Ejecutamos el efecto nombrado
 
         mesa.RetornarPosicionOriginal();
-        ControlCamaraMotor.singleton.IniciarMovimientoCamara(posicionDeseada[0], 1.5f);
+        if (MesaMotor.singleton.estoyArmando) ControlCamaraMotor.singleton.IniciarMovimientoCamara(posicionDeseada[0], 1.5f);
 
         if (!MesaMotor.singleton.interaccionEjecutada)
         {
@@ -302,8 +305,6 @@ public class EntornoMecanica : MonoBehaviour
             compuertas[i].RetornarPosicionOriginal();
         }
 
-        
-
         yield return new WaitForSeconds(2);
 
         rotacionObjeto.enabled = false;
@@ -311,7 +312,7 @@ public class EntornoMecanica : MonoBehaviour
 
         yield return new WaitForSeconds(1);
 
-        sueloInteractivo.IngresandoInteraccion();
+        if (MesaMotor.singleton.estoyArmando) sueloInteractivo.IngresandoInteraccion();
         sueloInteractivo.HabilitarInfoMesaArmado();
         
         iniciarCompuertas = null;
@@ -325,21 +326,5 @@ public class EntornoMecanica : MonoBehaviour
     public void BajarIntensidadLuzPrincipal()
     {
         luzPrincipal.intensity = 1;
-    }
-
-    public void ActivarMeshBrazos()
-    {
-        for (int i = 0; i < meshBrazoMecanico.Length; i++)
-        {
-            meshBrazoMecanico[i].enabled = true;
-        }
-    }
-
-    public void DesactivarMeshBrazos()
-    {
-        for (int i = 0; i < meshBrazoMecanico.Length; i++)
-        {
-            meshBrazoMecanico[i].enabled = false;
-        }
     }
 }

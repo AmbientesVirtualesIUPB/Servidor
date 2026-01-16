@@ -4,6 +4,7 @@ using UnityEngine;
 public class MoverPieza : MonoBehaviour
 { 
     public int id;
+    public int idSiguiente;
     public bool piezaExterna; // Para identificar si instanciamos en el punto de instancia interno o externo
     [HideInInspector]
     public bool puedoValidar; // Para validar la colocacion de la pieza al momento de soltar el click y  no mientras arrastro
@@ -49,7 +50,7 @@ public class MoverPieza : MonoBehaviour
     private float coordinadaZ; // Para guardar la profundidad Z entre la camara y el objeto cuando se hace click
     private float valorDisolver;
     private bool noMover; // Para identificar si puedo o no mover la pieza
-    private bool validarBrazo;
+    private bool validarBrazo, derechaValidada, izquierdaValidada;
     private MeshRenderer meshRenderer;
     private Material[] materialesOriginales;
     private Collider collider;
@@ -82,13 +83,21 @@ public class MoverPieza : MonoBehaviour
         // Verificamos si estamos validando el brazo, para saber dependiendo de la posicion si activo el derecho o izquierdo
         if (validarBrazo)
         {
-            if (transform.localPosition.x > 0)
+            if (transform.localPosition.x > 0 && !derechaValidada)
             {
+                derechaValidada = true;
+                izquierdaValidada = false;
                 ManagerBrazos.singleton.AsignarTargetDerecho(this.transform, esferaDisolver); // Le asignamos este transform como target a los brazos
+
+                GestionMensajesServidor.singeton.EnviarMensaje("MS03", id.ToString());
             }
-            else
+            else if (transform.localPosition.x < 0 && !izquierdaValidada)
             {
-                ManagerBrazos.singleton.AsignarTargetIzquierdo(this.transform, esferaDisolver); // Le asignamos este transform como target a los brazos
+                izquierdaValidada = true;
+                derechaValidada = false;
+                ManagerBrazos.singleton.AsignarTargetIzquierdo(this.transform, esferaDisolver); // Le asignamos este transform como target a los brazos 
+
+                GestionMensajesServidor.singeton.EnviarMensaje("MS04", id.ToString());
             }
         }
     }
@@ -157,8 +166,13 @@ public class MoverPieza : MonoBehaviour
         if (MesaMotor.singleton.mesaMotorActiva) // Validamos que estamos interactuando en la mesa de armado para poder manipular las piezas
         {
             validarBrazo = false; // Indicamos que ya no estamos validando el brazo
+            derechaValidada = false;
+            izquierdaValidada = false;
+
             ManagerBrazos.singleton.RetornarBrazos(); // Le asignamos este transform como target a los brazis
             ManagerBrazos.singleton.EfectoDisolverInversa(); // Le retiramos el efecto de disolver
+
+            GestionMensajesServidor.singeton.EnviarMensaje("MS05", "Regresando Brazos");
 
             puedoValidar = true;
             QuitarMateriales();
@@ -208,7 +222,7 @@ public class MoverPieza : MonoBehaviour
         noMover = true;
         collider.enabled = false;  
         DesactivarSnapp();
-
+        
         if (ManagerCanvas.singleton != null)
         {
             ManagerCanvas.singleton.DeshabilitarBtnSalir();
@@ -291,6 +305,7 @@ public class MoverPieza : MonoBehaviour
         {
             if (ManagerMinijuego.singleton != null)
             {
+                ManagerCanvas.singleton.DesactivarBtnAyudaAutomatica();
                 ManagerMinijuego.singleton.ValidarMiniJuego();
             }
         }
@@ -301,7 +316,8 @@ public class MoverPieza : MonoBehaviour
             ManagerCanvas.singleton.HabilitarBtnSalir();         
             ManagerCanvas.singleton.HabilitarBtnBajarPlataforma();
         }
-        
+        ManagerMinijuego.singleton.siguienteIdColocar = idSiguiente;
+        ManagerCanvas.singleton.HabilitarBtnAyudaAutomatica();
         coroutine = null;
     }
 

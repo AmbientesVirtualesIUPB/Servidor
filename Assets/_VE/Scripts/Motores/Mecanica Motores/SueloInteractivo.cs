@@ -78,10 +78,12 @@ public class SueloInteractivo : MonoBehaviour
                     {
                         InicializarMovimientoCamara(ManagerMinijuego.singleton.posicionMinijuegoActual);
                     }
+                    MesaMotor.singleton.estoyArmando = true;
                 }
                 else if (mesaArmadoMotor)
                 {
                     ControlCamaraMotor.singleton.ReestablecerPosicionCamara(); // Reiniciamos el indice para que la posicion de la camara sea correcta
+                    MesaMotor.singleton.estoyArmando = true;
 
                     if (plataformaAbajo)
                     {
@@ -190,7 +192,11 @@ public class SueloInteractivo : MonoBehaviour
                 interactuar = false; // Indicamos que no podemos interactuar
                 canvasWorldSpace.SetActive(false);  // Desactivamos canvas visual
 
-                if (mesaArmadoMotor) MesaMotor.singleton.estoyEnMesa = false;
+                if (mesaArmadoMotor)
+                {
+                    MesaMotor.singleton.estoyEnMesa = false;
+                    MesaMotor.singleton.estoyArmando = false;
+                }                                
             }
         }
 
@@ -246,9 +252,9 @@ public class SueloInteractivo : MonoBehaviour
         {
             camaraPrincipal.enabled = true; // Habilitamos nuevamente la camara orbital
             camaraPrincipal.CursorInvisible(); // Habilitamos la vista del cursor
-            ActivarMovimientoJugador(movimientoJugador); // Activamos el movimiento del jugador que interactua
+            ActivarMovimientoJugador(movimientoJugador); // Activamos el movimiento del jugador que interactua        
+            if (movimientoJugador != null) interactuar = true; // Indicamos que nuevamente puede interactura aun sin salir del trigger 
             salirInteraccion = false; // Indicamos que ya no estamos interactuando
-            if (movimientoJugador != null) interactuar = true; // Indicamos que nuevamente puede interactura aun sin salir del trigger
         }
         else
         {
@@ -275,7 +281,6 @@ public class SueloInteractivo : MonoBehaviour
                 if (EntornoMecanica.singleton != null)
                 {
                     EntornoMecanica.singleton.BajarIntensidadLuzPrincipal();
-                    EntornoMecanica.singleton.ActivarMeshBrazos();
                 } 
 
                 if (ControlCamaraMotor.singleton != null) ControlCamaraMotor.singleton.enabled = true;
@@ -332,12 +337,12 @@ public class SueloInteractivo : MonoBehaviour
             if (EntornoMecanica.singleton != null)
             {
                 EntornoMecanica.singleton.SubirIntensidadLuzPrincipal();
-                EntornoMecanica.singleton.DesactivarMeshBrazos();
             } 
 
             if (ControlCamaraMotor.singleton != null) ControlCamaraMotor.singleton.enabled = false;
 
             MesaMotor.singleton.mesaMotorActiva = false;
+            MesaMotor.singleton.estoyArmando = false;
 
             if (coroutine != null) StopCoroutine(coroutine);
             coroutine = StartCoroutine(MoverCamara(posicionOriginal, rotacionOriginal, velocidadPosCamara)); // Retornamos la camara principal a la posicion original 
@@ -353,15 +358,16 @@ public class SueloInteractivo : MonoBehaviour
         camera.cullingMask |= (1 << playerLayer); // Activamos de nuevo la layer "Player" para que nuestro personaje se vea     
         if (canvasPrincipal != null && !esRestaurable) canvasPrincipal.SetActive(false);  // Desactivamos canvas principal   
         if (escaladorUI != null) escaladorUI.Restaurar();  // Restauramos 
+
         if (canvasSecundario != null)
         {
             canvasSecundario.SetActive(false);  // Activamos canvas informativo
             ManagerCanvas.singleton.ActualizarInformacionPieza("", ""); //Borramos la informacion del cavas
         }
-        
-        btnSalir.gameObject.SetActive(false); // Deshabilitamos el boton de salir 
+
+        btnSalir.gameObject.SetActive(false); // Deshabilitamos el boton de salir   
         btnSalir.onClick.RemoveListener(SalirInteraccion); // Retiramos el evento actual del boton
-        ManagerMinijuego.singleton.btnDesplazarMotor.onClick.RemoveListener(SalirInteraccion); // Agregamos el evento actual al boton
+        ManagerMinijuego.singleton.btnDesplazarMotor.onClick.RemoveListener(SalirInteraccion); // Retiramos el evento actual al boton
 
         if (btnBajarPlataforma != null)
         {

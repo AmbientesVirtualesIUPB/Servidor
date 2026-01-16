@@ -39,8 +39,10 @@ public class ManagerMinijuego : MonoBehaviour
     public GameObject[] motoresAnimados; // Motores internos animados
 
     public SueloInteractivo[] sueloInteractivoNissan; // Para activar o desactivar segun el motor activo
+    public ParticleSystem[] sueloInteractivoNissanParticulas; // Para activar o desactivar segun el motor activo
     public ActivarDesactivarHijos[] partesNissan; // Para reactivar las partes del motor
     public SueloInteractivo[] sueloInteractivoDiesel; // Para activar o desactivar segun el motor activo
+    public ParticleSystem[] sueloInteractivoDieselParticulas; // Para activar o desactivar segun el motor activo
     public ActivarDesactivarHijos[] partesDiesel; // Para reactivar las partes del motor
     
 
@@ -112,6 +114,10 @@ public class ManagerMinijuego : MonoBehaviour
     public bool aplicandoTorque;
     [HideInInspector]
     public GameObject motorAnimadoActivo;
+    //[HideInInspector]
+    public List<MoverPieza> IDInstanciados;
+    [HideInInspector]
+    public int siguienteIdColocar;
 
     private int contador = 0;
     private int piezaAceitadaActual = 0;
@@ -164,6 +170,65 @@ public class ManagerMinijuego : MonoBehaviour
         btnEncenderMotor.interactable = false;
     }
 
+
+    [ContextMenu("Validar Pieza")]
+    public void ColocacionAutomaticaPieza()
+    {
+        for (int i = 0; i < IDInstanciados.Count; i++)
+        {
+            if (IDInstanciados[i].id == siguienteIdColocar)
+            {
+                IDInstanciados[i].IniciarMovimiento();
+                ManagerCanvas.singleton.DeshabilitarBtnAyudaAutomatica();
+                return;
+            }
+
+            if (i == IDInstanciados.Count - 1)
+            {
+                string texto = "La siguiente pieza a colocar aún no esta en la mesa de armado.";
+                ManagerCanvas.singleton.AlertarMensaje(texto);
+                return;
+            }
+        }
+
+        if (IDInstanciados.Count == 0)
+        {
+            string texto = "Necesitas traer primero la pieza inicial a la mesa de armado.";
+            ManagerCanvas.singleton.AlertarMensaje(texto);
+        }
+    }
+
+
+    /// <summary>
+    /// Metodo invocado desde los botones de Eleccion Dificultad en el canvas principal
+    /// </summary>
+    /// <param name="nivel"> Nivel de dificultad </param>
+    public void EleccionDificultad(int nivel)
+    {
+        if (nivel == 1) // Aprendiz
+        {
+            ManagerCanvas.singleton.ActivarBtnAyudaPista();
+            ManagerCanvas.singleton.ActivarBtnAyudaAutomatica();
+        }
+        else if (nivel == 2) // Competente
+        {
+            ManagerCanvas.singleton.ActivarBtnAyudaPista();
+        }
+        else if (nivel == 3) // Experto
+        {
+            // Defiendase solo
+        }    
+    }
+
+    /// <summary>
+    /// Metodo invocado desde los botones de Eleccion Motor en el canvas principal
+    /// </summary>
+    /// <param name="nombreMotor"> Motor elegido </param>
+    public void LlamadoServidorAsignarMotor(string nombreMotor)
+    {
+        GestionMensajesServidor.singeton.EnviarMensaje("MS07", nombreMotor);
+    }
+
     /// <summary>
     /// Metodo invocado desde los botones de Eleccion Motor en el canvas principal
     /// </summary>
@@ -174,8 +239,9 @@ public class ManagerMinijuego : MonoBehaviour
         controlVelocidadMotor.gameObject.SetActive(false);
         btnEncenderMotor.gameObject.SetActive(true);
         btnDesplazarMotor.gameObject.SetActive(false);
+        btnAplicarAceite.gameObject.SetActive(false); // desactivamos el boton para aplicar aceite
         if (motorAnimadoActivo != null) motorAnimadoActivo.SetActive(false);
-
+        IDInstanciados.Clear();
 
         MesaMotor.singleton.interaccionEjecutada = false;
         ExplosionObjetosHijos.singleton.DestruirTodosLosHijos(); // Destruimos todas las piezas que se hayan colocado
@@ -197,6 +263,8 @@ public class ManagerMinijuego : MonoBehaviour
 
         ManagerCanvas.singleton.HabilitarBtnExpandir();
         ManagerCanvas.singleton.HabilitarBtnRotar();
+        ManagerCanvas.singleton.DesactivarBtnAyudaPista();
+        ManagerCanvas.singleton.DesactivarBtnAyudaAutomatica();
 
         InventarioUI.singleton.LimpiarInventario(); // Limpiamos inventario
         minijuegoActivo = false;
@@ -219,6 +287,7 @@ public class ManagerMinijuego : MonoBehaviour
         if (nombreMotor == "Diesel")
         {
             ManagerCanvas.singleton.ActualizarInformacionPista("Antes de comenzar cualquier armado, asegúrate de tener la base sólida que soportará todo el conjunto interno del motor. Esta pieza es el punto de anclaje donde descansan los componentes principales, y sobre ella se construirá toda la estructura.");
+            siguienteIdColocar = 1;
 
             // Actualizamos el panel de torques
             txtTorques.text = "Información Torques \r\n Motor Diesel";
@@ -229,11 +298,13 @@ public class ManagerMinijuego : MonoBehaviour
             for (int i = 0; i < sueloInteractivoDiesel.Length; i++)
             {
                 //Habilitamos piezas en cuestion
-                sueloInteractivoDiesel[i].puedoInteractuarInicialmente = true; 
+                sueloInteractivoDiesel[i].puedoInteractuarInicialmente = true;
+                sueloInteractivoDieselParticulas[i].Play();
                 partesDiesel[i].ActivarTodosLosHijos();
 
                 //Deshabilitamos lo demas
-                sueloInteractivoNissan[i].puedoInteractuarInicialmente = false;          
+                sueloInteractivoNissan[i].puedoInteractuarInicialmente = false;
+                sueloInteractivoNissanParticulas[i].Stop();
                 sueloInteractivoNissan[i].TrigerExit();                         
             }
 
@@ -252,21 +323,24 @@ public class ManagerMinijuego : MonoBehaviour
         else if (nombreMotor == "Nissan")
         {
             ManagerCanvas.singleton.ActualizarInformacionPista("Antes de comenzar lo primero es asegurar la base donde descansarán los mecanismos internos. Este componente actúa como recipiente para el aceite y como soporte inferior del bloque, garantizando la lubricación y rigidez estructural del conjunto.");
+            siguienteIdColocar = 39;
 
             // Actualizamos el panel de torques
-            txtTorques.text = "Información Torques \r\n Motor Nissan";
-            txtTorques2.text = "Prueba Motor Nissan";
+            txtTorques.text = "Información Torques \r\n Motor Gasolina";
+            txtTorques2.text = "Prueba Motor Gasolina";
             infoTorquesDiesel.SetActive(false);
             infoTorquesNissan.SetActive(true);
 
             for (int i = 0; i < sueloInteractivoNissan.Length; i++)
             {
                 //Habilitamos piezas en cuestion
-                sueloInteractivoNissan[i].puedoInteractuarInicialmente = true; 
+                sueloInteractivoNissan[i].puedoInteractuarInicialmente = true;
+                sueloInteractivoNissanParticulas[i].Play();
                 partesNissan[i].ActivarTodosLosHijos();
 
                 //Deshabilitamos lo demas
                 sueloInteractivoDiesel[i].puedoInteractuarInicialmente = false;
+                sueloInteractivoDieselParticulas[i].Stop();
                 sueloInteractivoDiesel[i].TrigerExit();         
             }
 
@@ -605,25 +679,43 @@ public class ManagerMinijuego : MonoBehaviour
                 }
             }
         }
-        
-        Debug.Log(puntajeTorque);
 
+        //Provisional
+        if (motorActivo == "Diesel")
+        {
+            puntajeTorque = 12;
+            puntajeAceite = 13;
+        }
+        else if (motorActivo == "Nissan")
+        {
+            puntajeTorque = 28;
+            puntajeAceite = 8;
+        }
+
+        ValidarResultado(puntajeTorque,puntajeAceite);
+        
+        // Llamado servidor
+        GestionMensajesServidor.singeton.EnviarMensaje("MS06", puntajeTorque + "*" + puntajeAceite);
+    }
+
+    public void ValidarResultado(int torque, int aceite)
+    {
         // RESULTADO
 
         if (motorActivo == "Diesel")
         {
-            if (puntajeTorque == 12 && puntajeAceite == 13)
+            if (torque == 12 && aceite == 13)
             {
                 Debug.Log("todo good");
                 MinijuegosSuperados();
             }
-            else if(puntajeTorque == 12 && puntajeAceite < 13)
+            else if (torque == 12 && aceite < 13)
             {
                 Debug.Log("aceite mal");
                 btnEncenderMotor.onClick.AddListener(MesaMotor.singleton.ActivarParticulasHumo);
                 minijuegoValidadoAceiteMal = true;
             }
-            else if (puntajeTorque < 12 && puntajeAceite == 13)
+            else if (torque < 12 && aceite == 13)
             {
                 Debug.Log("torque mal");
                 btnEncenderMotor.onClick.AddListener(MesaMotor.singleton.DetenerInteraccionesMotor);
@@ -638,18 +730,18 @@ public class ManagerMinijuego : MonoBehaviour
         }
         else if (motorActivo == "Nissan")
         {
-            if (puntajeTorque == 28 && puntajeAceite == 8)
+            if (torque == 28 && aceite == 8)
             {
                 Debug.Log("todo good");
                 MinijuegosSuperados();
             }
-            else if (puntajeTorque == 28 && puntajeAceite < 8)
+            else if (torque == 28 && aceite < 8)
             {
                 Debug.Log("aceite mal");
                 btnEncenderMotor.onClick.AddListener(MesaMotor.singleton.ActivarParticulasHumo);
                 minijuegoValidadoAceiteMal = true;
             }
-            else if (puntajeTorque < 28 && puntajeAceite == 8)
+            else if (torque < 28 && aceite == 8)
             {
                 Debug.Log("torque mal");
                 btnEncenderMotor.onClick.AddListener(MesaMotor.singleton.DetenerInteraccionesMotor);
@@ -661,9 +753,8 @@ public class ManagerMinijuego : MonoBehaviour
                 btnEncenderMotor.onClick.AddListener(MesaMotor.singleton.ActivarParticulasHumo);
             }
             controlVelocidadMotor.gameObject.SetActive(true);
-        }       
+        }
     }
-
     public void MinijuegosSuperados()
     {
         minijuegoValidadoCorrectamente = true;

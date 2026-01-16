@@ -9,7 +9,8 @@ public class IluminarMaterial : MonoBehaviour
 
     private Color emisionOriginal;
     private float intensidadOriginal;
-    private readonly Color colorFijo = new Color(0.749f, 0.749f, 0.749f); // 191/255
+    [SerializeField]
+    private Color  colorFijo = new Color(0.749f, 0.749f, 0.749f); // 191/255
     private SueloInteractivo sueloInteractivo;
 
     void Start()
@@ -29,6 +30,7 @@ public class IluminarMaterial : MonoBehaviour
         {
             if (other.CompareTag("Player"))
             {
+                if (!ValidarOwner(other)) return;
                 StopCoroutine(BajarEmission()); // Detenemos currutina actual
                 StartCoroutine(SubirEmission()); // Iniciamos nueva currutina
             }
@@ -40,6 +42,7 @@ public class IluminarMaterial : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            if (!ValidarOwner(other)) return;
             StopCoroutine(SubirEmission()); // Detenemos currutina actual
             StartCoroutine(BajarEmission()); // Iniciamos nueva currutina
         }
@@ -74,5 +77,21 @@ public class IluminarMaterial : MonoBehaviour
 
         // Forzar el color final al fijo (191,191,191)
         material.SetColor("_EmissionColor", colorFijo);
+    }
+
+    public bool ValidarOwner(Collider other)
+    {
+        MorionID morionID = other.GetComponent<MorionID>();
+
+        if (morionID != null && !morionID.isOwner)
+        {
+            return false;
+        }
+        else
+        {
+            morionID = other.GetComponentInChildren<MorionID>();
+            if (morionID != null && !morionID.isOwner) return false;
+        }
+        return true;
     }
 }

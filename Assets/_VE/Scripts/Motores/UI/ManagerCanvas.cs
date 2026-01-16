@@ -21,6 +21,10 @@ public class ManagerCanvas : MonoBehaviour
     [InfoMessage("Este es una referencia importante, arrastrala del CanvasPrincipal", MessageTypeCustom.Warning)]
     public Button btnRotar; // Referencia al boton btnSalir del canvas principal
     [InfoMessage("Este es una referencia importante, arrastrala del CanvasPrincipal", MessageTypeCustom.Warning)]
+    public Button btnAyudaPista; // Referencia al boton btnSalir del canvas principal
+    [InfoMessage("Este es una referencia importante, arrastrala del CanvasPrincipal", MessageTypeCustom.Warning)]
+    public Button btnAyudaAutomatica; // Referencia al boton btnSalir del canvas principal
+    [InfoMessage("Este es una referencia importante, arrastrala del CanvasPrincipal", MessageTypeCustom.Warning)]
     public Button btnBajarPlataforma; // Referencia al boton btnSalir del canvas principal
     [InfoMessage("Este es una referencia importante, arrastrala del CanvasPrincipal", MessageTypeCustom.Warning)]
     public Button[] btnExpandir; // Referencia al boton btnSalir del canvas principal
@@ -185,6 +189,54 @@ public class ManagerCanvas : MonoBehaviour
     public void DeshabilitarBtnRotar()
     {
         btnRotar.interactable = false;
+    }
+
+    /// <summary>
+    /// Para habilitar el interactuable del boton salir donde se requiera
+    /// </summary>
+    public void HabilitarBtnAyudaAutomatica()
+    {
+        btnAyudaAutomatica.interactable = true;
+    }
+
+    /// <summary>
+    /// Para deshabilitar el interactuable del boton salir donde se requiera
+    /// </summary>
+    public void DeshabilitarBtnAyudaAutomatica()
+    {
+        btnAyudaAutomatica.interactable = false;
+    }
+
+    /// <summary>
+    /// Para habilitar el interactuable del boton salir donde se requiera
+    /// </summary>
+    public void ActivarBtnAyudaAutomatica()
+    {
+        btnAyudaAutomatica.gameObject.SetActive(true);
+    }
+
+    /// <summary>
+    /// Para deshabilitar el interactuable del boton salir donde se requiera
+    /// </summary>
+    public void DesactivarBtnAyudaAutomatica()
+    {
+        btnAyudaAutomatica.gameObject.SetActive(false);
+    }
+
+    /// <summary>
+    /// Para habilitar el interactuable del boton salir donde se requiera
+    /// </summary>
+    public void ActivarBtnAyudaPista()
+    {
+        btnAyudaPista.gameObject.SetActive(true);
+    }
+
+    /// <summary>
+    /// Para deshabilitar el interactuable del boton salir donde se requiera
+    /// </summary>
+    public void DesactivarBtnAyudaPista()
+    {
+        btnAyudaPista.gameObject.SetActive(false);
     }
 
     /// <summary>

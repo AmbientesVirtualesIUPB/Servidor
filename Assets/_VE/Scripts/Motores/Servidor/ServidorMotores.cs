@@ -6,11 +6,21 @@ public class ServidorMotores : MonoBehaviour
 {
     [Header("MANIPULACION DE LAS PIEZAS")]
     public List<MoverPieza> partes;
+    public List<GameObject> partesInstanciadas;
     public Transform[] padresInstancia;
+
+    [Header("MANIPULACION BRAZOS")]
+    public AgregarDisolver esferaDisolver;
+    public Transform targetBrazo;
 
     [Header("MANIPULACION MESA ARMADO")]
     public SueloInteractivo sueloMesaArmado;
+    public Canvas oprimirTecla;
     public bool plataformaIniciada;
+
+    [Header("VALIDACION MINIJUEGO")]
+    public int Torque;
+    public int Aceite;
 
     public bool esArmador = false;
     public static ServidorMotores singleton;
@@ -33,6 +43,11 @@ public class ServidorMotores : MonoBehaviour
         GestionMensajesServidor.singeton.RegistrarAccion("MS00", InstanciaPiezaServidor);
         GestionMensajesServidor.singeton.RegistrarAccion("MS01", SubirMesaArmado);
         GestionMensajesServidor.singeton.RegistrarAccion("MS02", BajarMesaArmado);
+        GestionMensajesServidor.singeton.RegistrarAccion("MS03", ManipularBrazoDerecho);
+        GestionMensajesServidor.singeton.RegistrarAccion("MS04", ManipularBrazoIzquierdo);
+        GestionMensajesServidor.singeton.RegistrarAccion("MS05", RegresarBrazosMecanicos);
+        GestionMensajesServidor.singeton.RegistrarAccion("MS06", ValidarMinijuego);
+        GestionMensajesServidor.singeton.RegistrarAccion("MS07", AsignarMotorActivo);
     }
 
     public void InstanciaPiezaServidor(string msj)
@@ -53,6 +68,8 @@ public class ServidorMotores : MonoBehaviour
                 pieza.GetComponent<MorionID>().SetID(parte.idServidor);
                 pieza.GetComponent<Collider>().enabled = false; // Desactivamos los colliders de las piezas
 
+                partesInstanciadas.Add(pieza);
+
                 //Buscamos los hijos Snap
                 foreach (Transform hijo in pieza.GetComponentsInChildren<Transform>(true))
                 {
@@ -72,26 +89,82 @@ public class ServidorMotores : MonoBehaviour
     public void SubirMesaArmado(string msj)
     {
         plataformaIniciada = true;
+        EntornoMecanica.singleton.noAbroYo = true;
         EntornoMecanica.singleton.AbrirCompuerta(sueloMesaArmado.posicionObjetivoCamara);
         sueloMesaArmado.plataformaAbajo = false;
-        sueloMesaArmado.enabled = false; 
+        sueloMesaArmado.enabled = false;
+        oprimirTecla.enabled = false;
         StartCoroutine(HabilitarMesaArmado(10f));
-    }
-
-    private IEnumerator HabilitarMesaArmado(float espera)
-    {
-        yield return new WaitForSeconds(espera);
-        sueloMesaArmado.enabled = true;
     }
 
     public void BajarMesaArmado(string msj)
     {
         plataformaIniciada = false;
-        sueloMesaArmado.SalirInteraccion();
+        if (MesaMotor.singleton.estoyArmando) sueloMesaArmado.SalirInteraccion();
+        EntornoMecanica.singleton.noAbroYo = true;
         EntornoMecanica.singleton.CerrarCompuerta();
         sueloMesaArmado.plataformaAbajo = true;
         sueloMesaArmado.enabled = false;
+        oprimirTecla.enabled = false;
         StartCoroutine(HabilitarMesaArmado(8.5f));
+    }
+
+    private IEnumerator HabilitarMesaArmado(float espera)
+    {
+        yield return new WaitForSeconds(espera);
+        EntornoMecanica.singleton.noAbroYo = false;
+        sueloMesaArmado.enabled = true;
+        oprimirTecla.enabled = true;
+    }
+
+    public void ManipularBrazoDerecho(string msj)
+    {
+        for (int i = 0; i < partesInstanciadas.Count; i++)
+        {
+            if (partesInstanciadas[i].GetComponent<MoverPieza>().id == int.Parse(msj))
+            {
+                esferaDisolver = partesInstanciadas[i].GetComponent<MoverPieza>().esferaDisolver;
+                targetBrazo = partesInstanciadas[i].transform;
+            }
+        }
+
+        ManagerBrazos.singleton.AsignarTargetDerecho(targetBrazo, esferaDisolver);
+    }
+
+    public void ManipularBrazoIzquierdo(string msj)
+    {
+        for (int i = 0; i < partesInstanciadas.Count; i++)
+        {
+            if (partesInstanciadas[i].GetComponent<MoverPieza>().id == int.Parse(msj))
+            {
+                esferaDisolver = partesInstanciadas[i].GetComponent<MoverPieza>().esferaDisolver;
+                targetBrazo = partesInstanciadas[i].transform;
+            }
+        }
+
+        ManagerBrazos.singleton.AsignarTargetIzquierdo(targetBrazo, esferaDisolver);
+    }
+
+    public void RegresarBrazosMecanicos(string msj)
+    {
+        ManagerBrazos.singleton.RetornarBrazos(); // Le asignamos este transform como target a los brazis
+        ManagerBrazos.singleton.EfectoDisolverInversa(); // Le retiramos el efecto de disolver
+    }
+
+    public void ValidarMinijuego(string msj)
+    {
+        string[] partes = msj.Split('*');
+
+        Torque = int.Parse(partes[0]);
+        Aceite = int.Parse(partes[1]);
+
+        ManagerMinijuego.singleton.ValidarResultado(Torque, Aceite);
+    }
+
+    public void AsignarMotorActivo(string msj)
+    {
+        partesInstanciadas.Clear();
+        ManagerMinijuego.singleton.AsignarMotorActivo(msj);
     }
 }
 

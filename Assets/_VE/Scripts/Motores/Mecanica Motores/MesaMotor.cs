@@ -15,8 +15,9 @@ public class MesaMotor : MonoBehaviour
     public Slider sliderVelocidadMotor;
     public ControlVelocidadAnimacion controlVelocidadAnimacion;
 
-    [HideInInspector]
+    //[HideInInspector]
     public bool estoyEnMesa;
+    public bool estoyArmando;
     public static MesaMotor singleton;
     private void Awake()
     {
