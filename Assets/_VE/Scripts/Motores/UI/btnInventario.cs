@@ -1,6 +1,7 @@
 using UnityEngine.UI;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using System.Collections;
 
 public class btnInventario : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
@@ -42,6 +43,10 @@ public class btnInventario : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
             // Aplicar desplazamiento en espacio local respecto al padre
             nuevaPieza.transform.localPosition += offsetLocal;
+
+            // Deshabilitamos por un momento el boton de ayuda automatica para evitar errores en los materiales
+            ManagerCanvas.singleton.DeshabilitarBtnAyudaAutomatica();
+            ManagerMinijuego.singleton.Esperar(2f);
 
             // Guardamos el ID instanciado
             ManagerMinijuego.singleton.IDInstanciados.Add(nuevaPieza.GetComponent<MoverPieza>());
@@ -90,6 +95,5 @@ public class btnInventario : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     public void OnPointerClick(PointerEventData eventData)
     {
         ManagerCanvas.singleton.BorrarInformacionPieza(); // Retiramos la informacion de la pieza del canvas
-    }
-
+    }  
 }

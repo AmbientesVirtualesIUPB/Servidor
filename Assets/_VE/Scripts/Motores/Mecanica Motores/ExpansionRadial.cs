@@ -107,7 +107,6 @@ public class ExpansionRadial : MonoBehaviour
                 expandir = true;
                 AsignarHijos();
                 ControlCamaraMotor.singleton.IniciarMovimientoCamara(ControlCamaraMotor.singleton.posicionExpansion, 1);
-
                 if (contraerCoroutine != null) StopCoroutine(contraerCoroutine);
                 expandirCoroutine = StartCoroutine(ExpandirCoroutine());
             }
@@ -235,7 +234,7 @@ public class ExpansionRadial : MonoBehaviour
                 
             }     
         }
-   
+
         txtBoton.text = "Expandir";
         btnExpasion.image.sprite = spriteExpandir;
         expandir = false;

@@ -48,6 +48,7 @@ public class ServidorMotores : MonoBehaviour
         GestionMensajesServidor.singeton.RegistrarAccion("MS05", RegresarBrazosMecanicos);
         GestionMensajesServidor.singeton.RegistrarAccion("MS06", ValidarMinijuego);
         GestionMensajesServidor.singeton.RegistrarAccion("MS07", AsignarMotorActivo);
+        GestionMensajesServidor.singeton.RegistrarAccion("MS08", ParteColocada);
     }
 
     public void InstanciaPiezaServidor(string msj)
@@ -165,6 +166,23 @@ public class ServidorMotores : MonoBehaviour
     {
         partesInstanciadas.Clear();
         ManagerMinijuego.singleton.AsignarMotorActivo(msj);
+    }
+
+    public void ParteColocada(string msj)
+    {
+        ModificarPartesColocadas(int.Parse(msj));
+    }
+
+    public void ModificarPartesColocadas(int id)
+    {
+        for (int i = 0; i < partesInstanciadas.Count; i++)
+        {
+            if (partesInstanciadas[i].GetComponent<MoverPieza>().id == id)
+            {
+                partesInstanciadas[i].GetComponent<MoverPieza>().piezaColocada = true;
+                partesInstanciadas.RemoveAt(i);
+            }
+        }
     }
 }
 

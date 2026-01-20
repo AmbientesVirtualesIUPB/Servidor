@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class ManagerMinijuego : MonoBehaviour
@@ -94,6 +95,7 @@ public class ManagerMinijuego : MonoBehaviour
     public Transform[] posicionesMinijuegoAceiteDiesel; // Posiciones minijuego
     public Transform[] posicionesMinijuegoAceiteNissan; // Posiciones minijuego
     public ExpansionRadial piezasInternas;
+    public ExpansionRadial piezasExternas;
     public MoverObjeto botellaAceite;
     public ParticleSystem aceite;
     private bool desactivarExternas;
@@ -118,12 +120,14 @@ public class ManagerMinijuego : MonoBehaviour
     public List<MoverPieza> IDInstanciados;
     [HideInInspector]
     public int siguienteIdColocar;
+    [HideInInspector]
+    public string siguientePiezaColocar;
 
     private int contador = 0;
     private int piezaAceitadaActual = 0;
     public int puntajeTorque = 0;
     public int puntajeAceite = 0;
-    private Coroutine coroutine;
+    private Coroutine coroutine, coroutine2;
     public static ManagerMinijuego singleton;
 
     private void Awake()
@@ -145,7 +149,7 @@ public class ManagerMinijuego : MonoBehaviour
         prensaValvulas = RotacionAngularObjeto.singleton.prensaValvula.gameObject;
         botellaAceite = RotacionAngularObjeto.singleton.botellaAceite;
         aceite = RotacionAngularObjeto.singleton.aceite;
-
+        siguientePiezaColocar = "Elegir un motor.";
         StartCoroutine(ActivarComponentesIniciales());
     }
 
@@ -170,6 +174,24 @@ public class ManagerMinijuego : MonoBehaviour
         btnEncenderMotor.interactable = false;
     }
 
+    [ContextMenu("destruirSP")]
+    public void DestruirObjetosSP()
+    {
+        // Obtiene la escena por nombre
+        Scene escena = SceneManager.GetSceneByName("WI_Motores");
+
+        // Obtiene todos los objetos raíz (padres) de la escena activa
+        GameObject[] objetosRaiz = escena.GetRootGameObjects();
+
+        foreach (GameObject obj in objetosRaiz)
+        {
+            // Verifica si el nombre empieza por "SP"
+            if (obj.name.StartsWith("SP"))
+            {
+                Destroy(obj);
+            }
+        }
+    }
 
     [ContextMenu("Validar Pieza")]
     public void ColocacionAutomaticaPieza()
@@ -179,25 +201,49 @@ public class ManagerMinijuego : MonoBehaviour
             if (IDInstanciados[i].id == siguienteIdColocar)
             {
                 IDInstanciados[i].IniciarMovimiento();
+                IDInstanciados.RemoveAt(i);
                 ManagerCanvas.singleton.DeshabilitarBtnAyudaAutomatica();
+                ManagerCanvas.singleton.DeshabilitarBtnExpandir();
+                piezasInternas.Contraer();// Contraemos las piezas internas si estan expandidas
+                piezasExternas.Contraer();// Contraemos las piezas internas si estan expandidas
                 return;
             }
 
             if (i == IDInstanciados.Count - 1)
             {
-                string texto = "La siguiente pieza a colocar aún no esta en la mesa de armado.";
+                string texto = "La siguiente pieza a colocar aún no esta en la mesa de armado, prueba con: " + siguientePiezaColocar;
                 ManagerCanvas.singleton.AlertarMensaje(texto);
                 return;
             }
         }
 
-        if (IDInstanciados.Count == 0)
+        if (IDInstanciados == null || IDInstanciados.Count == 0 && siguienteIdColocar != 1 && siguienteIdColocar != 39)
         {
-            string texto = "Necesitas traer primero la pieza inicial a la mesa de armado.";
+            string texto = "La siguiente pieza a colocar aún no esta en la mesa de armado, prueba con: " + siguientePiezaColocar;
+            ManagerCanvas.singleton.AlertarMensaje(texto);
+            return;
+        }
+
+        if (siguienteIdColocar == 1 || siguienteIdColocar == 39)
+        {
+            string texto = "Necesitas traer primero la pieza inicial a la mesa de armado, prueba con: " + siguientePiezaColocar;
             ManagerCanvas.singleton.AlertarMensaje(texto);
         }
     }
 
+    public void Esperar(float tiempo)
+    {
+        if (coroutine2 != null)
+        {
+            StopCoroutine(coroutine2);
+        }
+        coroutine2 = StartCoroutine(EsperarBTNAyuda(tiempo));
+    }
+    public IEnumerator EsperarBTNAyuda(float tiempo)
+    {
+        yield return new WaitForSeconds(tiempo);
+        ManagerCanvas.singleton.HabilitarBtnAyudaAutomatica();
+    }
 
     /// <summary>
     /// Metodo invocado desde los botones de Eleccion Dificultad en el canvas principal
@@ -217,7 +263,8 @@ public class ManagerMinijuego : MonoBehaviour
         else if (nivel == 3) // Experto
         {
             // Defiendase solo
-        }    
+        }
+        ManagerCanvas.singleton.HabilitarBtnExpandir();
     }
 
     /// <summary>
@@ -242,6 +289,7 @@ public class ManagerMinijuego : MonoBehaviour
         btnAplicarAceite.gameObject.SetActive(false); // desactivamos el boton para aplicar aceite
         if (motorAnimadoActivo != null) motorAnimadoActivo.SetActive(false);
         IDInstanciados.Clear();
+        DestruirObjetosSP();
 
         MesaMotor.singleton.interaccionEjecutada = false;
         ExplosionObjetosHijos.singleton.DestruirTodosLosHijos(); // Destruimos todas las piezas que se hayan colocado
@@ -261,7 +309,7 @@ public class ManagerMinijuego : MonoBehaviour
         minijuegoValidadoAceiteMal = false;
         minijuegoTerminado = false;
 
-        ManagerCanvas.singleton.HabilitarBtnExpandir();
+        ManagerCanvas.singleton.DeshabilitarBtnExpandir();
         ManagerCanvas.singleton.HabilitarBtnRotar();
         ManagerCanvas.singleton.DesactivarBtnAyudaPista();
         ManagerCanvas.singleton.DesactivarBtnAyudaAutomatica();
@@ -288,6 +336,7 @@ public class ManagerMinijuego : MonoBehaviour
         {
             ManagerCanvas.singleton.ActualizarInformacionPista("Antes de comenzar cualquier armado, asegúrate de tener la base sólida que soportará todo el conjunto interno del motor. Esta pieza es el punto de anclaje donde descansan los componentes principales, y sobre ella se construirá toda la estructura.");
             siguienteIdColocar = 1;
+            siguientePiezaColocar = "La base del motor.";
 
             // Actualizamos el panel de torques
             txtTorques.text = "Información Torques \r\n Motor Diesel";
@@ -324,6 +373,7 @@ public class ManagerMinijuego : MonoBehaviour
         {
             ManagerCanvas.singleton.ActualizarInformacionPista("Antes de comenzar lo primero es asegurar la base donde descansarán los mecanismos internos. Este componente actúa como recipiente para el aceite y como soporte inferior del bloque, garantizando la lubricación y rigidez estructural del conjunto.");
             siguienteIdColocar = 39;
+            siguientePiezaColocar = "El carter inferior.";
 
             // Actualizamos el panel de torques
             txtTorques.text = "Información Torques \r\n Motor Gasolina";
@@ -441,10 +491,12 @@ public class ManagerMinijuego : MonoBehaviour
 
     IEnumerator AplicarAceiteCorrutine()
     {
+        ManagerCanvas.singleton.DeshabilitarBtnAyudaAutomatica();
         btnAplicarAceite.gameObject.SetActive(false); // Desactivamos el boton para aplicar aceite
         puntajeAceite += 1; // Damos un punto por aplicar aceite
 
         piezasInternas.Contraer();// Contraemos las piezas internas si estan expandidas
+        piezasExternas.Contraer();// Contraemos las piezas internas si estan expandidas
 
         if (desactivarExternas)
         {
@@ -493,6 +545,7 @@ public class ManagerMinijuego : MonoBehaviour
         ManagerCanvas.singleton.HabilitarBtnSalir();
         ManagerCanvas.singleton.HabilitarBtnBajarPlataforma();
         ManagerCanvas.singleton.HabilitarBtnExpandir();
+        ManagerCanvas.singleton.HabilitarBtnAyudaAutomatica();
 
         if (desactivarExternas)
         {
@@ -503,6 +556,7 @@ public class ManagerMinijuego : MonoBehaviour
 
     public void DesactivarMinijuego()
     {
+        ManagerCanvas.singleton.HabilitarBtnAyudaAutomatica();
         Atornillar.singleton.ReiniciarValorSlider();
         ControlCamaraMotor.singleton.ReestablecerPosicionCamara(); // Reiniciamos el indice para que la posicion de la camara sea correcta
         ControlCamaraMotor.singleton.IniciarMovimientoCamara(ControlCamaraMotor.singleton.posicionFrontal, 1);
@@ -592,6 +646,7 @@ public class ManagerMinijuego : MonoBehaviour
     public void ValidarMiniJuego()
     {
         minijuegoTerminado = true; // indicamos que ya terminaron los minijuegos
+        ManagerCanvas.singleton.DeshabilitarBtnAyudaAutomatica();
 
         if (motorActivo == "Diesel")
         {
@@ -828,7 +883,6 @@ public class ManagerMinijuego : MonoBehaviour
     {
         if (!aplicandoTorque)
         {
-            Debug.Log("TorqueAplicadoTornillosValvulas");
             torquesDieselValvulas[contador] = Mathf.RoundToInt(Atornillar.singleton.AsignarValorTorque()); // Asignamos el valor del torque
 
             yield return new WaitForSeconds(0.1f);
@@ -1098,7 +1152,6 @@ public class ManagerMinijuego : MonoBehaviour
     {
         if (!aplicandoTorque)
         {
-            Debug.Log("TorqueAplicadoTornillosValvulas");
             torquesNissanValvulas[contador] = Mathf.RoundToInt(Atornillar.singleton.AsignarValorTorque()); // Asignamos el valor del torque
 
             yield return new WaitForSeconds(0.1f);

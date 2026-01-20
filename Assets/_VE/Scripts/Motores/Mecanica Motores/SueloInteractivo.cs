@@ -31,6 +31,7 @@ public class SueloInteractivo : MonoBehaviour
     private int playerLayer; // Para guardar el numero de layer
     private Vector3 posicionOriginal; // para guardar la posicion original
     private Quaternion rotacionOriginal; // para guardar la rotacion original
+    private bool botonesSalvavidasEjecutados;
     public bool interactuar; // Para validar si estoy interactuando
     [HideInInspector]
     public bool salirInteraccion; // Para validar si salgo de la interaccion
@@ -87,7 +88,7 @@ public class SueloInteractivo : MonoBehaviour
 
                     if (plataformaAbajo)
                     {
-                        GestionMensajesServidor.singeton.EnviarMensaje("MS01", "Subiendo plataforma");
+                        GestionMensajesServidor.singeton.EnviarMensaje("MS01", " Subiendo plataforma");
                         EntornoMecanica.singleton.AbrirCompuerta(posicionObjetivoCamara);
                         plataformaAbajo = false;                       
                     }
@@ -118,6 +119,13 @@ public class SueloInteractivo : MonoBehaviour
 
                 interactuar = false; // indicamos que ya no podemos interactuar
             }
+        }
+
+        if (mesaArmadoMotor && MesaMotor.singleton.estoyEnMesa && MesaMotor.singleton.estoyArmando && MesaMotor.singleton.mesaMotorActiva && !botonesSalvavidasEjecutados)
+        {
+            botonesSalvavidasEjecutados = true;
+            ManagerCanvas.singleton.btnSalir.gameObject.SetActive(true);
+            ManagerCanvas.singleton.btnBajarPlataforma.gameObject.SetActive(true);
         }
     }
 
@@ -196,6 +204,7 @@ public class SueloInteractivo : MonoBehaviour
                 {
                     MesaMotor.singleton.estoyEnMesa = false;
                     MesaMotor.singleton.estoyArmando = false;
+                    botonesSalvavidasEjecutados = false;
                 }                                
             }
         }
@@ -382,7 +391,7 @@ public class SueloInteractivo : MonoBehaviour
         {
             plataformaAbajo = true;
             SalirInteraccion();
-            GestionMensajesServidor.singeton.EnviarMensaje("MS02", "Bajando plataforma");
+            GestionMensajesServidor.singeton.EnviarMensaje("MS02", " Bajando plataforma");
             EntornoMecanica.singleton.CerrarCompuerta();       
             btnBajarPlataforma.gameObject.SetActive(false);       
         }  

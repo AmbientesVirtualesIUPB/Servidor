@@ -5,6 +5,7 @@ public class MoverPieza : MonoBehaviour
 { 
     public int id;
     public int idSiguiente;
+    public string piezaSiguiente;
     public bool piezaExterna; // Para identificar si instanciamos en el punto de instancia interno o externo
     [HideInInspector]
     public bool puedoValidar; // Para validar la colocacion de la pieza al momento de soltar el click y  no mientras arrastro
@@ -317,7 +318,10 @@ public class MoverPieza : MonoBehaviour
             ManagerCanvas.singleton.HabilitarBtnBajarPlataforma();
         }
         ManagerMinijuego.singleton.siguienteIdColocar = idSiguiente;
-        ManagerCanvas.singleton.HabilitarBtnAyudaAutomatica();
+        ManagerMinijuego.singleton.siguientePiezaColocar = piezaSiguiente;
+        ManagerMinijuego.singleton.Esperar(0.5f);
+        ManagerCanvas.singleton.HabilitarBtnExpandir();
+        GestionMensajesServidor.singeton.EnviarMensaje("MS08", id.ToString());
         coroutine = null;
     }
 
