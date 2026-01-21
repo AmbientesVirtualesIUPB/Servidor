@@ -194,4 +194,9 @@ public class ControlCamaraMotor : MonoBehaviour
             ManagerMinijuego.singleton.aplicandoTorque = false;
         }
     }
+
+    public void CambiarNearCamara(float near)
+    {
+        camara.nearClipPlane = near;
+    }
 }

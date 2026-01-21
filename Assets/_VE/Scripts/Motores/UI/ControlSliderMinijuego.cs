@@ -5,9 +5,22 @@ public class ControlSliderMinijuego : MonoBehaviour, IPointerDownHandler, IPoint
 {
     public RotacionAngularObjeto rotacionAngularObjeto;
 
+    public bool presionado = false;
+    private bool sonidoEjecutado = false;
+
     private void Start()
     {
         rotacionAngularObjeto = RotacionAngularObjeto.singleton;
+    }
+
+    
+    void Update()
+    {
+        if (presionado && !sonidoEjecutado)
+        {
+            if (AudioManagerMotores.singleton != null) AudioManagerMotores.singleton.ReproducirAtornillar(); // Ejecutamos el efecto
+            sonidoEjecutado = true;
+        }
     }
 
     /// <summary>
@@ -20,13 +33,14 @@ public class ControlSliderMinijuego : MonoBehaviour, IPointerDownHandler, IPoint
         {
             if (InventarioUI.singleton.tamanoHerramienta == ManagerMinijuego.singleton.sizeHerramienta)
             {
+                presionado = true;
                 rotacionAngularObjeto.estaManipulando = true;
             }
             else
             {
                 if (ManagerCanvas.singleton != null)
                 {
-                    if (AudioManagerMotores.singleton != null) AudioManagerMotores.singleton.PlayEfectString("Error"); // Ejecutamos el efecto nombrado
+                    if (AudioManagerMotores.singleton != null) AudioManagerMotores.singleton.PlayEfectString("Error", 1f); // Ejecutamos el efecto nombrado
 
                     if (ManagerMinijuego.singleton.sizeHerramienta == 1)
                     {
@@ -37,7 +51,7 @@ public class ControlSliderMinijuego : MonoBehaviour, IPointerDownHandler, IPoint
                     {
                         if (InventarioHerramientas.singleton.herramientasTomadas.Count == 3 && InventarioHerramientas.singleton.herramientasIndividuales == null || InventarioHerramientas.singleton.herramientasIndividuales.Count == 0)
                         {
-                            string texto = "No tienes nada en tu mano, debes ir a la caja caja de herramientas para tomar una que te pueda ayudar.";
+                            string texto = "No tienes nada en tu mano, debes ir a la caja caja de herramientas, necesitas la llave o copa de " + ManagerMinijuego.singleton.sizeHerramienta + " mm";
                             ManagerCanvas.singleton.AlertarMensaje(texto);
                         }
                         else
@@ -59,6 +73,9 @@ public class ControlSliderMinijuego : MonoBehaviour, IPointerDownHandler, IPoint
     {
         if (Atornillar.singleton != null)
         {
+            if (AudioManagerMotores.singleton != null) AudioManagerMotores.singleton.DetenerAtornillar(); // Detenemos el efecto 
+            presionado = false;
+            sonidoEjecutado = false;
             rotacionAngularObjeto.estaManipulando = false;
         }        
     }

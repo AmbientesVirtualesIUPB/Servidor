@@ -100,7 +100,7 @@ public class GuardarHerramienta : MonoBehaviour
         {
             puedoInteractuar = true;
 
-            if (AudioManagerMotores.singleton != null) AudioManagerMotores.singleton.PlayEfectString("TomarPieza"); // Ejecutamos el efecto nombrado
+            if (AudioManagerMotores.singleton != null) AudioManagerMotores.singleton.PlayEfectString("TomarPieza", 1f); // Ejecutamos el efecto nombrado
 
             if (materialDisolver != null)
             {

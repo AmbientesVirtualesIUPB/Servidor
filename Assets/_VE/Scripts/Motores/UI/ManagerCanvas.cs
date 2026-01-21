@@ -83,7 +83,7 @@ public class ManagerCanvas : MonoBehaviour
             {
                 if (!juegoPausado)
                 {
-                    if (AudioManagerMotores.singleton != null) AudioManagerMotores.singleton.PlayEfectString("Menu"); // Ejecutamos el efecto nombrado
+                    if (AudioManagerMotores.singleton != null) AudioManagerMotores.singleton.PlayEfectString("Menu", 0.5f); // Ejecutamos el efecto nombrado
                     juegoPausado = true;
                     menuPausa.Escalar();
                     movimientoJugador.DeneterJugador();
@@ -91,7 +91,7 @@ public class ManagerCanvas : MonoBehaviour
                 }
                 else
                 {
-                    if (AudioManagerMotores.singleton != null) AudioManagerMotores.singleton.PlayEfectString("Menu"); // Ejecutamos el efecto nombrado
+                    if (AudioManagerMotores.singleton != null) AudioManagerMotores.singleton.PlayEfectString("btnOmitir", 0.5f); // Ejecutamos el efecto nombrado
                     juegoPausado = false;
                     menuPausa.Restaurar();
                     movimientoJugador.HabilitarJugador();
@@ -144,7 +144,7 @@ public class ManagerCanvas : MonoBehaviour
     /// </summary>
     public void AlertarMensaje(string texto)
     {
-        if (AudioManagerMotores.singleton != null) AudioManagerMotores.singleton.PlayEfectString("Error"); // Ejecutamos el efecto nombrado
+        if (AudioManagerMotores.singleton != null) AudioManagerMotores.singleton.PlayEfectString("Error", 0.6f); // Ejecutamos el efecto nombrado
         txtMensaje.text = texto;
         mensajeAlerta.SetActive(true);
         mensajeAlertaActivo = true;
@@ -284,7 +284,7 @@ public class ManagerCanvas : MonoBehaviour
         {
             if (!juegoPausado)
             {
-                if (AudioManagerMotores.singleton != null) AudioManagerMotores.singleton.PlayEfectString("Menu"); // Ejecutamos el efecto nombrado
+                if (AudioManagerMotores.singleton != null) AudioManagerMotores.singleton.PlayEfectString("Menu", 0.5f); // Ejecutamos el efecto nombrado
                 juegoPausado = true;
                 menuPausa.Escalar();
                 movimientoJugador.DeneterJugador();
@@ -292,7 +292,7 @@ public class ManagerCanvas : MonoBehaviour
             }
             else
             {
-                if (AudioManagerMotores.singleton != null) AudioManagerMotores.singleton.PlayEfectString("Menu"); // Ejecutamos el efecto nombrado
+                if (AudioManagerMotores.singleton != null) AudioManagerMotores.singleton.PlayEfectString("btnOmitir", 0.5f); // Ejecutamos el efecto nombrado
                 juegoPausado = false;
                 menuPausa.Restaurar();
                 movimientoJugador.HabilitarJugador();
@@ -306,6 +306,7 @@ public class ManagerCanvas : MonoBehaviour
     /// </summary>
     public void ActivarMenuEleccionMotor()
     {
+        if (AudioManagerMotores.singleton != null) AudioManagerMotores.singleton.PlayEfectString("btnElegir", 0.8f); // Ejecutamos el efecto nombrado
         menuEleccionMotor.Escalar();
     }
 

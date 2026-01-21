@@ -204,7 +204,7 @@ public class HerramientaArmable : MonoBehaviour
 
         if (other.piezaFinal)
         {
-            if (AudioManagerMotores.singleton != null) AudioManagerMotores.singleton.PlayEfectString("Pop"); // Ejecutamos el efecto nombrado  
+            if (AudioManagerMotores.singleton != null) AudioManagerMotores.singleton.PlayEfectString("Pop", 1f); // Ejecutamos el efecto nombrado  
         }
     }
 

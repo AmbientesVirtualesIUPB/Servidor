@@ -58,7 +58,7 @@ public class SueloInteractivo : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.F))
             {
-                if (AudioManagerMotores.singleton != null) AudioManagerMotores.singleton.PlayEfectString("SueloInteractivo2");
+                if (AudioManagerMotores.singleton != null) AudioManagerMotores.singleton.PlayEfectString("SueloInteractivo2", 1f);
 
                 DesactivarMovimientoJugador(movimientoJugador); // Desactivamos el movimiento del jugador que interactua
 
@@ -102,6 +102,7 @@ public class SueloInteractivo : MonoBehaviour
                     InicializarMovimientoCamara(posicionObjetivoCamara);
                 }
 
+                ControlCamaraMotor.singleton.CambiarNearCamara(0.01f);
                 camera.cullingMask &= ~(1 << playerLayer); // Desactivamos la layer "PLayer" de la camara para que no se vea nuestro personaje
                 canvasWorldSpace.SetActive(false);  // Desactivamos canvas visual       
                 btnSalir.onClick.AddListener(SalirInteraccion); // Agregamos el evento actual al boton
@@ -319,7 +320,7 @@ public class SueloInteractivo : MonoBehaviour
             yield return new WaitForSeconds(0.01f);
         }
 
-        if (AudioManagerMotores.singleton != null) AudioManagerMotores.singleton.PlayEfectString("SueloInteractivo2");
+        if (AudioManagerMotores.singleton != null) AudioManagerMotores.singleton.PlayEfectString("SueloInteractivo2", 1f);
         // Indicamos que estamos saliendo de la interacion
         salirInteraccion = true;
 
@@ -365,6 +366,7 @@ public class SueloInteractivo : MonoBehaviour
         }
 
         camera.cullingMask |= (1 << playerLayer); // Activamos de nuevo la layer "Player" para que nuestro personaje se vea     
+        ControlCamaraMotor.singleton.CambiarNearCamara(1f);
         if (canvasPrincipal != null && !esRestaurable) canvasPrincipal.SetActive(false);  // Desactivamos canvas principal   
         if (escaladorUI != null) escaladorUI.Restaurar();  // Restauramos 
 

@@ -59,6 +59,7 @@ public class BrazoMecanico : MonoBehaviour
         // Si está suficientemente cerca y aún no lo hemos notificado
         if (distancia <= offsetDistancia + 0.05f && !yaNotifiqueCercania && targetPositions != targetPositionInicial) 
         {
+            if (AudioManagerMotores.singleton != null) AudioManagerMotores.singleton.PlayEfectString("BrazoTomando", 1f); // Ejecutamos el efecto nombrado 
             for (int i = 0; i < dedos.Length; i++)
             {
                 dedos[i].IniciarDesplazamientoObjeto();

@@ -13,6 +13,7 @@ public class EscaladorUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
 
     [Header("Configuración de Funcionalidad")]
     public bool esBoton;
+    public bool sonidoResaltar;
     public bool esMensaje;
     public bool esPop;
     public bool desactivarAlRestaurar;
@@ -33,6 +34,10 @@ public class EscaladorUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     {
         if (esBoton)
         {
+            if (sonidoResaltar)
+            {
+                if (AudioManagerMotores.singleton != null) AudioManagerMotores.singleton.PlayEfectString("btnResaltar", 0.07f); // Ejecutamos el efecto nombrado 
+            }     
             // Escala hacia el objetivo cuando el cursor entra
             Escalar();
         }      

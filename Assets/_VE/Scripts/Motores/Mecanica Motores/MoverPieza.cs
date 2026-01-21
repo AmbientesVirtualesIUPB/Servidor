@@ -113,7 +113,7 @@ public class MoverPieza : MonoBehaviour
             StopCoroutine(coroutine);
         }
 
-        if (MesaMotor.singleton.mesaMotorActiva) // Validamos que estamos interactuando en la mesa de armado para poder manipular las piezas
+        if (MesaMotor.singleton.mesaMotorActiva && !ManagerMinijuego.singleton.minijuegoActivo) // Validamos que estamos interactuando en la mesa de armado para poder manipular las piezas
         {
             puedoValidar = false;
 
@@ -141,7 +141,7 @@ public class MoverPieza : MonoBehaviour
             StopCoroutine(coroutine);
         }
 
-        if (MesaMotor.singleton.mesaMotorActiva) // Validamos que estamos interactuando en la mesa de armado para poder manipular las piezas
+        if (MesaMotor.singleton.mesaMotorActiva && !ManagerMinijuego.singleton.minijuegoActivo) // Validamos que estamos interactuando en la mesa de armado para poder manipular las piezas
         {
             if (!noMover)
             {
@@ -229,6 +229,7 @@ public class MoverPieza : MonoBehaviour
             ManagerCanvas.singleton.DeshabilitarBtnSalir();
             ManagerCanvas.singleton.DeshabilitarBtnRotar();
             ManagerCanvas.singleton.DeshabilitarBtnBajarPlataforma();
+            ManagerCanvas.singleton.DeshabilitarBtnAyudaAutomatica();
         }
         if (coroutine != null)
         {
@@ -243,7 +244,7 @@ public class MoverPieza : MonoBehaviour
     /// <param name="duracion"> Tiempo del movimiento de la pieza</param>
     public IEnumerator MoverPiezaSuavemente(float duracion)
     {
-        if (AudioManagerMotores.singleton != null) AudioManagerMotores.singleton.PlayEfectString("PiezaColocada"); // Ejecutamos el efecto nombrado
+        if (AudioManagerMotores.singleton != null) AudioManagerMotores.singleton.PlayEfectString("PiezaColocada2", 1f); // Ejecutamos el efecto nombrado
         ManagerCanvas.singleton.ActualizarInformacionPista(pista); // Actualizamos la pista de armado para el jugador
 
         // Validamos si la pieza a colocar debe ser lubricada
@@ -281,6 +282,7 @@ public class MoverPieza : MonoBehaviour
         {
             if (ManagerMinijuego.singleton != null)
             {
+                if (AudioManagerMotores.singleton != null) AudioManagerMotores.singleton.PlayEfectString("minijuego", 1f); // Ejecutamos el efecto nombrado 
                 if (asignarTornillos != null)
                 {
                     ManagerMinijuego.singleton.ActivarMinijuego(asignarTornillos);

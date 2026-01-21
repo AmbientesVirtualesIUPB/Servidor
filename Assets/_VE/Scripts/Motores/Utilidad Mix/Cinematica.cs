@@ -109,6 +109,7 @@ public class Cinematica : MonoBehaviour
 
         ControlCamaraMotor.singleton.IniciarMovimientoCamara(posicionesCamara[7], 5f);
         puerta.IniciarDesplazamientoObjeto();
+        if (AudioManagerMotores.singleton != null) AudioManagerMotores.singleton.PlayEfectString("PuertaElevadiza",0.3f); // Ejecutamos el efecto nombrado
         carro.IniciarDesplazamientoObjeto();
 
         for (int i = 0; i < llantasCarroNegativas.Length; i++)
@@ -121,12 +122,14 @@ public class Cinematica : MonoBehaviour
 
         ControlCamaraMotor.singleton.IniciarMovimientoCamara(posicionesCamara[8], 5f);
         puerta.RetornarPosicionOriginal();
+        if (AudioManagerMotores.singleton != null) AudioManagerMotores.singleton.PlayEfectString("PuertaElevadiza", 0.3f); // Ejecutamos el efecto nombrado
 
 
         yield return new WaitForSeconds(1f);
         for (int i = 0; i < luces.Length; i++)
         {
             yield return new WaitForSeconds(0.5f);
+            if (AudioManagerMotores.singleton != null) AudioManagerMotores.singleton.PlayEfectString("Luces", 0.3f); // Ejecutamos el efecto nombrado
             luces[i].SetActive(true);
         }
 

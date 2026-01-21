@@ -200,7 +200,7 @@ public class InventarioHerramientas : MonoBehaviour
 
     public void ReactivarHerramientasIndividuales()
     {
-        if (AudioManagerMotores.singleton != null) AudioManagerMotores.singleton.PlayEfectString("Pop"); // Ejecutamos el efecto nombrado 
+        if (AudioManagerMotores.singleton != null) AudioManagerMotores.singleton.PlayEfectString("Pop", 1f); // Ejecutamos el efecto nombrado 
 
         // Reestablecemos las herramientas que hayamos tomado
         for (int i = 0; i < herramientasIndividuales.Count; i++)

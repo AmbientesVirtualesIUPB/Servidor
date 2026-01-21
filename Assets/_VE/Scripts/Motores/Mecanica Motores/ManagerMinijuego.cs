@@ -202,7 +202,6 @@ public class ManagerMinijuego : MonoBehaviour
             {
                 IDInstanciados[i].IniciarMovimiento();
                 IDInstanciados.RemoveAt(i);
-                ManagerCanvas.singleton.DeshabilitarBtnAyudaAutomatica();
                 ManagerCanvas.singleton.DeshabilitarBtnExpandir();
                 piezasInternas.Contraer();// Contraemos las piezas internas si estan expandidas
                 piezasExternas.Contraer();// Contraemos las piezas internas si estan expandidas
@@ -251,6 +250,7 @@ public class ManagerMinijuego : MonoBehaviour
     /// <param name="nivel"> Nivel de dificultad </param>
     public void EleccionDificultad(int nivel)
     {
+        if (AudioManagerMotores.singleton != null) AudioManagerMotores.singleton.PlayEfectString("btnMotor", 1f); // Ejecutamos el efecto nombrado
         if (nivel == 1) // Aprendiz
         {
             ManagerCanvas.singleton.ActivarBtnAyudaPista();
@@ -282,6 +282,7 @@ public class ManagerMinijuego : MonoBehaviour
     /// <param name="nombreMotor"> Nombre del motor que se va a proceder con el armado</param>
     public void AsignarMotorActivo(string nombreMotor)
     {
+        if (AudioManagerMotores.singleton != null) AudioManagerMotores.singleton.PlayEfectString("btnMotor", 1f); // Ejecutamos el efecto nombrado
         motorActivo = nombreMotor;
         controlVelocidadMotor.gameObject.SetActive(false);
         btnEncenderMotor.gameObject.SetActive(true);
@@ -482,6 +483,7 @@ public class ManagerMinijuego : MonoBehaviour
     /// <param name="numeroPieza"></param>
     public void AplicarAceite()
     {
+        minijuegoActivo = true;
         if (coroutine != null)
         {
             StopCoroutine(coroutine);
@@ -530,6 +532,7 @@ public class ManagerMinijuego : MonoBehaviour
 
         yield return new WaitForSeconds(1f);
         aceite.Play(); // Aplicamos aceite en particulas
+        if (AudioManagerMotores.singleton != null) AudioManagerMotores.singleton.PlayEfectString("AceiteLiquido", 1f); // Ejecutamos el efecto nombrado 
 
         yield return new WaitForSeconds(0.5f);
 
@@ -546,6 +549,8 @@ public class ManagerMinijuego : MonoBehaviour
         ManagerCanvas.singleton.HabilitarBtnBajarPlataforma();
         ManagerCanvas.singleton.HabilitarBtnExpandir();
         ManagerCanvas.singleton.HabilitarBtnAyudaAutomatica();
+
+        minijuegoActivo = false;
 
         if (desactivarExternas)
         {

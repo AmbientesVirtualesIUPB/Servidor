@@ -39,6 +39,7 @@ public class AgregarDisolver : MonoBehaviour
     {
         if (!disolucionAplicada)
         {
+            if (AudioManagerMotores.singleton != null) AudioManagerMotores.singleton.PlayEfectString("Burbuja", 1f); // Ejecutamos el efecto nombrado 
             disolucionAplicada = true;
             AplicarDisolver(true);
         }   
@@ -49,6 +50,7 @@ public class AgregarDisolver : MonoBehaviour
     {
         if (disolucionAplicada)
         {
+            if (AudioManagerMotores.singleton != null) AudioManagerMotores.singleton.PlayEfectString("Burbuja", 1f); // Ejecutamos el efecto nombrado 
             AplicarDisolver(false);
         }  
     }

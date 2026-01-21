@@ -17,7 +17,7 @@ public class btnInventario : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     {
         if (MesaMotor.singleton.mesaMotorActiva) // Solo instanciamos si estamos en la mesa de armado
         {
-            if (AudioManagerMotores.singleton != null) AudioManagerMotores.singleton.PlayEfectString("AparecerPieza2"); // Ejecutamos el efecto nombrado
+            if (AudioManagerMotores.singleton != null) AudioManagerMotores.singleton.PlayEfectString("AparecerPieza2", 1f); // Ejecutamos el efecto nombrado
 
             // Generar variación aleatoria en cada eje
             float offsetX;

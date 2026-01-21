@@ -7344,7 +7344,6 @@ GameObject:
   - component: {fileID: 438059642128860943}
   - component: {fileID: 6542468395039733413}
   - component: {fileID: 2401806125240692215}
-  - component: {fileID: 6542468395039733416}
   - component: {fileID: 5380429860667022584}
   - component: {fileID: 6542468395039733414}
   - component: {fileID: 6542468395039733415}
@@ -7512,7 +7511,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.01
+  near clip plane: 1
   far clip plane: 50
   field of view: 60
   orthographic: 0
@@ -7568,25 +7567,6 @@ MonoBehaviour:
   camara: {fileID: 438059642128860943}
   intensidadVibracion: 0.01
   duracionVibracion: 5
---- !u!114 &6542468395039733416
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6128480285035725012}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5491ec519d6600749a2454001a9c1d21, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 2132035723}
-  distanciaDeseada: 5
-  distanciaMinima: 0.5
-  suavizado: 10
-  capasColision:
-    serializedVersion: 2
-    m_Bits: 512
 --- !u!23 &6553207771446413686
 MeshRenderer:
   m_ObjectHideFlags: 0
