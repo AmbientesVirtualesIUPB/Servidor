@@ -1,6 +1,7 @@
 using UnityEngine.UI;
 using UnityEngine;
 using TMPro;
+using Unity.VisualScripting;
 
 public class InventarioUI : MonoBehaviour
 {
@@ -137,6 +138,13 @@ public class InventarioUI : MonoBehaviour
         if (ManagerMinijuego.singleton.minijuegoActivo)
         {
             ManagerMinijuego.singleton.herramientasRotatorias.SetActive(false);
+
+            for (int i = 0; i < ManagerMinijuego.singleton.herramientasRotatorias.transform.childCount; i++)
+            {
+                Transform hijo = ManagerMinijuego.singleton.herramientasRotatorias.transform.GetChild(i);
+                hijo.gameObject.SetActive(false);
+            }
+
             ManagerMinijuego.singleton.prensaValvulas.SetActive(false);
         }
 

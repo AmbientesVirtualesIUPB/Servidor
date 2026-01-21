@@ -528,10 +528,10 @@ public class ManagerMinijuego : MonoBehaviour
         botellaAceite.gameObject.SetActive(true);
         botellaAceite.IniciarDesplazamientoObjeto();
 
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1f);
         aceite.Play(); // Aplicamos aceite en particulas
 
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.5f);
 
         botellaAceite.RetornarPosicionOriginal(); // Regresamos a la posicion original
 

@@ -92,7 +92,7 @@ public class GuardarPieza : MonoBehaviour
         {
             if (InventarioUI.singleton.contadorInstancias < 12) // Si todavia tengo capacidad en el inventario
             {
-                if (AudioManagerMotores.singleton != null) AudioManagerMotores.singleton.PlayEfectString("TomarPieza2"); // Ejecutamos el efecto nombrado
+                if (AudioManagerMotores.singleton != null) AudioManagerMotores.singleton.PlayEfectString("TomarPieza"); // Ejecutamos el efecto nombrado
 
                 puedoInteractuar = true;
 

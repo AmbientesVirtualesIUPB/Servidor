@@ -35,8 +35,16 @@ public class ControlSliderMinijuego : MonoBehaviour, IPointerDownHandler, IPoint
                     }
                     else
                     {
-                        string texto = "Estas utilizando el tamaño de herramienta incorrecto, necesitas la llave o copa de " + ManagerMinijuego.singleton.sizeHerramienta + " mm, vuelve a intentarlo";
-                        ManagerCanvas.singleton.AlertarMensaje(texto);
+                        if (InventarioHerramientas.singleton.herramientasTomadas.Count == 3 && InventarioHerramientas.singleton.herramientasIndividuales == null || InventarioHerramientas.singleton.herramientasIndividuales.Count == 0)
+                        {
+                            string texto = "No tienes nada en tu mano, debes ir a la caja caja de herramientas para tomar una que te pueda ayudar.";
+                            ManagerCanvas.singleton.AlertarMensaje(texto);
+                        }
+                        else
+                        {
+                            string texto = "Estas utilizando el tamaño de herramienta incorrecto, necesitas la llave o copa de " + ManagerMinijuego.singleton.sizeHerramienta + " mm, vuelve a intentarlo";
+                            ManagerCanvas.singleton.AlertarMensaje(texto);
+                        }
                     }               
                 }         
             }
