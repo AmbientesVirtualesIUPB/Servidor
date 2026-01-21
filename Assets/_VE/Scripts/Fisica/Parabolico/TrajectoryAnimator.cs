@@ -19,6 +19,8 @@ public class TrajectoryAnimator : MonoBehaviour
     [SerializeField] public float tensionInicial = 0f;
     [SerializeField] public float tensionActual = 0f;
     public GameObject flechaTension, flechaSimulacion;
+    public bool mostrarZoom = true;
+    public GameObject gmZoom;
 
     private Coroutine corutinaEspera;
     private Coroutine corutinaTrayectoria;
@@ -47,6 +49,8 @@ public class TrajectoryAnimator : MonoBehaviour
             Debug.LogError("Animator no asignado!");
             return;
         }
+
+        gmZoom.SetActive(mostrarZoom);
 
         // Resetear progreso al inicio
         projectileFollower.EstablecerProgreso(0f);
@@ -82,6 +86,12 @@ public class TrajectoryAnimator : MonoBehaviour
         animandoTrayectoria = false;
         tiempoRestanteEspera = 0f;
         tiempoRestanteTrayectoria = 0f;
+
+        gmZoom.SetActive(false);
+    }
+    public void CambiarZoom(bool enZoom)
+    {
+        mostrarZoom = enZoom;
     }
 
     [ContextMenu("Resetear Progreso")]
@@ -167,6 +177,8 @@ public class TrajectoryAnimator : MonoBehaviour
 
         animandoTrayectoria = false;
         tiempoRestanteTrayectoria = 0f;
+
+        gmZoom.SetActive(false);
 
         Debug.Log("Animación de trayectoria completada!");
     }

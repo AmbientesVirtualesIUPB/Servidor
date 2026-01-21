@@ -22,7 +22,7 @@ public class CreadorPerros : MonoBehaviour
     public int cantidadMedianos = 20;
     public int cantidadPeques   = 20;
 
-    public Text txtGrande, txtMediano, txtPeque;
+    public Text txtGrande, txtMediano, txtPeque, txtNewton;
 
     public Transform contenedor;     // opcional: parent de las instancias
     public bool rotacionAleatoriaY = true;
@@ -44,20 +44,28 @@ public class CreadorPerros : MonoBehaviour
         cantidadGrandes += cuanto;
         if (cantidadGrandes < 0) cantidadGrandes = 0;
         txtGrande.text = cantidadGrandes.ToString();
+        ActualizarInterfaz();
     }
     public void CambioPerroMediano(int cuanto)
     {
         cantidadMedianos += cuanto;
         if (cantidadMedianos < 0) cantidadMedianos = 0;
         txtMediano.text = cantidadMedianos.ToString();
+        ActualizarInterfaz();
     }
     public void CambioPerroPeque(int cuanto)
     {
         cantidadPeques += cuanto;
         if (cantidadPeques < 0) cantidadPeques = 0;
         txtPeque.text = cantidadPeques.ToString();
+        ActualizarInterfaz();
     }
 
+
+    public void ActualizarInterfaz()
+    {
+        txtNewton.text = (cantidadGrandes * 10 + cantidadMedianos + cantidadPeques / 10f).ToString("0.0");
+    }
 
     private void Awake() => singleton = this;
 
@@ -87,7 +95,7 @@ public class CreadorPerros : MonoBehaviour
                 Destroy(instancias[i].gameObject);
             }
         }
-        instancias = new List<Transform>(cantidad);
+        instancias = new List<Transform>(cantidadPeques+cantidadMedianos+cantidadGrandes);
 
         for (int i = 0; i < cantidadGrandes; i++)
         {

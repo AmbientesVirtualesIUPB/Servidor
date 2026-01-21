@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ControlGeneralFriccion : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class ControlGeneralFriccion : MonoBehaviour
     public AnimationCurve curvaMal;
 
     public float puntoInflexion;
+    public Text txtFriccion;
 
     [Header("Cuerdas / Renderers")]
     [Tooltip("Renderers de todas las cuerdas a las que se les modificará el offset.")]
@@ -27,6 +29,11 @@ public class ControlGeneralFriccion : MonoBehaviour
     public MaterialFriccion[] matFric;
     public Renderer cuboRenderer;
 
+    private void Start()
+    {
+        CambiarMaterial(0);
+    }
+
 
     public void CalcularResultado()
     {
@@ -40,6 +47,8 @@ public class ControlGeneralFriccion : MonoBehaviour
         {
             puntoInflexion = matFric[cual].puntoInflexion;
             cuboRenderer.material.color = matFric[cual].color;
+            indiceMaterial = cual;
+            txtFriccion.text = matFric[cual].friccion.ToString() ;
         }
     }
 
