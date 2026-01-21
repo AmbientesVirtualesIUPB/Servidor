@@ -12,6 +12,7 @@ public class TabSystemUI : MonoBehaviour
 
         [HideInInspector] public Button button;
         [HideInInspector] public Text buttonText;
+        public ActivadorBotonesPestanas activador;
     }
 
     [Header("Tab Configuration")]
@@ -74,6 +75,12 @@ public class TabSystemUI : MonoBehaviour
                 Debug.LogError("El prefab no tiene un componente Button!");
                 continue;
             }
+            else
+            {
+                if(tabs[i].activador != null) 
+                    tabs[i].activador.PonerBoton(button);
+            }
+
 
             // Configurar el texto del botón
             Text buttonText = buttonObj.GetComponentInChildren<Text>();

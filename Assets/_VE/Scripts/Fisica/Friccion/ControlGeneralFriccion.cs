@@ -13,6 +13,8 @@ public class ControlGeneralFriccion : MonoBehaviour
     public float puntoInflexion;
     public Text txtFriccion;
 
+    public string retroalimentacion;
+
     [Header("Cuerdas / Renderers")]
     [Tooltip("Renderers de todas las cuerdas a las que se les modificará el offset.")]
     public Renderer[] renderersCuerdas;
@@ -59,15 +61,21 @@ public class ControlGeneralFriccion : MonoBehaviour
 
         yield return new WaitForSeconds(5);
         float fuerzaPerros = ControlPerros.singleton.CalcularFuerza();
+        print(fuerzaPerros);
 
-        float resultado = fuerzaPerros - bloque.coeficienteDeFriccion;
+        float resultado = fuerzaPerros - puntoInflexion;
+        print(resultado);
 
-        if (resultado >= puntoInflexion)
+        if (resultado >= -0.11)
         {
+            if(resultado < 0.09) retroalimentacion = "Son los perros exactos, Felicitaciones!";
+            if(resultado >= 0.09 && resultado <= 1) retroalimentacion = "Son casi exactos los perros, muy cerca!";
+            if(resultado >  1) retroalimentacion = "Lo lograste pero gastando más perros de los necesarios.";
             Victoria();
         }
         else
         {
+            retroalimentacion = "No hay suficientes perros";
             Fallo();
         }
     }
@@ -181,7 +189,7 @@ public class ControlGeneralFriccion : MonoBehaviour
 public class MaterialFriccion
 {
     public string nombre;
-    public int puntoInflexion;
+    public float puntoInflexion;
     public Color color;
     public float friccion;
 }
