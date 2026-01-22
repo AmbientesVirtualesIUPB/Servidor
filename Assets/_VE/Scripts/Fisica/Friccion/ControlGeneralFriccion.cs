@@ -59,16 +59,17 @@ public class ControlGeneralFriccion : MonoBehaviour
         // Obligatoria para Visual Scripting
         yield return new WaitForNextFrameUnit();
 
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(1);
         float fuerzaPerros = ControlPerros.singleton.CalcularFuerza();
         print(fuerzaPerros);
 
         float resultado = fuerzaPerros - puntoInflexion;
+        string titulo = "¡Felicitaciones!";
         print(resultado);
 
         if (resultado >= -0.11)
         {
-            if(resultado < 0.09) retroalimentacion = "Son los perros exactos, Felicitaciones!";
+            if(resultado < 0.09) retroalimentacion = "Son los perros exactos, Muy bien hecho.";
             if(resultado >= 0.09 && resultado <= 1) retroalimentacion = "Son casi exactos los perros, muy cerca!";
             if(resultado >  1) retroalimentacion = "Lo lograste pero gastando más perros de los necesarios.";
             Victoria();
@@ -77,7 +78,10 @@ public class ControlGeneralFriccion : MonoBehaviour
         {
             retroalimentacion = "No hay suficientes perros";
             Fallo();
+            titulo = "¡Rayos!";
         }
+        yield return new WaitForSeconds(8);
+        MSGBox.singleton.Mensaje(titulo, retroalimentacion);
     }
 
     void Victoria()
