@@ -25,6 +25,8 @@ public class ControlQuemado : MonoBehaviour
     private Material _material;
     private Coroutine _corutinaActual;
 
+    public bool quemado = false;
+
     private void Awake()
     {
         _renderer = GetComponent<Renderer>();
@@ -76,6 +78,8 @@ public class ControlQuemado : MonoBehaviour
             StopCoroutine(_corutinaActual);
 
         _corutinaActual = StartCoroutine(AnimarQuemado());
+        AudioControlTotal.instance.ReproducirAudio("Quemado");
+        TrajectoryAnimator.singleton.camaraDio.SetActive(true);
     }
 
     /// <summary>
@@ -109,5 +113,7 @@ public class ControlQuemado : MonoBehaviour
         // Aseguramos valor final exacto
         _material.SetFloat(nombrePropiedad, fin);
         _corutinaActual = null;
+        if (!quemado) TrajectoryAnimator.singleton.cuantosQuemados++;
+        quemado = true;
     }
 }

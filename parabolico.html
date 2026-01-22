@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Calculadora de velocidad inicial (tiro parabólico)</title>
+  <style>
+    body{font-family:system-ui,Segoe UI,Roboto,Arial,sans-serif; margin:24px; line-height:1.35;}
+    .wrap{max-width:980px; margin:auto;}
+    .grid{display:grid; grid-template-columns: repeat(auto-fit,minmax(240px,1fr)); gap:12px;}
+    .card{border:1px solid #ddd; border-radius:12px; padding:14px; background:#fff;}
+    label{display:block; font-weight:600; margin-bottom:6px;}
+    input{width:100%; padding:10px; border:1px solid #ccc; border-radius:10px; font-size:16px;}
+    button{padding:10px 14px; border:0; border-radius:10px; font-weight:700; cursor:pointer;}
+    button.primary{background:#111; color:#fff;}
+    button.ghost{background:#f2f2f2;}
+    .row{display:flex; gap:10px; flex-wrap:wrap; align-items:center;}
+    .out{font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+         white-space:pre-wrap; background:#0b0b0b; color:#eaeaea; padding:12px; border-radius:12px;}
+    .warn{color:#b00020; font-weight:700;}
+    .good{color:#0a7a2f; font-weight:700;}
+    small{color:#666;}
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Velocidad inicial para movimiento parabólico</h1>
+  <p>
+    Dados <b>altura final</b> (<i>y<sub>f</sub></i>), <b>distancia en X</b> (<i>x</i>) y <b>ángulo</b> (<i>θ</i>),
+    esta herramienta calcula <b>v<sub>0</sub></b> asumiendo <i>y<sub>0</sub>=0</i> y sin resistencia del aire.
+  </p>
+
+  <div class="grid">
+    <div class="card">
+      <label for="yf">Altura final y<sub>f</sub> (m)</label>
+      <input id="yf" type="number" step="any" value="2" />
+      <small>Ej: 2 (metros)</small>
+    </div>
+
+    <div class="card">
+      <label for="x">Distancia en X (m)</label>
+      <input id="x" type="number" step="any" value="10" />
+      <small>Ej: 10 (metros)</small>
+    </div>
+
+    <div class="card">
+      <label for="theta">Ángulo inicial θ (grados)</label>
+      <input id="theta" type="number" step="any" value="35" />
+      <small>Ej: 35 (grados)</small>
+    </div>
+
+    <div class="card">
+      <label for="g">Gravedad g (m/s²)</label>
+      <input id="g" type="number" step="any" value="9.81" />
+      <small>Por defecto 9.81</small>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:12px;">
+    <div class="row">
+      <button class="primary" id="btn">Calcular v₀</button>
+      <button class="ghost" id="btnReset">Reset ejemplo</button>
+      <span id="status"></span>
+    </div>
+  </div>
+
+  <h2>Resultado</h2>
+  <div class="card">
+    <div id="result" class="out">Ingresa valores y pulsa “Calcular v₀”.</div>
+  </div>
+
+  <h2>Ecuaciones (despeje)</h2>
+  <div class="card">
+    <div id="steps" class="out"></div>
+  </div>
+
+  <p><small>
+    Nota: si el denominador sale ≤ 0, el tiro con ese ángulo no puede llegar a ese (x, y<sub>f</sub>) en el modelo ideal.
+  </small></p>
+</div>
+
+<script>
+  const $ = (id) => document.getElementById(id);
+
+  function fmt(n, digits = 6) {
+    if (!Number.isFinite(n)) return String(n);
+    // evita -0.000000
+    const v = Math.abs(n) < 1e-12 ? 0 : n;
+    return v.toFixed(digits).replace(/\.?0+$/,'');
+  }
+
+  function deg2rad(deg) {
+    return deg * Math.PI / 180;
+  }
+
+  function compute() {
+    const yf = Number($("yf").value);
+    const x  = Number($("x").value);
+    const thDeg = Number($("theta").value);
+    const g  = Number($("g").value);
+
+    const status = $("status");
+    status.textContent = "";
+
+    // Validaciones básicas
+    if (![yf,x,thDeg,g].every(Number.isFinite)) {
+      status.innerHTML = `<span class="warn">⚠️ Hay valores no numéricos.</span>`;
+      return;
+    }
+    if (g <= 0) {
+      status.innerHTML = `<span class="warn">⚠️ g debe ser > 0.</span>`;
+      return;
+    }
+    if (x === 0) {
+      status.innerHTML = `<span class="warn">⚠️ x no puede ser 0 (no hay vuelo horizontal).</span>`;
+      return;
+    }
+
+    const th = deg2rad(thDeg);
+    const cos = Math.cos(th);
+    const sin = Math.sin(th);
+    const tan = Math.tan(th);
+
+    // Fórmula despejada:
+    // y = x*tanθ - (g*x^2)/(2*v0^2*cos^2θ)
+    // => (g*x^2)/(2*v0^2*cos^2θ) = x*tanθ - y
+    // => v0^2 = (g*x^2)/(2*cos^2θ*(x*tanθ - y))
+    // => v0 = sqrt(...)
+    const denom = 2 * (cos*cos) * (x*tan - yf);
+    const num = g * x * x;
+
+    const steps =
+`Modelo ideal (sin rozamiento), con y₀ = 0:
+
+1) Ecuaciones paramétricas:
+   x(t) = v₀ cos(θ) · t
+   y(t) = v₀ sin(θ) · t − (1/2) g t²
+
+2) Despeje de t desde x(t):
+   t = x / (v₀ cos(θ))
+
+3) Sustituimos en y(t):
+   y = v₀ sin(θ) · (x / (v₀ cos(θ))) − (1/2) g (x / (v₀ cos(θ)))²
+   y = x tan(θ) − (g x²) / (2 v₀² cos²(θ))
+
+4) Despejamos v₀:
+   (g x²) / (2 v₀² cos²(θ)) = x tan(θ) − y
+   v₀² = (g x²) / (2 cos²(θ) (x tan(θ) − y))
+   v₀  = √[(g x²) / (2 cos²(θ) (x tan(θ) − y))]
+
+Con tus valores:
+   y = ${fmt(yf)} m
+   x = ${fmt(x)} m
+   θ = ${fmt(thDeg)}°  (θ rad = ${fmt(th)})
+   g = ${fmt(g)} m/s²
+   cos(θ) = ${fmt(cos)}
+   tan(θ) = ${fmt(tan)}
+   x·tan(θ) − y = ${fmt(x*tan - yf)}
+`;
+
+    $("steps").textContent = steps;
+
+    if (Math.abs(cos) < 1e-12) {
+      $("result").textContent = "⚠️ cos(θ) ≈ 0. Con θ cercano a 90° no se puede resolver con este método (x finito).";
+      status.innerHTML = `<span class="warn">Ángulo inválido o cercano a 90°.</span>`;
+      return;
+    }
+
+    if (denom <= 0) {
+      $("result").textContent =
+`No hay solución real para v₀ con estos parámetros (en el modelo ideal).
+Condición para que exista solución real: x·tan(θ) − y > 0.
+En tu caso: x·tan(θ) − y = ${fmt(x*tan - yf)} (debe ser > 0).`;
+      status.innerHTML = `<span class="warn">Sin solución real (revisa el ángulo o el objetivo).</span>`;
+      return;
+    }
+
+    const v0sq = num / denom;
+    const v0 = Math.sqrt(v0sq);
+
+    // Tiempo de vuelo al llegar a x:
+    const t = x / (v0 * cos);
+    // Componentes:
+    const v0x = v0 * cos;
+    const v0y = v0 * sin;
+
+    $("result").textContent =
+`✅ v₀ = ${fmt(v0, 6)} m/s
+
+Componentes:
+  v₀x = v₀ cos(θ) = ${fmt(v0x, 6)} m/s
+  v₀y = v₀ sin(θ) = ${fmt(v0y, 6)} m/s
+
+Tiempo para alcanzar x:
+  t = x / (v₀ cos(θ)) = ${fmt(t, 6)} s
+`;
+    status.innerHTML = `<span class="good">Listo.</span>`;
+  }
+
+  $("btn").addEventListener("click", compute);
+
+  // Recalcula al cambiar valores (más cómodo)
+  ["yf","x","theta","g"].forEach(id => {
+    $(id).addEventListener("input", () => {
+      // evita recalcular si todavía no hay nada
+      compute();
+    });
+  });
+
+  $("btnReset").addEventListener("click", () => {
+    $("yf").value = 2;
+    $("x").value = 10;
+    $("theta").value = 35;
+    $("g").value = 9.81;
+    compute();
+  });
+
+  // cálculo inicial
+  compute();
+</script>
+</body>
+</html>

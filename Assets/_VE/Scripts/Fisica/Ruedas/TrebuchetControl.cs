@@ -17,6 +17,7 @@ public class TrebuchetControl : MonoBehaviour
     public Animator     animTrebuchet;
     public Trabuchet    trebuchet;
     public Transform[]  llantas;
+    public Transform    castilloEnemigo;
 
     [ContextMenu("Mover")]
     public void Mover()
@@ -24,6 +25,10 @@ public class TrebuchetControl : MonoBehaviour
         if (trebuchet.radio > 1.5f && trebuchet.radio < 2)
         {
             StartCoroutine(Moviendo());
+        }
+        else
+        {
+            MSGBox.singleton.Mensaje("¡Rayos!", "Ese radio es muy complicado de mover para las cabras... :(");
         }
     }
 
@@ -44,15 +49,16 @@ public class TrebuchetControl : MonoBehaviour
                 llantas[j].Rotate((tiempoMov / iteraciones) * velRuedas, 0, 0);
             }
         }
-        go.transform.position = transform.position;
+        go.transform.position = trebuchet.transform.position;
         go.transform.LookAt(target);
         cabra1.SetBool("caminando", false);
         cabra2.SetBool("caminando", false);
-
-        Quaternion q = transform.rotation;
+        trebuchet.gameObject.GetComponent<OrientarHaciaNormal>().enabled = false;
+        Quaternion q = trebuchet.transform.rotation;
+        go.transform.forward = (castilloEnemigo.position - trebuchet.transform.position).normalized;
         for (int i = 0; i < 100; i++)
         {
-            transform.rotation = Quaternion.Lerp(q, go.transform.rotation, i / 100f);
+            trebuchet.transform.rotation = Quaternion.Lerp(q, go.transform.rotation, i / 100f);
             yield return new WaitForSeconds(0.1f);
         }
         botonDisparo.interactable = true;
@@ -61,5 +67,16 @@ public class TrebuchetControl : MonoBehaviour
     public void Disparar()
     {
         animTrebuchet.SetTrigger("disparar");
+        Invoke("DestruirCastillo", 10);
+    }
+
+    void DestruirCastillo()
+    {
+        CastilloDestructor.instance.Destruir();
+        Invoke("MensajeFinal", 10);
+    }
+    void MensajeFinal()
+    {
+        MSGBox.singleton.Mensaje("¡Victoria!", "Acabaste con la amenaza de los orcos, Felicitaciones");
     }
 }

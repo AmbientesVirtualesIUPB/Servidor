@@ -24,6 +24,14 @@ public class TrajectoryAnimator : MonoBehaviour
 
     private Coroutine corutinaEspera;
     private Coroutine corutinaTrayectoria;
+    public GameObject camaraDio;
+    public int cuantosQuemados = 0;
+    public static TrajectoryAnimator singleton;
+
+    private void Awake()
+    {
+        singleton = this;
+    }
 
     [ContextMenu("Iniciar Animación")]
     public void IniciarAnimacion()
@@ -59,7 +67,7 @@ public class TrajectoryAnimator : MonoBehaviour
         tensionInicial = animator.GetFloat("Tens");
         tensionActual = tensionInicial;
 
-        Debug.Log($"Valor inicial de Tens: {tensionInicial}");
+        //Debug.Log($"Valor inicial de Tens: {tensionInicial}");
 
         // Iniciar la secuencia de animación
         corutinaEspera = StartCoroutine(CorutinaEspera());
@@ -114,6 +122,7 @@ public class TrajectoryAnimator : MonoBehaviour
 
         Debug.Log($"Iniciando espera de {tiempoEspera} segundos...");
 
+        AudioControlTotal.instance.ReproducirAudio("Ballesta");
         // Esperar el tiempo especificado
         float tiempoInicio = Time.time;
         flechaSimulacion.SetActive(false);
@@ -177,10 +186,24 @@ public class TrajectoryAnimator : MonoBehaviour
 
         animandoTrayectoria = false;
         tiempoRestanteTrayectoria = 0f;
-
+        if (camaraDio.activeSelf)
+        {
+            yield return new WaitForSeconds(4);
+            camaraDio.SetActive(false);
+        }
         gmZoom.SetActive(false);
 
+        if(cuantosQuemados == 5)
+        {
+            MSGBox.singleton.Mensaje("Campamento controlado", "Ya has logrado controlar el campamento de orcos, bien hecho!");
+        }
+
         Debug.Log("Animación de trayectoria completada!");
+    }
+
+    void VerificarQuemados()
+    {
+
     }
 
     private float ObtenerTiempoVueloTotal()
