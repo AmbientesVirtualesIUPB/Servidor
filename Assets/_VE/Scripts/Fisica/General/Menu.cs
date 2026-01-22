@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.Events;
 public class Menu : MonoBehaviour
 {
-    public InputActionProperty botonActivacion;
+    public InputActionProperty  botonActivacion;
     public Animator animator;
     public UnityEvent evendoBoton;
     public bool visible;
@@ -19,7 +19,7 @@ public class Menu : MonoBehaviour
     void BotonAccion(InputAction.CallbackContext contexto)
     {
         visible = !visible;
-        evendoBoton.Invoke();
+        evendoBoton?.Invoke();
         animator.SetBool("visible", visible);
         ControlGenericoCamara.singleton.ActivarDesactivar(!visible);
     }

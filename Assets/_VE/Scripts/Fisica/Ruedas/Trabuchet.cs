@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Trabuchet : MonoBehaviour
 {
     public VertexRadialScalerByPaint[] ruedas;
     public float radio;
+    public Text txtRadio;
     public void CambiarTamaño(float r)
     {
         radio = r;
@@ -13,5 +15,6 @@ public class Trabuchet : MonoBehaviour
         {
             ruedas[i].scaleFactor = r;
         }
+        txtRadio.text = r + " m";
     }
 }
