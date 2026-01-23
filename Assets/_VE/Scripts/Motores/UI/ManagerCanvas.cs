@@ -323,7 +323,7 @@ public class ManagerCanvas : MonoBehaviour
     /// </summary>
     public void ActivarBTNEleccionMotor()
     {
-        btnEleccionMotor.SetActive(true);
+        btnEleccionMotor.SetActive(ServidorMotores.singleton.esMecanico);
     }
 
     /// <summary>

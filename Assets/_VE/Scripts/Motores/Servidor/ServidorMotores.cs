@@ -22,6 +22,10 @@ public class ServidorMotores : MonoBehaviour
     public int Torque;
     public int Aceite;
 
+    [Header("VALIDACION MECANICO")]
+    public bool esMecanico;
+    public GameObject btnElegirMotor;
+
     public bool esArmador = false;
     public static ServidorMotores singleton;
 
@@ -49,6 +53,7 @@ public class ServidorMotores : MonoBehaviour
         GestionMensajesServidor.singeton.RegistrarAccion("MS06", ValidarMinijuego);
         GestionMensajesServidor.singeton.RegistrarAccion("MS07", AsignarMotorActivo);
         GestionMensajesServidor.singeton.RegistrarAccion("MS08", ParteColocada);
+        GestionMensajesServidor.singeton.RegistrarAccion("MS09", ActivarMecanico);
     }
 
     public void InstanciaPiezaServidor(string msj)
@@ -183,6 +188,12 @@ public class ServidorMotores : MonoBehaviour
                 partesInstanciadas.RemoveAt(i);
             }
         }
+    }
+
+    public void ActivarMecanico(string msj)
+    {
+        esMecanico = msj == ControlUsuarios.singleton.usuarioLocal.GetMorionID().ID;
+        btnElegirMotor.SetActive(esMecanico);
     }
 }
 
