@@ -155,6 +155,8 @@ public class BrazoMecanicoMejorado : MonoBehaviour
             // mover hasta el punto elegido usando IK
             targetPositions = elegido;
 
+            //if (AudioManagerMotores.singleton != null) AudioManagerMotores.singleton.PlayEfectString("BrazoTomando", 0.05f); // Ejecutamos el efecto nombrado
+
             // esperar a llegar
             while (Vector3.Distance(bones[bones.Length - 1].position, elegido.position) > offsetDistancia + 0.1f)
                 yield return null;

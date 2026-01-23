@@ -18,7 +18,7 @@ public class ControlSliderMinijuego : MonoBehaviour, IPointerDownHandler, IPoint
     {
         if (presionado && !sonidoEjecutado)
         {
-            if (AudioManagerMotores.singleton != null) AudioManagerMotores.singleton.ReproducirAtornillar(); // Ejecutamos el efecto
+            if (AudioManagerMotores.singleton != null) AudioManagerMotores.singleton.PlayEfectLoopInt(0, 1f); // Ejecutamos el efecto de tuerca
             sonidoEjecutado = true;
         }
     }
@@ -73,7 +73,7 @@ public class ControlSliderMinijuego : MonoBehaviour, IPointerDownHandler, IPoint
     {
         if (Atornillar.singleton != null)
         {
-            if (AudioManagerMotores.singleton != null) AudioManagerMotores.singleton.DetenerAtornillar(); // Detenemos el efecto 
+            if (AudioManagerMotores.singleton != null) AudioManagerMotores.singleton.DetenerLoop(); // Detenemos el efecto 
             presionado = false;
             sonidoEjecutado = false;
             rotacionAngularObjeto.estaManipulando = false;

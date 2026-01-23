@@ -65,10 +65,12 @@ public class ManagerDesplazamientoMotor : MonoBehaviour
 
         yield return new WaitForSeconds(2f);
 
+        if (AudioManagerMotores.singleton != null) AudioManagerMotores.singleton.PlayEfectString("inicioRobot", 0.4f); // Ejecutamos el efecto nombrado
         brazoMecanicoMejorado.IniciarPickUp();
 
         yield return new WaitForSeconds(3.5f);
 
+        if (AudioManagerMotores.singleton != null) AudioManagerMotores.singleton.PlayEfectString("DesplazamientoRobot", 0.4f); // Ejecutamos el efecto nombrado
         movimientoBrazo.IniciarDesplazamientoObjeto();
 
         yield return new WaitForSeconds(10f);
@@ -77,10 +79,12 @@ public class ManagerDesplazamientoMotor : MonoBehaviour
 
         yield return new WaitForSeconds(2f);
 
+        if (AudioManagerMotores.singleton != null) AudioManagerMotores.singleton.PlayEfectString("inicioRobot", 0.4f); // Ejecutamos el efecto nombrado
         brazoMecanicoMejorado.ColocarObjetoEn();
 
         yield return new WaitForSeconds(3.5f);
 
+        if (AudioManagerMotores.singleton != null) AudioManagerMotores.singleton.PlayEfectString("DesplazamientoRobot", 0.4f); // Ejecutamos el efecto nombrado
         movimientoBrazo.RetornarPosicionOriginal();
 
         yield return new WaitForSeconds(12f);

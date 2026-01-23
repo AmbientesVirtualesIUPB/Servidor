@@ -10,11 +10,12 @@ public class AudioManagerMotores : MonoBehaviour
     [Header("Audio Sources")]
     public AudioSource musica; // AudioSource que controlará la música de fondo
     public AudioSource efectos;  // AudioSource que controlará los efectos de sonido
-    public AudioSource atornillar;  // AudioSource que controlará los efectos de sonido
+    public AudioSource loop;  // AudioSource que controlará los efectos de sonido
 
     [Header("Clips de Audio")]
     public AudioClip[] musicaClips;  // Array de música
     public AudioClip[] efectosClips;    // Array de efectos de sonido
+    public AudioClip[] loopClips;    // Array de efectos de sonido loppin
 
     [Header("Audio Mixer")]
     public AudioMixer audioMixer; // Referencia al MainAudioMixer
@@ -141,6 +142,18 @@ public class AudioManagerMotores : MonoBehaviour
         }
     }
 
+
+    /// <summary>
+    /// Reproducir efecto de sonido por nombre
+    /// </summary>
+    /// <param name="index"> EL nombre del clip del sonido que queremos reproducir</param>
+    public void PlayEfectLoopInt(int index, float volumen)
+    {
+        loop.clip = loopClips[index];
+        loop.volume = volumen;
+        loop.Play();
+    }
+
     /// <summary>
     /// Detener la música actual
     /// </summary>
@@ -149,14 +162,8 @@ public class AudioManagerMotores : MonoBehaviour
         musica.Stop();
     }
 
-    [ContextMenu("tornillo")]
-    public void ReproducirAtornillar()
+    public void DetenerLoop()
     {
-        atornillar.Play();
-    }
-
-    public void DetenerAtornillar()
-    {
-        atornillar.Stop();
+        loop.Stop();
     }
 }

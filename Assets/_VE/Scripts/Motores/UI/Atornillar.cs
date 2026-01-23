@@ -3,7 +3,7 @@ using UnityEngine.UI;
 using TMPro;
 
 /// <summary>
-/// Script adjunto a la mano que hace la animacion de atornillar
+/// Script adjunto a la mano que hace la animacion de loop
 /// </summary>
 public class Atornillar : MonoBehaviour
 {
