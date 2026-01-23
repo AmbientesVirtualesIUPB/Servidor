@@ -33,5 +33,7 @@ public class BtnUsuarioLista : MonoBehaviour
     public void Activar()
     {
         GestionMensajesServidor.singeton.EnviarMensaje("MS09",idUsuario);
+
+        ServidorMotores.singleton.ActivarMecanico(idUsuario);
     }
 }

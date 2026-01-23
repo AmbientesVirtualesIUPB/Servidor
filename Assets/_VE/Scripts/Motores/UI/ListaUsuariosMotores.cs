@@ -15,10 +15,8 @@ public class ListaUsuariosMotores : MonoBehaviour
         listaUsuarios = new List<GameObject>();
         btnMuestra.gameObject.SetActive(false);
         yield return new WaitForSeconds(0.5f);
-        if (EnvioDatosBD.singleton != null)
-        {
-            btnMostrarLista.SetActive(EnvioDatosBD.singleton.usuario.tipo_usuario == "1");        
-        }
+
+        btnMostrarLista.SetActive(EnvioDatosBD.singleton.usuario.tipo_usuario == "1");
     }
 
 
@@ -33,10 +31,16 @@ public class ListaUsuariosMotores : MonoBehaviour
         listaUsuarios.Clear();
 
         btnMuestra.gameObject.SetActive(true);
+
+        CrearBoton(EnvioDatosBD.singleton.usuario.id_usuario); //// Cambiar eventualmente
         for (int i = 0; i < ControlUsuarios.singleton.usuarios.Count; i++)
         {
             string nombre = ControlUsuarios.singleton.usuarios[i].gameObject.name.Substring(12);
-            btnMuestra.Inicializar(nombre,nombre);
+            CrearBoton(nombre);
+        }
+        void CrearBoton(string _nombre)
+        {
+            btnMuestra.Inicializar(_nombre, _nombre);
             listaUsuarios.Add(Instantiate(btnMuestra.gameObject, btnMuestra.transform.parent) as GameObject);
         }
         btnMuestra.gameObject.SetActive(false);
