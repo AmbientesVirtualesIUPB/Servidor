@@ -58,6 +58,8 @@ public class ManagerDesplazamientoMotor : MonoBehaviour
 
     IEnumerator DesplazamientoIniciado()
     {
+        if (AudioManagerMotores.singleton != null) AudioManagerMotores.singleton.DetenerLoop(); // Detenemos el sonido loop
+        if (AudioManagerMotores.singleton != null) AudioManagerMotores.singleton.PlayEfectString("MotorApagado", 0.2f); // Ejecutamos el efecto nombrado
         MesaMotor.singleton.ValidarExpansionRotacion();
         ManagerMinijuego.singleton.controlVelocidadMotor.SetActive(false);
         MesaMotor.singleton.sliderVelocidadMotor.value = 0f;

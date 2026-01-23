@@ -24,6 +24,7 @@ public class SueloInteractivo : MonoBehaviour
     public bool btnCambiarMotor; // Para validar si quiero habilitar el boton de cambio de motor
     public bool mesaArmadoMotor; // Para validar si es el suelo interactivo de la mesa de armado, deberia ir activa en el sueloInteractivoArmadoMotor
     public bool mesaHerramientas; // Para validar si es el suelo interactivo de la mesa de herramientas, deberia ir activa en el SueloInteractivo Porta Herramientas
+    public bool mesaDinamometro;
 
     public bool puedoInteractuarInicialmente;
     private MovimientoJugador movimientoJugador; // Para guardar la referencia del movimiento del jugador
@@ -100,6 +101,11 @@ public class SueloInteractivo : MonoBehaviour
                 else
                 {
                     InicializarMovimientoCamara(posicionObjetivoCamara);
+                }
+
+                if (mesaDinamometro)
+                {
+                    if (AudioManagerMotores.singleton != null) AudioManagerMotores.singleton.ActivarSonidoDinamometro(); // Detenemos el sonido loop
                 }
 
                 ControlCamaraMotor.singleton.CambiarNearCamara(0.01f);
@@ -363,6 +369,11 @@ public class SueloInteractivo : MonoBehaviour
             if (coroutine != null) StopCoroutine(coroutine);
             coroutine = StartCoroutine(MoverCamara(posicionOriginal, rotacionOriginal, velocidadPosCamara)); // Retornamos la camara principal a la posicion original 
             HabilitarInfoMesaArmado();
+        }
+
+        if (mesaDinamometro)
+        {
+            if (AudioManagerMotores.singleton != null) AudioManagerMotores.singleton.DetenerSonidoDinamometro(); // Detenemos el sonido loop
         }
 
         camera.cullingMask |= (1 << playerLayer); // Activamos de nuevo la layer "Player" para que nuestro personaje se vea     

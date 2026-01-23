@@ -11,6 +11,8 @@ public class AudioManagerMotores : MonoBehaviour
     public AudioSource musica; // AudioSource que controlará la música de fondo
     public AudioSource efectos;  // AudioSource que controlará los efectos de sonido
     public AudioSource loop;  // AudioSource que controlará los efectos de sonido
+    public AudioSource ASBrazoRobot;  // AudioSource que controlará los efectos del brazo
+    public AudioSource ASDinamometro;  // AudioSource que controlará el efecto del dinamometro
 
     [Header("Clips de Audio")]
     public AudioClip[] musicaClips;  // Array de música
@@ -152,6 +154,26 @@ public class AudioManagerMotores : MonoBehaviour
         loop.clip = loopClips[index];
         loop.volume = volumen;
         loop.Play();
+    }
+
+    public void ModificarPitchLoop(float pitchNuevo)
+    {
+        loop.pitch = 1 + pitchNuevo;
+    }
+
+    public void ActivarSonidoBrazo()
+    {
+        ASBrazoRobot.Play();
+    }
+
+    public void ActivarSonidoDinamometro()
+    {
+        ASDinamometro.Play();
+    }
+
+    public void DetenerSonidoDinamometro()
+    {
+        ASDinamometro.Stop();
     }
 
     /// <summary>

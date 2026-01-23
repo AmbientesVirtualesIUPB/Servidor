@@ -10,6 +10,7 @@ public class ManagerMinijuego : MonoBehaviour
     public bool minijuegoActivo; // Para validar si hay un minijuego activo
     public int sizeHerramienta; // Tamaño de herramienta tomada
     public string motorActivo; // Para controlar el motor activo
+    public bool ActivarPuntuacion;
 
     [Header(" REFERENCIAS ")]
     [InfoMessage("Este es una referencia importante, arrastrala del CanvasPrincipal", MessageTypeCustom.Warning)]
@@ -562,6 +563,7 @@ public class ManagerMinijuego : MonoBehaviour
     public void DesactivarMinijuego()
     {
         ManagerCanvas.singleton.HabilitarBtnAyudaAutomatica();
+
         Atornillar.singleton.ReiniciarValorSlider();
         ControlCamaraMotor.singleton.ReestablecerPosicionCamara(); // Reiniciamos el indice para que la posicion de la camara sea correcta
         ControlCamaraMotor.singleton.IniciarMovimientoCamara(ControlCamaraMotor.singleton.posicionFrontal, 1);
@@ -740,16 +742,19 @@ public class ManagerMinijuego : MonoBehaviour
             }
         }
 
-        //Provisional
-        if (motorActivo == "Diesel")
+        if (ActivarPuntuacion)
         {
-            puntajeTorque = 12;
-            puntajeAceite = 13;
-        }
-        else if (motorActivo == "Nissan")
-        {
-            puntajeTorque = 28;
-            puntajeAceite = 8;
+            //Provisional
+            if (motorActivo == "Diesel")
+            {
+                puntajeTorque = 12;
+                puntajeAceite = 13;
+            }
+            else if (motorActivo == "Nissan")
+            {
+                puntajeTorque = 28;
+                puntajeAceite = 8;
+            }
         }
 
         ValidarResultado(puntajeTorque,puntajeAceite);

@@ -321,7 +321,9 @@ public class MoverPieza : MonoBehaviour
         }
         ManagerMinijuego.singleton.siguienteIdColocar = idSiguiente;
         ManagerMinijuego.singleton.siguientePiezaColocar = piezaSiguiente;
-        ManagerCanvas.singleton.HabilitarBtnAyudaAutomatica();
+
+        if (!activaMinijuego) ManagerCanvas.singleton.HabilitarBtnAyudaAutomatica();
+
         ManagerCanvas.singleton.HabilitarBtnExpandir();
         GestionMensajesServidor.singeton.EnviarMensaje("MS08", id.ToString());
         coroutine = null;

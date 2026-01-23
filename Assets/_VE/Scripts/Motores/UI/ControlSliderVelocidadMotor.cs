@@ -34,17 +34,29 @@ public class ControlSliderVelocidadMotor : MonoBehaviour, IPointerDownHandler, I
             if (AudioManagerMotores.singleton != null) AudioManagerMotores.singleton.PlayEfectString("MotorApagado", 0.2f); // Ejecutamos el efecto nombrado
         }
 
-        if (esDinamometro && sliderVelocidad.value > 0f && !motorEjecutadoDinamometro && !MesaMotor.singleton.estoyArmando)
+        if (esDinamometro && sliderVelocidad.value > 0f && !motorEjecutadoDinamometro && !MesaMotor.singleton.estoyArmando && !MesaMotor.singleton.estoyEnMesa)
         {
             motorEjecutadoDinamometro = true;
             StartCoroutine(IniciarEncendido());
         }
 
-        if (esDinamometro && sliderVelocidad.value == 0f && motorEjecutadoDinamometro && !MesaMotor.singleton.estoyArmando)
+        if (esDinamometro && sliderVelocidad.value == 0f && motorEjecutadoDinamometro && !MesaMotor.singleton.estoyArmando && !MesaMotor.singleton.estoyEnMesa)
         {
             motorEjecutadoDinamometro = false;
             if (AudioManagerMotores.singleton != null) AudioManagerMotores.singleton.DetenerLoop(); // Detenemos el sonido loop
             if (AudioManagerMotores.singleton != null) AudioManagerMotores.singleton.PlayEfectString("MotorApagado", 0.2f); // Ejecutamos el efecto nombrado
+        }
+
+        if (!motorEncendido)
+        {
+            if (sliderVelocidad.value > 0f)
+            {
+                if (AudioManagerMotores.singleton != null) AudioManagerMotores.singleton.ModificarPitchLoop(sliderVelocidad.value);
+            }
+            else
+            {
+                if (AudioManagerMotores.singleton != null) AudioManagerMotores.singleton.ModificarPitchLoop(0f);
+            }
         }
     }
 
@@ -97,11 +109,11 @@ public class ControlSliderVelocidadMotor : MonoBehaviour, IPointerDownHandler, I
 
     private IEnumerator IniciarEncendido()
     {
-        if (AudioManagerMotores.singleton != null) AudioManagerMotores.singleton.PlayEfectString("MotorEncendido", 0.5f); // Ejecutamos el efecto nombrado
+        if (AudioManagerMotores.singleton != null) AudioManagerMotores.singleton.PlayEfectString("MotorEncendido", 0.2f); // Ejecutamos el efecto nombrado
 
         yield return new WaitForSeconds(0.5f);
 
-        if (AudioManagerMotores.singleton != null) AudioManagerMotores.singleton.PlayEfectLoopInt(2, 0.08f); // Ejecutamos el efecto de Motor encendido
+        if (AudioManagerMotores.singleton != null) AudioManagerMotores.singleton.PlayEfectLoopInt(2, 1f); // Ejecutamos el efecto de Motor encendido
     }
 
     /// <summary>
@@ -129,6 +141,9 @@ public class ControlSliderVelocidadMotor : MonoBehaviour, IPointerDownHandler, I
 
      private IEnumerator BajarValorSlider()
     {
+        ManagerCanvas.singleton.DeshabilitarBtnBajarPlataforma();
+        ManagerCanvas.singleton.DeshabilitarBtnSalir();
+
         controlVelocidadAnimacion.puedoValidar = true;
         sliderVelocidad.interactable = false;
         txtbotonEncender.text = "Apagando";
@@ -143,7 +158,8 @@ public class ControlSliderVelocidadMotor : MonoBehaviour, IPointerDownHandler, I
             yield return null;
         }
 
-        
+        ManagerCanvas.singleton.HabilitarBtnBajarPlataforma();
+        ManagerCanvas.singleton.HabilitarBtnSalir();
         controlVelocidadAnimacion.puedoValidar = false;
         sliderVelocidad.value = 0f; // aseguramos el valor final
         txtbotonEncender.text = "Encender";

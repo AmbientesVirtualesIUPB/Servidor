@@ -152,10 +152,17 @@ public class BrazoMecanicoMejorado : MonoBehaviour
             // elegir un punto aleatorio
             Transform elegido = puntosIdle[Random.Range(0, puntosIdle.Length)];
 
+            if (targetPositions == elegido)
+            {
+                // Es el mismo transform
+            }
+            else
+            {
+                if (AudioManagerMotores.singleton != null) AudioManagerMotores.singleton.ActivarSonidoBrazo(); // Ejecutamos el efecto nombrado
+            }
+
             // mover hasta el punto elegido usando IK
             targetPositions = elegido;
-
-            //if (AudioManagerMotores.singleton != null) AudioManagerMotores.singleton.PlayEfectString("BrazoTomando", 0.05f); // Ejecutamos el efecto nombrado
 
             // esperar a llegar
             while (Vector3.Distance(bones[bones.Length - 1].position, elegido.position) > offsetDistancia + 0.1f)
