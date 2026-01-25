@@ -331,7 +331,7 @@ public class ManagerCanvas : MonoBehaviour
     /// </summary>
     public void DesactivarBTNEleccionMotor()
     {
-        btnEleccionMotor.SetActive(false);
+        btnEleccionMotor.SetActive(ServidorMotores.singleton.esMecanico);
     }
 
     public void PuedoPausarJuego()
