@@ -358,14 +358,14 @@ public class ManagerCanvas : MonoBehaviour
     }
 
     /// <summary>
-    /// Cambia de escena según el nombre recibido
+    /// Cambia de escena segï¿½n el nombre recibido
     /// </summary>
     /// <param name="sceneName">Nombre exacto de la escena</param>
     public void CambiarEscena(string sceneName)
     {
         if (string.IsNullOrEmpty(sceneName))
         {
-            Debug.LogWarning(" El nombre de la escena está vacío o es nulo");
+            Debug.LogWarning(" El nombre de la escena estï¿½ vacï¿½o o es nulo");
             return;
         }
 
