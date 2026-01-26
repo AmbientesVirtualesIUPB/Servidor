@@ -1454,6 +1454,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: XR Personaje
       objectReference: {fileID: 0}
+    - target: {fileID: 1739602474068323334, guid: a6aa18a198ecd73408e9df995a67fc57,
+        type: 3}
+      propertyPath: m_CullingMask.m_Bits
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 2636838873636303946, guid: a6aa18a198ecd73408e9df995a67fc57,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1504,10 +1509,20 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4420396946747120183, guid: a6aa18a198ecd73408e9df995a67fc57,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7252976714707704788, guid: a6aa18a198ecd73408e9df995a67fc57,
         type: 3}
       propertyPath: movimientoJugador
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7316850433325466175, guid: a6aa18a198ecd73408e9df995a67fc57,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9168192772048730997, guid: a6aa18a198ecd73408e9df995a67fc57,
         type: 3}
