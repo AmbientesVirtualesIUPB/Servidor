@@ -32,6 +32,8 @@ public class BtnUsuarioLista : MonoBehaviour
 
     public void Activar()
     {
+        if (AudioManagerMotores.singleton != null) AudioManagerMotores.singleton.PlayEfectString("btnMotor", 0.7f); // Ejecutamos el efecto nombrado
+
         GestionMensajesServidor.singeton.EnviarMensaje("MS09",idUsuario);
 
         ServidorMotores.singleton.ActivarMecanico(idUsuario);

@@ -219,7 +219,17 @@ public class Cinematica : MonoBehaviour
             objetosCanvas[i].gameObject.SetActive(true);
         }
 
-        ManagerCanvas.singleton.btnEleccionMotor.SetActive(EnvioDatosBD.singleton.usuario.tipo_usuario == "1");
+        if (EnvioDatosBD.singleton != null)
+        {
+            ManagerCanvas.singleton.btnEleccionMotor.SetActive(EnvioDatosBD.singleton.usuario.tipo_usuario == "1");
+            ListaUsuariosMotores.singleton.MostrarBotonListaUsuarios();
+        }
+        else
+        {
+            Debug.LogError("Falta envio datos DB en la scena");
+        }
+        
+        
         ControlCamaraMotor.singleton.DetenerMovimientosCamara();
         menuTutorial.SetActive(true);
         txtTitulo.text = "BIENVENIDO";

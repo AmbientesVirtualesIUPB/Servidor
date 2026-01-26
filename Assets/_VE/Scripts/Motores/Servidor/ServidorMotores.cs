@@ -194,6 +194,8 @@ public class ServidorMotores : MonoBehaviour
     {
         esMecanico = msj == ControlUsuarios.singleton.usuarioLocal.GetMorionID().ID;
         btnElegirMotor.SetActive(esMecanico);
+
+        if (esMecanico) if (AudioManagerMotores.singleton != null) AudioManagerMotores.singleton.PlayEfectString("PiezaColocada2", 0.5f); // Ejecutamos el efecto nombrado
     }
 }
 

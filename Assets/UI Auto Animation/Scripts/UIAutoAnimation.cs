@@ -810,7 +810,7 @@ public class UIAutoAnimation : MonoBehaviour
         if (rectTransformList.Length > 0)
         {
             for (int i = 0; i < rectTransformList.Length; i++)
-            {
+            { 
                 SetPosition(rectTransformList[i], originalPosition[i]);
             }
         }

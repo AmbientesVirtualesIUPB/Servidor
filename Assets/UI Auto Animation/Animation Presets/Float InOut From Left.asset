@@ -14,36 +14,36 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   useAlphaAnimation: 1
   alphaDelay: 0
-  alphaDuration: 0.4
-  delayPerElementAlpha: 0.2
+  alphaDuration: 0.1
+  delayPerElementAlpha: 0.1
   curveAlpha:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
       time: 0
       value: 0
-      inSlope: 1
-      outSlope: 1
+      inSlope: 0.20530948
+      outSlope: 0.20530948
       tangentMode: 34
       weightedMode: 0
       inWeight: 0
-      outWeight: 0
+      outWeight: 0.33333334
     - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 1
-      outSlope: 1
+      time: 1.2291565
+      value: 0.25235748
+      inSlope: 0.20530948
+      outSlope: 0.20530948
       tangentMode: 34
       weightedMode: 0
-      inWeight: 0
+      inWeight: 0.33333334
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
   usePositionAnimation: 1
   positionDelay: 0
-  positionDuration: 0.4
-  delayPerElementPosition: 0.2
+  positionDuration: 0.1
+  delayPerElementPosition: 0.1
   offsetPosition: {x: -25, y: 0}
   curvePosition:
     serializedVersion: 2
@@ -58,8 +58,8 @@ MonoBehaviour:
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
-      time: 1
-      value: 1
+      time: 1.0499878
+      value: 0.40565872
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -127,3 +127,5 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  autoTrigger: 0
+  autoTriggerTimer: 5

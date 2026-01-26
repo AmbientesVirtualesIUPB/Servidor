@@ -15,6 +15,8 @@ public class ManagerCanvas : MonoBehaviour
     [InfoMessage("Este es una referencia importante, arrastrala del CanvasPrincipal", MessageTypeCustom.Warning)]
     public GameObject btnEleccionMotor; // Referencia al Menu de bienvenida del canvas principal
     [InfoMessage("Este es una referencia importante, arrastrala del CanvasPrincipal", MessageTypeCustom.Warning)]
+    public GameObject btnEleccionMecanico; // Referencia al Menu de bienvenida del canvas principal
+    [InfoMessage("Este es una referencia importante, arrastrala del CanvasPrincipal", MessageTypeCustom.Warning)]
     public EscaladorUI menuPausa; // Referencia al Menu Pausa del canvas principal
     [InfoMessage("Este es una referencia importante, arrastrala del CanvasPrincipal", MessageTypeCustom.Warning)]
     public Button btnSalir; // Referencia al boton btnSalir del canvas principal
@@ -306,7 +308,7 @@ public class ManagerCanvas : MonoBehaviour
     /// </summary>
     public void ActivarMenuEleccionMotor()
     {
-        if (AudioManagerMotores.singleton != null) AudioManagerMotores.singleton.PlayEfectString("btnElegir", 0.8f); // Ejecutamos el efecto nombrado
+        if (AudioManagerMotores.singleton != null) AudioManagerMotores.singleton.PlayEfectString("btnElegir", 0.5f); // Ejecutamos el efecto nombrado
         menuEleccionMotor.Escalar();
     }
 
@@ -324,6 +326,7 @@ public class ManagerCanvas : MonoBehaviour
     public void ActivarBTNEleccionMotor()
     {
         btnEleccionMotor.SetActive(ServidorMotores.singleton.esMecanico);
+        btnEleccionMecanico.SetActive(EnvioDatosBD.singleton.usuario.tipo_usuario == "1");
     }
 
     /// <summary>
@@ -332,6 +335,7 @@ public class ManagerCanvas : MonoBehaviour
     public void DesactivarBTNEleccionMotor()
     {
         btnEleccionMotor.SetActive(false);
+        btnEleccionMecanico.SetActive(false);
     }
 
     public void PuedoPausarJuego()
