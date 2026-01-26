@@ -6,9 +6,10 @@ public class MovimientoJugador : MonoBehaviour
 {
     public float velocidadInicial; // Velocidad de movimiento del personaje
     public float velocidad = 2f; // Velocidad de movimiento del personaje
-    public Transform camaraOrbital;  // Referencia a la cámara orbital
+    public Transform camaraOrbital;  // Referencia a la cï¿½mara orbital
     public bool noMover;
 
+    public bool detener;
     private Rigidbody rb;
 
     void Start()
@@ -20,13 +21,13 @@ public class MovimientoJugador : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (!noMover)
+        if (!detener && camaraOrbital != null)
         {
             // Leer entrada horizontal (A/D) y vertical (W/S)
             float horizontal = Input.GetAxis("Horizontal");
             float vertical = Input.GetAxis("Vertical");
 
-            // Dirección de movimiento basada en la cámara
+            // Direcciï¿½n de movimiento basada en la cï¿½mara
             Vector3 direccion = camaraOrbital.forward * vertical + camaraOrbital.right * horizontal;
             direccion.y = 0f; // Eliminar componente vertical para evitar que vuele
             direccion.Normalize();  // Normalizar para que la velocidad sea constante en diagonal
@@ -37,12 +38,28 @@ public class MovimientoJugador : MonoBehaviour
             Vector3 nuevaVelocidad = new Vector3(movimiento.x, rb.velocity.y, movimiento.z);
             rb.velocity = nuevaVelocidad; // Asignar nueva velocidad al Rigidbody
 
-            //rotar el personaje hacia la dirección de movimiento
+            //rotar el personaje hacia la direcciï¿½n de movimiento
             if (direccion != Vector3.zero)
             {
-                Quaternion rotacionObjetivo = Quaternion.LookRotation(direccion); // Calcular rotación hacia dirección
-                transform.rotation = Quaternion.Slerp(transform.rotation, rotacionObjetivo, Time.deltaTime * 10f); // Rotación suave
+                Quaternion rotacionObjetivo = Quaternion.LookRotation(direccion); // Calcular rotaciï¿½n hacia direcciï¿½n
+                transform.rotation = Quaternion.Slerp(transform.rotation, rotacionObjetivo, Time.deltaTime * 10f); // Rotaciï¿½n suave
             }
-        }       
+        }    
+    }
+
+    /// <summary>
+    /// Para detener la rotacion de la camara
+    /// </summary>
+    public void DeneterJugador()
+    {
+        detener = true;
+    }
+
+    /// <summary>
+    /// Para continuar con la rotacion de la camara
+    /// </summary>
+    public void HabilitarJugador()
+    {
+        detener = false;
     }
 }
