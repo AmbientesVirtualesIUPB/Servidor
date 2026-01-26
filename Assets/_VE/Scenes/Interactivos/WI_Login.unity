@@ -370,8 +370,6 @@ MonoBehaviour:
   audioMixer: {fileID: 24100000, guid: 1a7f97685d0bb3746a8a8156b2e0e8cb, type: 2}
   musicSlider: {fileID: 1404356106}
   sfxSlider: {fileID: 1404356106}
-  musicSlider2: {fileID: 0}
-  sfxSlider2: {fileID: 0}
   debugEnConsola: 0
   index: 0
   iniciarConMusica: 0
@@ -1017,12 +1015,12 @@ PrefabInstance:
     - target: {fileID: 3784673699860489469, guid: 637651a3503efec47aa0ff6103e14034,
         type: 3}
       propertyPath: m_ReferenceResolution.x
-      value: 957
+      value: 2518
       objectReference: {fileID: 0}
     - target: {fileID: 3784673699860489469, guid: 637651a3503efec47aa0ff6103e14034,
         type: 3}
       propertyPath: m_ReferenceResolution.y
-      value: 1080
+      value: 1514.8
       objectReference: {fileID: 0}
     - target: {fileID: 3846861429168395846, guid: 637651a3503efec47aa0ff6103e14034,
         type: 3}
