@@ -21,10 +21,6 @@ public class AudioManager : MonoBehaviour
     public Slider musicSlider; // Slider para musica
     public Slider sfxSlider; // Slider para efectos
 
-    [Header(" Sliders Secundarios Opcionales")]
-    public Slider musicSlider2; // Slider para musica
-    public Slider sfxSlider2; // Slider para efectos
-
     [Header("Gestionar Mensajes")]
     public bool debugEnConsola; // Gestionador de mensajes
 
@@ -119,24 +115,5 @@ public class AudioManager : MonoBehaviour
     public void StopMusic()
     {
         musica.Stop();
-    }
-
-    public void ReasignarSliders()
-    {
-        if (musicSlider2 != null && sfxSlider2 != null)
-        {
-            // Configurar los valores iniciales de los sliders
-            float musicVolume;
-            audioMixer.GetFloat("MusicVolume", out musicVolume); // Obtenemos el valor que tenemos por defecto en el Audio Mixer
-            musicSlider2.value = musicVolume; // Asignamos el valor por defecto al slider
-
-            float sfxVolume;
-            audioMixer.GetFloat("SFXVolume", out sfxVolume); // Obtenemos el valor que tenemos por defecto en el Audio Mixer
-            sfxSlider2.value = sfxVolume; // Asignamos el valor por defecto al slider
-
-            // Añadir listeners a los sliders
-            musicSlider2.onValueChanged.AddListener(SetMusicVolume);
-            sfxSlider2.onValueChanged.AddListener(SetSFXVolume);
-        }        
     }
 }
