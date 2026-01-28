@@ -144,13 +144,23 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 364390941726766704, guid: 294a79cbdf1697046a0889abc298ad00,
         type: 3}
+      propertyPath: plataformas.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 364390941726766704, guid: 294a79cbdf1697046a0889abc298ad00,
+        type: 3}
       propertyPath: graficos.Array.data[0].escena
       value: HP_Motores
       objectReference: {fileID: 0}
     - target: {fileID: 364390941726766704, guid: 294a79cbdf1697046a0889abc298ad00,
         type: 3}
       propertyPath: plataformas.Array.data[0].escena
-      value: WI_Motores
+      value: VR_Motores
+      objectReference: {fileID: 0}
+    - target: {fileID: 364390941726766704, guid: 294a79cbdf1697046a0889abc298ad00,
+        type: 3}
+      propertyPath: plataformas.Array.data[0].plataforma
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 847332743845742787, guid: 294a79cbdf1697046a0889abc298ad00,
         type: 3}
