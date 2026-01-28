@@ -12,11 +12,14 @@ public class AtadorACuerpo : MonoBehaviour
     public ModoAtado modo;
     public ParteCuerpo parteCuerpo;
 
-    [Header("Opciones de Seguimiento")]
+    [Header("Seguimiento")]
     [Range(0.01f, 20f)]
     public float suavizado = 5f;
-
     public bool seguirRotacion = true;
+
+    [Header("Offsets")]
+    public Vector3 offsetPosicion;
+    public Vector3 offsetRotacion;
 
     private Transform objetivo;
 
@@ -43,8 +46,8 @@ public class AtadorACuerpo : MonoBehaviour
         if (modo == ModoAtado.Emparentar)
         {
             transform.SetParent(objetivo);
-            transform.localPosition = Vector3.zero;
-            transform.localRotation = Quaternion.identity;
+            transform.localPosition = offsetPosicion;
+            transform.localRotation = Quaternion.Euler(offsetRotacion);
         }
     }
 
@@ -53,17 +56,22 @@ public class AtadorACuerpo : MonoBehaviour
         if (modo != ModoAtado.Seguir || objetivo == null)
             return;
 
+        Vector3 targetPos = objetivo.TransformPoint(offsetPosicion);
+
         transform.position = Vector3.Lerp(
             transform.position,
-            objetivo.position,
+            targetPos,
             Time.deltaTime * suavizado
         );
 
         if (seguirRotacion)
         {
+            Quaternion targetRot =
+                objetivo.rotation * Quaternion.Euler(offsetRotacion);
+
             transform.rotation = Quaternion.Slerp(
                 transform.rotation,
-                objetivo.rotation,
+                targetRot,
                 Time.deltaTime * suavizado
             );
         }
