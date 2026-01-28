@@ -8,6 +8,7 @@ public class FisicaCamara : MonoBehaviour
     public float velocidad;
     public float velRotacion;
     public Transform pivote;
+    public Vector2 rotHorizontalLimites = new Vector2(-20,20);
     float rotHorizontal;
     public Camera camara;
 
@@ -26,8 +27,8 @@ public class FisicaCamara : MonoBehaviour
             transform.Rotate(Vector3.up * velRotacion * Time.deltaTime * Input.GetAxis("Mouse X"));
             rotHorizontal = Mathf.Clamp(
                 rotHorizontal + velRotacion * Time.deltaTime * -Input.GetAxis("Mouse Y"),
-                - 20,
-                20
+                rotHorizontalLimites.x,
+                rotHorizontalLimites.y
                 );
             pivote.localEulerAngles = Vector3.forward * rotHorizontal;
         }

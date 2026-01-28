@@ -155,7 +155,7 @@ public class CreadorPerros : MonoBehaviour
         }
 
 
-
+        AudioControlTotal.instance.ReproducirAudio("Perros");
 
 
         // Relajación por repulsión (anti-solapes)
