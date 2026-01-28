@@ -5,9 +5,9 @@ using UnityEngine;
 public class ControladorAnimaciones : MonoBehaviour
 {
     public MovimientoJugador movimientoJugador;
-    public float velocidadCorrer;
+    public float velocidadCorrer = 5;
     public int tiempoSprint = 5;
-    public float velocidadSuperCorrer;
+    public float velocidadSuperCorrer = 8;
     public Vector3 posicionAnterior;
 
     Animator animator;
