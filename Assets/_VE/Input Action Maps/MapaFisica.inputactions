@@ -1,0 +1,34 @@
+{
+    "name": "MapaFisica",
+    "maps": [
+        {
+            "name": "MapaBase",
+            "id": "ec0bf2f6-1e97-4a5a-a61c-0a14bb232785",
+            "actions": [
+                {
+                    "name": "Menu",
+                    "type": "Button",
+                    "id": "f13517e2-7582-4497-ae03-9cdf9faf0c53",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "92348b71-cb9f-4f5f-91a8-4c9c12dd5207",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Menu",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
