@@ -42,6 +42,16 @@ public class EntornoMecanica : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        Abrir();
+    }
+
+    [ContextMenu("abrir")]
+    public void Abrir()
+    {
+        iniciarCompuertas = StartCoroutine(IniciarAnimacionAbrirCompuertas());
+    }
     public void AbrirCompuerta(Transform posicionObjetivo)
     {
         posicionDeseada[2] = posicionObjetivo;
@@ -187,11 +197,11 @@ public class EntornoMecanica : MonoBehaviour
 
         if (!noAbroYo) ControlCamaraMotor.singleton.IniciarMovimientoCamara(posicionDeseada[2], 1);
 
-        if (!ServidorMotores.singleton.plataformaIniciada)
+        if (ServidorMotores.singleton.esMecanico && MesaMotor.singleton.estoyArmando)
         {
             sueloInteractivo.IngresandoInteraccion();
         }
-        
+
         iniciarCompuertas = null;
     }
 
@@ -314,7 +324,7 @@ public class EntornoMecanica : MonoBehaviour
 
         if (MesaMotor.singleton.estoyArmando) sueloInteractivo.IngresandoInteraccion();
         sueloInteractivo.HabilitarInfoMesaArmado();
-        
+
         iniciarCompuertas = null;
     }
 

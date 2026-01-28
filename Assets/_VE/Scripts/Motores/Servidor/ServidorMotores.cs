@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class ServidorMotores : MonoBehaviour
 {
@@ -16,17 +17,20 @@ public class ServidorMotores : MonoBehaviour
     [Header("MANIPULACION MESA ARMADO")]
     public SueloInteractivo sueloMesaArmado;
     public Canvas oprimirTecla;
+    public Collider sueloInteractivoCollider;
     public bool plataformaIniciada;
 
     [Header("VALIDACION MINIJUEGO")]
-    public int Torque;
-    public int Aceite;
+    public int torque;
+    public int aceite;
+    public string motorActivo;
 
     [Header("VALIDACION MECANICO")]
     public bool esMecanico;
     public GameObject btnElegirMotor;
 
-    public bool esArmador = false;
+    private Coroutine coroutine;
+    //public bool esArmador = false;
     public static ServidorMotores singleton;
 
     private void Awake()
@@ -42,7 +46,7 @@ public class ServidorMotores : MonoBehaviour
         }
     }
     // Start is called before the first frame update
-    void Start()
+    IEnumerator Start()
     {
         GestionMensajesServidor.singeton.RegistrarAccion("MS00", InstanciaPiezaServidor);
         GestionMensajesServidor.singeton.RegistrarAccion("MS01", SubirMesaArmado);
@@ -54,6 +58,11 @@ public class ServidorMotores : MonoBehaviour
         GestionMensajesServidor.singeton.RegistrarAccion("MS07", AsignarMotorActivo);
         GestionMensajesServidor.singeton.RegistrarAccion("MS08", ParteColocada);
         GestionMensajesServidor.singeton.RegistrarAccion("MS09", ActivarMecanico);
+        GestionMensajesServidor.singeton.RegistrarAccion("MS10", AbrirCompuertaOnline);
+        GestionMensajesServidor.singeton.RegistrarAccion("PR01", IndicacionCompuerta);
+
+        yield return new WaitUntil(() => Servidor.singleton.conectado);
+        GestionMensajesServidor.singeton.EnviarMensaje("PR01"," ");
     }
 
     public void InstanciaPiezaServidor(string msj)
@@ -100,7 +109,35 @@ public class ServidorMotores : MonoBehaviour
         sueloMesaArmado.plataformaAbajo = false;
         sueloMesaArmado.enabled = false;
         oprimirTecla.enabled = false;
-        StartCoroutine(HabilitarMesaArmado(10f));
+
+        if (coroutine != null)
+        {
+            StopCoroutine(coroutine);
+        }
+        coroutine = StartCoroutine(HabilitarMesaArmado(10f));
+    }
+
+    public void AbrirCompuertaOnline(string abrir)
+    {
+        Debug.Log("compuerta abrieta");
+        if (!plataformaIniciada && abrir == "abierto")
+        {
+            SubirMesaArmado("");
+        }
+        else if (plataformaIniciada && abrir == "cerrado")
+        {
+            BajarMesaArmado("");
+        }
+    }
+
+    public void IndicacionCompuerta(string dato)
+    {
+        Debug.Log("indicador antes");
+        if (esMecanico)
+        {
+            Debug.Log("ya indico");
+            GestionMensajesServidor.singeton.EnviarMensaje("MS10", plataformaIniciada?"abierto":"cerrado");
+        }
     }
 
     public void BajarMesaArmado(string msj)
@@ -112,15 +149,41 @@ public class ServidorMotores : MonoBehaviour
         sueloMesaArmado.plataformaAbajo = true;
         sueloMesaArmado.enabled = false;
         oprimirTecla.enabled = false;
-        StartCoroutine(HabilitarMesaArmado(8.5f));
+
+        if (coroutine != null)
+        {
+            StopCoroutine(coroutine);
+        }
+
+        coroutine = StartCoroutine(HabilitarMesaArmado(8.5f));
     }
 
     private IEnumerator HabilitarMesaArmado(float espera)
     {
         yield return new WaitForSeconds(espera);
         EntornoMecanica.singleton.noAbroYo = false;
-        sueloMesaArmado.enabled = true;
-        oprimirTecla.enabled = true;
+
+        if (esMecanico && !plataformaIniciada)
+        {
+            sueloMesaArmado.enabled = true;
+            sueloInteractivoCollider.enabled = true;
+            oprimirTecla.enabled = true;
+        }
+
+        if (!esMecanico && !plataformaIniciada)
+        {
+            sueloMesaArmado.enabled = false;
+            sueloInteractivoCollider.enabled = false;
+            oprimirTecla.enabled = false;
+            ListaUsuariosMotores.singleton.btnMostrarLista.SetActive(EnvioDatosBD.singleton.usuario.tipo_usuario == "1");
+        }
+
+        if (plataformaIniciada)
+        {
+            sueloMesaArmado.enabled = true;
+            sueloInteractivoCollider.enabled = true;
+            oprimirTecla.enabled = true;
+        }
     }
 
     public void ManipularBrazoDerecho(string msj)
@@ -161,15 +224,29 @@ public class ServidorMotores : MonoBehaviour
     {
         string[] partes = msj.Split('*');
 
-        Torque = int.Parse(partes[0]);
-        Aceite = int.Parse(partes[1]);
+        torque = int.Parse(partes[0]);
+        aceite = int.Parse(partes[1]);
 
-        ManagerMinijuego.singleton.ValidarResultado(Torque, Aceite);
+        Debug.Log(torque);
+        Debug.Log(aceite);
+        Debug.Log(motorActivo);
+        ManagerMinijuego.singleton.ValidarResultado(torque, aceite, motorActivo);
     }
 
     public void AsignarMotorActivo(string msj)
     {
+        motorActivo = msj;
+
+        if (motorActivo == "Diesel")
+        {
+            ManagerMinijuego.singleton.motorAnimadoActivo = ManagerMinijuego.singleton.motoresAnimados[0];   
+        }
+        else if (motorActivo == "Nissan")
+        {
+            ManagerMinijuego.singleton.motorAnimadoActivo = ManagerMinijuego.singleton.motoresAnimados[1];
+        }
         partesInstanciadas.Clear();
+        ManagerMinijuego.singleton.motorAnimadoActivo.SetActive(false);
         ManagerMinijuego.singleton.AsignarMotorActivo(msj);
     }
 
@@ -193,9 +270,67 @@ public class ServidorMotores : MonoBehaviour
     public void ActivarMecanico(string msj)
     {
         esMecanico = msj == ControlUsuarios.singleton.usuarioLocal.GetMorionID().ID;
-        btnElegirMotor.SetActive(esMecanico);
 
-        if (esMecanico) if (AudioManagerMotores.singleton != null) AudioManagerMotores.singleton.PlayEfectString("PiezaColocada2", 0.5f); // Ejecutamos el efecto nombrado
+        partesInstanciadas.Clear();
+        ManagerMinijuego.singleton.AsignarMotorActivo(msj);
+
+        if (!MesaMotor.singleton.estoyArmando && !MesaMotor.singleton.estoyEnMesa)
+        {
+            btnElegirMotor.SetActive(esMecanico);
+        }
+        
+        if (esMecanico)
+        {
+            if (AudioManagerMotores.singleton != null) AudioManagerMotores.singleton.PlayEfectString("PiezaColocada2", 0.5f); // Ejecutamos el efecto nombrado
+            sueloMesaArmado.enabled = true;
+            oprimirTecla.enabled = true;
+
+            if (MesaMotor.singleton.estoyEnMesa)
+            {
+                oprimirTecla.gameObject.SetActive(true);
+            }
+            else
+            {
+                oprimirTecla.gameObject.SetActive(false);
+            }
+
+            if (MesaMotor.singleton.estoyArmando)
+            {
+                oprimirTecla.gameObject.SetActive(false);
+            }
+
+            sueloInteractivoCollider.enabled = true;
+            ManagerCanvas.singleton.HabilitarBtnBajarPlataforma();
+            ManagerCanvas.singleton.HabilitarBtnExpandir();
+        }
+        else
+        {
+            if (AudioManagerMotores.singleton != null) AudioManagerMotores.singleton.PlayEfectString("btnOmitir", 0.5f); // Ejecutamos el efecto nombrado
+
+            if (!plataformaIniciada && !esMecanico)
+            {
+                sueloMesaArmado.enabled = false;
+                sueloInteractivoCollider.enabled = false;
+                oprimirTecla.enabled = false;
+            }
+
+            if (plataformaIniciada && !esMecanico)
+            {
+                sueloMesaArmado.enabled = true;
+                sueloInteractivoCollider.enabled = true;
+                oprimirTecla.enabled = true;
+                oprimirTecla.gameObject.SetActive(false);
+            }
+
+            if (!esMecanico)
+            {
+                ManagerCanvas.singleton.DeshabilitarBtnBajarPlataforma();
+                ManagerCanvas.singleton.DeshabilitarBtnExpandir();
+                ManagerCanvas.singleton.HabilitarBtnRotar();
+                ManagerCanvas.singleton.DesactivarBtnAyudaPista();
+                ManagerCanvas.singleton.DesactivarBtnAyudaAutomatica();
+            }
+        }
     }
 }
 

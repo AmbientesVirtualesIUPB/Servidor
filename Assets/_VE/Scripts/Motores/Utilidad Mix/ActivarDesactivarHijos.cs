@@ -39,4 +39,21 @@ public class ActivarDesactivarHijos : MonoBehaviour
             hijo.gameObject.SetActive(false);
         }
     }
+
+
+    /// <summary>
+    /// Desactiva todos los hijos directos del objeto actual.
+    /// </summary>
+    [ContextMenu("Desactivar")]
+    public void DesactivarTodosLosColliders()
+    {
+        foreach (Transform hijo in transform)
+        {
+            Collider col = hijo.GetComponent<Collider>();
+            if (col != null)
+            {
+                col.enabled = false;
+            }
+        }
+    }
 }

@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class Cinematica : MonoBehaviour
 {
+    public bool cancelarCinematica;
     public GameObject[] objetosCanvas;
     public Transform[] posicionesCamara;
     public GameObject[] luces;
@@ -41,15 +42,22 @@ public class Cinematica : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        CamaraOrbital.singleton.transform.position = posicionesCamara[0].transform.position;
-        CamaraOrbital.singleton.transform.rotation = posicionesCamara[0].transform.rotation;
-
-        for (int i = 0; i < objetosCanvas.Length; i++)
+        if (!cancelarCinematica)
         {
-            objetosCanvas[i].gameObject.SetActive(false);
-        }
+            CamaraOrbital.singleton.transform.position = posicionesCamara[0].transform.position;
+            CamaraOrbital.singleton.transform.rotation = posicionesCamara[0].transform.rotation;
 
-        StartCoroutine(CinematicaInicial());
+            for (int i = 0; i < objetosCanvas.Length; i++)
+            {
+                objetosCanvas[i].gameObject.SetActive(false);
+            }
+
+            StartCoroutine(CinematicaInicial());
+        }
+        else
+        {
+            DetenerCinematica();
+        }
     }
 
     IEnumerator CinematicaInicial()

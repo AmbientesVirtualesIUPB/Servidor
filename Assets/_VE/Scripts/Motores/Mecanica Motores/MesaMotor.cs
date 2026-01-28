@@ -72,6 +72,7 @@ public class MesaMotor : MonoBehaviour
 
     private IEnumerator DetenerMotor()
     {
+        if (AudioManagerMotores.singleton != null) AudioManagerMotores.singleton.PlayEfectLoopInt(3, 1f); // Ejecutamos el efecto de Motor encendido
         interaccionEjecutada = true;
 
         ValidarExpansionRotacion();
@@ -113,7 +114,7 @@ public class MesaMotor : MonoBehaviour
     {
         if (!interaccionEjecutada)
         {
-
+            if (AudioManagerMotores.singleton != null) AudioManagerMotores.singleton.PlayEfectLoopInt(3, 1f); // Ejecutamos el efecto de Motor encendido
             ValidarExpansionRotacion();
 
             yield return new WaitForSeconds(1);

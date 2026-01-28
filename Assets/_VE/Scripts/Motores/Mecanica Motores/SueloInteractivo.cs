@@ -90,6 +90,7 @@ public class SueloInteractivo : MonoBehaviour
                     if (plataformaAbajo)
                     {
                         GestionMensajesServidor.singeton.EnviarMensaje("MS01", " Subiendo plataforma");
+                        ServidorMotores.singleton.plataformaIniciada = true;
                         EntornoMecanica.singleton.AbrirCompuerta(posicionObjetivoCamara);
                         plataformaAbajo = false;                       
                     }
@@ -128,11 +129,17 @@ public class SueloInteractivo : MonoBehaviour
             }
         }
 
-        if (mesaArmadoMotor && MesaMotor.singleton.estoyEnMesa && MesaMotor.singleton.estoyArmando && MesaMotor.singleton.mesaMotorActiva && !botonesSalvavidasEjecutados)
+        if (mesaArmadoMotor && MesaMotor.singleton.estoyEnMesa && MesaMotor.singleton.estoyArmando && MesaMotor.singleton.mesaMotorActiva && !interactuar)
         {
-            botonesSalvavidasEjecutados = true;
             ManagerCanvas.singleton.btnSalir.gameObject.SetActive(true);
-            ManagerCanvas.singleton.btnBajarPlataforma.gameObject.SetActive(true);
+            if (ServidorMotores.singleton.esMecanico)
+            {
+                ManagerCanvas.singleton.HabilitarBtnBajarPlataforma();
+            }
+            else
+            {
+                ManagerCanvas.singleton.DeshabilitarBtnBajarPlataforma();
+            }
         }
     }
 
@@ -405,6 +412,7 @@ public class SueloInteractivo : MonoBehaviour
             plataformaAbajo = true;
             SalirInteraccion();
             GestionMensajesServidor.singeton.EnviarMensaje("MS02", " Bajando plataforma");
+            ServidorMotores.singleton.plataformaIniciada = false;
             EntornoMecanica.singleton.CerrarCompuerta();       
             btnBajarPlataforma.gameObject.SetActive(false);       
         }  
@@ -428,7 +436,7 @@ public class SueloInteractivo : MonoBehaviour
         else
         {
             ManagerCanvas.singleton.movimientoJugador.enabled = true;
-            ManagerCanvas.singleton.movimientoJugador.HabilitarJugador();
+            ManagerCanvas.singleton.movimientoJugador.enabled = true;
             TrigerExit();
         }
     }
@@ -446,7 +454,7 @@ public class SueloInteractivo : MonoBehaviour
         else
         {
             ManagerCanvas.singleton.movimientoJugador.enabled = false;
-            ManagerCanvas.singleton.movimientoJugador.DeneterJugador();
+            ManagerCanvas.singleton.movimientoJugador.enabled = false;
         }    
     }
 

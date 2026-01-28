@@ -4,6 +4,7 @@ using UnityEngine;
 public class ListaUsuariosMotores : MonoBehaviour
 {
     public BtnUsuarioLista btnMuestra;
+    public GameObject imgFondoListaUsuarios;
     public UIAutoAnimation autoAnimation;
     public GameObject btnMostrarLista;
     public bool visible;
@@ -43,6 +44,7 @@ public class ListaUsuariosMotores : MonoBehaviour
         listaUsuarios.Clear();
 
         btnMuestra.gameObject.SetActive(true);
+        imgFondoListaUsuarios.SetActive(true);
 
         CrearBoton(EnvioDatosBD.singleton.usuario.id_usuario); //// Cambiar eventualmente
         for (int i = 0; i < ControlUsuarios.singleton.usuarios.Count; i++)
@@ -62,6 +64,7 @@ public class ListaUsuariosMotores : MonoBehaviour
     public void Ocultar()
     {
         if (AudioManagerMotores.singleton != null) AudioManagerMotores.singleton.PlayEfectString("btnOmitir", 0.5f); // Ejecutamos el efecto nombrado
+        imgFondoListaUsuarios.SetActive(false);
         visible = false;
         autoAnimation.ExitAnimation();
     }
@@ -81,6 +84,7 @@ public class ListaUsuariosMotores : MonoBehaviour
     public void MostrarBotonListaUsuarios()
     {
         btnMostrarLista.SetActive(EnvioDatosBD.singleton.usuario.tipo_usuario == "1");
-        ServidorMotores.singleton.esMecanico = true;
+        ServidorMotores.singleton.esMecanico = EnvioDatosBD.singleton.usuario.tipo_usuario == "1";
+        ServidorMotores.singleton.sueloInteractivoCollider.enabled = EnvioDatosBD.singleton.usuario.tipo_usuario == "1";
     }
 }

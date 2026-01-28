@@ -2,12 +2,13 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.XR.Interaction.Toolkit.Samples.StarterAssets;
 
 public class ManagerCanvas : MonoBehaviour
 {
     [Header("ESTA ES UNA CLASE SINGLETON")]
     
-    public MovimientoJugador movimientoJugador; // Referencia al movimiento jugador principal
+    public DynamicMoveProvider movimientoJugador; // Referencia al movimiento jugador principal
     [InfoMessage("Este es una referencia importante, arrastrala del CanvasPrincipal", MessageTypeCustom.Warning)]
     public EscaladorUI menuBienvenida; // Referencia al Menu de bienvenida del canvas principal
     [InfoMessage("Este es una referencia importante, arrastrala del CanvasPrincipal", MessageTypeCustom.Warning)]
@@ -17,7 +18,7 @@ public class ManagerCanvas : MonoBehaviour
     [InfoMessage("Este es una referencia importante, arrastrala del CanvasPrincipal", MessageTypeCustom.Warning)]
     public GameObject btnEleccionMecanico; // Referencia al Menu de bienvenida del canvas principal
     [InfoMessage("Este es una referencia importante, arrastrala del CanvasPrincipal", MessageTypeCustom.Warning)]
-    public EscaladorUI menuPausa; // Referencia al Menu Pausa del canvas principal
+    public UIAutoAnimation menuPausa; // Referencia al Menu Pausa del canvas principal
     [InfoMessage("Este es una referencia importante, arrastrala del CanvasPrincipal", MessageTypeCustom.Warning)]
     public Button btnSalir; // Referencia al boton btnSalir del canvas principal
     [InfoMessage("Este es una referencia importante, arrastrala del CanvasPrincipal", MessageTypeCustom.Warning)]
@@ -66,13 +67,13 @@ public class ManagerCanvas : MonoBehaviour
 
     private void Start()
     {
-        movimientoJugador = ControlUsuarios.singleton.usuarioLocal.GetComponent<MovimientoJugador>();
+        movimientoJugador = MovimientoVR.singleton.GetComponent<DynamicMoveProvider>();
 
         if (activarTutorial)
         {
             if (menuBienvenida != null)
             {
-                movimientoJugador.DeneterJugador();
+                movimientoJugador.enabled = false;
                 if (CamaraOrbital.singleton != null) CamaraOrbital.singleton.DeneterCamara();
             }
         }      
@@ -87,16 +88,16 @@ public class ManagerCanvas : MonoBehaviour
                 {
                     if (AudioManagerMotores.singleton != null) AudioManagerMotores.singleton.PlayEfectString("Menu", 0.5f); // Ejecutamos el efecto nombrado
                     juegoPausado = true;
-                    menuPausa.Escalar();
-                    movimientoJugador.DeneterJugador();
+                    menuPausa.EntranceAnimation();
+                    movimientoJugador.enabled = false;
                     if (CamaraOrbital.singleton != null) CamaraOrbital.singleton.DeneterCamara();
                 }
                 else
                 {
                     if (AudioManagerMotores.singleton != null) AudioManagerMotores.singleton.PlayEfectString("btnOmitir", 0.5f); // Ejecutamos el efecto nombrado
                     juegoPausado = false;
-                    menuPausa.Restaurar();
-                    movimientoJugador.HabilitarJugador();
+                    menuPausa.ExitAnimation();
+                    movimientoJugador.enabled = true;
                     if (CamaraOrbital.singleton != null) CamaraOrbital.singleton.HabilitarCamara();
                 }
             }
@@ -157,6 +158,7 @@ public class ManagerCanvas : MonoBehaviour
     /// </summary>
     public void DesactivarAlertarMensaje()
     {
+        if (AudioManagerMotores.singleton != null) AudioManagerMotores.singleton.PlayEfectString("btnResaltar2", 0.2f); // Ejecutamos el efecto nombrado
         mensajeAlerta.SetActive(false);
         mensajeAlertaActivo = false;
     }
@@ -288,16 +290,16 @@ public class ManagerCanvas : MonoBehaviour
             {
                 if (AudioManagerMotores.singleton != null) AudioManagerMotores.singleton.PlayEfectString("Menu", 0.5f); // Ejecutamos el efecto nombrado
                 juegoPausado = true;
-                menuPausa.Escalar();
-                movimientoJugador.DeneterJugador();
+                menuPausa.EntranceAnimation();
+                movimientoJugador.enabled = false;
                 if (CamaraOrbital.singleton != null) CamaraOrbital.singleton.DeneterCamara();
             }
             else
             {
                 if (AudioManagerMotores.singleton != null) AudioManagerMotores.singleton.PlayEfectString("btnOmitir", 0.5f); // Ejecutamos el efecto nombrado
                 juegoPausado = false;
-                menuPausa.Restaurar();
-                movimientoJugador.HabilitarJugador();
+                menuPausa.ExitAnimation();
+                movimientoJugador.enabled = true;
                 if (CamaraOrbital.singleton != null) CamaraOrbital.singleton.HabilitarCamara();
             }
         }    
@@ -325,8 +327,8 @@ public class ManagerCanvas : MonoBehaviour
     /// </summary>
     public void ActivarBTNEleccionMotor()
     {
-        btnEleccionMotor.SetActive(ServidorMotores.singleton.esMecanico);
-        btnEleccionMecanico.SetActive(EnvioDatosBD.singleton.usuario.tipo_usuario == "1");
+        if (!ManagerDesplazamientoMotor.singleton.desplazamientoIniciado) btnEleccionMotor.SetActive(ServidorMotores.singleton.esMecanico);
+        if (!ManagerDesplazamientoMotor.singleton.desplazamientoIniciado) btnEleccionMecanico.SetActive(EnvioDatosBD.singleton.usuario.tipo_usuario == "1");
     }
 
     /// <summary>
@@ -341,14 +343,14 @@ public class ManagerCanvas : MonoBehaviour
     public void PuedoPausarJuego()
     {
         puedoPausar = true;
-        movimientoJugador.HabilitarJugador();
+        movimientoJugador.enabled = true;
         if (CamaraOrbital.singleton != null) CamaraOrbital.singleton.HabilitarCamara();
     }
 
     public void NoPuedoPausarJuego()
     {
         puedoPausar = false;
-        movimientoJugador.DeneterJugador();
+        movimientoJugador.enabled = false;
         if (CamaraOrbital.singleton != null) CamaraOrbital.singleton.DeneterCamara();
     }
 
