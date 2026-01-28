@@ -17,7 +17,7 @@ public class ManagerCanvas : MonoBehaviour
     [InfoMessage("Este es una referencia importante, arrastrala del CanvasPrincipal", MessageTypeCustom.Warning)]
     public GameObject btnEleccionMecanico; // Referencia al Menu de bienvenida del canvas principal
     [InfoMessage("Este es una referencia importante, arrastrala del CanvasPrincipal", MessageTypeCustom.Warning)]
-    public EscaladorUI menuPausa; // Referencia al Menu Pausa del canvas principal
+    public UIAutoAnimation menuPausa; // Referencia al Menu Pausa del canvas principal
     [InfoMessage("Este es una referencia importante, arrastrala del CanvasPrincipal", MessageTypeCustom.Warning)]
     public Button btnSalir; // Referencia al boton btnSalir del canvas principal
     [InfoMessage("Este es una referencia importante, arrastrala del CanvasPrincipal", MessageTypeCustom.Warning)]
@@ -87,7 +87,7 @@ public class ManagerCanvas : MonoBehaviour
                 {
                     if (AudioManagerMotores.singleton != null) AudioManagerMotores.singleton.PlayEfectString("Menu", 0.5f); // Ejecutamos el efecto nombrado
                     juegoPausado = true;
-                    menuPausa.Escalar();
+                    menuPausa.EntranceAnimation();
                     movimientoJugador.DeneterJugador();
                     if (CamaraOrbital.singleton != null) CamaraOrbital.singleton.DeneterCamara();
                 }
@@ -95,7 +95,7 @@ public class ManagerCanvas : MonoBehaviour
                 {
                     if (AudioManagerMotores.singleton != null) AudioManagerMotores.singleton.PlayEfectString("btnOmitir", 0.5f); // Ejecutamos el efecto nombrado
                     juegoPausado = false;
-                    menuPausa.Restaurar();
+                    menuPausa.ExitAnimation();
                     movimientoJugador.HabilitarJugador();
                     if (CamaraOrbital.singleton != null) CamaraOrbital.singleton.HabilitarCamara();
                 }
@@ -157,6 +157,7 @@ public class ManagerCanvas : MonoBehaviour
     /// </summary>
     public void DesactivarAlertarMensaje()
     {
+        if (AudioManagerMotores.singleton != null) AudioManagerMotores.singleton.PlayEfectString("btnResaltar2", 0.2f); // Ejecutamos el efecto nombrado
         mensajeAlerta.SetActive(false);
         mensajeAlertaActivo = false;
     }
@@ -288,7 +289,7 @@ public class ManagerCanvas : MonoBehaviour
             {
                 if (AudioManagerMotores.singleton != null) AudioManagerMotores.singleton.PlayEfectString("Menu", 0.5f); // Ejecutamos el efecto nombrado
                 juegoPausado = true;
-                menuPausa.Escalar();
+                menuPausa.EntranceAnimation();
                 movimientoJugador.DeneterJugador();
                 if (CamaraOrbital.singleton != null) CamaraOrbital.singleton.DeneterCamara();
             }
@@ -296,7 +297,7 @@ public class ManagerCanvas : MonoBehaviour
             {
                 if (AudioManagerMotores.singleton != null) AudioManagerMotores.singleton.PlayEfectString("btnOmitir", 0.5f); // Ejecutamos el efecto nombrado
                 juegoPausado = false;
-                menuPausa.Restaurar();
+                menuPausa.ExitAnimation();
                 movimientoJugador.HabilitarJugador();
                 if (CamaraOrbital.singleton != null) CamaraOrbital.singleton.HabilitarCamara();
             }
@@ -325,8 +326,8 @@ public class ManagerCanvas : MonoBehaviour
     /// </summary>
     public void ActivarBTNEleccionMotor()
     {
-        btnEleccionMotor.SetActive(ServidorMotores.singleton.esMecanico);
-        btnEleccionMecanico.SetActive(EnvioDatosBD.singleton.usuario.tipo_usuario == "1");
+        if (!ManagerDesplazamientoMotor.singleton.desplazamientoIniciado) btnEleccionMotor.SetActive(ServidorMotores.singleton.esMecanico);
+        if (!ManagerDesplazamientoMotor.singleton.desplazamientoIniciado) btnEleccionMecanico.SetActive(EnvioDatosBD.singleton.usuario.tipo_usuario == "1");
     }
 
     /// <summary>

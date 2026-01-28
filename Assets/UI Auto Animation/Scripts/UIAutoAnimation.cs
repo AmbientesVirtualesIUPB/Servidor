@@ -628,7 +628,7 @@ public class UIAutoAnimation : MonoBehaviour
                 }
             }
 
-            // Añadir esto dentro del bucle for i < componentList.Count
+            // Aï¿½adir esto dentro del bucle for i < componentList.Count
             var cg = componentList[i].GetComponent<CanvasGroup>();
             if (cg != null)
             {
@@ -757,9 +757,15 @@ public class UIAutoAnimation : MonoBehaviour
         }
         else if (component is CanvasGroup)
         {
-            ((CanvasGroup)component).alpha = value;
+            CanvasGroup cg = (CanvasGroup)component;
+            cg.alpha = value;
+
+            bool interactuable = value >= 0.5f;
+            cg.interactable = interactuable;
+            cg.blocksRaycasts = interactuable;
         }
     }
+
 
     /// <summary>
     /// Set all components' alpha to zero. 

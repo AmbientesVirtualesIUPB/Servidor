@@ -137,7 +137,8 @@ public class ExplosionObjetosHijos : MonoBehaviour
         if (ManagerMinijuego.singleton != null) ManagerMinijuego.singleton.motorAnimadoActivo.SetActive(false);
         ActivarHijos(objetosPadres[1]);
         ActivarHijos(objetosPadres[3]);
-        if (AudioManagerMotores.singleton != null) AudioManagerMotores.singleton.PlayEfectString("DestruccionMotor", 0.5f); // Ejecutamos el efecto nombrado
+        if (AudioManagerMotores.singleton != null) AudioManagerMotores.singleton.DetenerLoop(); // Detenemos el efecto 
+        if (AudioManagerMotores.singleton != null) AudioManagerMotores.singleton.PlayEfectString("DestruccionMotor", 0.1f); // Ejecutamos el efecto nombrado
         // 3. Aplicar explosión
         foreach (Transform pieza in padre.transform)
         {

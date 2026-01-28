@@ -24,8 +24,8 @@ public class ManagerDesplazamientoMotor : MonoBehaviour
 
     public bool desplazamientoEjecutado;
     public bool desplazamientoFinalizado;
+    public bool desplazamientoIniciado;
 
-    private bool desplazamientoIniciado;
     private Coroutine coroutine;
 
     public static ManagerDesplazamientoMotor singleton;
@@ -60,6 +60,8 @@ public class ManagerDesplazamientoMotor : MonoBehaviour
     {
         if (AudioManagerMotores.singleton != null) AudioManagerMotores.singleton.DetenerLoop(); // Detenemos el sonido loop
         if (AudioManagerMotores.singleton != null) AudioManagerMotores.singleton.PlayEfectString("MotorApagado", 0.2f); // Ejecutamos el efecto nombrado
+        if (EnvioDatosBD.singleton.usuario.tipo_usuario == "1") ManagerCanvas.singleton.btnEleccionMecanico.SetActive(false);
+        if (ServidorMotores.singleton.esMecanico) ManagerCanvas.singleton.btnEleccionMotor.SetActive(false);
         MesaMotor.singleton.ValidarExpansionRotacion();
         ManagerMinijuego.singleton.controlVelocidadMotor.SetActive(false);
         MesaMotor.singleton.sliderVelocidadMotor.value = 0f;
@@ -91,6 +93,9 @@ public class ManagerDesplazamientoMotor : MonoBehaviour
 
         yield return new WaitForSeconds(12f);
 
+        if (EnvioDatosBD.singleton.usuario.tipo_usuario == "1") ListaUsuariosMotores.singleton.btnMostrarLista.SetActive(true);
+        if (ServidorMotores.singleton.esMecanico) ManagerCanvas.singleton.btnEleccionMotor.SetActive(true);
+        if (AudioManagerMotores.singleton != null) AudioManagerMotores.singleton.PlayEfectString("btnElegir", 0.5f); // Ejecutamos el efecto nombrado
         movimientoBrazo.RegresarPosicionOriginal();
         brazoMecanicoMejorado.IniciarIdle();
 
@@ -149,6 +154,7 @@ public class ManagerDesplazamientoMotor : MonoBehaviour
         }
 
         movimientoBrazo.RegresarPosicionOriginal();
+        brazoMecanicoMejorado.IniciarIdle();
         capo.RetornarPosicionOriginal();
         ValoresDinamometro.singleton.puedoActualizar = true;
         ValoresDinamometro.singleton.sliderControlador.value = 0f;
@@ -179,7 +185,5 @@ public class ManagerDesplazamientoMotor : MonoBehaviour
         {
             EntornoMecanica.singleton.puntosIntanciasPiezas[i].SetActive(true);
         }
-
-
     }
 }

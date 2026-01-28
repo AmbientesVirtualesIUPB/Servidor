@@ -187,11 +187,11 @@ public class EntornoMecanica : MonoBehaviour
 
         if (!noAbroYo) ControlCamaraMotor.singleton.IniciarMovimientoCamara(posicionDeseada[2], 1);
 
-        if (!ServidorMotores.singleton.plataformaIniciada)
+        if (ServidorMotores.singleton.esMecanico && MesaMotor.singleton.estoyArmando)
         {
             sueloInteractivo.IngresandoInteraccion();
         }
-        
+
         iniciarCompuertas = null;
     }
 
@@ -314,7 +314,7 @@ public class EntornoMecanica : MonoBehaviour
 
         if (MesaMotor.singleton.estoyArmando) sueloInteractivo.IngresandoInteraccion();
         sueloInteractivo.HabilitarInfoMesaArmado();
-        
+
         iniciarCompuertas = null;
     }
 
