@@ -1532,8 +1532,58 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1380816764213426786, guid: a6aa18a198ecd73408e9df995a67fc57,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7027835193489837102}
   m_SourcePrefab: {fileID: 100100000, guid: a6aa18a198ecd73408e9df995a67fc57, type: 3}
+--- !u!1 &7027835193489837097 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6643341628310402023, guid: a6aa18a198ecd73408e9df995a67fc57,
+    type: 3}
+  m_PrefabInstance: {fileID: 7027835193489837096}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &7027835193489837098 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1739602474068323328, guid: a6aa18a198ecd73408e9df995a67fc57,
+    type: 3}
+  m_PrefabInstance: {fileID: 7027835193489837096}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &7027835193489837099 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1739602474523774078, guid: a6aa18a198ecd73408e9df995a67fc57,
+    type: 3}
+  m_PrefabInstance: {fileID: 7027835193489837096}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &7027835193489837100 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1739602473978465409, guid: a6aa18a198ecd73408e9df995a67fc57,
+    type: 3}
+  m_PrefabInstance: {fileID: 7027835193489837096}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &7027835193489837101 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1380816764213426786, guid: a6aa18a198ecd73408e9df995a67fc57,
+    type: 3}
+  m_PrefabInstance: {fileID: 7027835193489837096}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &7027835193489837102
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7027835193489837101}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 844d6901b4337574e80219ba7512bba2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  manoDerecha: {fileID: 7027835193489837100}
+  manoIzquierda: {fileID: 7027835193489837099}
+  cabeza: {fileID: 7027835193489837098}
+  cuerpo: {fileID: 7027835193489837097}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
