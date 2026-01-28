@@ -53,15 +53,19 @@ public class LeyesActivados : MonoBehaviour
             return;
         }
 
-        ActivarObjeto(num);
+        ActivarObjeto(num, false);
     }
 
+    public void ActivarObjeto(int cual)
+    {
+        ActivarObjeto(cual,true);
+    }
     /// <summary>
     /// Activa un objeto del arreglo según el índice recibido.
     /// Desactiva todos los demás.
     /// </summary>
     /// <param name="cual">Índice del objeto a activar.</param>
-    public void ActivarObjeto(int cual)///////////////////////////////////////// D: poner bool
+    public void ActivarObjeto(int cual, bool fue)///////////////////////////////////////// D: poner bool
     {
         if (objetoActivar == null || objetoActivar.Length == 0)
         {
@@ -81,7 +85,7 @@ public class LeyesActivados : MonoBehaviour
             objetoActivar[i].SetActive(i == cual);
         }
 
-        GestionMensajesServidor.singeton.EnviarMensaje("FN00", cual.ToString());
+        if(fue) GestionMensajesServidor.singeton.EnviarMensaje("FN00", cual.ToString());
 
         DebugLog("Objeto activado en índice: " + cual);
     }
