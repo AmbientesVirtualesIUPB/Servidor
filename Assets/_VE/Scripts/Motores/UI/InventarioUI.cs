@@ -56,6 +56,18 @@ public class InventarioUI : MonoBehaviour
         alfaActual = imgHerramienta.color;
     }
 
+    public void AgregarAlInventarioVR(GameObject pieza, bool piezaExterna)
+    {
+        if (piezaExterna)
+        {
+            pieza.transform.SetParent(puntoInstanciaExterno.transform); // Le Asignamos el punto de instancia 
+        }
+        else
+        {
+            pieza.transform.SetParent(puntoInstanciaInterno.transform); // Le Asignamos el punto de instancia 
+        }
+    }
+
     /// <summary>
     /// Metodo implementado al momento de agregar nuevos objetos al inventario
     /// </summary>

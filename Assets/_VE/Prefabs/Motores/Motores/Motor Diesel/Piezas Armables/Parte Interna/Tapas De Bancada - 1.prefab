@@ -544,7 +544,6 @@ GameObject:
   - component: {fileID: 6514644391570079313}
   - component: {fileID: 5193365038007650873}
   - component: {fileID: 1784266037506112830}
-  - component: {fileID: 3051566292984574160}
   - component: {fileID: 3084796527857328115}
   m_Layer: 0
   m_Name: SPcasqueteInferior
@@ -639,33 +638,6 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.7
   m_Center: {x: 0, y: 0, z: 0}
---- !u!54 &3051566292984574160
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5504688935170508468}
-  serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!114 &3084796527857328115
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -691,7 +663,6 @@ GameObject:
   - component: {fileID: 2636825080043259750}
   - component: {fileID: 8730247414779953367}
   - component: {fileID: 5522745900840433703}
-  - component: {fileID: 7910912876300856782}
   - component: {fileID: 672470517418233554}
   m_Layer: 0
   m_Name: SPbase
@@ -786,33 +757,6 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.7
   m_Center: {x: 0, y: 0, z: 0}
---- !u!54 &7910912876300856782
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5637323533867175361}
-  serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!114 &672470517418233554
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -977,6 +921,7 @@ GameObject:
   - component: {fileID: 8328207621552844647}
   - component: {fileID: 4499811538923773741}
   - component: {fileID: -8315453137330261213}
+  - component: {fileID: -2158216281052968676}
   m_Layer: 0
   m_Name: Tapas De Bancada - 1
   m_TagString: Untagged
@@ -1101,7 +1046,7 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -1180,7 +1125,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   idPersonalizada: 0
   isOwner: 0
-  ID: 
+  ID: C_LOBBY_57211
 --- !u!114 &8328207621552844647
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1188,7 +1133,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9107665622741938256}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3ab9a1b8254401a4ca757de1bfb310be, type: 3}
   m_Name: 
@@ -1399,6 +1344,19 @@ MonoBehaviour:
   m_StartingSingleGrabTransformers: []
   m_StartingMultipleGrabTransformers: []
   m_AddDefaultGrabTransformers: 1
+--- !u!114 &-2158216281052968676
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9107665622741938256}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 186d30c67d45e5d42ad9a1a1a205c369, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rot: {x: 0, y: 0, z: 0}
 --- !u!1001 &3310443091793576310
 PrefabInstance:
   m_ObjectHideFlags: 0

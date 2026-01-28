@@ -55,13 +55,17 @@ public class MoverPieza : MonoBehaviour
     private MeshRenderer meshRenderer;
     private Material[] materialesOriginales;
     private Collider collider;
+    private Rigidbody rb;
     private Coroutine coroutine;
+    private MantenerRotacionInicial mantenerRotacionInicial;
 
     private void Awake()
     {
         // Obtenemos los componentes
         collider = GetComponent<Collider>();
         meshRenderer = GetComponent<MeshRenderer>();
+        rb = GetComponent<Rigidbody>();
+        mantenerRotacionInicial = GetComponent<MantenerRotacionInicial>();
     }
     void Start()
     {
@@ -106,7 +110,7 @@ public class MoverPieza : MonoBehaviour
     /// <summary>
     /// metodo invocado al momento de hacer click con el mouse sobre una pieza
     /// </summary>
-    void OnMouseDown()
+    public void OnMouseDown()
     {
         if (coroutine != null)
         {
@@ -134,7 +138,7 @@ public class MoverPieza : MonoBehaviour
     /// <summary>
     /// metodo invocado al momento de arrastrar con el click presionado una pieza
     /// </summary>
-    void OnMouseDrag()
+    public void OnMouseDrag()
     {
         if (coroutine != null)
         {
@@ -157,7 +161,7 @@ public class MoverPieza : MonoBehaviour
     /// <summary>
     /// Metodo incovado al momento de soltar el click sostenido de una pieza
     /// </summary>
-    void OnMouseUp()
+    public void OnMouseUp()
     {
         if (coroutine != null)
         {
@@ -223,7 +227,11 @@ public class MoverPieza : MonoBehaviour
         noMover = true;
         collider.enabled = false;  
         DesactivarSnapp();
-        
+
+        InventarioUI.singleton.AgregarAlInventarioVR(this.gameObject, piezaExterna);
+        rb.isKinematic = true;
+        mantenerRotacionInicial.validarRotacionInicial = true;
+
         if (ManagerCanvas.singleton != null)
         {
             ManagerCanvas.singleton.DeshabilitarBtnSalir();

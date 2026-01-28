@@ -3,16 +3,31 @@ using UnityEngine;
 public class MantenerRotacionInicial : MonoBehaviour
 {
     public Vector3 rot;
+    public bool validarRotacionInicial;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        //rot = transform.eulerAngles;
-    }
+    public float velocidad = 5f;
+    public float tolerancia = 0.1f; // grados
 
-    // Update is called once per frame
     void Update()
     {
-        transform.rotation = Quaternion.Lerp(transform.rotation,Quaternion.Euler(rot),0.05f);
+        if (!validarRotacionInicial) return;
+
+        Quaternion rotObjetivo = Quaternion.Euler(rot);
+
+        transform.rotation = Quaternion.Lerp(transform.rotation, rotObjetivo, Time.deltaTime * velocidad);
+
+        // Validar si ya llego
+        if (Quaternion.Angle(transform.rotation, rotObjetivo) <= tolerancia)
+        {
+            transform.rotation = rotObjetivo; // asegurar valor exacto
+            validarRotacionInicial = false;
+            RotacionFinalizada();
+        }
+    }
+
+    void RotacionFinalizada()
+    {
+        Debug.Log("aqui");
+        validarRotacionInicial = false;
     }
 }
