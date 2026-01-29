@@ -10,7 +10,7 @@ public class ActivadorBotonesPestanas : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (btn != null && other.gameObject == ControlUsuarios.singleton.usuarioLocal.gameObject)
+        if (btn != null && other.CompareTag("Player"))
         {
             btn.interactable = true;
         }
