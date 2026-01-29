@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
+using System.Collections;
 
 public class TabSystemUI : MonoBehaviour
 {
@@ -40,9 +41,10 @@ public class TabSystemUI : MonoBehaviour
     private int currentTabIndex = -1;
     private List<ColorBlock> originalColorBlocks = new List<ColorBlock>();
 
-    private void Start()
+    private IEnumerator Start()
     {
         InitializeTabs();
+        yield return new WaitForSeconds(1);
         SelectTab(defaultTabIndex);
     }
 
