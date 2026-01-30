@@ -146,12 +146,11 @@ public class ManagerMinijuego : MonoBehaviour
 
     private void Start()
     {
-        /////// COMENTADO YA QUE EN VR NO ES NECESARIO
-        //herramientasRotatorias = RotacionAngularObjeto.singleton.gameObject;
-        //prensaValvulas = RotacionAngularObjeto.singleton.prensaValvula.gameObject;
-        //botellaAceite = RotacionAngularObjeto.singleton.botellaAceite;
-        //aceite = RotacionAngularObjeto.singleton.aceite;
-        //StartCoroutine(ActivarComponentesIniciales());
+        herramientasRotatorias = RotacionAngularObjeto.singleton.gameObject;
+        prensaValvulas = RotacionAngularObjeto.singleton.prensaValvula.gameObject;
+        botellaAceite = RotacionAngularObjeto.singleton.botellaAceite;
+        aceite = RotacionAngularObjeto.singleton.aceite;
+        StartCoroutine(ActivarComponentesIniciales());
         siguientePiezaColocar = "Elegir un motor.";
     }
 
@@ -180,7 +179,7 @@ public class ManagerMinijuego : MonoBehaviour
     public void DestruirObjetosSP()
     {
         // Obtiene la escena por nombre
-        Scene escena = SceneManager.GetSceneByName("WI_Motores");
+        Scene escena = SceneManager.GetSceneByName("VR_Motores");
 
         // Obtiene todos los objetos raíz (padres) de la escena activa
         GameObject[] objetosRaiz = escena.GetRootGameObjects();

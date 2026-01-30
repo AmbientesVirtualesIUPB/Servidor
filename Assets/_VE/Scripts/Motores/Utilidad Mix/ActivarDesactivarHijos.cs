@@ -49,11 +49,11 @@ public class ActivarDesactivarHijos : MonoBehaviour
     {
         foreach (Transform hijo in transform)
         {
-            Collider col = hijo.GetComponent<Collider>();
-            if (col != null)
-            {
-                col.enabled = false;
-            }
+            //Collider col = hijo.GetComponent<Collider>();
+            //if (col != null)
+            //{
+            //    col.enabled = false;
+            //}
         }
     }
 }

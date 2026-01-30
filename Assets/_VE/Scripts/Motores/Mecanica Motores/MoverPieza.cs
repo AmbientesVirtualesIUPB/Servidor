@@ -222,6 +222,7 @@ public class MoverPieza : MonoBehaviour
     /// <summary>
     /// Metodo invocado desde Script SnapPoint encargado de iniciar la currutina de desplazamiento del objeto y de desactivar los colliders de los sanpPoint
     /// </summary>
+    [ContextMenu("mover")]
     public void IniciarMovimiento()
     {
         noMover = true;

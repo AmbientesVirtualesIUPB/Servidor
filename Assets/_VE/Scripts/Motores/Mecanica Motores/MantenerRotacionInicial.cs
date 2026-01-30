@@ -27,7 +27,6 @@ public class MantenerRotacionInicial : MonoBehaviour
 
     void RotacionFinalizada()
     {
-        Debug.Log("aqui");
         validarRotacionInicial = false;
     }
 }
