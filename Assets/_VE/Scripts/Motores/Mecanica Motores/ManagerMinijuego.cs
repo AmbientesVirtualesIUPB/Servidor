@@ -45,7 +45,7 @@ public class ManagerMinijuego : MonoBehaviour
     public ActivarDesactivarHijos[] partesNissan; // Para reactivar las partes del motor
     public SueloInteractivo[] sueloInteractivoDiesel; // Para activar o desactivar segun el motor activo
     public ParticleSystem[] sueloInteractivoDieselParticulas; // Para activar o desactivar segun el motor activo
-    public ActivarDesactivarHijos[] partesDiesel; // Para reactivar las partes del motor
+    public ValidadorPiezasMesa[] partesDiesel; // Para reactivar las partes del motor
     
 
     [Header("CONFIGURACION INICIAL")]
@@ -152,6 +152,13 @@ public class ManagerMinijuego : MonoBehaviour
         aceite = RotacionAngularObjeto.singleton.aceite;
         StartCoroutine(ActivarComponentesIniciales());
         siguientePiezaColocar = "Elegir un motor.";
+
+        // Deshabilitamos las mesas de armado
+        for (int i = 0; i < partesDiesel.Length; i++)
+        {
+            //partesDiesel[i].DesactivarMoverPiezaEnHijos();
+            // falta nissan
+        }
     }
 
     IEnumerator ActivarComponentesIniciales()
@@ -353,7 +360,7 @@ public class ManagerMinijuego : MonoBehaviour
                 sueloInteractivoDiesel[i].enabled = true;
                 sueloInteractivoDiesel[i].puedoInteractuarInicialmente = true;
                 sueloInteractivoDieselParticulas[i].Play();
-                partesDiesel[i].ActivarTodosLosHijos();
+                partesDiesel[i].ValidarYRestaurarHijos();
 
                 //Deshabilitamos lo demas
                 sueloInteractivoNissan[i].puedoInteractuarInicialmente = false;
@@ -418,7 +425,6 @@ public class ManagerMinijuego : MonoBehaviour
                 sueloInteractivoDiesel[i].enabled = false;
                 sueloInteractivoDieselParticulas[i].Stop();
                 sueloInteractivoDiesel[i].puedoInteractuarInicialmente = false;
-                partesDiesel[i].DesactivarTodosLosColliders();
 
                 sueloInteractivoNissan[i].canvasWorldSpace.SetActive(false);
                 sueloInteractivoNissan[i].enabled = false;

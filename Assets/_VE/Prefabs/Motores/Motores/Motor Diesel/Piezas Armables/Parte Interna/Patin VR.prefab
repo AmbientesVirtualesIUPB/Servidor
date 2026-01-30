@@ -336,7 +336,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.7
+  m_Radius: 2
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &8533499914066871012
 MonoBehaviour:
@@ -721,7 +721,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.7
+  m_Radius: 2
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &8814843034369418466
 MonoBehaviour:
@@ -1568,6 +1568,7 @@ MonoBehaviour:
   piezaExterna: 0
   puedoValidar: 0
   piezaColocada: 0
+  puedoManipularPieza: 1
   piezaFinal: 0
   posicionObjetivo: {x: 0.0001, y: -0.0323, z: 0.0103}
   materialesSeleccion:

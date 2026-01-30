@@ -125,9 +125,9 @@ public class MoverPieza : MonoBehaviour
             {
                 validarBrazo = true;
             }
-            
+
             if (!noMover)
-            {         
+            {
                 AgregarSegundoMaterial(0);
                 coordinadaZ = Camera.main.WorldToScreenPoint(transform.position).z; // Convertimos la posicion del objeto en coordenadas de la pantalla
                 offset = transform.position - ObtenerPosicionMouse(); // Calcula la diferencia entre la posición real del objeto y la posición del mouse en el mundo 3D
