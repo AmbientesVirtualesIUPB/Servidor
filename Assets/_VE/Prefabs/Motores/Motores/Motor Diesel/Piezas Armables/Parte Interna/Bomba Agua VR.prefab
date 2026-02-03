@@ -526,18 +526,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c488d3aece86cfa499f969f606f0e2ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  piezaGuardable: {fileID: 6680577341511238702, guid: c5ba0141fb262bf488dee5f79719552c,
+    type: 3}
   id: 16
   idSiguiente: 35
   piezaSiguiente: Los tornillos de bomba.
   piezaExterna: 0
   puedoValidar: 0
   piezaColocada: 0
-  puedoManipularPieza: 1
   piezaFinal: 0
   posicionObjetivo: {x: 0.0546, y: -0.2178, z: 0.2832}
   materialesSeleccion:
   - {fileID: 2100000, guid: 7fedf1846e15ef44099bb4888249ade4, type: 2}
   - {fileID: 2100000, guid: 6ef22ed9796e48d4aa57da4ce20dfb02, type: 2}
+  - {fileID: 2100000, guid: 56742abebb286604fb50f10c1326e7bf, type: 2}
   materialDisolver: {fileID: 2100000, guid: b4efd425960b82f43bcd5df0a23359ab, type: 2}
   tiempoDisolver: 1.5
   snappsParaActivar:
@@ -669,10 +671,34 @@ MonoBehaviour:
       m_Calls: []
   m_HoverEntered:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 240917236966817148}
+        m_TargetAssemblyTypeName: MoverPieza, Assembly-CSharp
+        m_MethodName: XREnter
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_HoverExited:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 240917236966817148}
+        m_TargetAssemblyTypeName: MoverPieza, Assembly-CSharp
+        m_MethodName: XRExit
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_FirstSelectEntered:
     m_PersistentCalls:
       m_Calls: []

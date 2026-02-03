@@ -2,6 +2,7 @@
 using System.Collections;
 using UnityEditor.Rendering;
 using UnityEngine;
+using UnityEngine.XR.Interaction.Toolkit.Samples.StarterAssets;
 
 public class EntornoMecanica : MonoBehaviour
 {
@@ -22,7 +23,10 @@ public class EntornoMecanica : MonoBehaviour
     public Transform[] posicionDeseada;
     public MeshRenderer[] meshBrazoMecanico;
     public ExpansionRadial expansionRadialPiezasInternas;
+    public bool plataformaPosicionadaVR;
 
+    [HideInInspector]
+    public DynamicMoveProvider movimientoJugador;
     [HideInInspector]
     public bool noAbroYo;
 
@@ -44,7 +48,7 @@ public class EntornoMecanica : MonoBehaviour
 
     private void Start()
     {
-        Abrir();
+        //Abrir();
     }
 
     [ContextMenu("abrir")]
@@ -60,7 +64,7 @@ public class EntornoMecanica : MonoBehaviour
 
     private IEnumerator IniciarAnimacionAbrirCompuertas()
     {
-        if (AudioManagerMotores.singleton != null) AudioManagerMotores.singleton.PlayEfectString("Compuerta", 0.6f); // Ejecutamos el efecto nombrado
+        if (AudioManagerMotores.singleton != null) AudioManagerMotores.singleton.PlayEfectString("Compuerta", 0.4f); // Ejecutamos el efecto nombrado
 
         if (ManagerMinijuego.singleton.minijuegoTerminado && !MesaMotor.singleton.motorRotando && !expansionRadialPiezasInternas.expandir)
         {
@@ -97,7 +101,7 @@ public class EntornoMecanica : MonoBehaviour
 
         yield return new WaitForSeconds(1f);
 
-        if (AudioManagerMotores.singleton != null) AudioManagerMotores.singleton.PlayEfectString("Particulas", 0.6f); // Ejecutamos el efecto nombrado
+        if (AudioManagerMotores.singleton != null) AudioManagerMotores.singleton.PlayEfectString("Particulas", 0.4f); // Ejecutamos el efecto nombrado
         if (VibracionCamara.singleton != null && !noAbroYo)
         {
             VibracionCamara.singleton.MoverCamaraConVibracion(posicionDeseada[1],5f,0.007f);
@@ -197,11 +201,15 @@ public class EntornoMecanica : MonoBehaviour
 
         if (!noAbroYo) ControlCamaraMotor.singleton.IniciarMovimientoCamara(posicionDeseada[2], 1);
 
+
         if (ServidorMotores.singleton.esMecanico && MesaMotor.singleton.estoyArmando)
         {
             sueloInteractivo.IngresandoInteraccion();
         }
 
+        sueloInteractivo.ActivarMovimientoJugador(movimientoJugador); // Activamos el movimiento del jugador que interactua  
+        sueloInteractivo.canvasPrincipal.SetActive(true);
+        plataformaPosicionadaVR = true;
         iniciarCompuertas = null;
     }
 
@@ -212,7 +220,7 @@ public class EntornoMecanica : MonoBehaviour
 
     private IEnumerator IniciarAnimacionCerrarCompuertas()
     {
-        if (AudioManagerMotores.singleton != null) AudioManagerMotores.singleton.PlayEfectString("Particulas", 0.6f); // Ejecutamos el efecto nombrado
+        if (AudioManagerMotores.singleton != null) AudioManagerMotores.singleton.PlayEfectString("Particulas", 0.4f); // Ejecutamos el efecto nombrado
 
         if (ManagerMinijuego.singleton.minijuegoTerminado && !MesaMotor.singleton.motorRotando && !expansionRadialPiezasInternas.expandir)
         {
@@ -279,7 +287,7 @@ public class EntornoMecanica : MonoBehaviour
        
         yield return new WaitForSeconds(3f);
 
-        if (AudioManagerMotores.singleton != null) AudioManagerMotores.singleton.PlayEfectString("Compuerta", 0.6f); // Ejecutamos el efecto nombrado
+        if (AudioManagerMotores.singleton != null) AudioManagerMotores.singleton.PlayEfectString("Compuerta", 0.4f); // Ejecutamos el efecto nombrado
 
         mesa.RetornarPosicionOriginal();
         if (MesaMotor.singleton.estoyArmando) ControlCamaraMotor.singleton.IniciarMovimientoCamara(posicionDeseada[0], 1.5f);
@@ -324,6 +332,8 @@ public class EntornoMecanica : MonoBehaviour
 
         if (MesaMotor.singleton.estoyArmando) sueloInteractivo.IngresandoInteraccion();
         sueloInteractivo.HabilitarInfoMesaArmado();
+        sueloInteractivo.ActivarMovimientoJugador(movimientoJugador); // Activamos el movimiento del jugador que interactua 
+        plataformaPosicionadaVR = false;
 
         iniciarCompuertas = null;
     }

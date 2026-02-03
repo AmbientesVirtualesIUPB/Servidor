@@ -43,10 +43,13 @@ public class ManagerMinijuego : MonoBehaviour
     public SueloInteractivo[] sueloInteractivoNissan; // Para activar o desactivar segun el motor activo
     public ParticleSystem[] sueloInteractivoNissanParticulas; // Para activar o desactivar segun el motor activo
     public ActivarDesactivarHijos[] partesNissan; // Para reactivar las partes del motor
+    public GameObject[] canvasInfoPiezasNissan;
+
     public SueloInteractivo[] sueloInteractivoDiesel; // Para activar o desactivar segun el motor activo
     public ParticleSystem[] sueloInteractivoDieselParticulas; // Para activar o desactivar segun el motor activo
     public ValidadorPiezasMesa[] partesDiesel; // Para reactivar las partes del motor
-    
+    public GameObject[] canvasInfoPiezasDiesel;
+
 
     [Header("CONFIGURACION INICIAL")]
     public bool[] cantidadMinijuegosMotorDiesel; // Cantidad de minijuegos disponibles
@@ -152,11 +155,15 @@ public class ManagerMinijuego : MonoBehaviour
         aceite = RotacionAngularObjeto.singleton.aceite;
         StartCoroutine(ActivarComponentesIniciales());
         siguientePiezaColocar = "Elegir un motor.";
+        ManagerCanvas.singleton.ActualizarInformacionPista("Antes que nada deberías primero asegurarte de seleccionar uno de los dos motores para armar.");
 
         // Deshabilitamos las mesas de armado
         for (int i = 0; i < partesDiesel.Length; i++)
         {
-            //partesDiesel[i].DesactivarMoverPiezaEnHijos();
+            canvasInfoPiezasDiesel[i].SetActive(false);
+            canvasInfoPiezasNissan[i].SetActive(false);
+
+            partesDiesel[i].DesactivarMoverPiezaEnHijos();
             // falta nissan
         }
     }
@@ -208,6 +215,7 @@ public class ManagerMinijuego : MonoBehaviour
         {
             if (IDInstanciados[i].id == siguienteIdColocar)
             {
+                ManagerCanvas.singleton.HabilitarImgPantallaBloqueoCanvasMotorVR();
                 IDInstanciados[i].IniciarMovimiento();
                 IDInstanciados.RemoveAt(i);
                 ManagerCanvas.singleton.DeshabilitarBtnExpandir();
@@ -357,15 +365,15 @@ public class ManagerMinijuego : MonoBehaviour
             for (int i = 0; i < sueloInteractivoDiesel.Length; i++)
             {
                 //Habilitamos piezas en cuestion
-                sueloInteractivoDiesel[i].enabled = true;
-                sueloInteractivoDiesel[i].puedoInteractuarInicialmente = true;
                 sueloInteractivoDieselParticulas[i].Play();
                 partesDiesel[i].ValidarYRestaurarHijos();
+                partesDiesel[i].ActivarMoverPiezaEnHijos();
+                canvasInfoPiezasDiesel[i].SetActive(true);
 
                 //Deshabilitamos lo demas
-                sueloInteractivoNissan[i].puedoInteractuarInicialmente = false;
                 sueloInteractivoNissanParticulas[i].Stop();
                 sueloInteractivoNissan[i].TrigerExit();                         
+                canvasInfoPiezasNissan[i].SetActive(false);
             }
 
             // habilitamos el minijuego cero del Diesel
@@ -394,15 +402,15 @@ public class ManagerMinijuego : MonoBehaviour
             for (int i = 0; i < sueloInteractivoNissan.Length; i++)
             {
                 //Habilitamos piezas en cuestion
-                sueloInteractivoNissan[i].enabled = true;
-                sueloInteractivoNissan[i].puedoInteractuarInicialmente = true;
                 sueloInteractivoNissanParticulas[i].Play();
-                partesNissan[i].ActivarTodosLosHijos();
+                //partesNissan[i].ActivarTodosLosHijos();
+                canvasInfoPiezasNissan[i].SetActive(true);
 
                 //Deshabilitamos lo demas
-                sueloInteractivoDiesel[i].puedoInteractuarInicialmente = false;
                 sueloInteractivoDieselParticulas[i].Stop();
                 sueloInteractivoDiesel[i].TrigerExit();         
+                canvasInfoPiezasDiesel[i].SetActive(false);
+                partesDiesel[i].DesactivarMoverPiezaEnHijos();
             }
 
             // habilitamos el minijuego cero del Nissan
@@ -418,6 +426,7 @@ public class ManagerMinijuego : MonoBehaviour
         }
         else
         {
+            ManagerCanvas.singleton.ActualizarInformacionPista("Antes que nada deberías primero asegurarte de seleccionar uno de los dos motores para armar.");
             // Sino selecciona ningun motor para armar
             for (int i = 0; i < sueloInteractivoDiesel.Length; i++)
             {
@@ -504,6 +513,8 @@ public class ManagerMinijuego : MonoBehaviour
     public void AplicarAceite()
     {
         minijuegoActivo = true;
+        ManagerCanvas.singleton.HabilitarImgPantallaBloqueoCanvasMotorVR();
+
         if (coroutine != null)
         {
             StopCoroutine(coroutine);
@@ -513,7 +524,6 @@ public class ManagerMinijuego : MonoBehaviour
 
     IEnumerator AplicarAceiteCorrutine()
     {
-        ManagerCanvas.singleton.DeshabilitarBtnAyudaAutomatica();
         btnAplicarAceite.gameObject.SetActive(false); // Desactivamos el boton para aplicar aceite
         puntajeAceite += 1; // Damos un punto por aplicar aceite
 
@@ -539,11 +549,6 @@ public class ManagerMinijuego : MonoBehaviour
         
         ControlCamaraMotor.singleton.ReestablecerPosicionCamara(); // Reiniciamos el indice para que la posicion de la camara sea correcta
 
-        //Desactivamos momentaneamente los botones que no necesitamos
-        ManagerCanvas.singleton.DeshabilitarBtnSalir(); 
-        ManagerCanvas.singleton.DeshabilitarBtnBajarPlataforma();
-        ManagerCanvas.singleton.DeshabilitarBtnExpandir();
-
         yield return new WaitForSeconds(1f);
 
         // Activamos la botella de aceite y la rotamos
@@ -565,10 +570,7 @@ public class ManagerMinijuego : MonoBehaviour
         ControlCamaraMotor.singleton.IniciarMovimientoCamara(ControlCamaraMotor.singleton.posicionFrontal, 1);
 
         //Activamos nuevamente los botones de salir 
-        ManagerCanvas.singleton.HabilitarBtnSalir();
-        ManagerCanvas.singleton.HabilitarBtnBajarPlataforma();
-        ManagerCanvas.singleton.HabilitarBtnExpandir();
-        ManagerCanvas.singleton.HabilitarBtnAyudaAutomatica();
+        ManagerCanvas.singleton.DeshabilitarImgPantallaBloqueoCanvasMotorVR();
 
         minijuegoActivo = false;
 

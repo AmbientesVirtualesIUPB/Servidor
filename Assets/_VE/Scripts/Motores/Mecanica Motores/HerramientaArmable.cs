@@ -116,7 +116,7 @@ public class HerramientaArmable : MonoBehaviour
         if (!ManagerCanvas.singleton.mensajeAlertaActivo)
         {
             AgregarMaterial(); // Asignamos el material secundario
-            ManagerCanvas.singleton.ActualizarInformacionPieza(nombreHerramienta, descripcionPieza); // Actualizamos la informacion de la pieza en el canvas   
+            //ManagerCanvas.singleton.ActualizarInformacionPieza(nombreHerramienta, descripcionPieza); // Actualizamos la informacion de la pieza en el canvas   
         }
         
     }

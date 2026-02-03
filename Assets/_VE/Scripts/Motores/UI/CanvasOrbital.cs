@@ -10,6 +10,9 @@ public class CanvasOrbital : MonoBehaviour
     public float radio = 2f;   // Radio ajustable desde el inspector
     public bool soloHorizontal = true;
 
+    [Header("Altura")]
+    public float alturaY = 0f;
+
     [Header("Rotación fija")]
     public float rotacionX = 0f; // Rotación X fija (Inspector)
 
@@ -32,17 +35,21 @@ public class CanvasOrbital : MonoBehaviour
 
         // Posición sobre la circunferencia
         Vector3 posicionObjetivo = centro.position + direccion * radio;
+
+        // Aplicar altura configurable
+        posicionObjetivo.y += alturaY;
+
         transform.position = posicionObjetivo;
 
         // Mirar al jugador
         transform.LookAt(player);
 
-        // Corregir rotación manteniendo X fija
+        // Mantener rotación X fija
         Vector3 rot = transform.eulerAngles;
         rot.x = rotacionX;
         transform.eulerAngles = rot;
 
-        // Opcional si el canvas queda invertido
+        // Corrección típica en Canvas World Space
         transform.Rotate(0, 180f, 0);
     }
 }

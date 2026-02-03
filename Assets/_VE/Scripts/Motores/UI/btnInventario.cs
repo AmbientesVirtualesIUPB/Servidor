@@ -78,7 +78,7 @@ public class btnInventario : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     /// </summary>
     public void OnPointerEnter(PointerEventData eventData)
     {
-        ManagerCanvas.singleton.ActualizarInformacionPieza(nombre, descripcion); // Actualizamos la informacion de la pieza en el canvas
+        //ManagerCanvas.singleton.ActualizarInformacionPieza(nombre, descripcion); // Actualizamos la informacion de la pieza en el canvas
     }
 
     /// <summary>

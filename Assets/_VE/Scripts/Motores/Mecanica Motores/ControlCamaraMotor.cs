@@ -48,16 +48,6 @@ public class ControlCamaraMotor : MonoBehaviour
     {
         if (!ManagerMinijuego.singleton.minijuegoActivo && !noMover)
         {
-            // Modificamos el near
-            if (posicionadoAbajo)
-            {
-                camara.nearClipPlane = 0.35f;
-            }
-            else
-            {
-                camara.nearClipPlane = 0.01f;
-            }
-
             // Validamos si presionamos las flechas de direccion del tecla o las teclas ASDW
             if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W))
             {
@@ -130,10 +120,6 @@ public class ControlCamaraMotor : MonoBehaviour
                 }                
             }
         }
-        if (ManagerMinijuego.singleton.minijuegoActivo)
-        {
-            camara.nearClipPlane = 0.01f;
-        }
     }
     [ContextMenu("reiniar")]
     public void ReestablecerPosicionCamara()
@@ -193,10 +179,5 @@ public class ControlCamaraMotor : MonoBehaviour
         {
             ManagerMinijuego.singleton.aplicandoTorque = false;
         }
-    }
-
-    public void CambiarNearCamara(float near)
-    {
-        camara.nearClipPlane = near;
     }
 }

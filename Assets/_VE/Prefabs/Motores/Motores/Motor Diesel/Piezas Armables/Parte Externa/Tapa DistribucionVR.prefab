@@ -273,18 +273,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c488d3aece86cfa499f969f606f0e2ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  piezaGuardable: {fileID: 7838255371455573801, guid: 656ca72ebd9c72946bd867145922d422,
+    type: 3}
   id: 9
   idSiguiente: 3
   piezaSiguiente: Los cilindros.
   piezaExterna: 1
   puedoValidar: 0
   piezaColocada: 0
-  puedoManipularPieza: 1
   piezaFinal: 0
   posicionObjetivo: {x: -0.009819984, y: -0.29696, z: 0.2257996}
   materialesSeleccion:
   - {fileID: 2100000, guid: 7fedf1846e15ef44099bb4888249ade4, type: 2}
   - {fileID: 2100000, guid: 6ef22ed9796e48d4aa57da4ce20dfb02, type: 2}
+  - {fileID: 2100000, guid: 56742abebb286604fb50f10c1326e7bf, type: 2}
   materialDisolver: {fileID: 2100000, guid: 2c0a9381b0cb5a24f8447b61dc839aaa, type: 2}
   tiempoDisolver: 1.5
   snappsParaActivar:
@@ -400,10 +402,34 @@ MonoBehaviour:
       m_Calls: []
   m_HoverEntered:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 3162931857984609606}
+        m_TargetAssemblyTypeName: MoverPieza, Assembly-CSharp
+        m_MethodName: XREnter
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_HoverExited:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 3162931857984609606}
+        m_TargetAssemblyTypeName: MoverPieza, Assembly-CSharp
+        m_MethodName: XRExit
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_FirstSelectEntered:
     m_PersistentCalls:
       m_Calls: []

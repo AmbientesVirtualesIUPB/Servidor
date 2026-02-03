@@ -2,7 +2,8 @@ using System.Collections;
 using UnityEngine;
 
 public class MoverPieza : MonoBehaviour
-{ 
+{
+    public GuardarPieza piezaGuardable;
     public int id;
     public int idSiguiente;
     public string piezaSiguiente;
@@ -52,6 +53,7 @@ public class MoverPieza : MonoBehaviour
     private float valorDisolver;
     private bool noMover; // Para identificar si puedo o no mover la pieza
     private bool validarBrazo, derechaValidada, izquierdaValidada;
+    private bool piezaGuardadaVR;
     private MeshRenderer meshRenderer;
     private Material[] materialesOriginales;
     private Collider collider;
@@ -112,6 +114,7 @@ public class MoverPieza : MonoBehaviour
     /// </summary>
     public void OnMouseDown()
     {
+
         if (coroutine != null)
         {
             StopCoroutine(coroutine);
@@ -158,6 +161,18 @@ public class MoverPieza : MonoBehaviour
         }
     }
 
+    public void XREnter()
+    {
+        AgregarSegundoMaterial(2);
+        piezaGuardable.MostraInfo();
+    }
+
+    public void XRExit()
+    {
+        QuitarMateriales();
+        //piezaGuardable.QuitarInfo();
+    }
+
     /// <summary>
     /// Metodo incovado al momento de soltar el click sostenido de una pieza
     /// </summary>
@@ -170,6 +185,15 @@ public class MoverPieza : MonoBehaviour
 
         if (MesaMotor.singleton.mesaMotorActiva) // Validamos que estamos interactuando en la mesa de armado para poder manipular las piezas
         {
+            if (!piezaGuardadaVR)
+            {
+                InventarioUI.singleton.AgregarAlInventarioVR(this.gameObject, piezaExterna);
+                // Guardamos el ID instanciado
+                ManagerMinijuego.singleton.IDInstanciados.Add(this.GetComponent<MoverPieza>());
+
+                piezaGuardadaVR = true;
+            }
+
             validarBrazo = false; // Indicamos que ya no estamos validando el brazo
             derechaValidada = false;
             izquierdaValidada = false;
@@ -229,7 +253,6 @@ public class MoverPieza : MonoBehaviour
         collider.enabled = false;  
         DesactivarSnapp();
 
-        InventarioUI.singleton.AgregarAlInventarioVR(this.gameObject, piezaExterna);
         rb.isKinematic = true;
         mantenerRotacionInicial.validarRotacionInicial = true;
 
@@ -327,6 +350,7 @@ public class MoverPieza : MonoBehaviour
             ManagerCanvas.singleton.HabilitarBtnRotar();
             ManagerCanvas.singleton.HabilitarBtnSalir();         
             ManagerCanvas.singleton.HabilitarBtnBajarPlataforma();
+            ManagerCanvas.singleton.DeshabilitarImgPantallaBloqueoCanvasMotorVR();
         }
         ManagerMinijuego.singleton.siguienteIdColocar = idSiguiente;
         ManagerMinijuego.singleton.siguientePiezaColocar = piezaSiguiente;

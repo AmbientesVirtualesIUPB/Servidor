@@ -4,6 +4,7 @@ using UnityEngine;
 public class GuardarPieza : MonoBehaviour
 {
     public int idPieza;
+    public int idCanvasInfoPieza;
     public string nombrePiezaBoton; // Nombre para asignarle al boton de la piza
     public string nombrePieza; // Nombre completo de la pieza para el titulo
     [TextArea(3, 10)]
@@ -56,7 +57,7 @@ public class GuardarPieza : MonoBehaviour
         if (!puedoInteractuar && !ManagerCanvas.singleton.mensajeAlertaActivo)
         {
             AgregarMaterialSeleccion(); // Asignamos el material secundario
-            ManagerCanvas.singleton.ActualizarInformacionPieza(nombrePieza, descripcionPieza); // Actualizamos la informacion de la pieza en el canvas 
+            //ManagerCanvas.singleton.ActualizarInformacionPieza(nombrePieza, descripcionPieza); // Actualizamos la informacion de la pieza en el canvas 
         }     
     }
 
@@ -70,6 +71,16 @@ public class GuardarPieza : MonoBehaviour
             QuitarMaterial(); // Quitamos el material secundario
             ManagerCanvas.singleton.BorrarInformacionPieza(); // Retiramos la informacion de la pieza del canvas
         }    
+    }
+
+    public void MostraInfo()
+    {
+        ManagerCanvas.singleton.ActualizarInformacionPieza(nombrePieza, descripcionPieza, idCanvasInfoPieza); // Actualizamos la informacion de la pieza en el canvas 
+    }
+
+    public void QuitarInfo()
+    {
+        ManagerCanvas.singleton.BorrarInformacionPieza(); // Retiramos la informacion de la pieza del canvas
     }
 
     /// <summary>

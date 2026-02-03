@@ -32,11 +32,29 @@ public class ManagerCanvas : MonoBehaviour
     [InfoMessage("Este es una referencia importante, arrastrala del CanvasPrincipal", MessageTypeCustom.Warning)]
     public Button[] btnExpandir; // Referencia al boton btnSalir del canvas principal
     [InfoMessage("Este es una referencia importante, arrastrala del CanvasPrincipal", MessageTypeCustom.Warning)]
-    public TextMeshProUGUI txtTituloPieza; // Referencia al texto titulo de la pieza
+    public TextMeshProUGUI txtTituloPiezaDieselExterno; // Referencia al texto titulo de la pieza
     [InfoMessage("Este es una referencia importante, arrastrala del CanvasPrincipal", MessageTypeCustom.Warning)]
-    public TextMeshProUGUI txtDescripcionPieza; // Referencia al texto descripcion para la pieza
+    public TextMeshProUGUI txtDescripcionPiezaDieselExterno; // Referencia al texto descripcion para la pieza
+    [InfoMessage("Este es una referencia importante, arrastrala del CanvasPrincipal", MessageTypeCustom.Warning)]
+    public TextMeshProUGUI txtTituloPiezaDieselInterno; // Referencia al texto titulo de la pieza
+    [InfoMessage("Este es una referencia importante, arrastrala del CanvasPrincipal", MessageTypeCustom.Warning)]
+    public TextMeshProUGUI txtDescripcionPiezaDieselInterno; // Referencia al texto descripcion para la pieza
+    [InfoMessage("Este es una referencia importante, arrastrala del CanvasPrincipal", MessageTypeCustom.Warning)]
+    public TextMeshProUGUI txtTituloPiezaNissanExterno; // Referencia al texto titulo de la pieza
+    [InfoMessage("Este es una referencia importante, arrastrala del CanvasPrincipal", MessageTypeCustom.Warning)]
+    public TextMeshProUGUI txtDescripcionPiezaNissanExterno; // Referencia al texto descripcion para la pieza
+    [InfoMessage("Este es una referencia importante, arrastrala del CanvasPrincipal", MessageTypeCustom.Warning)]
+    public TextMeshProUGUI txtTituloPiezaNissanInterno; // Referencia al texto titulo de la pieza
+    [InfoMessage("Este es una referencia importante, arrastrala del CanvasPrincipal", MessageTypeCustom.Warning)]
+    public TextMeshProUGUI txtDescripcionPiezaNissanInterno; // Referencia al texto descripcion para la pieza
+    [InfoMessage("Este es una referencia importante, arrastrala del CanvasPrincipal", MessageTypeCustom.Warning)]
+    public TextMeshProUGUI txtTituloPista; // Referencia al texto titulo de la pieza
+    [InfoMessage("Este es una referencia importante, arrastrala del CanvasPrincipal", MessageTypeCustom.Warning)]
+    public TextMeshProUGUI txtDescripcionPista; // Referencia al texto descripcion para la pieza
     [InfoMessage("Este es una referencia importante, arrastrala del CanvasPrincipal", MessageTypeCustom.Warning)]
     public GameObject mensajeAlerta;
+    [InfoMessage("Este es una referencia importante, arrastrala del CanvasPrincipal", MessageTypeCustom.Warning)]
+    public GameObject imgBloqueoCanvasMotor;
     [InfoMessage("Este es una referencia importante, arrastrala del CanvasPrincipal", MessageTypeCustom.Warning)]
     public TextMeshProUGUI txtMensaje; // Referencia al texto que nos indica si algo esta incorrecto o el inventario esta lleno
     [TextArea(3, 4)]
@@ -109,10 +127,28 @@ public class ManagerCanvas : MonoBehaviour
     /// </summary>
     /// <param name="titulo"> Nombre tecnico de la pieza</param>
     /// <param name="descripcion"> Descripcion de para que sirve esa pieza </param>
-    public void ActualizarInformacionPieza(string titulo, string descripcion)
+    public void ActualizarInformacionPieza(string titulo, string descripcion, int idCanvas)
     {
-        txtTituloPieza.text = titulo;
-        txtDescripcionPieza.text = descripcion;
+        if (idCanvas == 0)
+        {
+            txtTituloPiezaDieselExterno.text = titulo;
+            txtDescripcionPiezaDieselExterno.text = descripcion;
+        }
+        else if (idCanvas == 1) 
+        {
+            txtTituloPiezaDieselInterno.text = titulo;
+            txtDescripcionPiezaDieselInterno.text = descripcion;
+        }
+        else if (idCanvas == 2)
+        {
+            txtTituloPiezaNissanExterno.text = titulo;
+            txtDescripcionPiezaNissanExterno.text = descripcion;
+        }
+        else if (idCanvas == 3)
+        {
+            txtTituloPiezaNissanInterno.text = titulo;
+            txtDescripcionPiezaNissanInterno.text = descripcion;
+        }
     }
 
     /// <summary>
@@ -129,8 +165,8 @@ public class ManagerCanvas : MonoBehaviour
     /// </summary>
     public void PistaSolicitada()
     {
-        txtTituloPieza.text = "Pista";
-        txtDescripcionPieza.text = pistaActual;
+        txtTituloPista.text = "Pista";
+        txtDescripcionPista.text = pistaActual;
     }
 
     /// <summary>
@@ -138,8 +174,17 @@ public class ManagerCanvas : MonoBehaviour
     /// </summary>
     public void BorrarInformacionPieza()
     {
-        txtTituloPieza.text = "";
-        txtDescripcionPieza.text = "";
+        txtTituloPiezaDieselExterno.text = "";
+        txtDescripcionPiezaDieselExterno.text = "";
+
+        txtTituloPiezaDieselInterno.text = "";
+        txtDescripcionPiezaDieselInterno.text = "";
+
+        txtTituloPiezaNissanExterno.text = "";
+        txtDescripcionPiezaNissanExterno.text = "";
+
+        txtTituloPiezaNissanInterno.text = "";
+        txtDescripcionPiezaNissanInterno.text = "";
     }
 
     /// <summary>
@@ -260,6 +305,16 @@ public class ManagerCanvas : MonoBehaviour
     }
 
 
+    public void HabilitarImgPantallaBloqueoCanvasMotorVR()
+    {
+        imgBloqueoCanvasMotor.SetActive(true);
+    }
+
+    public void DeshabilitarImgPantallaBloqueoCanvasMotorVR()
+    {
+        imgBloqueoCanvasMotor.SetActive(false);
+    }
+
     /// <summary>
     /// Para habilitar los botones de expandir donde se requiera
     /// </summary>
@@ -328,7 +383,11 @@ public class ManagerCanvas : MonoBehaviour
     public void ActivarBTNEleccionMotor()
     {
         if (!ManagerDesplazamientoMotor.singleton.desplazamientoIniciado) btnEleccionMotor.SetActive(ServidorMotores.singleton.esMecanico);
-        if (!ManagerDesplazamientoMotor.singleton.desplazamientoIniciado) btnEleccionMecanico.SetActive(EnvioDatosBD.singleton.usuario.tipo_usuario == "1");
+
+        if (EnvioDatosBD.singleton != null)
+        {
+            if (!ManagerDesplazamientoMotor.singleton.desplazamientoIniciado && EnvioDatosBD.singleton.usuario.tipo_usuario == "1") btnEleccionMecanico.SetActive(EnvioDatosBD.singleton.usuario.tipo_usuario == "1");     
+        }
     }
 
     /// <summary>
