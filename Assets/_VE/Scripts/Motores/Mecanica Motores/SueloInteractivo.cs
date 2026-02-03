@@ -240,7 +240,6 @@ public class SueloInteractivo : MonoBehaviour
                     }
                 }
 
-
                 if (mesaArmadoMotor) MesaMotor.singleton.estoyEnMesa = true;
             }
         }

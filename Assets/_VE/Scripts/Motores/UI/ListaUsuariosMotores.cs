@@ -4,7 +4,6 @@ using UnityEngine;
 public class ListaUsuariosMotores : MonoBehaviour
 {
     public BtnUsuarioLista btnMuestra;
-    public GameObject imgFondoListaUsuarios;
     public UIAutoAnimation autoAnimation;
     public GameObject btnMostrarLista;
     public bool visible;
@@ -44,19 +43,18 @@ public class ListaUsuariosMotores : MonoBehaviour
         listaUsuarios.Clear();
 
         btnMuestra.gameObject.SetActive(true);
-        imgFondoListaUsuarios.SetActive(true);
 
-        CrearBoton(EnvioDatosBD.singleton.usuario.id_usuario); //// Cambiar eventualmente
-        for (int i = 0; i < ControlUsuarios.singleton.usuarios.Count; i++)
-        {
-            string nombre = ControlUsuarios.singleton.usuarios[i].gameObject.name.Substring(12);
-            CrearBoton(nombre);
-        }
-        void CrearBoton(string _nombre)
-        {
-            btnMuestra.Inicializar(_nombre, _nombre);
-            listaUsuarios.Add(Instantiate(btnMuestra.gameObject, btnMuestra.transform.parent) as GameObject);
-        }
+        //CrearBoton(EnvioDatosBD.singleton.usuario.id_usuario); //// Cambiar eventualmente
+        //for (int i = 0; i < ControlUsuarios.singleton.usuarios.Count; i++)
+        //{
+        //    string nombre = ControlUsuarios.singleton.usuarios[i].gameObject.name.Substring(12);
+        //    CrearBoton(nombre);
+        //}
+        //void CrearBoton(string _nombre)
+        //{
+        //    btnMuestra.Inicializar(_nombre, _nombre);
+        //    listaUsuarios.Add(Instantiate(btnMuestra.gameObject, btnMuestra.transform.parent) as GameObject);
+        //}
         btnMuestra.gameObject.SetActive(false);
         autoAnimation.EntranceAnimation();
     }
@@ -64,7 +62,6 @@ public class ListaUsuariosMotores : MonoBehaviour
     public void Ocultar()
     {
         if (AudioManagerMotores.singleton != null) AudioManagerMotores.singleton.PlayEfectString("btnOmitir", 0.5f); // Ejecutamos el efecto nombrado
-        imgFondoListaUsuarios.SetActive(false);
         visible = false;
         autoAnimation.ExitAnimation();
     }
