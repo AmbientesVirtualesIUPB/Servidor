@@ -229,6 +229,7 @@ public class SueloInteractivo : MonoBehaviour
             {
                 if (!ValidarOwner(other)) return;
                 ManagerCanvas.singleton.ActivarBTNEleccionMotor();
+
             }
         }     
     }

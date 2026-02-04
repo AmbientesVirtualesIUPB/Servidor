@@ -15,7 +15,11 @@ public class ManagerCanvas : MonoBehaviour
     [InfoMessage("Este es una referencia importante, arrastrala del CanvasPrincipal", MessageTypeCustom.Warning)]
     public GameObject btnEleccionMotor; // Referencia al Menu de bienvenida del canvas principal
     [InfoMessage("Este es una referencia importante, arrastrala del CanvasPrincipal", MessageTypeCustom.Warning)]
+    public GameObject imagenBLoqueoMotor; // Referencia al Menu de bienvenida del canvas principal
+    [InfoMessage("Este es una referencia importante, arrastrala del CanvasPrincipal", MessageTypeCustom.Warning)]
     public GameObject btnEleccionMecanico; // Referencia al Menu de bienvenida del canvas principal
+    [InfoMessage("Este es una referencia importante, arrastrala del CanvasPrincipal", MessageTypeCustom.Warning)]
+    public GameObject imagenBLoqueoMecanico; // Referencia al Menu de bienvenida del canvas principal
     [InfoMessage("Este es una referencia importante, arrastrala del CanvasPrincipal", MessageTypeCustom.Warning)]
     public UIAutoAnimation menuPausa; // Referencia al Menu Pausa del canvas principal
     [InfoMessage("Este es una referencia importante, arrastrala del CanvasPrincipal", MessageTypeCustom.Warning)]
@@ -326,8 +330,15 @@ public class ManagerCanvas : MonoBehaviour
     /// </summary>
     public void ActivarBTNEleccionMotor()
     {
-        if (!ManagerDesplazamientoMotor.singleton.desplazamientoIniciado) btnEleccionMotor.SetActive(ServidorMotores.singleton.esMecanico);
-        if (!ManagerDesplazamientoMotor.singleton.desplazamientoIniciado) btnEleccionMecanico.SetActive(EnvioDatosBD.singleton.usuario.tipo_usuario == "1");
+        if (ServidorMotores.singleton.esMecanico)
+        {
+            if (!ManagerDesplazamientoMotor.singleton.desplazamientoIniciado) imagenBLoqueoMotor.SetActive(false);
+        }
+
+        if (EnvioDatosBD.singleton.usuario.tipo_usuario == "1")
+        {
+            if (!ManagerDesplazamientoMotor.singleton.desplazamientoIniciado) imagenBLoqueoMecanico.SetActive(false);
+        }     
     }
 
     /// <summary>
@@ -335,8 +346,14 @@ public class ManagerCanvas : MonoBehaviour
     /// </summary>
     public void DesactivarBTNEleccionMotor()
     {
-        btnEleccionMotor.SetActive(false);
-        btnEleccionMecanico.SetActive(false);
+        //btnEleccionMotor.SetActive(false);
+
+        imagenBLoqueoMotor.SetActive(true);
+
+        if (EnvioDatosBD.singleton.usuario.tipo_usuario == "1")
+        {
+            imagenBLoqueoMecanico.SetActive(true);
+        }    
     }
 
     public void PuedoPausarJuego()
