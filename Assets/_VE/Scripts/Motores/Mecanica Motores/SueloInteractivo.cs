@@ -244,6 +244,20 @@ public class SueloInteractivo : MonoBehaviour
             }
         }
 
+        if (mesaHerramientas)
+        {
+            if (other.CompareTag("Player"))
+            {
+                if (!ValidarOwner(other)) return;
+                moverObjeto.IniciarDesplazamientoObjeto();
+                escaladorUI.Escalar();
+                for (int i = 0; i < piezasMeson.Length; i++)
+                {
+                    piezasMeson[i].enabled = true;
+                }
+            }
+        }
+
         if (btnCambiarMotor)
         {
             if (other.CompareTag("Player"))
@@ -311,6 +325,21 @@ public class SueloInteractivo : MonoBehaviour
                     MesaMotor.singleton.estoyArmando = false;
                     botonesSalvavidasEjecutados = false;
                 }                                
+            }
+        }
+
+        if (mesaHerramientas)
+        {
+            if (other.CompareTag("Player"))
+            {
+                if (!ValidarOwner(other)) return;
+
+                moverObjeto.RetornarPosicionOriginal();
+                escaladorUI.Restaurar();
+                for (int i = 0; i < piezasMeson.Length; i++)
+                {
+                    piezasMeson[i].enabled = false;
+                }
             }
         }
 

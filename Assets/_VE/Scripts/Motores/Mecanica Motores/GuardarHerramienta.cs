@@ -52,31 +52,30 @@ public class GuardarHerramienta : MonoBehaviour
     /// <summary>
     /// Metodo incovado al momento de posar el cursor sobre un objeto con collider
     /// </summary>
-    void OnMouseEnter()
+    public void OnMouseEnter()
     {
         if (!puedoInteractuar && !ManagerCanvas.singleton.mensajeAlertaActivo)
         {
             AgregarMaterial(); // Asignamos el material secundario
-            //ManagerCanvas.singleton.ActualizarInformacionPieza(nombreHerramienta, descripcionPieza); // Actualizamos la informacion de la pieza en el canvas
+            ManagerCanvas.singleton.ActualizarInformacionHerramienta(nombreHerramienta, descripcionPieza); // Actualizamos la informacion de la pieza en el canvas
         }    
     }
 
     /// <summary>
     /// Metodo incovado al momento de sacar el cursor de un objeto con collider
     /// </summary>
-    void OnMouseExit()
+    public void OnMouseExit()
     {
         if (!puedoInteractuar)
         {
             QuitarMaterial(); // Quitamos el material secundario
-            ManagerCanvas.singleton.BorrarInformacionPieza(); // Retiramos la informacion de la pieza del canvas
         }    
     }
 
     /// <summary>
     /// Metodo incovado al momento de darle click sobre un objeto con collider
     /// </summary>
-    void OnMouseDown()
+    public void OnMouseDown()
     {
         if (!puedoInteractuar && !ManagerCanvas.singleton.mensajeAlertaActivo)
         {

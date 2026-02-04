@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8484765623502033741}
   - component: {fileID: 6746340260950811165}
   - component: {fileID: 3870914850796704723}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: TUERCA_BLOQUE05
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -150,7 +150,9 @@ GameObject:
   - component: {fileID: 7279143892663155884}
   - component: {fileID: 1024762619144164835}
   - component: {fileID: -8203594049783868604}
-  m_Layer: 7
+  - component: {fileID: 6715234173672446038}
+  - component: {fileID: 2636004750540318154}
+  m_Layer: 0
   m_Name: PAQUETE_TORNILLOS_BLOQUE_Y_CARTER
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -270,7 +272,7 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -286,6 +288,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c488d3aece86cfa499f969f606f0e2ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  piezaGuardable: {fileID: 0}
   id: 53
   idSiguiente: 42
   piezaSiguiente: El empaque de culata.
@@ -297,6 +300,7 @@ MonoBehaviour:
   materialesSeleccion:
   - {fileID: 2100000, guid: 7fedf1846e15ef44099bb4888249ade4, type: 2}
   - {fileID: 2100000, guid: 6ef22ed9796e48d4aa57da4ce20dfb02, type: 2}
+  - {fileID: 2100000, guid: 56742abebb286604fb50f10c1326e7bf, type: 2}
   materialDisolver: {fileID: 2100000, guid: d72dbe65d4f4e1c4eaf36596be4306b9, type: 2}
   tiempoDisolver: 2
   snappsParaActivar:
@@ -412,6 +416,222 @@ MonoBehaviour:
       pos: {x: 0, y: 0, z: 0}
       rot: {x: 0, y: 0, z: 0}
     datosActualizables: []
+--- !u!114 &6715234173672446038
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 730387596556961182}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 186d30c67d45e5d42ad9a1a1a205c369, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rot: {x: 0, y: 0, z: 0}
+  validarRotacionInicial: 0
+  velocidad: 5
+  tolerancia: 0.1
+--- !u!114 &2636004750540318154
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 730387596556961182}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ad34abafad169848a38072baa96cdb2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_InteractionManager: {fileID: 0}
+  m_Colliders: []
+  m_InteractionLayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_InteractionLayers:
+    m_Bits: 1
+  m_DistanceCalculationMode: 1
+  m_SelectMode: 0
+  m_FocusMode: 1
+  m_CustomReticle: {fileID: 0}
+  m_AllowGazeInteraction: 0
+  m_AllowGazeSelect: 0
+  m_OverrideGazeTimeToSelect: 0
+  m_GazeTimeToSelect: 0.5
+  m_OverrideTimeToAutoDeselectGaze: 0
+  m_TimeToAutoDeselectGaze: 3
+  m_AllowGazeAssistance: 0
+  m_FirstHoverEntered:
+    m_PersistentCalls:
+      m_Calls: []
+  m_LastHoverExited:
+    m_PersistentCalls:
+      m_Calls: []
+  m_HoverEntered:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  m_HoverExited:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  m_FirstSelectEntered:
+    m_PersistentCalls:
+      m_Calls: []
+  m_LastSelectExited:
+    m_PersistentCalls:
+      m_Calls: []
+  m_SelectEntered:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  m_SelectExited:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  m_FirstFocusEntered:
+    m_PersistentCalls:
+      m_Calls: []
+  m_LastFocusExited:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FocusEntered:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FocusExited:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Activated:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Deactivated:
+    m_PersistentCalls:
+      m_Calls: []
+  m_StartingHoverFilters: []
+  m_StartingSelectFilters: []
+  m_StartingInteractionStrengthFilters: []
+  m_OnFirstHoverEntered:
+    m_PersistentCalls:
+      m_Calls: []
+  m_OnLastHoverExited:
+    m_PersistentCalls:
+      m_Calls: []
+  m_OnHoverEntered:
+    m_PersistentCalls:
+      m_Calls: []
+  m_OnHoverExited:
+    m_PersistentCalls:
+      m_Calls: []
+  m_OnSelectEntered:
+    m_PersistentCalls:
+      m_Calls: []
+  m_OnSelectExited:
+    m_PersistentCalls:
+      m_Calls: []
+  m_OnSelectCanceled:
+    m_PersistentCalls:
+      m_Calls: []
+  m_OnActivate:
+    m_PersistentCalls:
+      m_Calls: []
+  m_OnDeactivate:
+    m_PersistentCalls:
+      m_Calls: []
+  m_AttachTransform: {fileID: 0}
+  m_SecondaryAttachTransform: {fileID: 0}
+  m_UseDynamicAttach: 0
+  m_MatchAttachPosition: 1
+  m_MatchAttachRotation: 1
+  m_SnapToColliderVolume: 1
+  m_ReinitializeDynamicAttachEverySingleGrab: 1
+  m_AttachEaseInTime: 0.15
+  m_MovementType: 2
+  m_VelocityDamping: 1
+  m_VelocityScale: 1
+  m_AngularVelocityDamping: 1
+  m_AngularVelocityScale: 1
+  m_TrackPosition: 1
+  m_SmoothPosition: 0
+  m_SmoothPositionAmount: 8
+  m_TightenPosition: 0.1
+  m_TrackRotation: 1
+  m_SmoothRotation: 0
+  m_SmoothRotationAmount: 8
+  m_TightenRotation: 0.1
+  m_TrackScale: 1
+  m_SmoothScale: 0
+  m_SmoothScaleAmount: 8
+  m_TightenScale: 0.1
+  m_ThrowOnDetach: 1
+  m_ThrowSmoothingDuration: 0.25
+  m_ThrowSmoothingCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  m_ThrowVelocityScale: 1.5
+  m_ThrowAngularVelocityScale: 1
+  m_ForceGravityOnDetach: 0
+  m_RetainTransformParent: 1
+  m_AttachPointCompatibilityMode: 0
+  m_StartingSingleGrabTransformers: []
+  m_StartingMultipleGrabTransformers: []
+  m_AddDefaultGrabTransformers: 1
 --- !u!1 &781180373929358889
 GameObject:
   m_ObjectHideFlags: 0
@@ -426,7 +646,7 @@ GameObject:
   - component: {fileID: 8810307605959752945}
   - component: {fileID: 6365462798106785905}
   - component: {fileID: 3315777788544447441}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: SPtornillosBloque (1)
   m_TagString: SnapPoint
   m_Icon: {fileID: 0}
@@ -571,7 +791,7 @@ GameObject:
   - component: {fileID: 8100343084748896582}
   - component: {fileID: 7764990905132106793}
   - component: {fileID: 5285810777443126593}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Pivote
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -675,7 +895,7 @@ GameObject:
   - component: {fileID: 5930662713017924214}
   - component: {fileID: 3874335012502679378}
   - component: {fileID: 4176129000245430930}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: TORNILLO_BLOQUE05
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -807,7 +1027,7 @@ GameObject:
   - component: {fileID: 9084749836243369423}
   - component: {fileID: 216902630632686260}
   - component: {fileID: 8924647295249498463}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Pivote
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -911,7 +1131,7 @@ GameObject:
   - component: {fileID: 2805051398155774017}
   - component: {fileID: 830486257699444998}
   - component: {fileID: 7241620354459515074}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: TORNILLO_BLOQUE03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1044,7 +1264,7 @@ GameObject:
   - component: {fileID: 3400935485833077702}
   - component: {fileID: 874780633142998572}
   - component: {fileID: 4839180514313942533}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: TUERCA_BLOQUE01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1177,7 +1397,7 @@ GameObject:
   - component: {fileID: 3162180253991914323}
   - component: {fileID: 6348444634401631132}
   - component: {fileID: 2083454003445080072}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: TUERCA_BLOQUE03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1310,7 +1530,7 @@ GameObject:
   - component: {fileID: 2311613727390062686}
   - component: {fileID: 4557689706793519150}
   - component: {fileID: 4764697879393378461}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: TORNILLO_BLOQUE04
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1442,7 +1662,7 @@ GameObject:
   - component: {fileID: 7511135509261230430}
   - component: {fileID: 9193751607511079475}
   - component: {fileID: 5846749194919593025}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Pivote
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1546,7 +1766,7 @@ GameObject:
   - component: {fileID: 406940491774539725}
   - component: {fileID: 5972873026963391178}
   - component: {fileID: 7507654993207434444}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: TUERCA_BLOQUE04
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1675,7 +1895,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4951093489030562479}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Tornillos Bloque (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1724,7 +1944,7 @@ GameObject:
   - component: {fileID: 4442225841148782055}
   - component: {fileID: 3138084802719189926}
   - component: {fileID: 5199548469435598869}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: TUERCA_BLOQUE07
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1856,7 +2076,7 @@ GameObject:
   - component: {fileID: 5099583007999998960}
   - component: {fileID: 8128773508328037561}
   - component: {fileID: 7136813873601319757}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Pivote
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1961,7 +2181,7 @@ GameObject:
   - component: {fileID: 3778333376375099297}
   - component: {fileID: 946563156533527739}
   - component: {fileID: 3474434130732650702}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: SPempaqueCulata
   m_TagString: SnapPoint
   m_Icon: {fileID: 0}
@@ -2107,7 +2327,7 @@ GameObject:
   - component: {fileID: 2666321975132758472}
   - component: {fileID: 281434674249043561}
   - component: {fileID: 8414691414805577128}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: TORNILLO_BLOQUE01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2240,7 +2460,7 @@ GameObject:
   - component: {fileID: 7871638776851611199}
   - component: {fileID: 5889656322743029621}
   - component: {fileID: 2858673419014281786}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: TORNILLO_BLOQUE06
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2373,7 +2593,7 @@ GameObject:
   - component: {fileID: 4895584641082103942}
   - component: {fileID: 1010544200702680870}
   - component: {fileID: 128775003238675016}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: TUERCA_BLOQUE02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2506,7 +2726,7 @@ GameObject:
   - component: {fileID: 7056853776507103381}
   - component: {fileID: 4917860017451809304}
   - component: {fileID: 6878975378896886165}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: TORNILLO_BLOQUE07
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2639,7 +2859,7 @@ GameObject:
   - component: {fileID: 5422891448858739396}
   - component: {fileID: 5764892535822895706}
   - component: {fileID: 5961165398476894725}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: TORNILLO_BLOQUE02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2772,7 +2992,7 @@ GameObject:
   - component: {fileID: 7726307054761205747}
   - component: {fileID: 1013058325710222391}
   - component: {fileID: 5853214000789265032}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: TUERCA_BLOQUE06
   m_TagString: Untagged
   m_Icon: {fileID: 0}

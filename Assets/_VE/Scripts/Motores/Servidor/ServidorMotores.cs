@@ -276,9 +276,9 @@ public class ServidorMotores : MonoBehaviour
 
         if (!MesaMotor.singleton.estoyArmando && !MesaMotor.singleton.estoyEnMesa)
         {
-            btnElegirMotor.SetActive(esMecanico);
+            btnElegirMotor.SetActive(false);
         }
-        
+
         if (esMecanico)
         {
             if (AudioManagerMotores.singleton != null) AudioManagerMotores.singleton.PlayEfectString("PiezaColocada2", 0.5f); // Ejecutamos el efecto nombrado
@@ -299,6 +299,7 @@ public class ServidorMotores : MonoBehaviour
                 oprimirTecla.gameObject.SetActive(false);
             }
 
+            ManagerCanvas.singleton.imagenBLoqueoMotor.SetActive(false);
             sueloInteractivoCollider.enabled = true;
             ManagerCanvas.singleton.HabilitarBtnBajarPlataforma();
             ManagerCanvas.singleton.HabilitarBtnExpandir();
@@ -306,6 +307,7 @@ public class ServidorMotores : MonoBehaviour
         else
         {
             if (AudioManagerMotores.singleton != null) AudioManagerMotores.singleton.PlayEfectString("btnOmitir", 0.5f); // Ejecutamos el efecto nombrado
+            btnElegirMotor.SetActive(true);
 
             if (!plataformaIniciada && !esMecanico)
             {

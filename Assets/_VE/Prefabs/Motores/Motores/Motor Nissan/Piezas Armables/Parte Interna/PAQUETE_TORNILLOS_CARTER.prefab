@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1185603182232797472}
   - component: {fileID: 8627200433371625436}
   - component: {fileID: 7290232893934901173}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: SPbancadasCig
   m_TagString: SnapPoint
   m_Icon: {fileID: 0}
@@ -161,7 +161,7 @@ GameObject:
   - component: {fileID: 6744868348306059357}
   - component: {fileID: 2834863330961725977}
   - component: {fileID: 964498339225441224}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: SPcartierTornillos (1)
   m_TagString: SnapPoint
   m_Icon: {fileID: 0}
@@ -307,7 +307,7 @@ GameObject:
   - component: {fileID: 3560453278178325383}
   - component: {fileID: 4401444009134958127}
   - component: {fileID: 6664084751867881541}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: TORNILLO_CARTER_INFERIO07
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -439,7 +439,7 @@ GameObject:
   - component: {fileID: 9150754980338762687}
   - component: {fileID: 1034274404463644694}
   - component: {fileID: 4664644736478540159}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Pivote (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -543,7 +543,7 @@ GameObject:
   - component: {fileID: 4109832867403638459}
   - component: {fileID: 9197661948861337539}
   - component: {fileID: 6593301753280236726}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: TORNILLO_CARTER_INFERIO03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -676,7 +676,7 @@ GameObject:
   - component: {fileID: 5722729405232138535}
   - component: {fileID: 3407222799263834602}
   - component: {fileID: 8792908594950312913}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: TORNILLO_CARTER_INFERIO04
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -809,7 +809,7 @@ GameObject:
   - component: {fileID: 8616341131517130160}
   - component: {fileID: 7816883756580816115}
   - component: {fileID: 386820168268754954}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: TORNILLO_CARTER_INFERIO05
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -938,7 +938,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1420766611968849828}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Tornillos Carter Inferior (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -980,7 +980,7 @@ GameObject:
   - component: {fileID: 100813060683426973}
   - component: {fileID: 9156308448137458378}
   - component: {fileID: 5275330069413598336}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: TORNILLO_CARTER_INFERIO01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1113,7 +1113,7 @@ GameObject:
   - component: {fileID: 8916026632444654996}
   - component: {fileID: 8402838926229131678}
   - component: {fileID: 3289460052533995464}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: TORNILLO_CARTER_INFERIO06
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1246,7 +1246,7 @@ GameObject:
   - component: {fileID: 7159681906233929717}
   - component: {fileID: 3714250673002159276}
   - component: {fileID: 7113407381088472887}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: TORNILLO_CARTER_INFERIO02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1378,7 +1378,7 @@ GameObject:
   - component: {fileID: 4504530246387744548}
   - component: {fileID: 2660796034337352347}
   - component: {fileID: 7649009237019604896}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Pivote (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1481,7 +1481,7 @@ GameObject:
   - component: {fileID: 1274062973352250468}
   - component: {fileID: 1728589906430532095}
   - component: {fileID: 7304551396989606568}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Pivote (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1589,7 +1589,9 @@ GameObject:
   - component: {fileID: 2261272559273301480}
   - component: {fileID: -3321774690862325207}
   - component: {fileID: 4881503607569224271}
-  m_Layer: 7
+  - component: {fileID: -8637137161678592615}
+  - component: {fileID: 7687135199764838142}
+  m_Layer: 0
   m_Name: PAQUETE_TORNILLOS_CARTER
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1709,7 +1711,7 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -1725,6 +1727,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c488d3aece86cfa499f969f606f0e2ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  piezaGuardable: {fileID: 0}
   id: 54
   idSiguiente: 46
   piezaSiguiente: "Las bancadas del cig\xFCe\xF1al."
@@ -1736,6 +1739,7 @@ MonoBehaviour:
   materialesSeleccion:
   - {fileID: 2100000, guid: 7fedf1846e15ef44099bb4888249ade4, type: 2}
   - {fileID: 2100000, guid: 6ef22ed9796e48d4aa57da4ce20dfb02, type: 2}
+  - {fileID: 2100000, guid: 56742abebb286604fb50f10c1326e7bf, type: 2}
   materialDisolver: {fileID: 2100000, guid: 853d2f8d58b254341931ca4dddc6ce9f, type: 2}
   tiempoDisolver: 2
   snappsParaActivar:
@@ -1843,6 +1847,222 @@ MonoBehaviour:
       pos: {x: 0, y: 0, z: 0}
       rot: {x: 0, y: 0, z: 0}
     datosActualizables: []
+--- !u!114 &-8637137161678592615
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8629055623782488026}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 186d30c67d45e5d42ad9a1a1a205c369, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rot: {x: 0, y: 0, z: 0}
+  validarRotacionInicial: 0
+  velocidad: 5
+  tolerancia: 0.1
+--- !u!114 &7687135199764838142
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8629055623782488026}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ad34abafad169848a38072baa96cdb2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_InteractionManager: {fileID: 0}
+  m_Colliders: []
+  m_InteractionLayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_InteractionLayers:
+    m_Bits: 1
+  m_DistanceCalculationMode: 1
+  m_SelectMode: 0
+  m_FocusMode: 1
+  m_CustomReticle: {fileID: 0}
+  m_AllowGazeInteraction: 0
+  m_AllowGazeSelect: 0
+  m_OverrideGazeTimeToSelect: 0
+  m_GazeTimeToSelect: 0.5
+  m_OverrideTimeToAutoDeselectGaze: 0
+  m_TimeToAutoDeselectGaze: 3
+  m_AllowGazeAssistance: 0
+  m_FirstHoverEntered:
+    m_PersistentCalls:
+      m_Calls: []
+  m_LastHoverExited:
+    m_PersistentCalls:
+      m_Calls: []
+  m_HoverEntered:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  m_HoverExited:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  m_FirstSelectEntered:
+    m_PersistentCalls:
+      m_Calls: []
+  m_LastSelectExited:
+    m_PersistentCalls:
+      m_Calls: []
+  m_SelectEntered:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  m_SelectExited:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  m_FirstFocusEntered:
+    m_PersistentCalls:
+      m_Calls: []
+  m_LastFocusExited:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FocusEntered:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FocusExited:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Activated:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Deactivated:
+    m_PersistentCalls:
+      m_Calls: []
+  m_StartingHoverFilters: []
+  m_StartingSelectFilters: []
+  m_StartingInteractionStrengthFilters: []
+  m_OnFirstHoverEntered:
+    m_PersistentCalls:
+      m_Calls: []
+  m_OnLastHoverExited:
+    m_PersistentCalls:
+      m_Calls: []
+  m_OnHoverEntered:
+    m_PersistentCalls:
+      m_Calls: []
+  m_OnHoverExited:
+    m_PersistentCalls:
+      m_Calls: []
+  m_OnSelectEntered:
+    m_PersistentCalls:
+      m_Calls: []
+  m_OnSelectExited:
+    m_PersistentCalls:
+      m_Calls: []
+  m_OnSelectCanceled:
+    m_PersistentCalls:
+      m_Calls: []
+  m_OnActivate:
+    m_PersistentCalls:
+      m_Calls: []
+  m_OnDeactivate:
+    m_PersistentCalls:
+      m_Calls: []
+  m_AttachTransform: {fileID: 0}
+  m_SecondaryAttachTransform: {fileID: 0}
+  m_UseDynamicAttach: 0
+  m_MatchAttachPosition: 1
+  m_MatchAttachRotation: 1
+  m_SnapToColliderVolume: 1
+  m_ReinitializeDynamicAttachEverySingleGrab: 1
+  m_AttachEaseInTime: 0.15
+  m_MovementType: 2
+  m_VelocityDamping: 1
+  m_VelocityScale: 1
+  m_AngularVelocityDamping: 1
+  m_AngularVelocityScale: 1
+  m_TrackPosition: 1
+  m_SmoothPosition: 0
+  m_SmoothPositionAmount: 8
+  m_TightenPosition: 0.1
+  m_TrackRotation: 1
+  m_SmoothRotation: 0
+  m_SmoothRotationAmount: 8
+  m_TightenRotation: 0.1
+  m_TrackScale: 1
+  m_SmoothScale: 0
+  m_SmoothScaleAmount: 8
+  m_TightenScale: 0.1
+  m_ThrowOnDetach: 1
+  m_ThrowSmoothingDuration: 0.25
+  m_ThrowSmoothingCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  m_ThrowVelocityScale: 1.5
+  m_ThrowAngularVelocityScale: 1
+  m_ForceGravityOnDetach: 0
+  m_RetainTransformParent: 1
+  m_AttachPointCompatibilityMode: 0
+  m_StartingSingleGrabTransformers: []
+  m_StartingMultipleGrabTransformers: []
+  m_AddDefaultGrabTransformers: 1
 --- !u!1 &9099226836741402105
 GameObject:
   m_ObjectHideFlags: 0
@@ -1855,7 +2075,7 @@ GameObject:
   - component: {fileID: 3157643991295854364}
   - component: {fileID: 7721255828132887024}
   - component: {fileID: 9047138559919612636}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Pivote
   m_TagString: Untagged
   m_Icon: {fileID: 0}

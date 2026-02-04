@@ -231,6 +231,21 @@ public class Cinematica : MonoBehaviour
         {
             ManagerCanvas.singleton.btnEleccionMotor.SetActive(EnvioDatosBD.singleton.usuario.tipo_usuario == "1");
             ListaUsuariosMotores.singleton.MostrarBotonListaUsuarios();
+
+            if (ServidorMotores.singleton.esMecanico)
+            {
+                ManagerCanvas.singleton.imagenBLoqueoMotor.SetActive(false);
+
+                if (EnvioDatosBD.singleton.usuario.tipo_usuario == "1")
+                {
+                    ManagerCanvas.singleton.imagenBLoqueoMecanico.SetActive(false);
+                }
+            }
+            else
+            {
+                ManagerCanvas.singleton.imagenBLoqueoMotor.SetActive(true);
+                ManagerCanvas.singleton.btnEleccionMotor.SetActive(true);
+            }
         }
         else
         {

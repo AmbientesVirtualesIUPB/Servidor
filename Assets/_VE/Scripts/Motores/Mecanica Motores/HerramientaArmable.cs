@@ -88,7 +88,7 @@ public class HerramientaArmable : MonoBehaviour
     /// Evento llamado automáticamente por Unity cuando se hace clic con el mouse sobre este objeto.
     /// Necesita un Collider en el objeto para funcionar.
     /// </summary>
-    private void OnMouseDown()
+    public void OnMouseDown()
     {
         // Si existe, le pasamos esta herramienta para que gestione la acción
         if (InventarioHerramientas.singleton != null && !ManagerCanvas.singleton.mensajeAlertaActivo)
@@ -111,12 +111,12 @@ public class HerramientaArmable : MonoBehaviour
     /// <summary>
     /// Metodo incovado al momento de posar el cursor sobre un objeto con collider
     /// </summary>
-    void OnMouseEnter()
+    public void OnMouseEnter()
     {
         if (!ManagerCanvas.singleton.mensajeAlertaActivo)
         {
             AgregarMaterial(); // Asignamos el material secundario
-            //ManagerCanvas.singleton.ActualizarInformacionPieza(nombreHerramienta, descripcionPieza); // Actualizamos la informacion de la pieza en el canvas   
+            ManagerCanvas.singleton.ActualizarInformacionHerramienta(nombreHerramienta, descripcionPieza); // Actualizamos la informacion de la pieza en el canvas   
         }
         
     }
@@ -124,10 +124,9 @@ public class HerramientaArmable : MonoBehaviour
     /// <summary>
     /// Metodo incovado al momento de sacar el cursor de un objeto con collider
     /// </summary>
-    void OnMouseExit()
+    public void OnMouseExit()
     {
-        QuitarMaterial(); // Quitamos el material secundario
-        ManagerCanvas.singleton.BorrarInformacionPieza(); // Retiramos la informacion de la pieza del canvas    
+        QuitarMaterial(); // Quitamos el material secundario 
     }
 
     /// <summary>

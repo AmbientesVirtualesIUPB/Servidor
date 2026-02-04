@@ -16,7 +16,11 @@ public class ManagerCanvas : MonoBehaviour
     [InfoMessage("Este es una referencia importante, arrastrala del CanvasPrincipal", MessageTypeCustom.Warning)]
     public GameObject btnEleccionMotor; // Referencia al Menu de bienvenida del canvas principal
     [InfoMessage("Este es una referencia importante, arrastrala del CanvasPrincipal", MessageTypeCustom.Warning)]
+    public GameObject imagenBLoqueoMotor; // Referencia al Menu de bienvenida del canvas principal
+    [InfoMessage("Este es una referencia importante, arrastrala del CanvasPrincipal", MessageTypeCustom.Warning)]
     public GameObject btnEleccionMecanico; // Referencia al Menu de bienvenida del canvas principal
+    [InfoMessage("Este es una referencia importante, arrastrala del CanvasPrincipal", MessageTypeCustom.Warning)]
+    public GameObject imagenBLoqueoMecanico; // Referencia al Menu de bienvenida del canvas principal
     [InfoMessage("Este es una referencia importante, arrastrala del CanvasPrincipal", MessageTypeCustom.Warning)]
     public UIAutoAnimation menuPausa; // Referencia al Menu Pausa del canvas principal
     [InfoMessage("Este es una referencia importante, arrastrala del CanvasPrincipal", MessageTypeCustom.Warning)]
@@ -51,6 +55,10 @@ public class ManagerCanvas : MonoBehaviour
     public TextMeshProUGUI txtTituloPista; // Referencia al texto titulo de la pieza
     [InfoMessage("Este es una referencia importante, arrastrala del CanvasPrincipal", MessageTypeCustom.Warning)]
     public TextMeshProUGUI txtDescripcionPista; // Referencia al texto descripcion para la pieza
+    [InfoMessage("Este es una referencia importante, arrastrala del CanvasPrincipal", MessageTypeCustom.Warning)]
+    public TextMeshProUGUI txtTituloHerramienta; // Referencia al texto titulo de la pieza
+    [InfoMessage("Este es una referencia importante, arrastrala del CanvasPrincipal", MessageTypeCustom.Warning)]
+    public TextMeshProUGUI txtDescripcionHerramienta; // Referencia al texto descripcion para la pieza
     [InfoMessage("Este es una referencia importante, arrastrala del CanvasPrincipal", MessageTypeCustom.Warning)]
     public GameObject mensajeAlerta;
     [InfoMessage("Este es una referencia importante, arrastrala del CanvasPrincipal", MessageTypeCustom.Warning)]
@@ -158,6 +166,12 @@ public class ManagerCanvas : MonoBehaviour
     public void ActualizarInformacionPista(string pistaDada)
     {
         pistaActual = pistaDada;
+    }
+
+    public void ActualizarInformacionHerramienta(string titulo, string descripcion)
+    {
+        txtTituloHerramienta.text = titulo;
+        txtDescripcionHerramienta.text = descripcion;
     }
 
     /// <summary>
@@ -382,12 +396,23 @@ public class ManagerCanvas : MonoBehaviour
     /// </summary>
     public void ActivarBTNEleccionMotor()
     {
-        if (!ManagerDesplazamientoMotor.singleton.desplazamientoIniciado) btnEleccionMotor.SetActive(ServidorMotores.singleton.esMecanico);
+        if (ServidorMotores.singleton.esMecanico)
+        {
+            if (!ManagerDesplazamientoMotor.singleton.desplazamientoIniciado) imagenBLoqueoMotor.SetActive(false);
+        }
 
         if (EnvioDatosBD.singleton != null)
         {
-            if (!ManagerDesplazamientoMotor.singleton.desplazamientoIniciado && EnvioDatosBD.singleton.usuario.tipo_usuario == "1") btnEleccionMecanico.SetActive(EnvioDatosBD.singleton.usuario.tipo_usuario == "1");     
+            if (EnvioDatosBD.singleton.usuario.tipo_usuario == "1")
+            {
+                if (!ManagerDesplazamientoMotor.singleton.desplazamientoIniciado) imagenBLoqueoMecanico.SetActive(false);
+            }
         }
+        else
+        {
+            Debug.LogError("Falta envio datos BD en la scena");
+        }
+
     }
 
     /// <summary>
@@ -395,8 +420,23 @@ public class ManagerCanvas : MonoBehaviour
     /// </summary>
     public void DesactivarBTNEleccionMotor()
     {
-        btnEleccionMotor.SetActive(false);
-        btnEleccionMecanico.SetActive(false);
+        //btnEleccionMotor.SetActive(false);
+
+        imagenBLoqueoMotor.SetActive(true);
+
+        if (EnvioDatosBD.singleton != null)
+        {
+            if (EnvioDatosBD.singleton.usuario.tipo_usuario == "1")
+            {
+                imagenBLoqueoMecanico.SetActive(true);
+            }
+
+        }
+        else
+        {
+            Debug.LogError("Falta envio datos BD en la scena");
+        }
+
     }
 
     public void PuedoPausarJuego()
