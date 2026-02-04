@@ -758,6 +758,8 @@ public class UIAutoAnimation : MonoBehaviour
         else if (component is CanvasGroup)
         {
             ((CanvasGroup)component).alpha = value;
+            ((CanvasGroup)component).interactable = value > 0.5f;
+            ((CanvasGroup)component).blocksRaycasts = value > 0.5f;
         }
     }
 

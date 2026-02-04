@@ -12,7 +12,7 @@ public class ManagerCanvas : MonoBehaviour
     [InfoMessage("Este es una referencia importante, arrastrala del CanvasPrincipal", MessageTypeCustom.Warning)]
     public EscaladorUI menuBienvenida; // Referencia al Menu de bienvenida del canvas principal
     [InfoMessage("Este es una referencia importante, arrastrala del CanvasPrincipal", MessageTypeCustom.Warning)]
-    public EscaladorUI menuEleccionMotor; // Referencia al Menu de bienvenida del canvas principal
+    public UIAutoAnimation menuEleccionMotor; // Referencia al Menu de bienvenida del canvas principal
     [InfoMessage("Este es una referencia importante, arrastrala del CanvasPrincipal", MessageTypeCustom.Warning)]
     public GameObject btnEleccionMotor; // Referencia al Menu de bienvenida del canvas principal
     [InfoMessage("Este es una referencia importante, arrastrala del CanvasPrincipal", MessageTypeCustom.Warning)]
@@ -366,7 +366,7 @@ public class ManagerCanvas : MonoBehaviour
     public void ActivarMenuEleccionMotor()
     {
         if (AudioManagerMotores.singleton != null) AudioManagerMotores.singleton.PlayEfectString("btnElegir", 0.5f); // Ejecutamos el efecto nombrado
-        menuEleccionMotor.Escalar();
+        menuEleccionMotor.EntranceAnimation();
     }
 
     /// <summary>
@@ -374,7 +374,7 @@ public class ManagerCanvas : MonoBehaviour
     /// </summary>
     public void DesactivarMenuEleccionMotor()
     {
-        menuEleccionMotor.Restaurar();
+        menuEleccionMotor.ExitAnimation();
     }
 
     /// <summary>
