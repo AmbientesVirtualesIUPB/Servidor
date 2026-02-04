@@ -20,14 +20,18 @@ public class ControladorLibelula : MonoBehaviour
     public float suavidadDireccion = 6f;
     public float distanciaLlegada = 0.35f;
 
-    [Tooltip("Tiempo entre elecciones de destinos aleatorios dentro del area.")]
+    [Tooltip("Tiempo entre elecciones de destinos aleatorios dentro del area (si no se usa la pausa, esto solo limita cambios).")]
     public Vector2 tiempoEntreDestinos = new Vector2(1.2f, 3.0f);
 
-    [Header("Decision de posarse")]
-    [Tooltip("Cada cuanto tiempo intenta decidir ir a posarse (rango aleatorio).")]
-    public Vector2 tiempoEntreIntentosPosado = new Vector2(3f, 7f);
+    [Header("Pausa al llegar a un punto (hover)")]
+    [Tooltip("Tiempo que se queda quieta al llegar a un destino en el aire.")]
+    public Vector2 tiempoPausaEnPunto = new Vector2(0.6f, 2.0f);
 
-    [Tooltip("Probabilidad de ir a posarse cuando llega el momento de decidir.")]
+    [Tooltip("Que tan rapido frena para quedar quieta en la pausa.")]
+    public float fuerzaFreno = 10f;
+
+    [Header("Decision de posarse")]
+    public Vector2 tiempoEntreIntentosPosado = new Vector2(3f, 7f);
     [Range(0f, 1f)] public float probabilidadIrAPosarse = 0.35f;
 
     [Header("Tiempo posada")]
@@ -37,7 +41,7 @@ public class ControladorLibelula : MonoBehaviour
     public bool rotarHaciaMovimiento = true;
     public float velocidadRotacion = 10f;
 
-    [Header("Efecto de aleteo / flotacion (opcional)")]
+    [Header("Efecto de flotacion (opcional)")]
     public float amplitudFlotacion = 0.12f;
     public float frecuenciaFlotacion = 2.2f;
 
@@ -54,19 +58,20 @@ public class ControladorLibelula : MonoBehaviour
     float proximaDecisionPosado;
     float finPosada;
 
+    // Pausa en aire
+    bool enPausaEnAire = false;
+    float finPausaEnAire = 0f;
+
     Transform puntoPosadoActual;
-    Vector3 posicionLocalPosado; // para mantener la posicion exacta al posarse
     float semillaFlotacion;
 
     void Start()
     {
         semillaFlotacion = Random.Range(0f, 1000f);
 
-        // Inicializar timers
         proximoCambioDestino = Time.time + Random.Range(tiempoEntreDestinos.x, tiempoEntreDestinos.y);
         proximaDecisionPosado = Time.time + Random.Range(tiempoEntreIntentosPosado.x, tiempoEntreIntentosPosado.y);
 
-        // Primer destino de vuelo
         destinoActual = PuntoAleatorioEnArea(puntoMinimoArea, puntoMaximoArea);
 
         CambiarEstado(EstadoLibelula.Volando);
@@ -79,7 +84,6 @@ public class ControladorLibelula : MonoBehaviour
             case EstadoLibelula.Volando:
                 ActualizarVolando();
                 break;
-
             case EstadoLibelula.Posada:
                 ActualizarPosada();
                 break;
@@ -91,28 +95,18 @@ public class ControladorLibelula : MonoBehaviour
     {
         if (nuevoEstado == estadoActual) return;
 
-        // Salir
         switch (estadoActual)
         {
-            case EstadoLibelula.Volando:
-                SalirVolando();
-                break;
-            case EstadoLibelula.Posada:
-                SalirPosada();
-                break;
+            case EstadoLibelula.Volando: SalirVolando(); break;
+            case EstadoLibelula.Posada: SalirPosada(); break;
         }
 
         estadoActual = nuevoEstado;
 
-        // Entrar
         switch (estadoActual)
         {
-            case EstadoLibelula.Volando:
-                EntrarVolando();
-                break;
-            case EstadoLibelula.Posada:
-                EntrarPosada();
-                break;
+            case EstadoLibelula.Volando: EntrarVolando(); break;
+            case EstadoLibelula.Posada: EntrarPosada(); break;
         }
     }
 
@@ -121,11 +115,14 @@ public class ControladorLibelula : MonoBehaviour
     {
         puntoPosadoActual = null;
 
-        // Asegurar un destino valido
+        // Reiniciar pausa
+        enPausaEnAire = false;
+        finPausaEnAire = 0f;
+
+        // Asegurar destino
         destinoActual = PuntoAleatorioEnArea(puntoMinimoArea, puntoMaximoArea);
         proximoCambioDestino = Time.time + Random.Range(tiempoEntreDestinos.x, tiempoEntreDestinos.y);
 
-        // Si vienes de posada, dale un pequeño impulso
         if (velocidadActual.sqrMagnitude < 0.01f)
             velocidadActual = Random.onUnitSphere * 0.1f;
     }
@@ -134,13 +131,32 @@ public class ControladorLibelula : MonoBehaviour
     {
         float dt = Time.deltaTime;
 
-        // Cambiar destino dentro del area cada cierto tiempo o cuando llega
-        float dist = Vector3.Distance(transform.position, destinoActual);
-
-        if (Time.time >= proximoCambioDestino || dist <= distanciaLlegada)
+        // Si esta en pausa en aire, frena y espera
+        if (enPausaEnAire)
         {
-            destinoActual = PuntoAleatorioEnArea(puntoMinimoArea, puntoMaximoArea);
-            proximoCambioDestino = Time.time + Random.Range(tiempoEntreDestinos.x, tiempoEntreDestinos.y);
+            velocidadActual = Vector3.Lerp(velocidadActual, Vector3.zero, 1f - Mathf.Exp(-fuerzaFreno * dt));
+            transform.position += velocidadActual * dt;
+
+            AplicarFlotacion(dt);
+
+            if (Time.time >= finPausaEnAire)
+            {
+                enPausaEnAire = false;
+
+                // Al terminar la pausa, elegir nuevo destino (o ir a posarse si ya habia decision)
+                if (puntoPosadoActual != null)
+                {
+                    destinoActual = puntoPosadoActual.position;
+                }
+                else
+                {
+                    destinoActual = PuntoAleatorioEnArea(puntoMinimoArea, puntoMaximoArea);
+                }
+
+                proximoCambioDestino = Time.time + Random.Range(tiempoEntreDestinos.x, tiempoEntreDestinos.y);
+            }
+
+            return;
         }
 
         // Decision de posado (frecuencia configurable)
@@ -150,65 +166,88 @@ public class ControladorLibelula : MonoBehaviour
 
             if (puntosPosado != null && puntosPosado.Length > 0 && Random.value < probabilidadIrAPosarse)
             {
-                puntoPosadoActual = puntosPosado[Random.Range(0, puntosPosado.Length)];
-                if (puntoPosadoActual != null)
+                Transform elegido = puntosPosado[Random.Range(0, puntosPosado.Length)];
+                if (elegido != null)
                 {
-                    // Destino pasa a ser el punto de posado
+                    puntoPosadoActual = elegido;
                     destinoActual = puntoPosadoActual.position;
                 }
             }
         }
 
-        // Movimiento suave hacia destino
-        Vector3 dir = (destinoActual - transform.position);
-        Vector3 velDeseada = dir.normalized * velocidadVuelo;
-
-        velocidadActual = Vector3.Lerp(velocidadActual, velDeseada, 1f - Mathf.Exp(-suavidadDireccion * dt));
-        transform.position += velocidadActual * dt;
-
-        // Flotacion vertical ligera
-        float flotacion = Mathf.Sin((Time.time + semillaFlotacion) * frecuenciaFlotacion) * amplitudFlotacion;
-        transform.position += new Vector3(0f, flotacion * dt, 0f);
-
-        // Rotacion hacia movimiento
-        if (rotarHaciaMovimiento && velocidadActual.sqrMagnitude > 0.0005f)
+        // Si NO va a posarse, puede cambiar destino por tiempo
+        if (puntoPosadoActual == null && Time.time >= proximoCambioDestino)
         {
-            Quaternion rotObjetivo = Quaternion.LookRotation(velocidadActual.normalized, Vector3.up);
-            transform.rotation = Quaternion.Slerp(transform.rotation, rotObjetivo, 1f - Mathf.Exp(-velocidadRotacion * dt));
+            destinoActual = PuntoAleatorioEnArea(puntoMinimoArea, puntoMaximoArea);
+            proximoCambioDestino = Time.time + Random.Range(tiempoEntreDestinos.x, tiempoEntreDestinos.y);
         }
 
-        // Si iba a posarse y ya llego suficientemente cerca, cambia de estado
-        if (puntoPosadoActual != null)
+        // Movimiento hacia destino
+        Vector3 dir = destinoActual - transform.position;
+        float dist = dir.magnitude;
+
+        if (dist <= distanciaLlegada)
         {
-            if (Vector3.Distance(transform.position, puntoPosadoActual.position) <= Mathf.Max(distanciaLlegada, 0.25f))
+            // Al llegar: iniciar pausa real
+            enPausaEnAire = true;
+            finPausaEnAire = Time.time + Random.Range(tiempoPausaEnPunto.x, tiempoPausaEnPunto.y);
+
+            // Si llego a un punto de posado, cambiar de estado a Posada
+            if (puntoPosadoActual != null)
             {
                 CambiarEstado(EstadoLibelula.Posada);
             }
+
+            return;
         }
+
+        Vector3 velDeseada = dir.normalized * velocidadVuelo;
+        velocidadActual = Vector3.Lerp(velocidadActual, velDeseada, 1f - Mathf.Exp(-suavidadDireccion * dt));
+        transform.position += velocidadActual * dt;
+
+        AplicarFlotacion(dt);
+
+        if (rotarHaciaMovimiento && velocidadActual.sqrMagnitude > 0.0005f)
+        {
+            Vector3 dir2 = velocidadActual.normalized;
+            dir2.y = 0f; // ignorar inclinacion vertical
+
+            if (dir2.sqrMagnitude > 0.0001f)
+            {
+                Quaternion rotObjetivo = Quaternion.LookRotation(dir2, Vector3.up);
+
+                Quaternion rotSuave = Quaternion.Slerp(
+                    transform.rotation,
+                    rotObjetivo,
+                    1f - Mathf.Exp(-velocidadRotacion * dt)
+                );
+
+                // Forzar X = 0 y Z = 0
+                Vector3 euler = rotSuave.eulerAngles;
+                euler.x = 0f;
+                euler.z = 0f;
+
+                transform.rotation = Quaternion.Euler(euler);
+            }
+        }
+
     }
 
     void SalirVolando()
     {
-        // espacio para animaciones/sonidos si luego lo necesitas
+        // espacio para animaciones/sonidos
     }
 
     // ------------------ Estado: Posada ------------------
     void EntrarPosada()
     {
-        // Si por algun motivo no hay punto, vuelve a volar
         if (puntoPosadoActual == null)
         {
             CambiarEstado(EstadoLibelula.Volando);
             return;
         }
 
-        // Congelar en el punto exacto (o con un offset pequeñito si quieres)
-        posicionLocalPosado = puntoPosadoActual.position;
-        transform.position = posicionLocalPosado;
-
-        // Mantener una rotacion agradable (mirando al frente del punto si lo deseas)
-        // transform.rotation = puntoPosadoActual.rotation;
-
+        transform.position = puntoPosadoActual.position;
         velocidadActual = Vector3.zero;
 
         finPosada = Time.time + Random.Range(tiempoPosada.x, tiempoPosada.y);
@@ -222,7 +261,6 @@ public class ControladorLibelula : MonoBehaviour
             return;
         }
 
-        // Mantenerse pegada al punto aunque el punto se mueva (opcional)
         transform.position = puntoPosadoActual.position;
 
         if (Time.time >= finPosada)
@@ -233,15 +271,23 @@ public class ControladorLibelula : MonoBehaviour
 
     void SalirPosada()
     {
-        // Al salir, programa proximas decisiones
+        // Reprogramar timers
         proximoCambioDestino = Time.time + Random.Range(tiempoEntreDestinos.x, tiempoEntreDestinos.y);
         proximaDecisionPosado = Time.time + Random.Range(tiempoEntreIntentosPosado.x, tiempoEntreIntentosPosado.y);
 
-        // Al despegar, quita referencia para que no reingrese inmediatamente
         puntoPosadoActual = null;
+
+        // Al salir de posada, puedes forzar una pausa breve si quieres:
+        // enPausaEnAire = true; finPausaEnAire = Time.time + 0.3f;
     }
 
     // ------------------ Utilidades ------------------
+    void AplicarFlotacion(float dt)
+    {
+        float flotacion = Mathf.Sin((Time.time + semillaFlotacion) * frecuenciaFlotacion) * amplitudFlotacion;
+        transform.position += new Vector3(0f, flotacion * dt, 0f);
+    }
+
     Vector3 PuntoAleatorioEnArea(Vector3 a, Vector3 b)
     {
         float minX = Mathf.Min(a.x, b.x);
@@ -263,7 +309,6 @@ public class ControladorLibelula : MonoBehaviour
     {
         if (!dibujarGizmos) return;
 
-        // Dibujar cubo del area
         Vector3 centro = (puntoMinimoArea + puntoMaximoArea) * 0.5f;
         Vector3 tamano = new Vector3(
             Mathf.Abs(puntoMaximoArea.x - puntoMinimoArea.x),
@@ -274,7 +319,6 @@ public class ControladorLibelula : MonoBehaviour
         Gizmos.color = Color.magenta;
         Gizmos.DrawWireCube(centro, tamano);
 
-        // Puntos de posado
         if (puntosPosado != null)
         {
             Gizmos.color = Color.cyan;
@@ -287,3 +331,4 @@ public class ControladorLibelula : MonoBehaviour
     }
 #endif
 }
+    
