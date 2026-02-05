@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b5b4c0e394d24e40b06b4e4b2c43f38, type: 3}
+  m_Name: Idiomas
+  m_EditorClassIdentifier: 
+  csv: {fileID: 4900000, guid: fe32d6081c3ecba4292229388f0d4328, type: 3}
+  separador: 44
+  idiomas:
+  - ESP
+  - ENG
+  - ELF
+  datosPorIdioma:
+  - idioma: ESP
+    textos:
+    - Hola
+    - Sol
+    - Luna
+    - Narsil es mi nombre
+  - idioma: ENG
+    textos:
+    - Hi
+    - Sun
+    - Moon
+    - Narsil is my name
+  - idioma: ELF
+    textos:
+    - Aiya
+    - Anar
+    - Issil
+    - Narsil Esenya
