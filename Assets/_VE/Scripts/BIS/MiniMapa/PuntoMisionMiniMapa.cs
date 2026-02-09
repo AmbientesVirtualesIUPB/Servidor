@@ -5,11 +5,12 @@ public class PuntoMisionMiniMapa : MonoBehaviour
     public Transform player;
     public Transform objetivoMision;
     public RectTransform miniMapRect;
+    public Image imagenPunto;
     public float mapMundoRadio = 50f;
     public float bordeMargen = 4f;
 
     RectTransform rect;
-    Image imagenPunto;
+    
 
     public static PuntoMisionMiniMapa singleton;
 
@@ -26,7 +27,6 @@ public class PuntoMisionMiniMapa : MonoBehaviour
         }
 
         rect = GetComponent<RectTransform>();
-        imagenPunto = GetComponent<Image>();
     }
 
     void Start()

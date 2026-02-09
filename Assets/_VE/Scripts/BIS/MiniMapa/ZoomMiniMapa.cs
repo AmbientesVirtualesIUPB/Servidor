@@ -6,8 +6,11 @@ public class ZoomMiniMapa : MonoBehaviour
     [Header("UI")]
     public RectTransform miniMapUI;
     public PuntoMisionMiniMapa puntoMisionMiniMapa;
+    public Button[] botonesTeleport;
     public Vector2 smallSize = new Vector2(200, 200);
     public Vector2 fullSize = new Vector2(900, 900);
+    public float rangoMiniMapMinimizado = 50f;
+    public float rangoMiniMapMaximizado = 203f;
 
     [Header("Cámara del minimapa")]
     public Camera miniMapCamera;
@@ -34,6 +37,14 @@ public class ZoomMiniMapa : MonoBehaviour
         originalPosition = miniMapUI.anchoredPosition;
     }
 
+    private void Start()
+    {
+        for (int i = 0; i < botonesTeleport.Length; i++)
+        {
+            botonesTeleport[i].gameObject.SetActive(false);
+        }
+    }
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.M))
@@ -48,11 +59,21 @@ public class ZoomMiniMapa : MonoBehaviour
 
         if (!estaExpandido)
         {
-            puntoMisionMiniMapa.mapMundoRadio = 50;
+            puntoMisionMiniMapa.mapMundoRadio = rangoMiniMapMinimizado;
+
+            for (int i = 0; i < botonesTeleport.Length; i++)
+            {
+                botonesTeleport[i].gameObject.SetActive(false);
+            }
         }
         else
         {
-            puntoMisionMiniMapa.mapMundoRadio = 203;
+            puntoMisionMiniMapa.mapMundoRadio = rangoMiniMapMaximizado;
+
+            for (int i = 0; i < botonesTeleport.Length; i++)
+            {
+                botonesTeleport[i].gameObject.SetActive(true);
+            }
         }
 
         if (zoomRoutine != null) StopCoroutine(zoomRoutine);
