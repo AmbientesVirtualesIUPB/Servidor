@@ -2,10 +2,9 @@ using UnityEngine;
 
 public class SeguimientoMinimapa : MonoBehaviour
 {
-
-    public Transform player;
     public float height = 50f;
 
+    Transform player;
     // Start is called before the first frame update
     void Start()
     {

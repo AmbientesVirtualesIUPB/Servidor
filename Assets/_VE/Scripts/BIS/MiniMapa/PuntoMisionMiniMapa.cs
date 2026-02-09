@@ -1,16 +1,14 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
 public class PuntoMisionMiniMapa : MonoBehaviour
 {
-    public Transform player;
     public Transform objetivoMision;
     public RectTransform miniMapRect;
-    public Image imagenPunto;
+    public GameObject imagenPunto;
     public float mapMundoRadio = 50f;
     public float bordeMargen = 4f;
 
     RectTransform rect;
-    
+    Transform player;
 
     public static PuntoMisionMiniMapa singleton;
 
@@ -38,11 +36,11 @@ public class PuntoMisionMiniMapa : MonoBehaviour
     {
         if (!player || !objetivoMision || !miniMapRect)
         {
-            imagenPunto.enabled = false;
+            imagenPunto.SetActive(false);
             return;
         }
 
-        imagenPunto.enabled = true;
+        imagenPunto.SetActive(true);
 
         // Offset mundo
         Vector3 offset = objetivoMision.position - player.position;

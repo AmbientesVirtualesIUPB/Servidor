@@ -49,7 +49,7 @@ public class TeleportUI : MonoBehaviour
     {
         // SOLO permitir si el mapa está expandido
         //if (!ZoomMiniMapa.singleton.estaExpandido) return;
-
+        ZoomMiniMapa.singleton.ToggleMiniMap();
         player.position = teleportPoint.transform.position;
     }
 }

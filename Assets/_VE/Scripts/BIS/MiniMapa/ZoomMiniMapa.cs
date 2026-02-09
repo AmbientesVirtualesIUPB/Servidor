@@ -30,8 +30,20 @@ public class ZoomMiniMapa : MonoBehaviour
 
     Coroutine zoomRoutine;
 
+    public static ZoomMiniMapa singleton;
+
     void Awake()
     {
+        // Configurar Singleton
+        if (singleton == null)
+        {
+            singleton = this;
+        }
+        else
+        {
+            Destroy(this);
+        }
+
         originalAnchorMin = miniMapUI.anchorMin;
         originalAnchorMax = miniMapUI.anchorMax;
         originalPosition = miniMapUI.anchoredPosition;
