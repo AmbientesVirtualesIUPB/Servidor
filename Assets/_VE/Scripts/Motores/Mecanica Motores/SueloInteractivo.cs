@@ -109,7 +109,7 @@ public class SueloInteractivo : MonoBehaviour
                     if (AudioManagerMotores.singleton != null) AudioManagerMotores.singleton.ActivarSonidoDinamometro(); // Detenemos el sonido loop
                 }
 
-                ControlCamaraMotor.singleton.CambiarNearCamara(0.01f);
+                //ControlCamaraMotor.singleton.CambiarNearCamara(0.01f);
                 camera.cullingMask &= ~(1 << playerLayer); // Desactivamos la layer "PLayer" de la camara para que no se vea nuestro personaje
                 canvasWorldSpace.SetActive(false);  // Desactivamos canvas visual       
                 btnSalir.onClick.AddListener(SalirInteraccion); // Agregamos el evento actual al boton
@@ -385,7 +385,7 @@ public class SueloInteractivo : MonoBehaviour
         }
 
         camera.cullingMask |= (1 << playerLayer); // Activamos de nuevo la layer "Player" para que nuestro personaje se vea     
-        ControlCamaraMotor.singleton.CambiarNearCamara(1f);
+        //ControlCamaraMotor.singleton.CambiarNearCamara(1f);
         if (canvasPrincipal != null && !esRestaurable) canvasPrincipal.SetActive(false);  // Desactivamos canvas principal   
         if (escaladorUI != null) escaladorUI.Restaurar();  // Restauramos 
 

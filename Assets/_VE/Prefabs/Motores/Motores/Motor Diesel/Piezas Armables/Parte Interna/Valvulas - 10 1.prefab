@@ -498,7 +498,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!1 &3063104930542840294
+--- !u!1 &3241768680856019770
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -506,49 +506,49 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 6418955365975276147}
-  - component: {fileID: 5340405439116521743}
-  - component: {fileID: 4565962913632678446}
-  - component: {fileID: 4137939162850960725}
-  - component: {fileID: 8943791051051763900}
-  - component: {fileID: 4736999502564943004}
+  - component: {fileID: 4558760284045759515}
+  - component: {fileID: 8545060974400007029}
+  - component: {fileID: 1984852834688669253}
+  - component: {fileID: 5217256741061705959}
+  - component: {fileID: 7447585298452658254}
+  - component: {fileID: 5151994856617318902}
   m_Layer: 7
-  m_Name: SPretenInferior
+  m_Name: SPinyector
   m_TagString: SnapPoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
---- !u!4 &6418955365975276147
+--- !u!4 &4558760284045759515
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3063104930542840294}
+  m_GameObject: {fileID: 3241768680856019770}
   serializedVersion: 2
   m_LocalRotation: {x: -0.7069834, y: -0, z: -0, w: 0.7072302}
-  m_LocalPosition: {x: -0.16199999, y: 0.21842572, z: -0.004382534}
+  m_LocalPosition: {x: -1.35, y: -0.09, z: 0.156}
   m_LocalScale: {x: 0.42280513, y: 0.052529324, z: 0.14326908}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 8234427282025851343}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &5340405439116521743
+--- !u!33 &8545060974400007029
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3063104930542840294}
+  m_GameObject: {fileID: 3241768680856019770}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &4565962913632678446
+--- !u!23 &1984852834688669253
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3063104930542840294}
+  m_GameObject: {fileID: 3241768680856019770}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -584,13 +584,13 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &4137939162850960725
+--- !u!135 &5217256741061705959
 SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3063104930542840294}
+  m_GameObject: {fileID: 3241768680856019770}
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -605,13 +605,13 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.7
   m_Center: {x: 0, y: 0, z: 0}
---- !u!54 &8943791051051763900
+--- !u!54 &7447585298452658254
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3063104930542840294}
+  m_GameObject: {fileID: 3241768680856019770}
   serializedVersion: 4
   m_Mass: 1
   m_Drag: 0
@@ -632,19 +632,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &4736999502564943004
+--- !u!114 &5151994856617318902
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3063104930542840294}
+  m_GameObject: {fileID: 3241768680856019770}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 934e722f2e5e3dd4291d8b20d864432a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  snapID: retenInferior
+  snapID: inyector
 --- !u!1 &3396129866848513966
 GameObject:
   m_ObjectHideFlags: 0
@@ -1355,7 +1355,7 @@ Transform:
   - {fileID: 6349261190243020913}
   - {fileID: 876309597213993020}
   - {fileID: 25375414886555583}
-  - {fileID: 6418955365975276147}
+  - {fileID: 4558760284045759515}
   - {fileID: 420082376067107728}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1470,8 +1470,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 36
-  idSiguiente: 29
-  piezaSiguiente: "El ret\xE9n inferior."
+  idSiguiente: 62
+  piezaSiguiente: El inyector.
   piezaExterna: 0
   puedoValidar: 0
   piezaColocada: 0
@@ -1483,13 +1483,12 @@ MonoBehaviour:
   materialDisolver: {fileID: 2100000, guid: 997d48f38ded82b478c643ae978b63ed, type: 2}
   tiempoDisolver: 1.5
   snappsParaActivar:
-  - {fileID: 3063104930542840294}
+  - {fileID: 3241768680856019770}
   snappsParaDesactivar:
   - {fileID: 8799163441126382057}
   esferaDisolver: {fileID: 1044231200531776135}
-  pista: "Para evitar fugas de aceite en la parte baja del motor, coloca el ret\xE9n
-    que sella sobre la culata Es importante no da\xF1arlo durante la instalaci\xF3n,
-    ya que cualquier fisura podr\xEDa generar p\xE9rdidas de lubricante."
+  pista: "Prueba colocando el dispositivo encargado de suministrar combustible al
+    motor, permitiendo que se mezcle correctamente con el aire para ocasionar combusti\xF3n."
   usarLimites: 1
   limiteMin: {x: -0.6, y: -0.5, z: -0.7}
   limiteMax: {x: 0.6, y: 0.1, z: 0.8}
