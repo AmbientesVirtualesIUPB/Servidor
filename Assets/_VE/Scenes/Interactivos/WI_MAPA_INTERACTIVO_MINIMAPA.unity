@@ -8,8 +8,9 @@ OcclusionCullingSettings:
     smallestOccluder: 5
     smallestHole: 0.25
     backfaceThreshold: 100
-  m_SceneGUID: 00000000000000000000000000000000
-  m_OcclusionCullingData: {fileID: 0}
+  m_SceneGUID: abde86498d0e5f240814359c3fe43c30
+  m_OcclusionCullingData: {fileID: 36300000, guid: ac051c67b62d9154f80831947521ab49,
+    type: 2}
 --- !u!104 &2
 RenderSettings:
   m_ObjectHideFlags: 0
@@ -59765,6 +59766,52 @@ Transform:
   m_Children: []
   m_Father: {fileID: 560840034}
   m_LocalEulerAnglesHint: {x: 0, y: 35.972, z: 0}
+--- !u!1 &1915350237
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1915350238}
+  - component: {fileID: 1915350239}
+  m_Layer: 0
+  m_Name: Control_Idiomas
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1915350238
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1915350237}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1011.4272, y: -267.9898, z: 417.4858}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1915350239
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1915350237}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a88854d1e147c84dba363ec36c14b9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  idioma: ESP
+  listaIdiomas: []
 --- !u!1 &1928879452
 GameObject:
   m_ObjectHideFlags: 0
@@ -81552,6 +81599,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Camera MiniMapa
       objectReference: {fileID: 0}
+    - target: {fileID: 7668309807300399227, guid: bed2f2aa2178b3b4da1921daaecacc48,
+        type: 3}
+      propertyPath: m_Layer
+      value: 31
+      objectReference: {fileID: 0}
     - target: {fileID: 8697698328229619884, guid: bed2f2aa2178b3b4da1921daaecacc48,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -81993,6 +82045,7 @@ PrefabInstance:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 1915350238}
   - {fileID: 1215433419}
   - {fileID: 1820326329}
   - {fileID: 368221849}

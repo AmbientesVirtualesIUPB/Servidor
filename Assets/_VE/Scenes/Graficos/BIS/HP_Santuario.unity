@@ -8,8 +8,9 @@ OcclusionCullingSettings:
     smallestOccluder: 5
     smallestHole: 0.25
     backfaceThreshold: 100
-  m_SceneGUID: 00000000000000000000000000000000
-  m_OcclusionCullingData: {fileID: 0}
+  m_SceneGUID: 78d4081d4aa3e6c49b7c9bbff0351305
+  m_OcclusionCullingData: {fileID: 36300000, guid: ac051c67b62d9154f80831947521ab49,
+    type: 2}
 --- !u!104 &2
 RenderSettings:
   m_ObjectHideFlags: 0
@@ -18310,7 +18311,7 @@ GameObject:
   - component: {fileID: 279919505}
   - component: {fileID: 279919504}
   - component: {fileID: 279919507}
-  m_Layer: 0
+  m_Layer: 31
   m_Name: Terrain
   m_TagString: Untagged
   m_Icon: {fileID: 0}
