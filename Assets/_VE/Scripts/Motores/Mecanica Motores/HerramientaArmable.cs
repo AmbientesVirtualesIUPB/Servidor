@@ -240,6 +240,13 @@ public class HerramientaArmable : MonoBehaviour
         componenteAcoplados = null;
     }
 
+    public void RestaurarPosicionOriginal()
+    {
+        transform.SetParent(originalParent);
+        transform.position = actualPosition;
+        transform.rotation = actualRotation;
+    }
+
     /// <summary>
     /// Metodo utilizado para asignarle el material de seleccion al momento de mover las piezas del motor
     /// </summary>

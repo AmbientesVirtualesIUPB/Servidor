@@ -643,7 +643,7 @@ Canvas:
   m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 2
-  m_Camera: {fileID: 1438255115}
+  m_Camera: {fileID: 0}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -925,12 +925,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &1299430051 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1149308138863195487, guid: a6aa18a198ecd73408e9df995a67fc57,
-    type: 3}
-  m_PrefabInstance: {fileID: 7027835193489837096}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1404356105
 GameObject:
   m_ObjectHideFlags: 0
@@ -1021,12 +1015,6 @@ RectTransform:
   m_AnchoredPosition: {x: -92.773926, y: 432.40982}
   m_SizeDelta: {x: 160, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!20 &1438255115 stripped
-Camera:
-  m_CorrespondingSourceObject: {fileID: 1739602474068323334, guid: a6aa18a198ecd73408e9df995a67fc57,
-    type: 3}
-  m_PrefabInstance: {fileID: 7027835193489837096}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1455320881
 GameObject:
   m_ObjectHideFlags: 0
@@ -2942,7 +2930,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_PlayerRoot
       value: 
-      objectReference: {fileID: 1299430051}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5634,7 +5622,6 @@ RectTransform:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
-  - {fileID: 7027835193489837096}
   - {fileID: 778304580}
   - {fileID: 72347491}
   - {fileID: 1208564353}
@@ -5644,3 +5631,4 @@ SceneRoots:
   - {fileID: 1774040752}
   - {fileID: 2314523924652294284}
   - {fileID: 719237597}
+  - {fileID: 7027835193489837096}

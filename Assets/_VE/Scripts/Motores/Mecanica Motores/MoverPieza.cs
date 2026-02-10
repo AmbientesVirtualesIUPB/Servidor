@@ -114,7 +114,7 @@ public class MoverPieza : MonoBehaviour
     /// </summary>
     public void OnMouseDown()
     {
-
+        piezaGuardable.MostraInfo();
         if (coroutine != null)
         {
             StopCoroutine(coroutine);
@@ -123,7 +123,7 @@ public class MoverPieza : MonoBehaviour
         if (MesaMotor.singleton.mesaMotorActiva && !ManagerMinijuego.singleton.minijuegoActivo) // Validamos que estamos interactuando en la mesa de armado para poder manipular las piezas
         {
             puedoValidar = false;
-
+           
             if (!ControlCamaraMotor.singleton.posicionadoArriba)
             {
                 validarBrazo = true;
@@ -183,7 +183,7 @@ public class MoverPieza : MonoBehaviour
             StopCoroutine(coroutine);
         }
 
-        if (!piezaGuardadaVR)
+        if (!piezaGuardadaVR && MesaMotor.singleton.mesaMotorActiva)
         {
             InventarioUI.singleton.AgregarAlInventarioVR(this.gameObject, piezaExterna);
             // Guardamos el ID instanciado

@@ -43,6 +43,7 @@ public class ManagerDesplazamientoMotor : MonoBehaviour
         }
     }
 
+    [ContextMenu("iniciar desplazamiento")]
     public void IniciarDesplazamiento()
     {
         if (!desplazamientoIniciado)
@@ -60,7 +61,16 @@ public class ManagerDesplazamientoMotor : MonoBehaviour
     {
         if (AudioManagerMotores.singleton != null) AudioManagerMotores.singleton.DetenerLoop(); // Detenemos el sonido loop
         if (AudioManagerMotores.singleton != null) AudioManagerMotores.singleton.PlayEfectString("MotorApagado", 0.2f); // Ejecutamos el efecto nombrado
-        if (EnvioDatosBD.singleton.usuario.tipo_usuario == "1") ManagerCanvas.singleton.imagenBLoqueoMecanico.SetActive(true);
+
+        if (EnvioDatosBD.singleton != null)
+        {
+            if (EnvioDatosBD.singleton.usuario.tipo_usuario == "1") ManagerCanvas.singleton.imagenBLoqueoMecanico.SetActive(true);       
+        }
+        else
+        {
+            Debug.LogError("Falta envioBD en la scena");
+        }
+
         if (ServidorMotores.singleton.esMecanico) ManagerCanvas.singleton.imagenBLoqueoMotor.SetActive(true);
         MesaMotor.singleton.ValidarExpansionRotacion();
         ManagerMinijuego.singleton.controlVelocidadMotor.SetActive(false);
@@ -93,7 +103,15 @@ public class ManagerDesplazamientoMotor : MonoBehaviour
 
         yield return new WaitForSeconds(6f);
 
-        if (EnvioDatosBD.singleton.usuario.tipo_usuario == "1") ManagerCanvas.singleton.imagenBLoqueoMecanico.SetActive(false);
+        if (EnvioDatosBD.singleton != null)
+        {
+            if (EnvioDatosBD.singleton.usuario.tipo_usuario == "1") ManagerCanvas.singleton.imagenBLoqueoMecanico.SetActive(false);
+        }
+        else
+        {
+            Debug.LogError("Falta envioBD en la scena");
+        }
+        
         if (ServidorMotores.singleton.esMecanico) ManagerCanvas.singleton.imagenBLoqueoMotor.SetActive(false);
         if (AudioManagerMotores.singleton != null) AudioManagerMotores.singleton.PlayEfectString("btnElegir", 0.5f); // Ejecutamos el efecto nombrado
 

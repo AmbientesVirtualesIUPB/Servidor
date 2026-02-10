@@ -86,13 +86,13 @@ public class InventarioHerramientas : MonoBehaviour
                 else
                 {
                     string texto = "No es posible acoplar esta herramienta.";
-                    ManagerCanvas.singleton.AlertarMensaje(texto);
+                    ManagerCanvas.singleton.AlertarMensajeHerramienta(texto);
                 }
             }
             else
             {
                 string texto = "Necesitas primero la base de la herramienta.";
-                ManagerCanvas.singleton.AlertarMensaje(texto);
+                ManagerCanvas.singleton.AlertarMensajeHerramienta(texto);
             }
         }
 
@@ -155,7 +155,7 @@ public class InventarioHerramientas : MonoBehaviour
     {
         for (int i = 0; i < herramientasTomadas.Count; i++)
         {
-            herramientasTomadas[i].RestaurarPosicionActual();
+            herramientasTomadas[i].RestaurarPosicionOriginal();
             herramientasTomadas[i].collider.enabled = true;
         }
         herramientasTomadas.Clear();

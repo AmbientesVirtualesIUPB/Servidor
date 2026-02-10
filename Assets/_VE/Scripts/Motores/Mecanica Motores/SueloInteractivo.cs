@@ -61,6 +61,7 @@ public class SueloInteractivo : MonoBehaviour
         plataformaAbajo = true; // indicamos que inicialmente la plataforma se encuentra abajo
     }
 
+    [ContextMenu("Iniciar plataforma VR")]
     public void IniciarPlataformaVR()
     {
         if (interactuar)
@@ -334,6 +335,11 @@ public class SueloInteractivo : MonoBehaviour
             {
                 if (!ValidarOwner(other)) return;
 
+                if (InventarioHerramientas.singleton.herramientasTomadas.Count > 0)
+                {
+                    if (InventarioHerramientas.singleton != null) InventarioHerramientas.singleton.ReactivarHerramientasTomadas();
+                }
+
                 moverObjeto.RetornarPosicionOriginal();
                 escaladorUI.Restaurar();
                 for (int i = 0; i < piezasMeson.Length; i++)
@@ -445,7 +451,7 @@ public class SueloInteractivo : MonoBehaviour
     {
         if (mesaHerramientas && InventarioHerramientas.singleton.herramientasTomadas.Count > 0)
         {
-            if (InventarioHerramientas.singleton != null) { InventarioHerramientas.singleton.ReactivarHerramientasTomadas(); }
+            if (InventarioHerramientas.singleton != null) InventarioHerramientas.singleton.ReactivarHerramientasTomadas();
             yield return new WaitForSeconds(0.5f);          
         }
         else

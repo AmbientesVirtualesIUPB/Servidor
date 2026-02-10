@@ -62,9 +62,13 @@ public class ManagerCanvas : MonoBehaviour
     [InfoMessage("Este es una referencia importante, arrastrala del CanvasPrincipal", MessageTypeCustom.Warning)]
     public GameObject mensajeAlerta;
     [InfoMessage("Este es una referencia importante, arrastrala del CanvasPrincipal", MessageTypeCustom.Warning)]
+    public GameObject mensajeAlertaHerramienta;
+    [InfoMessage("Este es una referencia importante, arrastrala del CanvasPrincipal", MessageTypeCustom.Warning)]
     public GameObject imgBloqueoCanvasMotor;
     [InfoMessage("Este es una referencia importante, arrastrala del CanvasPrincipal", MessageTypeCustom.Warning)]
     public TextMeshProUGUI txtMensaje; // Referencia al texto que nos indica si algo esta incorrecto o el inventario esta lleno
+    [InfoMessage("Este es una referencia importante, arrastrala del CanvasPrincipal", MessageTypeCustom.Warning)]
+    public TextMeshProUGUI txtMensajeHerramienta; // Referencia al texto que nos indica si algo esta incorrecto o el inventario esta lleno
     [TextArea(3, 4)]
     public string pistaActual;
 
@@ -213,6 +217,16 @@ public class ManagerCanvas : MonoBehaviour
     }
 
     /// <summary>
+    /// Para habilitar la notificacion de inventario lleno o cualquier otro mensaje de alerta
+    /// </summary>
+    public void AlertarMensajeHerramienta(string texto)
+    {
+        if (AudioManagerMotores.singleton != null) AudioManagerMotores.singleton.PlayEfectString("Error", 0.6f); // Ejecutamos el efecto nombrado
+        txtMensajeHerramienta.text = texto;
+        mensajeAlertaHerramienta.SetActive(true);
+    }
+
+    /// <summary>
     /// Para deshabilitar la notificacion de inventario lleno o cualquier otro mensaje de alerta
     /// </summary>
     public void DesactivarAlertarMensaje()
@@ -220,6 +234,15 @@ public class ManagerCanvas : MonoBehaviour
         if (AudioManagerMotores.singleton != null) AudioManagerMotores.singleton.PlayEfectString("btnResaltar2", 0.2f); // Ejecutamos el efecto nombrado
         mensajeAlerta.SetActive(false);
         mensajeAlertaActivo = false;
+    }
+
+    /// <summary>
+    /// Para deshabilitar la notificacion de inventario lleno o cualquier otro mensaje de alerta
+    /// </summary>
+    public void DesactivarAlertarMensajeHerramienta()
+    {
+        if (AudioManagerMotores.singleton != null) AudioManagerMotores.singleton.PlayEfectString("btnResaltar2", 0.2f); // Ejecutamos el efecto nombrado
+        mensajeAlertaHerramienta.SetActive(false);
     }
 
     /// <summary>
