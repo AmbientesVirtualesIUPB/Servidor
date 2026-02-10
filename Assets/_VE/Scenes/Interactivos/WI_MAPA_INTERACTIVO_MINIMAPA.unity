@@ -42871,6 +42871,80 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1229757278}
   m_CullTransparentMesh: 1
+--- !u!1001 &1233849852
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 561913590149856503, guid: 821989ffe3948a5459fe1a0c6c00be96,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -12.79
+      objectReference: {fileID: 0}
+    - target: {fileID: 561913590149856503, guid: 821989ffe3948a5459fe1a0c6c00be96,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.65
+      objectReference: {fileID: 0}
+    - target: {fileID: 561913590149856503, guid: 821989ffe3948a5459fe1a0c6c00be96,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 224.96
+      objectReference: {fileID: 0}
+    - target: {fileID: 561913590149856503, guid: 821989ffe3948a5459fe1a0c6c00be96,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 561913590149856503, guid: 821989ffe3948a5459fe1a0c6c00be96,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 561913590149856503, guid: 821989ffe3948a5459fe1a0c6c00be96,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 561913590149856503, guid: 821989ffe3948a5459fe1a0c6c00be96,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 561913590149856503, guid: 821989ffe3948a5459fe1a0c6c00be96,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 561913590149856503, guid: 821989ffe3948a5459fe1a0c6c00be96,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 561913590149856503, guid: 821989ffe3948a5459fe1a0c6c00be96,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1607214948135160689, guid: 821989ffe3948a5459fe1a0c6c00be96,
+        type: 3}
+      propertyPath: m_Name
+      value: BancoPeces (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2749175235641139001, guid: 821989ffe3948a5459fe1a0c6c00be96,
+        type: 3}
+      propertyPath: prefabPez
+      value: 
+      objectReference: {fileID: 919132149155446097, guid: 40b3729f46b97eb468c0222300a97939,
+        type: 3}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 821989ffe3948a5459fe1a0c6c00be96, type: 3}
 --- !u!1 &1237421029
 GameObject:
   m_ObjectHideFlags: 0
@@ -51194,6 +51268,74 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1599624116}
   m_CullTransparentMesh: 1
+--- !u!1001 &1599755414
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 561913590149856503, guid: 821989ffe3948a5459fe1a0c6c00be96,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 11.476817
+      objectReference: {fileID: 0}
+    - target: {fileID: 561913590149856503, guid: 821989ffe3948a5459fe1a0c6c00be96,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 3.96
+      objectReference: {fileID: 0}
+    - target: {fileID: 561913590149856503, guid: 821989ffe3948a5459fe1a0c6c00be96,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 206.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 561913590149856503, guid: 821989ffe3948a5459fe1a0c6c00be96,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 561913590149856503, guid: 821989ffe3948a5459fe1a0c6c00be96,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 561913590149856503, guid: 821989ffe3948a5459fe1a0c6c00be96,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 561913590149856503, guid: 821989ffe3948a5459fe1a0c6c00be96,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 561913590149856503, guid: 821989ffe3948a5459fe1a0c6c00be96,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 561913590149856503, guid: 821989ffe3948a5459fe1a0c6c00be96,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 561913590149856503, guid: 821989ffe3948a5459fe1a0c6c00be96,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1607214948135160689, guid: 821989ffe3948a5459fe1a0c6c00be96,
+        type: 3}
+      propertyPath: m_Name
+      value: BancoPeces
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 821989ffe3948a5459fe1a0c6c00be96, type: 3}
 --- !u!1 &1600696559
 GameObject:
   m_ObjectHideFlags: 0
@@ -81749,6 +81891,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvas MiniMapa
       objectReference: {fileID: 0}
+    - target: {fileID: 5959247282050938007, guid: 2b330905b6be76b4b80140956ecc91b7,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5959247282050938007, guid: 2b330905b6be76b4b80140956ecc91b7,
+        type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5959247282050938007, guid: 2b330905b6be76b4b80140956ecc91b7,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -199
+      objectReference: {fileID: 0}
     - target: {fileID: 6964636480341851297, guid: 2b330905b6be76b4b80140956ecc91b7,
         type: 3}
       propertyPath: miniMapCamera
@@ -81848,6 +82005,8 @@ SceneRoots:
   - {fileID: 6453380888382968735}
   - {fileID: 976089912456488464}
   - {fileID: 6001196206606378269}
+  - {fileID: 1599755414}
+  - {fileID: 1233849852}
   - {fileID: 266552998}
   - {fileID: 2133902597}
   - {fileID: 2043914016}

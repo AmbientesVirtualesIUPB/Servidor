@@ -70,7 +70,7 @@ public class ControladorBancoDePeces : MonoBehaviour
 
         for (int i = 0; i < cantidadPeces; i++)
         {
-            Vector3 posicion = PuntoAleatorioCaja(puntoMinimoSpawn, puntoMaximoSpawn);
+            Vector3 posicion = transform.position + PuntoAleatorioCaja(puntoMinimoSpawn, puntoMaximoSpawn);
             GameObject nuevoPez = Instantiate(prefabPez, posicion, Quaternion.identity, transform);
 
             DatosPez datos = new DatosPez();
@@ -180,7 +180,7 @@ public class ControladorBancoDePeces : MonoBehaviour
 #if UNITY_EDITOR
     void OnDrawGizmosSelected()
     {
-        Vector3 centro = (puntoMinimoSpawn + puntoMaximoSpawn) * 0.5f;
+        Vector3 centro = transform.position + (puntoMinimoSpawn + puntoMaximoSpawn) * 0.5f;
         Vector3 tamano = new Vector3(
             Mathf.Abs(puntoMaximoSpawn.x - puntoMinimoSpawn.x),
             Mathf.Abs(puntoMaximoSpawn.y - puntoMinimoSpawn.y),
