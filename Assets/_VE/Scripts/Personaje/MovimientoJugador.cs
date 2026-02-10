@@ -4,6 +4,7 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class MovimientoJugador : MonoBehaviour
 {
+    [HideInInspector]
     public float velocidadInicial; // Velocidad de movimiento del personaje
     public float velocidad = 2f; // Velocidad de movimiento del personaje
     public Transform camaraOrbital;  // Referencia a la cámara orbital
