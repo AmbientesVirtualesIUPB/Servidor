@@ -35,16 +35,17 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_VE/Scenes/Constructores/C_PlantillaBase.unity
     guid: 2fda4eb4a30a6364189a584a21a23510
-  - enabled: 1
-    path: Assets/_VE/Scenes/Constructores/C_Lobby.unity
-    guid: a03a37c81ba24d14da37eb0ba6eb2382
   - enabled: 0
-    path: Assets/_VE/Scenes/Graficos/BIS/HP_BIS.unity
-    guid: 81bec19dbad476d4e977deba7af51702
+    path: Assets/_VE/Scenes/Constructores/C_Lobby.unity
+    guid: dfbe8d46b73ca2c419b48f30f09f65ee
   - enabled: 1
-    path: Assets/_VE/Scenes/Interactivos/WI_MAPA_INTERACTIVO.unity
-    guid: a3910f1c345a6f74eaa92e3053382118
+    path: Assets/_VE/Scenes/Interactivos/VR_Login.unity
+    guid: 8f6a438d8bb995843946842050631dd8
   - enabled: 1
-    path: Assets/_VE/Scenes/Graficos/BIS/HP_Santuario.unity
-    guid: 78d4081d4aa3e6c49b7c9bbff0351305
-  m_configObjects: {}
+    path: Assets/_VE/Scenes/Interactivos/VR_Personalizacion.unity
+    guid: 4f911ac802acdc8488ee47edd9896f9d
+  m_configObjects:
+    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 0c743baaf857fdd4eba4502bab334a74,
+      type: 2}
+    com.unity.xr.openxr.settings4: {fileID: 11400000, guid: bf30995cc0f956745ac895ded76f03f1,
+      type: 2}

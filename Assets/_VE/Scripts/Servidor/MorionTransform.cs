@@ -110,20 +110,20 @@ public class MorionTransform : MonoBehaviour
     {
         if (morionID.GetOwner())
         {
-            if (((posAnterior - transform.localPosition).sqrMagnitude > _toleranciaPosicion ||
-            (rotAnterior - transform.localEulerAngles).sqrMagnitude > _toleranciaRotacion))
+            if (((posAnterior - transform.position).sqrMagnitude > _toleranciaPosicion ||
+            (rotAnterior - transform.eulerAngles).sqrMagnitude > _toleranciaRotacion))
             {
                 DatoActualizableTransform dat = new DatoActualizableTransform();
                 dat.id = morionID.GetID();
-                dat.pos = transform.localPosition;
-                dat.rot = transform.localEulerAngles;
+                dat.pos = transform.position;
+                dat.rot = transform.eulerAngles;
 
-                datosActualizables.datosPropios.pos = transform.localPosition;
-                datosActualizables.datosPropios.rot = transform.localEulerAngles;
+                datosActualizables.datosPropios.pos = transform.position;
+                datosActualizables.datosPropios.rot = transform.eulerAngles;
                 actualizar = true;
 
-                posAnterior = transform.localPosition;
-                rotAnterior = transform.localEulerAngles;
+                posAnterior = transform.position;
+                rotAnterior = transform.eulerAngles;
             }
         }
         else
@@ -136,8 +136,8 @@ public class MorionTransform : MonoBehaviour
 
     public void ActualizarPosicionRotacion()
     {
-        transform.localPosition = Vector3.Lerp(transform.localPosition, datosActualizables.datosPropios.pos, 0.2f);
-        transform.localEulerAngles = Vector3.Lerp(transform.localEulerAngles, datosActualizables.datosPropios.rot, 0.2f);
+        transform.position = Vector3.Lerp(transform.position, datosActualizables.datosPropios.pos, 0.2f);
+        transform.eulerAngles = Vector3.Lerp(transform.eulerAngles, datosActualizables.datosPropios.rot, 0.2f);
 
         for (int i = 0; i < datosActualizables.datosActualizables.Count; i++)
         {
