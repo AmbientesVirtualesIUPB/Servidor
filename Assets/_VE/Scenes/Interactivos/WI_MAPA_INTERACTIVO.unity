@@ -8,8 +8,9 @@ OcclusionCullingSettings:
     smallestOccluder: 5
     smallestHole: 0.25
     backfaceThreshold: 100
-  m_SceneGUID: 00000000000000000000000000000000
-  m_OcclusionCullingData: {fileID: 0}
+  m_SceneGUID: a3910f1c345a6f74eaa92e3053382118
+  m_OcclusionCullingData: {fileID: 36300000, guid: bd793bcb358784949a4ab78f9fb9208c,
+    type: 2}
 --- !u!104 &2
 RenderSettings:
   m_ObjectHideFlags: 0
@@ -28647,6 +28648,7 @@ GameObject:
   - component: {fileID: 584065275}
   - component: {fileID: 584065274}
   - component: {fileID: 584065277}
+  - component: {fileID: 584065278}
   m_Layer: 0
   m_Name: MANANGER_LIBELULAS
   m_TagString: Untagged
@@ -28740,6 +28742,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   panel: {fileID: 909389477}
   texto: {fileID: 559279823}
+--- !u!114 &584065278
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 584065271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7af99d6b41a187949afb1c1b6287132a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  txt: {fileID: 0}
+  tmp: {fileID: 0}
+  texto: 0
 --- !u!1 &607874946
 GameObject:
   m_ObjectHideFlags: 0

@@ -10,7 +10,6 @@ public class ControlIdioma : MonoBehaviour
     public TextMeshProUGUI tmp;
     public int texto;
     
-
     private void Start()
     {
         ActualizarTexto();
