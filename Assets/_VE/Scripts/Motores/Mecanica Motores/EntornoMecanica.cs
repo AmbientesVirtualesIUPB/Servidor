@@ -206,7 +206,7 @@ public class EntornoMecanica : MonoBehaviour
         {
             sueloInteractivo.IngresandoInteraccion();
         }
-
+        sueloInteractivo.canvasPrincipalVR.Escalar();
         sueloInteractivo.ActivarMovimientoJugador(movimientoJugador); // Activamos el movimiento del jugador que interactua  
         sueloInteractivo.canvasPrincipal.SetActive(true);
         plataformaPosicionadaVR = true;
@@ -292,13 +292,13 @@ public class EntornoMecanica : MonoBehaviour
         mesa.RetornarPosicionOriginal();
         if (MesaMotor.singleton.estoyArmando) ControlCamaraMotor.singleton.IniciarMovimientoCamara(posicionDeseada[0], 1.5f);
 
-        if (!MesaMotor.singleton.interaccionEjecutada)
-        {
-            for (int i = 0; i < puntosIntanciasPiezas.Length; i++)
-            {
-                puntosIntanciasPiezas[i].SetActive(false);
-            }
-        }
+        //if (!MesaMotor.singleton.interaccionEjecutada)
+        //{
+        //    for (int i = 0; i < puntosIntanciasPiezas.Length; i++)
+        //    {
+        //        puntosIntanciasPiezas[i].SetActive(false);
+        //    }
+        //}
 
         
         yield return new WaitForSeconds(1f);

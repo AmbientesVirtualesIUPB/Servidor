@@ -272,6 +272,7 @@ public class ManagerMinijuego : MonoBehaviour
         {
             ManagerCanvas.singleton.ActivarBtnAyudaPista();
             ManagerCanvas.singleton.ActivarBtnAyudaAutomatica();
+            ManagerCanvas.singleton.HabilitarBtnAyudaAutomatica();
         }
         else if (nivel == 2) // Competente
         {
@@ -293,159 +294,6 @@ public class ManagerMinijuego : MonoBehaviour
         GestionMensajesServidor.singeton.EnviarMensaje("MS07", nombreMotor);
     }
 
-    [ContextMenu("Asignar Motor")]
-    public void AsignarMotorProvisionalVR()
-    {
-        if (AudioManagerMotores.singleton != null) AudioManagerMotores.singleton.DetenerLoop(); // Detenemos el efecto 
-        if (AudioManagerMotores.singleton != null) AudioManagerMotores.singleton.PlayEfectString("btnMotor", 1f); // Ejecutamos el efecto nombrado
-        motorActivo = "Diesel";
-        controlVelocidadMotor.gameObject.SetActive(false);
-        btnEncenderMotor.gameObject.SetActive(true);
-        btnDesplazarMotor.gameObject.SetActive(false);
-        btnAplicarAceite.gameObject.SetActive(false); // desactivamos el boton para aplicar aceite
-        if (motorAnimadoActivo != null) motorAnimadoActivo.SetActive(false);
-        IDInstanciados.Clear();
-        DestruirObjetosSP();
-
-        MesaMotor.singleton.interaccionEjecutada = false;
-        ExplosionObjetosHijos.singleton.DestruirTodosLosHijos(); // Destruimos todas las piezas que se hayan colocado
-        ExplosionObjetosHijos.singleton.vibrarHasta = false;
-        MesaMotor.singleton.DesactivarHumo();
-        ManagerDesplazamientoMotor.singleton.ReinicioMotores();
-
-        for (int i = 0; i < Cinematica.singleton.luces.Length; i++)
-        {
-            Cinematica.singleton.luces[i].SetActive(true);
-        }
-
-        btnAplicarTorque.onClick.RemoveAllListeners(); // Removemos todos los listener
-        btnEncenderMotor.onClick.RemoveAllListeners(); // Removemos todos los listener
-
-        minijuegoValidadoCorrectamente = false;
-        minijuegoValidadoAceiteMal = false;
-        minijuegoTerminado = false;
-
-        ManagerCanvas.singleton.DeshabilitarBtnExpandir();
-        ManagerCanvas.singleton.HabilitarBtnRotar();
-        ManagerCanvas.singleton.DesactivarBtnAyudaPista();
-        ManagerCanvas.singleton.DesactivarBtnAyudaAutomatica();
-
-        InventarioUI.singleton.LimpiarInventario(); // Limpiamos inventario
-        minijuegoActivo = false;
-        contador = 0;
-        puntajeTorque = 0;
-        puntajeAceite = 0;
-
-        // Los que involucren tornillos
-        if (asignarTornillos.Count > 0)
-        {
-            asignarTornillos.Clear();
-        }
-
-        // Los que involucren tornillos
-        if (tornillosParaApretar.Count > 0)
-        {
-            tornillosParaApretar.Clear();
-        }
-
-        if ("Diesel" == "Diesel" && ServidorMotores.singleton.esMecanico)
-        {
-            ManagerCanvas.singleton.ActualizarInformacionPista("Antes de comenzar cualquier armado, asegúrate de tener la base sólida que soportará todo el conjunto interno del motor. Esta pieza es el punto de anclaje donde descansan los componentes principales, y sobre ella se construirá toda la estructura.");
-            siguienteIdColocar = 1;
-            siguientePiezaColocar = "La base del motor.";
-
-            // Actualizamos el panel de torques
-            txtTorques.text = "Información Torques \r\n Motor Diesel";
-            txtTorques2.text = "Prueba Motor Diesel";
-            infoTorquesDiesel.SetActive(true);
-            infoTorquesNissan.SetActive(false);
-
-            for (int i = 0; i < sueloInteractivoDiesel.Length; i++)
-            {
-                //Habilitamos piezas en cuestion
-                sueloInteractivoDieselParticulas[i].Play();
-                partesDiesel[i].ValidarYRestaurarHijos();
-                partesDiesel[i].ActivarMoverPiezaEnHijos();
-                canvasInfoPiezasDiesel[i].SetActive(true);
-
-                //Deshabilitamos lo demas
-                sueloInteractivoNissanParticulas[i].Stop();
-                sueloInteractivoNissan[i].TrigerExit();
-                canvasInfoPiezasNissan[i].SetActive(false);
-                partesNissan[i].DesactivarMoverPiezaEnHijos();
-            }
-
-            // habilitamos el minijuego cero del Diesel
-            for (int i = 0; i < cantidadMinijuegosMotorDiesel.Length; i++)
-            {
-                cantidadMinijuegosMotorDiesel[i] = false;
-            }
-            cantidadMinijuegosMotorDiesel[0] = true;
-            posicionMinijuegoActual = posicionesMinijuegoBielas[0];
-            btnAplicarTorque.onClick.AddListener(TorqueAplicadoTornillosBancada);
-
-            motorAnimadoActivo = motoresAnimados[0]; // Es igual al motor animado Diesel
-        }
-        else if ("Diesel" == "Nissan" && ServidorMotores.singleton.esMecanico)
-        {
-            ManagerCanvas.singleton.ActualizarInformacionPista("Antes de comenzar lo primero es asegurar la base donde descansarán los mecanismos internos. Este componente actúa como recipiente para el aceite y como soporte inferior del bloque, garantizando la lubricación y rigidez estructural del conjunto.");
-            siguienteIdColocar = 39;
-            siguientePiezaColocar = "El carter inferior.";
-
-            // Actualizamos el panel de torques
-            txtTorques.text = "Información Torques \r\n Motor Gasolina";
-            txtTorques2.text = "Prueba Motor Gasolina";
-            infoTorquesDiesel.SetActive(false);
-            infoTorquesNissan.SetActive(true);
-
-            for (int i = 0; i < sueloInteractivoNissan.Length; i++)
-            {
-                //Habilitamos piezas en cuestion
-                sueloInteractivoNissanParticulas[i].Play();
-                partesNissan[i].ValidarYRestaurarHijos();
-                partesNissan[i].ActivarMoverPiezaEnHijos();
-                canvasInfoPiezasNissan[i].SetActive(true);
-
-                //Deshabilitamos lo demas
-                sueloInteractivoDieselParticulas[i].Stop();
-                sueloInteractivoDiesel[i].TrigerExit();
-                canvasInfoPiezasDiesel[i].SetActive(false);
-                partesDiesel[i].DesactivarMoverPiezaEnHijos();
-            }
-
-            // habilitamos el minijuego cero del Nissan
-            for (int i = 0; i < cantidadMinijuegosMotorNissan.Length; i++)
-            {
-                cantidadMinijuegosMotorNissan[i] = false;
-            }
-            cantidadMinijuegosMotorNissan[0] = true;
-            posicionMinijuegoActual = posicionesMinijuegoCarterInferior[0];
-            btnAplicarTorque.onClick.AddListener(TorqueNissanCarterInferior);
-
-            motorAnimadoActivo = motoresAnimados[1]; // Es igual al motor animado Nissan
-        }
-        else
-        {
-            ManagerCanvas.singleton.ActualizarInformacionPista("Antes que nada deberías primero asegurarte de seleccionar uno de los dos motores para armar.");
-            // Sino selecciona ningun motor para armar
-            for (int i = 0; i < sueloInteractivoDiesel.Length; i++)
-            {
-                sueloInteractivoDiesel[i].canvasWorldSpace.SetActive(false);
-                sueloInteractivoDiesel[i].enabled = false;
-                sueloInteractivoDieselParticulas[i].Stop();
-                sueloInteractivoDiesel[i].puedoInteractuarInicialmente = false;
-                partesDiesel[i].DesactivarMoverPiezaEnHijos();
-
-                sueloInteractivoNissan[i].canvasWorldSpace.SetActive(false);
-                sueloInteractivoNissan[i].enabled = false;
-                sueloInteractivoNissanParticulas[i].Stop();
-                sueloInteractivoNissan[i].puedoInteractuarInicialmente = false;
-                partesNissan[i].DesactivarMoverPiezaEnHijos();
-
-                motoresAnimados[i].SetActive(false);
-            }
-        }
-    }
     /// <summary>
     /// Metodo invocado desde los botones de Eleccion Motor en el canvas principal
     /// </summary>
@@ -459,6 +307,7 @@ public class ManagerMinijuego : MonoBehaviour
         btnEncenderMotor.gameObject.SetActive(true);
         btnDesplazarMotor.gameObject.SetActive(false);
         btnAplicarAceite.gameObject.SetActive(false); // desactivamos el boton para aplicar aceite
+        miniJuegoAtornillar.SetActive(false);
         if (motorAnimadoActivo != null) motorAnimadoActivo.SetActive(false);
         IDInstanciados.Clear();
         DestruirObjetosSP();

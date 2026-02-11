@@ -183,7 +183,7 @@ public class MoverPieza : MonoBehaviour
             StopCoroutine(coroutine);
         }
 
-        if (!piezaGuardadaVR && MesaMotor.singleton.mesaMotorActiva)
+        if (!piezaGuardadaVR)
         {
             InventarioUI.singleton.AgregarAlInventarioVR(this.gameObject, piezaExterna);
             // Guardamos el ID instanciado
@@ -331,6 +331,7 @@ public class MoverPieza : MonoBehaviour
         {
             if (ManagerMinijuego.singleton != null)
             {
+                if (AudioManagerMotores.singleton != null) AudioManagerMotores.singleton.PlayEfectString("minijuego", 1f); // Ejecutamos el efecto nombrado 
                 ManagerMinijuego.singleton.btnAplicarAceite.interactable = true;
             }
         }

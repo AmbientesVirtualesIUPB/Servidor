@@ -212,9 +212,9 @@ public class SueloInteractivo : MonoBehaviour
 
     public void InicializarMovimientoCamara(Transform posicionObjetivo)
     {
-        if (coroutine != null) StopCoroutine(coroutine);
+        //if (coroutine != null) StopCoroutine(coroutine);
 
-        coroutine = StartCoroutine(MoverCamara(posicionObjetivo.position, posicionObjetivo.rotation, velocidadPosCamara)); // Movemos la camara 
+        //coroutine = StartCoroutine(MoverCamara(posicionObjetivo.position, posicionObjetivo.rotation, velocidadPosCamara)); // Movemos la camara 
     }
 
     private void OnTriggerEnter(Collider other)
@@ -406,7 +406,7 @@ public class SueloInteractivo : MonoBehaviour
         else
         {
             btnSalir.gameObject.SetActive(true); // Habilitamos el boton de salir
-            if (canvasPrincipal != null) canvasPrincipal.SetActive(true);  // Activamos canvas informativo
+            //if (canvasPrincipal != null) canvasPrincipal.SetActive(true);  // Activamos canvas informativo
             if (canvasPrincipalVR != null) canvasPrincipalVR.Escalar();  // Activamos canvas informativo
             if (AudioManagerMotores.singleton != null) AudioManagerMotores.singleton.PlayEfectString("btnResaltar2", 0.4f); // Ejecutamos el efecto nombrado
             if (canvasSecundario != null) canvasSecundario.SetActive(true);  // Activamos canvas informativo
@@ -493,15 +493,15 @@ public class SueloInteractivo : MonoBehaviour
             MesaMotor.singleton.mesaMotorActiva = false;
             MesaMotor.singleton.estoyArmando = false;
 
-            if (coroutine != null) StopCoroutine(coroutine);
-            coroutine = StartCoroutine(MoverCamara(posicionOriginal, rotacionOriginal, velocidadPosCamara)); // Retornamos la camara principal a la posicion original 
-            HabilitarInfoMesaArmado();
+            //if (coroutine != null) StopCoroutine(coroutine);
+            //coroutine = StartCoroutine(MoverCamara(posicionOriginal, rotacionOriginal, velocidadPosCamara)); // Retornamos la camara principal a la posicion original 
+            //HabilitarInfoMesaArmado();
         }
         else if (!mesaArmadoMotor)
         {
-            if (coroutine != null) StopCoroutine(coroutine);
-            coroutine = StartCoroutine(MoverCamara(posicionOriginal, rotacionOriginal, velocidadPosCamara)); // Retornamos la camara principal a la posicion original 
-            HabilitarInfoMesaArmado();
+            //if (coroutine != null) StopCoroutine(coroutine);
+            //coroutine = StartCoroutine(MoverCamara(posicionOriginal, rotacionOriginal, velocidadPosCamara)); // Retornamos la camara principal a la posicion original 
+            //HabilitarInfoMesaArmado();
         }
 
         if (mesaDinamometro)
@@ -510,7 +510,7 @@ public class SueloInteractivo : MonoBehaviour
         }
 
         camera.cullingMask |= (1 << playerLayer); // Activamos de nuevo la layer "Player" para que nuestro personaje se vea     
-        if (canvasPrincipal != null && !esRestaurable) canvasPrincipal.SetActive(false);  // Desactivamos canvas principal   
+        //if (canvasPrincipal != null && !esRestaurable) canvasPrincipal.SetActive(false);  // Desactivamos canvas principal   
         if (escaladorUI != null) escaladorUI.Restaurar();  // Restauramos 
 
         if (canvasSecundario != null)
@@ -533,6 +533,7 @@ public class SueloInteractivo : MonoBehaviour
     {
         if (EntornoMecanica.singleton != null)
         {
+            if (canvasPrincipalVR != null) canvasPrincipalVR.Restaurar();
             DesactivarMovimientoJugador(movimientoJugador);
             EntornoMecanica.singleton.movimientoJugador = movimientoJugador;
             colliderInicial.enabled = true;

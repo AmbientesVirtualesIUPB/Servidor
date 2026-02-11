@@ -32,6 +32,45 @@ public class ValidadorPiezasMesa : MonoBehaviour
         }
     }
 
+    public void ValidarYRestaurarHijoEspecifico(GameObject objeto)
+    {
+        if (objeto == null)
+        {
+            Debug.LogWarning("Objeto recibido es null", this);
+            return;
+        }
+
+        string nombreBuscado = objeto.name;
+
+        // Buscar datos guardados de ese hijo
+        HijoGuardado dato = hijos.Find(h => h.nombre == nombreBuscado);
+
+        if (dato == null)
+        {
+            Debug.LogWarning($"No existe configuración guardada para '{nombreBuscado}'", this);
+            return;
+        }
+
+        // Verificar si ya existe en la jerarquía
+        Transform hijoActual = transform.Find(nombreBuscado);
+
+        if (hijoActual != null) return; // Ya existe, no hacer nada
+
+
+        // Si falta lo restaura
+        if (dato.prefab == null)
+        {
+            Debug.LogWarning($"Prefab nulo para '{nombreBuscado}'", this);
+            return;
+        }
+
+        GameObject nuevoHijo = Instantiate(dato.prefab, transform);
+        nuevoHijo.name = dato.nombre;
+        nuevoHijo.transform.localPosition = dato.posicionLocal;
+        nuevoHijo.transform.localRotation = dato.rotacionLocal;
+        nuevoHijo.transform.localScale = dato.escalaLocal;
+    }
+
     [ContextMenu("Desactivar MoverPieza en hijos")]
     public void DesactivarMoverPiezaEnHijos()
     {
