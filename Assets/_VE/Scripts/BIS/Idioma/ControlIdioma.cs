@@ -6,12 +6,12 @@ using TMPro;
 
 public class ControlIdioma : MonoBehaviour
 {
-    public Text txt;
+    //public Text txt;
     public TextMeshProUGUI tmp;
     public int texto;
     
     private void Start()
-    {
+    {     
         ActualizarTexto();
         if(ControlGeneralIdioma.singleton != null)
         {
@@ -21,10 +21,10 @@ public class ControlIdioma : MonoBehaviour
 
     public void ActualizarTexto()
     {
-        if (txt != null)
+        /*if (txt != null)
         {
             txt.text = BaseDeTextosPorIdioma.configuracionDefault.ObtenerTexto(texto);
-        }
+        }*/
         if(tmp != null)
         {
             tmp.text = BaseDeTextosPorIdioma.configuracionDefault.ObtenerTexto(texto);
@@ -36,4 +36,4 @@ public class ControlIdioma : MonoBehaviour
         ActualizarTexto();
     }
 
-}
+}   
