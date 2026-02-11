@@ -49,6 +49,12 @@ namespace FIMSpace
                             TerrainCollider t = collider as TerrainCollider;
                             if (t)
                                 return new FImp_ColliderData_Terrain(t);
+                            else
+                            {
+                                CharacterController ch = collider as CharacterController;
+                                if (ch)
+                                    return new FImp_ColliderData_CharacterCapsule(ch);
+                            }
                         }
                     }
                 }
