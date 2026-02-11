@@ -51,8 +51,12 @@ public class ControlGeneralIdioma : MonoBehaviour
     {
         CambiarIdioma("ENG");
     }
-    public void Elfico()
+    public void Frances()
     {
-        CambiarIdioma("ELF");
+        CambiarIdioma("FRA");
+    }
+    public void Portuges()
+    {
+        CambiarIdioma("POR");
     }
 }
