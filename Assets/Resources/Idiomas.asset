@@ -12,28 +12,117 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b5b4c0e394d24e40b06b4e4b2c43f38, type: 3}
   m_Name: Idiomas
   m_EditorClassIdentifier: 
-  csv: {fileID: 4900000, guid: fe32d6081c3ecba4292229388f0d4328, type: 3}
+  csv: {fileID: 4900000, guid: bbed21bd24c96574d9ef2380bb24ed83, type: 3}
   separador: 44
   idiomas:
   - ESP
   - ENG
-  - ELF
+  - FRA
+  - POR
   datosPorIdioma:
   - idioma: ESP
     textos:
-    - Hola
-    - Sol
-    - Luna
-    - Narsil es mi nombre
+    - Aceptar
+    - Cancelar
+    - E para interactuar
+    - "Misi\xF3n #1"
+    - Recorre tu mundo
+    - "Han llegado informes preocupantes: el Lago Sagrado est\xE1 contaminado. El
+      agua ya no brilla como antes y la vida a su alrededor empieza a verse afectada.
+      Nuestra misi\xF3n es clara: debemos limpiarlo y restaurar su equilibrio."
+    - Recolecta las muestras de agua
+    - "Hoy empezamos la misi\xF3n de recolecci\xF3n de agua residual. Camino con
+      cuidado entre las tuber\xEDas y desag\xFCes del laboratorio, buscando los puntos
+      donde el agua usada se acumula. Cada muestra que recojo no es solo \u201Cagua
+      sucia\u201D: es informaci\xF3n sobre lo que estamos consumiendo, desperdiciando
+      y devolviendo al ambiente. Etiqueto los frascos uno por uno, anoto la hora
+      y el lugar exacto de la toma, porque despu\xE9s estos datos ser\xE1n clave
+      para el an\xE1lisis. Mientras lleno el \xFAltimo contenedor, pienso que, si
+      entendemos mejor estas aguas, tambi\xE9n podremos dise\xF1ar formas m\xE1s
+      inteligentes y responsables de usarlas en el futuro."
+    - "Misi\xF3n #1 \u2013 Recorre tu mundo"
+    - "Misi\xF3n #2 \u2013 Capturemos juntos"
+    - "Misi\xF3n #3 \u2013 Tomemos Nota"
+    - "Misi\xF3n #4 \u2013 \xBFY las estatuas?"
+    - Descripcion
+    - Objetivos
   - idioma: ENG
     textos:
-    - Hi
-    - Sun
-    - Moon
-    - Narsil is my name
-  - idioma: ELF
+    - Accept
+    - Cancel
+    - E to interact
+    - Mission #1
+    - Explore your world
+    - 'Concerning reports have arrived: the Sacred Lake is contaminated. The water
+      no longer shines as it once did, and the life around it is beginning to be
+      affected. Our mission is clear: we must clean it and restore its balance.'
+    - Collect the water samples
+    - "Today we begin the wastewater collection mission. I walk carefully among the
+      laboratory pipes and drains, looking for the points where used water accumulates.
+      Each sample I collect is not just \u201Cdirty water\u201D: it is information
+      about what we are consuming, wasting, and returning to the environment. I label
+      the bottles one by one and record the exact time and location of each collection,
+      because these data will later be key for analysis. As I fill the last container,
+      I think that if we better understand these waters, we will also be able to
+      design smarter and more responsible ways to use them in the future."
+    - "Mission #1 \u2013 Explore your world"
+    - "Mission #2 \u2013 Let\u2019s capture together"
+    - "Mission #3 \u2013 Let\u2019s take notes"
+    - "Mission #4 \u2013 And the statues?"
+    - Description
+    - Objectives
+  - idioma: FRA
     textos:
-    - Aiya
-    - Anar
-    - Issil
-    - Narsil Esenya
+    - Accepter
+    - Annuler
+    - E pour interagir
+    - "Mission n\xB01"
+    - Explore ton monde
+    - "Des rapports inqui\xE9tants sont arriv\xE9s : le Lac Sacr\xE9 est contamin\xE9.
+      L\u2019eau ne brille plus comme avant et la vie autour de lui commence \xE0
+      \xEAtre affect\xE9e. Notre mission est claire : nous devons le nettoyer et
+      r\xE9tablir son \xE9quilibre."
+    - "Collecte les \xE9chantillons d\u2019eau"
+    - "Aujourd\u2019hui, nous commen\xE7ons la mission de collecte des eaux us\xE9es.
+      Je marche avec pr\xE9caution entre les tuyaux et les canalisations du laboratoire,
+      en cherchant les points o\xF9 l\u2019eau utilis\xE9e s\u2019accumule. Chaque
+      \xE9chantillon que je recueille n\u2019est pas seulement de \xAB l\u2019eau
+      sale \xBB : c\u2019est une information sur ce que nous consommons, gaspillons
+      et rejetons dans l\u2019environnement. J\u2019\xE9tiquette les flacons un par
+      un et je note l\u2019heure ainsi que le lieu exact du pr\xE9l\xE8vement, car
+      ces donn\xE9es seront ensuite essentielles pour l\u2019analyse. En remplissant
+      le dernier conteneur, je pense que si nous comprenons mieux ces eaux, nous
+      pourrons aussi concevoir des mani\xE8res plus intelligentes et responsables
+      de les utiliser \xE0 l\u2019avenir."
+    - "Mission n\xB01 \u2013 Explore ton monde"
+    - "Mission n\xB02 \u2013 Capturons ensemble"
+    - "Mission n\xB03 \u2013 Prenons des notes"
+    - "Mission n\xB04 \u2013 Et les statues ?"
+    - Description
+    - Objectifs
+  - idioma: POR
+    textos:
+    - Aceitar
+    - Cancelar
+    - E para interagir
+    - "Miss\xE3o #1"
+    - Explore seu mundo
+    - "Relat\xF3rios preocupantes chegaram: o Lago Sagrado est\xE1 contaminado. A
+      \xE1gua j\xE1 n\xE3o brilha como antes e a vida ao seu redor come\xE7a a ser
+      afetada. Nossa miss\xE3o \xE9 clara: devemos limp\xE1-lo e restaurar seu equil\xEDbrio."
+    - "Colete as amostras de \xE1gua"
+    - "Hoje come\xE7amos a miss\xE3o de coleta de \xE1gua residual. Caminho com cuidado
+      entre as tubula\xE7\xF5es e ralos do laborat\xF3rio, procurando os pontos onde
+      a \xE1gua usada se acumula. Cada amostra que recolho n\xE3o \xE9 apenas \u201C\xE1gua
+      suja\u201D: \xE9 informa\xE7\xE3o sobre o que estamos consumindo, desperdi\xE7ando
+      e devolvendo ao ambiente. Etiqueto os frascos um por um e anoto a hora e o
+      local exato da coleta, pois esses dados ser\xE3o fundamentais para a an\xE1lise
+      posterior. Enquanto encho o \xFAltimo recipiente, penso que, se entendermos
+      melhor essas \xE1guas, tamb\xE9m poderemos projetar formas mais inteligentes
+      e respons\xE1veis de utiliz\xE1-las no futuro."
+    - "Miss\xE3o #1 \u2013 Explore seu mundo"
+    - "Miss\xE3o #2 \u2013 Vamos capturar juntos"
+    - "Miss\xE3o #3 \u2013 Vamos anotar"
+    - "Miss\xE3o #4 \u2013 E as est\xE1tuas?"
+    - "Descri\xE7\xE3o"
+    - Objetivos

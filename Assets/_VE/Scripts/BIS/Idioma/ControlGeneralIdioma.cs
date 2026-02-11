@@ -43,5 +43,16 @@ public class ControlGeneralIdioma : MonoBehaviour
         }
     }
 
-
+    public void Español() 
+    {
+        CambiarIdioma("ESP");
+    }
+    public void Ingles()
+    {
+        CambiarIdioma("ENG");
+    }
+    public void Elfico()
+    {
+        CambiarIdioma("ELF");
+    }
 }
