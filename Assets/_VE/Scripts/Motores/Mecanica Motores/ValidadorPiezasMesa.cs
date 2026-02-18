@@ -47,7 +47,6 @@ public class ValidadorPiezasMesa : MonoBehaviour
 
         if (dato == null)
         {
-            Debug.LogWarning($"No existe configuración guardada para '{nombreBuscado}'", this);
             return;
         }
 

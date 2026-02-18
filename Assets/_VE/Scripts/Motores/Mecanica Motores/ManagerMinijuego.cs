@@ -41,15 +41,21 @@ public class ManagerMinijuego : MonoBehaviour
     [InfoMessage("Este es una referencia importante, arrastrala del CanvasPrincipal", MessageTypeCustom.Warning)]
     public GameObject[] motoresAnimados; // Motores internos animados
 
+    [Header(" CONFIGURACION NISSAN ")]
     public SueloInteractivo[] sueloInteractivoNissan; // Para activar o desactivar segun el motor activo
     public ParticleSystem[] sueloInteractivoNissanParticulas; // Para activar o desactivar segun el motor activo
     public ValidadorPiezasMesa[] partesNissan; // Para reactivar las partes del motor
     public GameObject[] canvasInfoPiezasNissan;
+    public GameObject particulasGasolinaDieselPrefab; // Referencia  a las particulas que simulan la entrada de gasolina
+    GameObject particulasGasolinaDiesel; // Referencia  a las particulas que simulan la entrada de gasolina
 
+    [Header(" CONFIGURACION DIESEL ")]
     public SueloInteractivo[] sueloInteractivoDiesel; // Para activar o desactivar segun el motor activo
     public ParticleSystem[] sueloInteractivoDieselParticulas; // Para activar o desactivar segun el motor activo
     public ValidadorPiezasMesa[] partesDiesel; // Para reactivar las partes del motor
     public GameObject[] canvasInfoPiezasDiesel;
+    public GameObject particulasGasolinaNissanPrefab; // Referencia  a las particulas que simulan la entrada de gasolina
+    GameObject particulasGasolinaNissan; // Referencia  a las particulas que simulan la entrada de gasolina
 
 
     [Header("CONFIGURACION INICIAL")]
@@ -209,6 +215,17 @@ public class ManagerMinijuego : MonoBehaviour
         }
     }
 
+    public void RemoverHijoInstanciado(MoverPieza pieza)
+    {
+        for (int i = 0; i < IDInstanciados.Count; i++)
+        {
+            if (IDInstanciados[i].id == pieza.id)
+            {
+                IDInstanciados.RemoveAt(i);
+            }
+        }
+    }
+
     [ContextMenu("Validar Pieza")]
     public void ColocacionAutomaticaPieza()
     {
@@ -283,6 +300,43 @@ public class ManagerMinijuego : MonoBehaviour
             // Defiendase solo
         }
         ManagerCanvas.singleton.HabilitarBtnExpandir();
+
+        if (motorActivo == "Diesel" && ServidorMotores.singleton.esMecanico)
+        {
+            for (int i = 0; i < sueloInteractivoDiesel.Length; i++)
+            {
+                //Habilitamos piezas en cuestion
+                sueloInteractivoDieselParticulas[i].Play();
+                partesDiesel[i].ValidarYRestaurarHijos();
+                partesDiesel[i].ActivarMoverPiezaEnHijos();
+                canvasInfoPiezasDiesel[i].SetActive(true);
+
+                //Deshabilitamos lo demas
+                sueloInteractivoNissanParticulas[i].Stop();
+                sueloInteractivoNissan[i].TrigerExit();
+                canvasInfoPiezasNissan[i].SetActive(false);
+                partesNissan[i].DesactivarMoverPiezaEnHijos();
+            }
+        }
+        else if (motorActivo == "Nissan" && ServidorMotores.singleton.esMecanico)
+        {
+
+            for (int i = 0; i < sueloInteractivoNissan.Length; i++)
+            {
+                //Habilitamos piezas en cuestion
+                sueloInteractivoNissanParticulas[i].Play();
+                partesNissan[i].ValidarYRestaurarHijos();
+                partesNissan[i].ActivarMoverPiezaEnHijos();
+                canvasInfoPiezasNissan[i].SetActive(true);
+
+                //Deshabilitamos lo demas
+                sueloInteractivoDieselParticulas[i].Stop();
+                sueloInteractivoDiesel[i].TrigerExit();
+                canvasInfoPiezasDiesel[i].SetActive(false);
+                partesDiesel[i].DesactivarMoverPiezaEnHijos();
+            }
+
+        }
     }
 
     /// <summary>
@@ -311,6 +365,7 @@ public class ManagerMinijuego : MonoBehaviour
         if (motorAnimadoActivo != null) motorAnimadoActivo.SetActive(false);
         IDInstanciados.Clear();
         DestruirObjetosSP();
+        DesactivarParticulasAceite();
 
         MesaMotor.singleton.interaccionEjecutada = false;
         ExplosionObjetosHijos.singleton.DestruirTodosLosHijos(); // Destruimos todas las piezas que se hayan colocado
@@ -365,20 +420,20 @@ public class ManagerMinijuego : MonoBehaviour
             infoTorquesDiesel.SetActive(true);
             infoTorquesNissan.SetActive(false);
 
-            for (int i = 0; i < sueloInteractivoDiesel.Length; i++)
-            {
-                //Habilitamos piezas en cuestion
-                sueloInteractivoDieselParticulas[i].Play();
-                partesDiesel[i].ValidarYRestaurarHijos();
-                partesDiesel[i].ActivarMoverPiezaEnHijos();
-                canvasInfoPiezasDiesel[i].SetActive(true);
+            //for (int i = 0; i < sueloInteractivoDiesel.Length; i++)
+            //{
+            //    //Habilitamos piezas en cuestion
+            //    sueloInteractivoDieselParticulas[i].Play();
+            //    partesDiesel[i].ValidarYRestaurarHijos();
+            //    partesDiesel[i].ActivarMoverPiezaEnHijos();
+            //    canvasInfoPiezasDiesel[i].SetActive(true);
 
-                //Deshabilitamos lo demas
-                sueloInteractivoNissanParticulas[i].Stop();
-                sueloInteractivoNissan[i].TrigerExit();                         
-                canvasInfoPiezasNissan[i].SetActive(false);
-                partesNissan[i].DesactivarMoverPiezaEnHijos();
-            }
+            //    //Deshabilitamos lo demas
+            //    sueloInteractivoNissanParticulas[i].Stop();
+            //    sueloInteractivoNissan[i].TrigerExit();
+            //    canvasInfoPiezasNissan[i].SetActive(false);
+            //    partesNissan[i].DesactivarMoverPiezaEnHijos();
+            //}
 
             // habilitamos el minijuego cero del Diesel
             for (int i = 0; i < cantidadMinijuegosMotorDiesel.Length; i++)
@@ -403,20 +458,20 @@ public class ManagerMinijuego : MonoBehaviour
             infoTorquesDiesel.SetActive(false);
             infoTorquesNissan.SetActive(true);
 
-            for (int i = 0; i < sueloInteractivoNissan.Length; i++)
-            {
-                //Habilitamos piezas en cuestion
-                sueloInteractivoNissanParticulas[i].Play();
-                partesNissan[i].ValidarYRestaurarHijos();
-                partesNissan[i].ActivarMoverPiezaEnHijos();
-                canvasInfoPiezasNissan[i].SetActive(true);
+            //for (int i = 0; i < sueloInteractivoNissan.Length; i++)
+            //{
+            //    //Habilitamos piezas en cuestion
+            //    sueloInteractivoNissanParticulas[i].Play();
+            //    partesNissan[i].ValidarYRestaurarHijos();
+            //    partesNissan[i].ActivarMoverPiezaEnHijos();
+            //    canvasInfoPiezasNissan[i].SetActive(true);
 
-                //Deshabilitamos lo demas
-                sueloInteractivoDieselParticulas[i].Stop();
-                sueloInteractivoDiesel[i].TrigerExit();         
-                canvasInfoPiezasDiesel[i].SetActive(false);
-                partesDiesel[i].DesactivarMoverPiezaEnHijos();
-            }
+            //    //Deshabilitamos lo demas
+            //    sueloInteractivoDieselParticulas[i].Stop();
+            //    sueloInteractivoDiesel[i].TrigerExit();
+            //    canvasInfoPiezasDiesel[i].SetActive(false);
+            //    partesDiesel[i].DesactivarMoverPiezaEnHijos();
+            //}
 
             // habilitamos el minijuego cero del Nissan
             for (int i = 0; i < cantidadMinijuegosMotorNissan.Length; i++)
@@ -866,12 +921,53 @@ public class ManagerMinijuego : MonoBehaviour
         btnDesplazarMotor.gameObject.SetActive(true);
         motorAnimadoActivo.SetActive(true);
 
+        CrearParticulasAceite();
+        ActivarParticulasAceite();
+
         // Desactivamos piezas internas
         ExplosionObjetosHijos.singleton.DesactivarHijos(ExplosionObjetosHijos.singleton.objetosPadres[1]);
         ExplosionObjetosHijos.singleton.DesactivarHijos(ExplosionObjetosHijos.singleton.objetosPadres[3]);
     }
 
-    
+    public void CrearParticulasAceite()
+    {
+        if (motorActivo == "Diesel")
+        {
+            GameObject nuevo = Instantiate(particulasGasolinaDieselPrefab, MesaMotor.singleton.rotadorPiezas[0].transform);
+            particulasGasolinaDiesel = nuevo;
+        }
+        else if (motorActivo == "Nissan")
+        {
+            GameObject nuevo = Instantiate(particulasGasolinaNissanPrefab, MesaMotor.singleton.rotadorPiezas[0].transform);
+            particulasGasolinaNissan = nuevo;
+        }
+    }
+
+    public void ActivarParticulasAceite()
+    {
+        if (motorActivo == "Diesel")
+        {
+            particulasGasolinaDiesel.SetActive(true);
+        }
+        else if (motorActivo == "Nissan")
+        {
+            particulasGasolinaNissan.SetActive(true);
+        }
+    }
+
+    public void DesactivarParticulasAceite()
+    {
+        if (motorActivo == "Diesel" && particulasGasolinaDiesel != null)
+        {
+            particulasGasolinaDiesel.SetActive(false);
+        }
+        else if (motorActivo == "Nissan" && particulasGasolinaNissan != null)
+        {
+            particulasGasolinaNissan.SetActive(false);
+        }
+    }
+
+
     public void TorqueAplicadoTornillosBancada()
     {
         if (coroutine != null)

@@ -94,7 +94,7 @@ public class MoverPieza : MonoBehaviour
             {
                 derechaValidada = true;
                 izquierdaValidada = false;
-                ManagerBrazos.singleton.AsignarTargetDerecho(this.transform, esferaDisolver); // Le asignamos este transform como target a los brazos
+                //ManagerBrazos.singleton.AsignarTargetDerecho(this.transform, esferaDisolver); // Le asignamos este transform como target a los brazos
 
                 GestionMensajesServidor.singeton.EnviarMensaje("MS03", id.ToString());
             }
@@ -102,7 +102,7 @@ public class MoverPieza : MonoBehaviour
             {
                 izquierdaValidada = true;
                 derechaValidada = false;
-                ManagerBrazos.singleton.AsignarTargetIzquierdo(this.transform, esferaDisolver); // Le asignamos este transform como target a los brazos 
+                //ManagerBrazos.singleton.AsignarTargetIzquierdo(this.transform, esferaDisolver); // Le asignamos este transform como target a los brazos 
 
                 GestionMensajesServidor.singeton.EnviarMensaje("MS04", id.ToString());
             }

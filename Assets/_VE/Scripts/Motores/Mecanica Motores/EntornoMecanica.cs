@@ -199,6 +199,11 @@ public class EntornoMecanica : MonoBehaviour
             if (MesaMotor.singleton != null && ManagerMinijuego.singleton.minijuegoValidadoAceiteMal) MesaMotor.singleton.ActivarHumo();
         }
 
+        if (ManagerMinijuego.singleton.minijuegoTerminado && ManagerMinijuego.singleton.minijuegoValidadoCorrectamente)
+        {
+            ManagerMinijuego.singleton.ActivarParticulasAceite();
+        }
+
         if (!noAbroYo) ControlCamaraMotor.singleton.IniciarMovimientoCamara(posicionDeseada[2], 1);
 
 
@@ -229,7 +234,12 @@ public class EntornoMecanica : MonoBehaviour
             if (ManagerMinijuego.singleton != null && ManagerMinijuego.singleton.motorAnimadoActivo != null && !ManagerDesplazamientoMotor.singleton.desplazamientoEjecutado) ManagerMinijuego.singleton.motorAnimadoActivo.SetActive(false); // Desactivamos motor animado antes de expandir
             if (MesaMotor.singleton != null) MesaMotor.singleton.DesactivarHumo();
         }
-           
+
+        if (ManagerMinijuego.singleton.minijuegoTerminado && ManagerMinijuego.singleton.minijuegoValidadoCorrectamente)
+        {
+            ManagerMinijuego.singleton.DesactivarParticulasAceite();
+        }
+
         for (int i = 0; i < meshBrazoMecanico.Length; i++)
         {
             meshBrazoMecanico[i].enabled = false;

@@ -83,6 +83,8 @@ public class MesaMotor : MonoBehaviour
 
         yield return new WaitForSeconds(1);
 
+        ExplosionObjetosHijos.singleton.DesactivarMorionesEnHijos();
+        GestionMensajesServidor.singeton.EnviarMensaje("MS11", "Morions transform desactivados");
         ExplosionObjetosHijos.singleton.ExplotarTodo();
 
         yield return new WaitForSeconds(ExplosionObjetosHijos.singleton.duracionVibracion);

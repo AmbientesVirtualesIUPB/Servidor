@@ -30,6 +30,7 @@ public class SueloInteractivo : MonoBehaviour
     public bool mesaArmadoMotor; // Para validar si es el suelo interactivo de la mesa de armado, deberia ir activa en el sueloInteractivoArmadoMotor
     public bool mesaHerramientas; // Para validar si es el suelo interactivo de la mesa de herramientas, deberia ir activa en el SueloInteractivo Porta Herramientas
     public bool mesaDinamometro;
+    public bool noInteractuar;
 
     public bool puedoInteractuarInicialmente;
     private DynamicMoveProvider movimientoJugador; // Para guardar la referencia del movimiento del jugador
@@ -219,54 +220,57 @@ public class SueloInteractivo : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (puedoInteractuarInicialmente)
+        if (!noInteractuar)
         {
-            if (other.CompareTag("Player"))
+            if (puedoInteractuarInicialmente)
             {
-                if (!ValidarOwner(other)) return;
-
-                interactuar = true; // Indicamos que podemos interactuar
-
-                if (canvasPrincipalVR != null)
+                if (other.CompareTag("Player"))
                 {
-                    if (colliderSecundario.enabled == true && EntornoMecanica.singleton.plataformaPosicionadaVR)
-                    {
-                        if (AudioManagerMotores.singleton != null) AudioManagerMotores.singleton.PlayEfectString("btnResaltar2", 0.4f); // Ejecutamos el efecto nombrado
-                        canvasPrincipalVR.Escalar();
-                    }
-                    else if (colliderInicial.enabled == true && !EntornoMecanica.singleton.plataformaPosicionadaVR)
-                    {
-                        if (AudioManagerMotores.singleton != null) AudioManagerMotores.singleton.PlayEfectString("btnResaltar2", 0.4f); // Ejecutamos el efecto nombrado
-                        canvasWorldSpaceVR.Escalar();
-                    }
-                }
+                    if (!ValidarOwner(other)) return;
 
-                if (mesaArmadoMotor) MesaMotor.singleton.estoyEnMesa = true;
-            }
-        }
+                    interactuar = true; // Indicamos que podemos interactuar
 
-        if (mesaHerramientas)
-        {
-            if (other.CompareTag("Player"))
-            {
-                if (!ValidarOwner(other)) return;
-                moverObjeto.IniciarDesplazamientoObjeto();
-                escaladorUI.Escalar();
-                for (int i = 0; i < piezasMeson.Length; i++)
-                {
-                    piezasMeson[i].enabled = true;
+                    if (canvasPrincipalVR != null)
+                    {
+                        if (colliderSecundario.enabled == true && EntornoMecanica.singleton.plataformaPosicionadaVR)
+                        {
+                            if (AudioManagerMotores.singleton != null) AudioManagerMotores.singleton.PlayEfectString("btnResaltar2", 0.4f); // Ejecutamos el efecto nombrado
+                            canvasPrincipalVR.Escalar();
+                        }
+                        else if (colliderInicial.enabled == true && !EntornoMecanica.singleton.plataformaPosicionadaVR)
+                        {
+                            if (AudioManagerMotores.singleton != null) AudioManagerMotores.singleton.PlayEfectString("btnResaltar2", 0.4f); // Ejecutamos el efecto nombrado
+                            canvasWorldSpaceVR.Escalar();
+                        }
+                    }
+
+                    if (mesaArmadoMotor) MesaMotor.singleton.estoyEnMesa = true;
                 }
             }
-        }
 
-        if (btnCambiarMotor)
-        {
-            if (other.CompareTag("Player"))
+            if (mesaHerramientas)
             {
-                if (!ValidarOwner(other)) return;
-                ManagerCanvas.singleton.DesactivarBTNEleccionMotor();
+                if (other.CompareTag("Player"))
+                {
+                    if (!ValidarOwner(other)) return;
+                    moverObjeto.IniciarDesplazamientoObjeto();
+                    escaladorUI.Escalar();
+                    for (int i = 0; i < piezasMeson.Length; i++)
+                    {
+                        piezasMeson[i].enabled = true;
+                    }
+                }
             }
-        }   
+
+            if (btnCambiarMotor)
+            {
+                if (other.CompareTag("Player"))
+                {
+                    if (!ValidarOwner(other)) return;
+                    ManagerCanvas.singleton.DesactivarBTNEleccionMotor();
+                }
+            }
+        }     
     }
 
     public bool ValidarOwner(Collider other)
@@ -287,74 +291,80 @@ public class SueloInteractivo : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (!noInteractuar)
         {
-            if (!ValidarOwner(other)) return;
-            movimientoJugador = MovimientoVR.singleton.GetComponent<DynamicMoveProvider>();
-        }     
+            if (other.CompareTag("Player"))
+            {
+                if (!ValidarOwner(other)) return;
+                movimientoJugador = MovimientoVR.singleton.GetComponent<DynamicMoveProvider>();
+            }
+        }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        movimientoJugador = null;  // Eliminamos la referencia al movimiento del jugador que interactua
-
-        if (puedoInteractuarInicialmente)
+        if (!noInteractuar)
         {
-            if (other.CompareTag("Player"))
+            movimientoJugador = null;  // Eliminamos la referencia al movimiento del jugador que interactua
+
+            if (puedoInteractuarInicialmente)
             {
-                if (!ValidarOwner(other)) return;
-
-                interactuar = false; // Indicamos que no podemos interactuar
-
-                if (canvasPrincipalVR != null)
+                if (other.CompareTag("Player"))
                 {
-                    if (!plataformaAbajo && EntornoMecanica.singleton.plataformaPosicionadaVR)
+                    if (!ValidarOwner(other)) return;
+
+                    interactuar = false; // Indicamos que no podemos interactuar
+
+                    if (canvasPrincipalVR != null)
                     {
-                        canvasPrincipalVR.Restaurar();
-                        if (AudioManagerMotores.singleton != null) AudioManagerMotores.singleton.PlayEfectString("btnResaltar2", 0.4f); // Ejecutamos el efecto nombrado
+                        if (!plataformaAbajo && EntornoMecanica.singleton.plataformaPosicionadaVR)
+                        {
+                            canvasPrincipalVR.Restaurar();
+                            if (AudioManagerMotores.singleton != null) AudioManagerMotores.singleton.PlayEfectString("btnResaltar2", 0.4f); // Ejecutamos el efecto nombrado
+                        }
+                        else
+                        {
+                            canvasWorldSpaceVR.Restaurar(); // Activamos canvas visual
+                            if (AudioManagerMotores.singleton != null) AudioManagerMotores.singleton.PlayEfectString("btnResaltar2", 0.4f); // Ejecutamos el efecto nombrado
+                        }
                     }
-                    else
+
+                    if (mesaArmadoMotor)
                     {
-                        canvasWorldSpaceVR.Restaurar(); // Activamos canvas visual
-                        if (AudioManagerMotores.singleton != null) AudioManagerMotores.singleton.PlayEfectString("btnResaltar2", 0.4f); // Ejecutamos el efecto nombrado
+                        MesaMotor.singleton.estoyEnMesa = false;
+                        MesaMotor.singleton.estoyArmando = false;
+                        botonesSalvavidasEjecutados = false;
                     }
-                }
-                
-                if (mesaArmadoMotor)
-                {
-                    MesaMotor.singleton.estoyEnMesa = false;
-                    MesaMotor.singleton.estoyArmando = false;
-                    botonesSalvavidasEjecutados = false;
-                }                                
-            }
-        }
-
-        if (mesaHerramientas)
-        {
-            if (other.CompareTag("Player"))
-            {
-                if (!ValidarOwner(other)) return;
-
-                if (InventarioHerramientas.singleton.herramientasTomadas.Count > 0)
-                {
-                    if (InventarioHerramientas.singleton != null) InventarioHerramientas.singleton.ReactivarHerramientasTomadas();
-                }
-
-                moverObjeto.RetornarPosicionOriginal();
-                escaladorUI.Restaurar();
-                for (int i = 0; i < piezasMeson.Length; i++)
-                {
-                    piezasMeson[i].enabled = false;
                 }
             }
-        }
 
-        if (btnCambiarMotor)
-        {
-            if (other.CompareTag("Player"))
+            if (mesaHerramientas)
             {
-                if (!ValidarOwner(other)) return;
-                ManagerCanvas.singleton.ActivarBTNEleccionMotor();
+                if (other.CompareTag("Player"))
+                {
+                    if (!ValidarOwner(other)) return;
+
+                    if (InventarioHerramientas.singleton.herramientasTomadas.Count > 0)
+                    {
+                        if (InventarioHerramientas.singleton != null) InventarioHerramientas.singleton.ReactivarHerramientasTomadas();
+                    }
+
+                    moverObjeto.RetornarPosicionOriginal();
+                    escaladorUI.Restaurar();
+                    for (int i = 0; i < piezasMeson.Length; i++)
+                    {
+                        piezasMeson[i].enabled = false;
+                    }
+                }
+            }
+
+            if (btnCambiarMotor)
+            {
+                if (other.CompareTag("Player"))
+                {
+                    if (!ValidarOwner(other)) return;
+                    ManagerCanvas.singleton.ActivarBTNEleccionMotor();
+                }
             }
         }     
     }

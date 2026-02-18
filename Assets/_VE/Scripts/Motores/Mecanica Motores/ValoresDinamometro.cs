@@ -25,6 +25,8 @@ public class ValoresDinamometro : MonoBehaviour, IPointerDownHandler, IPointerUp
     public TextMeshProUGUI txtHP;
     public TextMeshProUGUI txtTorqueNm;
 
+    public ParticleSystem particulasAire;
+
     public float suavizado = 10f;       // Suavidad del movimiento
     public float amplitudOscilacion = 2f;  // Qué tanto se mueve la oscilación
     public float velocidadOscilacion = 4f; // Velocidad de la oscilación
@@ -109,6 +111,9 @@ public class ValoresDinamometro : MonoBehaviour, IPointerDownHandler, IPointerUp
                         anguloMax = 43;
                         anguloMax2 = 31;
                     }
+
+                    var emission = particulasAire.emission;
+                    emission.rateOverTime = sliderControlador.value * 40;
                 }
 
                 if (sliderControlador.value == 0)
