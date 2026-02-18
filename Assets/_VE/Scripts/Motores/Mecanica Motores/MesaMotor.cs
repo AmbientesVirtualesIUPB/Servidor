@@ -7,6 +7,7 @@ public class MesaMotor : MonoBehaviour
     [Header("ESTA ES UNA CLASE SINGLETON")]
     public bool mesaMotorActiva;
     public bool interaccionEjecutada; // Para confirmar si se ejecuto la interaccion del encendido del motor
+    public bool motorDetenido; // Para confirmar si se ejecuto la interaccion del encendido del motor
     public bool motorRotando; // Para validar cuando el motor este rotando y no permitir que se coloquen piezas
     public bool motorExpandido; // Para validar cuando el motor expandido
     public RotadorPiezas[] rotadorPiezas;
@@ -74,6 +75,7 @@ public class MesaMotor : MonoBehaviour
     {
         if (AudioManagerMotores.singleton != null) AudioManagerMotores.singleton.PlayEfectLoopInt(3, 1f); // Ejecutamos el efecto de Motor encendido
         interaccionEjecutada = true;
+        motorDetenido = true;
 
         ValidarExpansionRotacion();
 
@@ -83,6 +85,8 @@ public class MesaMotor : MonoBehaviour
 
         yield return new WaitForSeconds(1);
 
+        ExplosionObjetosHijos.singleton.DesactivarMorionesEnHijos();
+        GestionMensajesServidor.singeton.EnviarMensaje("MS11", "Morions transform desactivados");
         ExplosionObjetosHijos.singleton.ExplotarTodo();
 
         yield return new WaitForSeconds(ExplosionObjetosHijos.singleton.duracionVibracion);
@@ -93,6 +97,7 @@ public class MesaMotor : MonoBehaviour
 
         if (ManagerCanvas.singleton != null) 
         {
+            motorDetenido = false;
             ManagerCanvas.singleton.HabilitarBtnBajarPlataforma();
             ManagerCanvas.singleton.HabilitarBtnSalir();
 

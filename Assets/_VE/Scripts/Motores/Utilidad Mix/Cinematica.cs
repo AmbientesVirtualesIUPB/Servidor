@@ -150,6 +150,9 @@ public class Cinematica : MonoBehaviour
             objetosCanvas[i].gameObject.SetActive(true);
         }
 
+
+        ValidarActivacionBotones();
+
         menuTutorial.SetActive(true);
         txtTitulo.text = "BIENVENIDO";
         menuCinematica.SetActive(false);
@@ -219,6 +222,17 @@ public class Cinematica : MonoBehaviour
             objetosCanvas[i].gameObject.SetActive(true);
         }
 
+        ValidarActivacionBotones();
+
+        ControlCamaraMotor.singleton.DetenerMovimientosCamara();
+        menuTutorial.SetActive(true);
+        txtTitulo.text = "BIENVENIDO";
+        menuCinematica.SetActive(false);
+        this.gameObject.SetActive(false);
+    }
+
+    public void ValidarActivacionBotones()
+    {
         if (EnvioDatosBD.singleton != null)
         {
             ManagerCanvas.singleton.btnEleccionMotor.SetActive(EnvioDatosBD.singleton.usuario.tipo_usuario == "1");
@@ -244,12 +258,5 @@ public class Cinematica : MonoBehaviour
         {
             Debug.LogError("Falta envio datos DB en la scena");
         }
-        
-        
-        ControlCamaraMotor.singleton.DetenerMovimientosCamara();
-        menuTutorial.SetActive(true);
-        txtTitulo.text = "BIENVENIDO";
-        menuCinematica.SetActive(false);
-        this.gameObject.SetActive(false);
     }
 }

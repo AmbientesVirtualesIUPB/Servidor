@@ -40,13 +40,20 @@ public class ManagerMinijuego : MonoBehaviour
     [InfoMessage("Este es una referencia importante, arrastrala del CanvasPrincipal", MessageTypeCustom.Warning)]
     public GameObject[] motoresAnimados; // Motores internos animados
 
-    public SueloInteractivo[] sueloInteractivoNissan; // Para activar o desactivar segun el motor activo
-    public ParticleSystem[] sueloInteractivoNissanParticulas; // Para activar o desactivar segun el motor activo
-    public ActivarDesactivarHijos[] partesNissan; // Para reactivar las partes del motor
+    [Header(" CONFIGURACION DIESEL ")]
+
     public SueloInteractivo[] sueloInteractivoDiesel; // Para activar o desactivar segun el motor activo
     public ParticleSystem[] sueloInteractivoDieselParticulas; // Para activar o desactivar segun el motor activo
     public ActivarDesactivarHijos[] partesDiesel; // Para reactivar las partes del motor
-    
+    public GameObject particulasGasolinaDieselPrefab; // Referencia  a las particulas que simulan la entrada de gasolina
+    GameObject particulasGasolinaDiesel; // Referencia  a las particulas que simulan la entrada de gasolina
+
+    [Header(" CONFIGURACION NISSAN ")]
+    public SueloInteractivo[] sueloInteractivoNissan; // Para activar o desactivar segun el motor activo
+    public ParticleSystem[] sueloInteractivoNissanParticulas; // Para activar o desactivar segun el motor activo
+    public ActivarDesactivarHijos[] partesNissan; // Para reactivar las partes del motor
+    public GameObject particulasGasolinaNissanPrefab; // Referencia  a las particulas que simulan la entrada de gasolina
+    GameObject particulasGasolinaNissan; // Referencia  a las particulas que simulan la entrada de gasolina
 
     [Header("CONFIGURACION INICIAL")]
     public bool[] cantidadMinijuegosMotorDiesel; // Cantidad de minijuegos disponibles
@@ -293,6 +300,7 @@ public class ManagerMinijuego : MonoBehaviour
         if (motorAnimadoActivo != null) motorAnimadoActivo.SetActive(false);
         IDInstanciados.Clear();
         DestruirObjetosSP();
+        DesactivarParticulasAceite();
 
         MesaMotor.singleton.interaccionEjecutada = false;
         ExplosionObjetosHijos.singleton.DestruirTodosLosHijos(); // Destruimos todas las piezas que se hayan colocado
@@ -778,38 +786,29 @@ public class ManagerMinijuego : MonoBehaviour
 
     public void ValidarResultado(int torque, int aceite, string motor)
     {
-        // RESULTADO
-        Debug.Log(torque);
-        Debug.Log(aceite);
-        Debug.Log(motor);
-        Debug.Log("0");
         if (motorActivo == "Diesel")
         {
             if (torque == 12 && aceite == 13)
             {
                 Debug.Log("todo good");
                 MinijuegosSuperados();
-                Debug.Log("1");
             }
             else if (torque == 12 && aceite < 13)
             {
                 Debug.Log("aceite mal");
                 btnEncenderMotor.onClick.AddListener(MesaMotor.singleton.ActivarParticulasHumo);
                 minijuegoValidadoAceiteMal = true;
-                Debug.Log("2");
             }
             else if (torque < 12 && aceite == 13)
             {
                 Debug.Log("torque mal");
                 btnEncenderMotor.onClick.AddListener(MesaMotor.singleton.DetenerInteraccionesMotor);
-                Debug.Log("3");
             }
             else
             {
                 Debug.Log("todo mal");
                 btnEncenderMotor.onClick.AddListener(MesaMotor.singleton.DetenerInteraccionesMotor);
                 btnEncenderMotor.onClick.AddListener(MesaMotor.singleton.ActivarParticulasHumo);
-                Debug.Log("4");
             }
             controlVelocidadMotor.gameObject.SetActive(true);
         }
@@ -819,31 +818,26 @@ public class ManagerMinijuego : MonoBehaviour
             {
                 Debug.Log("todo good");
                 MinijuegosSuperados();
-                Debug.Log("5");
             }
             else if (torque == 28 && aceite < 8)
             {
                 Debug.Log("aceite mal");
                 btnEncenderMotor.onClick.AddListener(MesaMotor.singleton.ActivarParticulasHumo);
                 minijuegoValidadoAceiteMal = true;
-                Debug.Log("6");
             }
             else if (torque < 28 && aceite == 8)
             {
                 Debug.Log("torque mal");
                 btnEncenderMotor.onClick.AddListener(MesaMotor.singleton.DetenerInteraccionesMotor);
-                Debug.Log("7");
             }
             else
             {
                 Debug.Log("todo mal");
                 btnEncenderMotor.onClick.AddListener(MesaMotor.singleton.DetenerInteraccionesMotor);
                 btnEncenderMotor.onClick.AddListener(MesaMotor.singleton.ActivarParticulasHumo);
-                Debug.Log("8");
             }
             controlVelocidadMotor.gameObject.SetActive(true);
         }
-        Debug.Log("9");
     }
     public void MinijuegosSuperados()
     {
@@ -852,12 +846,53 @@ public class ManagerMinijuego : MonoBehaviour
         btnDesplazarMotor.gameObject.SetActive(true);
         motorAnimadoActivo.SetActive(true);
 
+        CrearParticulasAceite();
+        ActivarParticulasAceite();
+
         // Desactivamos piezas internas
         ExplosionObjetosHijos.singleton.DesactivarHijos(ExplosionObjetosHijos.singleton.objetosPadres[1]);
         ExplosionObjetosHijos.singleton.DesactivarHijos(ExplosionObjetosHijos.singleton.objetosPadres[3]);
     }
 
-    
+    public void CrearParticulasAceite()
+    {
+        if (motorActivo == "Diesel")
+        {
+            GameObject nuevo = Instantiate(particulasGasolinaDieselPrefab, MesaMotor.singleton.rotadorPiezas[0].transform);
+            particulasGasolinaDiesel = nuevo;
+        }
+        else if (motorActivo == "Nissan")
+        {
+            GameObject nuevo = Instantiate(particulasGasolinaNissanPrefab, MesaMotor.singleton.rotadorPiezas[0].transform);
+            particulasGasolinaNissan = nuevo;
+        }
+    }
+
+    public void ActivarParticulasAceite()
+    {
+        if (motorActivo == "Diesel")
+        {
+            particulasGasolinaDiesel.SetActive(true);
+        }
+        else if (motorActivo == "Nissan")
+        {
+            particulasGasolinaNissan.SetActive(true);
+        }
+    }
+
+    public void DesactivarParticulasAceite()
+    {
+        if (motorActivo == "Diesel" && particulasGasolinaDiesel != null)
+        {
+            particulasGasolinaDiesel.SetActive(false);
+        }
+        else if (motorActivo == "Nissan" && particulasGasolinaNissan != null)
+        {
+            particulasGasolinaNissan.SetActive(false);
+        }
+    }
+
+
     public void TorqueAplicadoTornillosBancada()
     {
         if (coroutine != null)

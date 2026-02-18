@@ -58,6 +58,7 @@ public class ServidorMotores : MonoBehaviour
         GestionMensajesServidor.singeton.RegistrarAccion("MS08", ParteColocada);
         GestionMensajesServidor.singeton.RegistrarAccion("MS09", ActivarMecanico);
         GestionMensajesServidor.singeton.RegistrarAccion("MS10", AbrirCompuertaOnline);
+        GestionMensajesServidor.singeton.RegistrarAccion("MS11", DesactivarMorions);
         GestionMensajesServidor.singeton.RegistrarAccion("PR01", IndicacionCompuerta);
 
         yield return new WaitUntil(() => Servidor.singleton.conectado);
@@ -332,6 +333,11 @@ public class ServidorMotores : MonoBehaviour
                 ManagerCanvas.singleton.DesactivarBtnAyudaAutomatica();
             }
         }
+    }
+
+    public void DesactivarMorions(string msj)
+    {
+        ExplosionObjetosHijos.singleton.DesactivarMorionesEnHijos();
     }
 }
 

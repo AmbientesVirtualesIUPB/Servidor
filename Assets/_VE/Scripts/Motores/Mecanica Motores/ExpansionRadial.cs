@@ -100,7 +100,12 @@ public class ExpansionRadial : MonoBehaviour
                     if (ExplosionObjetosHijos.singleton != null) ExplosionObjetosHijos.singleton.ActivarHijos(ExplosionObjetosHijos.singleton.objetosPadres[1]); // Activamos los hijos antes de expandir
                     if (ExplosionObjetosHijos.singleton != null) ExplosionObjetosHijos.singleton.ActivarHijos(ExplosionObjetosHijos.singleton.objetosPadres[3]); // Activamos los hijos antes de expandir
                 }
-                
+
+                if (ManagerMinijuego.singleton.minijuegoTerminado && ManagerMinijuego.singleton.minijuegoValidadoCorrectamente && !piezasInternas)
+                {
+                    ManagerMinijuego.singleton.DesactivarParticulasAceite();
+                }
+
                 ControlCamaraMotor.singleton.ReestablecerPosicionCamara(); // Reiniciamos el indice para que la posicion de la camara sea correcta
                 if (AudioManagerMotores.singleton != null) AudioManagerMotores.singleton.PlayEfectString("ExpansionRadial", 0.5f); // Ejecutamos el efecto nombrado 
                 ManagerMinijuego.singleton.DeshabilitarBtnEnceder();
@@ -233,6 +238,11 @@ public class ExpansionRadial : MonoBehaviour
                 }
                 
             }     
+        }
+
+        if (ManagerMinijuego.singleton.minijuegoTerminado && ManagerMinijuego.singleton.minijuegoValidadoCorrectamente && !piezasInternas)
+        {
+            ManagerMinijuego.singleton.ActivarParticulasAceite();
         }
 
         txtBoton.text = "Expandir";

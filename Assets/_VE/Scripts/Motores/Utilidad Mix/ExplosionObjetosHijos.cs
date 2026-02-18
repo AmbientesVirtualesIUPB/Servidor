@@ -32,6 +32,24 @@ public class ExplosionObjetosHijos : MonoBehaviour
         }
     }
 
+    public void DesactivarMorionesEnHijos()
+    {
+        foreach (GameObject padre in objetosPadres)
+        {
+            if (padre == null) continue;
+
+            foreach (Transform hijo in padre.transform)
+            {
+                MorionTransform m = hijo.GetComponent<MorionTransform>();
+                
+                if (m != null)
+                {
+                    m.enabled = false;
+                }
+            }
+        }
+    }
+
     [ContextMenu("explot")]
     public void ExplotarTodo()
     {

@@ -132,9 +132,14 @@ public class SueloInteractivo : MonoBehaviour
         if (mesaArmadoMotor && MesaMotor.singleton.estoyEnMesa && MesaMotor.singleton.estoyArmando && MesaMotor.singleton.mesaMotorActiva && !interactuar)
         {
             ManagerCanvas.singleton.btnSalir.gameObject.SetActive(true);
+
             if (ServidorMotores.singleton.esMecanico)
             {
-                ManagerCanvas.singleton.HabilitarBtnBajarPlataforma();
+                if (!MesaMotor.singleton.motorDetenido)
+                {
+                    ManagerCanvas.singleton.HabilitarBtnBajarPlataforma();
+                }
+                
             }
             else
             {
@@ -162,7 +167,15 @@ public class SueloInteractivo : MonoBehaviour
                 interactuar = true; // Indicamos que podemos interactuar
                 canvasWorldSpace.SetActive(true); // Activamos canvas visual
 
-                if (mesaArmadoMotor) MesaMotor.singleton.estoyEnMesa = true;
+                if (mesaArmadoMotor)
+                {
+                    MesaMotor.singleton.estoyEnMesa = true;
+
+                    if (ManagerMinijuego.singleton.minijuegoTerminado && !ManagerDesplazamientoMotor.singleton.desplazamientoEjecutado)
+                    {
+                        ManagerMinijuego.singleton.controlVelocidadMotor.SetActive(true);
+                    }
+                }                          
             }
         }
 
@@ -219,6 +232,11 @@ public class SueloInteractivo : MonoBehaviour
                     MesaMotor.singleton.estoyEnMesa = false;
                     MesaMotor.singleton.estoyArmando = false;
                     botonesSalvavidasEjecutados = false;
+
+                    if (ManagerMinijuego.singleton.minijuegoTerminado && !ManagerDesplazamientoMotor.singleton.desplazamientoEjecutado)
+                    {
+                        ManagerMinijuego.singleton.controlVelocidadMotor.SetActive(false);
+                    }
                 }                                
             }
         }
@@ -290,6 +308,11 @@ public class SueloInteractivo : MonoBehaviour
 
             if (mesaArmadoMotor && !plataformaAbajo)
             {
+                if (ManagerMinijuego.singleton.minijuegoTerminado && !ManagerDesplazamientoMotor.singleton.desplazamientoEjecutado)
+                {
+                    ManagerMinijuego.singleton.controlVelocidadMotor.SetActive(true);
+                }
+
                 // Si el miijuego esta activo lo desactivamos al momento de salir de la interaccion de la mesa de armado
                 if (ManagerMinijuego.singleton.minijuegoActivo) 
                 {
