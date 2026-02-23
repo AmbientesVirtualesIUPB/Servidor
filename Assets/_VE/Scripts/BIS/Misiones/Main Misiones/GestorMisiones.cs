@@ -163,7 +163,10 @@ public class GestorMisiones : MonoBehaviour
         faseRecoleccionActual = null;
 
         UI_MisionActiva.instancia.OcultarMision();
-        UI_MisionActiva.instancia.textoObjetivos.text = "";
+
+        var ciObj = UI_MisionActiva.instancia.textoObjetivos.GetComponent<ControlIdioma>();
+        ciObj.texto = 20;          // info debe ser int (ID)
+        ciObj.ActualizarTexto();     // refresca el texto ya mismo
 
         // Guardar estado sin misión activa
         if (SistemaGuardado.instancia != null)
@@ -266,11 +269,15 @@ public class GestorMisiones : MonoBehaviour
                 info += $"• {fr.objetivos[i].objeto.nombreObjeto} ({progresoRecoleccionActual[i]}/{fr.objetivos[i].cantidadRequerida})\n";
             }
 
-            UI_MisionActiva.instancia.textoObjetivos.text = info;
+            var ciObj = UI_MisionActiva.instancia.textoObjetivos.GetComponent<ControlIdioma>();
+            ciObj.texto = 20;          // info debe ser int (ID)
+            ciObj.ActualizarTexto();     // refresca el texto ya mismo
         }
         else
         {
-            UI_MisionActiva.instancia.textoObjetivos.GetComponent<TextMeshProUGUI>().Tmp = "";
+            var ciObj = UI_MisionActiva.instancia.textoObjetivos.GetComponent<ControlIdioma>();
+            ciObj.texto = 20;          // info debe ser int (ID)
+            ciObj.ActualizarTexto();     // refresca el texto ya mismo
         }
     }
 

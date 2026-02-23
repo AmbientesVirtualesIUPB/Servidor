@@ -416,10 +416,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   panel: {fileID: 13441816}
-  textoNombreMision: {fileID: 249154748}
-  textoFase: {fileID: 2043785127}
-  textoDescripcionFase: {fileID: 1734773301}
-  textoObjetivos: {fileID: 1047543201}
+  textoNombreMision: {fileID: 0}
+  textoFase: {fileID: 0}
+  textoDescripcionFase: {fileID: 0}
+  textoObjetivos: {fileID: 0}
 --- !u!1 &40095457
 GameObject:
   m_ObjectHideFlags: 0
@@ -43008,7 +43008,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1201410374
 RectTransform:
   m_ObjectHideFlags: 0
@@ -58879,8 +58879,8 @@ MonoBehaviour:
   canvasProximidad: {fileID: 1583060281}
   canvasListaMisiones: {fileID: 1850532736}
   canvasInfoMision: {fileID: 1201410373}
-  textoNombre: {fileID: 1229757280}
-  textoDescripcion: {fileID: 202507705}
+  textoNombre: {fileID: 249154746}
+  textoDescripcion: {fileID: 202507703}
   canvasConfirmacion: {fileID: 2099392402}
   tagJugador: Player
 --- !u!1001 &1755595066
@@ -60370,7 +60370,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1850532737
 RectTransform:
   m_ObjectHideFlags: 0

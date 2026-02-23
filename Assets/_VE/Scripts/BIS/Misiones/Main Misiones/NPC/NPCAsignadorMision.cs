@@ -17,8 +17,8 @@ public class NPCAsignadorMisionMulti : MonoBehaviour
     public GameObject canvasInfoMision;
 
     [Header("Campos de UI para info")]
-    public TMP_Text textoNombre;
-    public TMP_Text textoDescripcion;
+    public GameObject textoNombre;
+    public GameObject textoDescripcion;
 
     [Header("Canvas de confirmación si se cambia misión")]
     public GameObject canvasConfirmacion;
@@ -86,7 +86,7 @@ public class NPCAsignadorMisionMulti : MonoBehaviour
         DatosDeMision mis = misionesDisponibles[indice];
 
         // 1. BLOQUEO: ¿ya está completada?
-        if (GestorMisiones.instancia.MisionYaCompletada(mis.idMision))
+        if (GestorMisiones.instancia.MisionYaCompletada(mis.IdMision))
         {
             Debug.Log("Esta misión ya está completada. Bloqueada.");
             return;
@@ -95,8 +95,18 @@ public class NPCAsignadorMisionMulti : MonoBehaviour
         misionSeleccionada = mis;
 
         // 2. Mostrar datos de la misión en el canvas de info
-        textoNombre.text = mis.nombreMision;
-        textoDescripcion.text = mis.descripcionMision;
+       
+        var ciNombre = textoNombre.GetComponent<ControlIdioma>();
+        ciNombre.texto = mis.IdNombreMision;
+        ciNombre.tmp = textoNombre.GetComponent<TextMeshProUGUI>();
+        ciNombre.ActualizarTexto();
+
+
+        
+        var ciDesc = textoDescripcion.GetComponent<ControlIdioma>();
+        ciDesc.texto = mis.IdDescripcionMision;
+        ciDesc.tmp = textoDescripcion.GetComponent<TextMeshProUGUI>();
+        ciDesc.ActualizarTexto();
 
         canvasInfoMision.SetActive(true);
     }
@@ -108,7 +118,7 @@ public class NPCAsignadorMisionMulti : MonoBehaviour
     {
         // Si hay misión activa Y es distinta → confirmación
         if (GestorMisiones.instancia.HayMisionActiva() &&
-            GestorMisiones.instancia.MisionActualID() != misionSeleccionada.idMision)
+            GestorMisiones.instancia.MisionActualID() != misionSeleccionada.IdMision)
         {
             canvasConfirmacion.SetActive(true);
         }
@@ -149,6 +159,6 @@ public class NPCAsignadorMisionMulti : MonoBehaviour
         GestorMisiones.instancia.IniciarMision(misionSeleccionada);
         canvasInfoMision.SetActive(false);
         canvasListaMisiones.SetActive(false);
-        Debug.Log("Misión iniciada: " + misionSeleccionada.nombreMision);
+        Debug.Log("Misión iniciada: " + BaseDeTextosPorIdioma.configuracionDefault.ObtenerTexto(misionSeleccionada.IdNombreMision));
     }
 }
