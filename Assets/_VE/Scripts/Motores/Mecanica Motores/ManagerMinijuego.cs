@@ -115,6 +115,8 @@ public class ManagerMinijuego : MonoBehaviour
     public List<ApretarTornillos> tornillosParaApretar;
     [HideInInspector]
     public List<AsignarTornillos> asignarTornillos;
+    //[HideInInspector]
+    public List<GameObject> esferasVR;
     [HideInInspector]
     public bool minijuegoTerminado; // Para validar en el script de rotacion y de expansion cuando terminan estas
     [HideInInspector]
@@ -178,7 +180,7 @@ public class ManagerMinijuego : MonoBehaviour
     IEnumerator ActivarComponentesIniciales()
     {
         yield return new WaitForSeconds(1f);
-        herramientasRotatorias.SetActive(false);
+        //herramientasRotatorias.SetActive(false);
     }
     /// <summary>
     /// Para habilitar el interactuable del boton btnEncenderMotor donde se requiera
@@ -363,6 +365,7 @@ public class ManagerMinijuego : MonoBehaviour
         btnAplicarAceite.gameObject.SetActive(false); // desactivamos el boton para aplicar aceite
         miniJuegoAtornillar.SetActive(false);
         if (motorAnimadoActivo != null) motorAnimadoActivo.SetActive(false);
+        esferasVR.Clear();
         IDInstanciados.Clear();
         DestruirObjetosSP();
         DesactivarParticulasAceite();
@@ -518,20 +521,21 @@ public class ManagerMinijuego : MonoBehaviour
         miniJuegoAtornillar.SetActive(true);
 
         // Activamos herramienta
-        herramientasRotatorias.SetActive(true);
+        //herramientasRotatorias.SetActive(true);
 
-        if (InventarioUI.singleton.tamanoHerramienta == 1)
-        {
-            prensaValvulas.SetActive(true);
-        }
+        //if (InventarioUI.singleton.tamanoHerramienta == 1)
+        //{
+        //    prensaValvulas.SetActive(true);
+        //}
 
         // Configuración de los tornillos
         asignarTornillos.Add(asignar);                 
         asignarTornillos[0].InicializarTornillosMinijuego();
         HabilitarTornilloApretar();
+        esferasVR[0].SetActive(true); // Activamos la primere esfera
 
         // Posicionamos
-        PosicionInicialCamaraMinijuego();
+        //PosicionInicialCamaraMinijuego();
           
     }
 
@@ -551,9 +555,10 @@ public class ManagerMinijuego : MonoBehaviour
         {
             prensaValvulas.SetActive(true);
         }
-        
+
         // Posicionamos
-        PosicionInicialCamaraMinijuego();
+        esferasVR[0].SetActive(true); // Activamos la primere esfera
+        //PosicionInicialCamaraMinijuego();
     }
 
     /// <summary>
@@ -645,7 +650,8 @@ public class ManagerMinijuego : MonoBehaviour
     public void DesactivarMinijuego()
     {
         ManagerCanvas.singleton.HabilitarBtnAyudaAutomatica();
-
+        esferasVR[contador - 1].SetActive(false);
+        esferasVR.Clear();
         Atornillar.singleton.ReiniciarValorSlider();
         ControlCamaraMotor.singleton.ReestablecerPosicionCamara(); // Reiniciamos el indice para que la posicion de la camara sea correcta
         ControlCamaraMotor.singleton.IniciarMovimientoCamara(ControlCamaraMotor.singleton.posicionFrontal, 1);
@@ -654,14 +660,14 @@ public class ManagerMinijuego : MonoBehaviour
         minijuegoActivo = false;
         miniJuegoAtornillar.SetActive(false);
 
-        if (InventarioUI.singleton.tamanoHerramienta == 1)
-        {
-            prensaValvulas.SetActive(false);
-        }
-        else
-        {
-            herramientasRotatorias.SetActive(false);
-        }       
+        //if (InventarioUI.singleton.tamanoHerramienta == 1)
+        //{
+        //    prensaValvulas.SetActive(false);
+        //}
+        //else
+        //{
+        //    herramientasRotatorias.SetActive(false);
+        //}       
     }
 
     public void PosicionInicialCamaraMinijuego()
@@ -984,7 +990,7 @@ public class ManagerMinijuego : MonoBehaviour
             ConfigurarTornilloActivo(); // Los que involucren tornillos
 
             torquesDieselBielas[contador] = Mathf.RoundToInt(Atornillar.singleton.AsignarValorTorque()); // Asignamos el valor del torque
-
+            
             yield return new WaitForSeconds(0.1f);
         
             contador += 1;
@@ -992,11 +998,13 @@ public class ManagerMinijuego : MonoBehaviour
             {
                 // Nos movemos a la siguiente posicion del minijuego
                 ControlCamaraMotor.singleton.IniciarMovimientoCamara(posicionesMinijuegoBielas[contador], 1);
+                esferasVR[contador - 1].SetActive(false);
+                esferasVR[contador].SetActive(true);
                 Atornillar.singleton.ReiniciarValorSlider();
                 posicionMinijuegoActual = posicionesMinijuegoBielas[contador];
             }
             else
-            {
+            {     
                 // Los que involucren tornillos
                 if (asignarTornillos.Count > 0)
                 {
@@ -1037,6 +1045,8 @@ public class ManagerMinijuego : MonoBehaviour
             {
                 // Nos movemos a la siguiente posicion del minijuego
                 ControlCamaraMotor.singleton.IniciarMovimientoCamara(posicionesMinijuegoValvulas[contador], 1);
+                esferasVR[contador - 1].SetActive(false);
+                esferasVR[contador].SetActive(true);
                 Atornillar.singleton.ReiniciarValorSlider();
                 posicionMinijuegoActual = posicionesMinijuegoValvulas[contador];
             }
@@ -1077,6 +1087,8 @@ public class ManagerMinijuego : MonoBehaviour
             {
                 // Nos movemos a la siguiente posicion del minijuego
                 ControlCamaraMotor.singleton.IniciarMovimientoCamara(posicionesMinijuegoBombaAgua[contador], 1);
+                esferasVR[contador - 1].SetActive(false);
+                esferasVR[contador].SetActive(true);
                 Atornillar.singleton.ReiniciarValorSlider();
                 posicionMinijuegoActual = posicionesMinijuegoBombaAgua[contador];
             }
@@ -1123,6 +1135,8 @@ public class ManagerMinijuego : MonoBehaviour
             {
                 // Nos movemos a la siguiente posicion del minijuego
                 ControlCamaraMotor.singleton.IniciarMovimientoCamara(posicionesMinijuegoCarterInferior[contador], 1);
+                esferasVR[contador - 1].SetActive(false);
+                esferasVR[contador].SetActive(true);
                 Atornillar.singleton.ReiniciarValorSlider();
                 posicionMinijuegoActual = posicionesMinijuegoCarterInferior[contador];
             }
@@ -1170,6 +1184,8 @@ public class ManagerMinijuego : MonoBehaviour
             {
                 // Nos movemos a la siguiente posicion del minijuego
                 ControlCamaraMotor.singleton.IniciarMovimientoCamara(posicionesMinijuegoBancadasCiguenal[contador], 1);
+                esferasVR[contador - 1].SetActive(false);
+                esferasVR[contador].SetActive(true);
                 Atornillar.singleton.ReiniciarValorSlider();
                 posicionMinijuegoActual = posicionesMinijuegoBancadasCiguenal[contador];
             }
@@ -1216,6 +1232,8 @@ public class ManagerMinijuego : MonoBehaviour
             {
                 // Nos movemos a la siguiente posicion del minijuego
                 ControlCamaraMotor.singleton.IniciarMovimientoCamara(posicionesMinijuegoBloque[contador], 1);
+                esferasVR[contador - 1].SetActive(false);
+                esferasVR[contador].SetActive(true);
                 Atornillar.singleton.ReiniciarValorSlider();
                 posicionMinijuegoActual = posicionesMinijuegoBloque[contador];
             }
@@ -1262,6 +1280,8 @@ public class ManagerMinijuego : MonoBehaviour
             {
                 // Nos movemos a la siguiente posicion del minijuego
                 ControlCamaraMotor.singleton.IniciarMovimientoCamara(posicionesMinijuegoEmpaqueCulata[contador], 1);
+                esferasVR[contador - 1].SetActive(false);
+                esferasVR[contador].SetActive(true);
                 Atornillar.singleton.ReiniciarValorSlider();
                 posicionMinijuegoActual = posicionesMinijuegoEmpaqueCulata[contador];
             }
@@ -1306,6 +1326,8 @@ public class ManagerMinijuego : MonoBehaviour
             {
                 // Nos movemos a la siguiente posicion del minijuego
                 ControlCamaraMotor.singleton.IniciarMovimientoCamara(posicionesMinijuegoNissanValvulas[contador], 1);
+                esferasVR[contador - 1].SetActive(false);
+                esferasVR[contador].SetActive(true);
                 Atornillar.singleton.ReiniciarValorSlider();
                 posicionMinijuegoActual = posicionesMinijuegoNissanValvulas[contador];
             }
@@ -1346,6 +1368,8 @@ public class ManagerMinijuego : MonoBehaviour
             {
                 // Nos movemos a la siguiente posicion del minijuego
                 ControlCamaraMotor.singleton.IniciarMovimientoCamara(posicionesMinijuegoBancadaLevas[contador], 1);
+                esferasVR[contador - 1].SetActive(false);
+                esferasVR[contador].SetActive(true);
                 Atornillar.singleton.ReiniciarValorSlider();
                 posicionMinijuegoActual = posicionesMinijuegoBancadaLevas[contador];
             }
@@ -1392,6 +1416,8 @@ public class ManagerMinijuego : MonoBehaviour
             {
                 // Nos movemos a la siguiente posicion del minijuego
                 ControlCamaraMotor.singleton.IniciarMovimientoCamara(posicionesMinijuegoTapaCulata[contador], 1);
+                esferasVR[contador - 1].SetActive(false);
+                esferasVR[contador].SetActive(true);
                 Atornillar.singleton.ReiniciarValorSlider();
                 posicionMinijuegoActual = posicionesMinijuegoTapaCulata[contador];
             }

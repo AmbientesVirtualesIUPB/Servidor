@@ -9,7 +9,7 @@ public class SnapPoint : MonoBehaviour
         // Verificamos por tag
         if (other.CompareTag("SnapPoint"))
         {
-            if (!MesaMotor.singleton.motorRotando)
+            if (!MesaMotor.singleton.motorRotando && !ManagerMinijuego.singleton.minijuegoActivo && EntornoMecanica.singleton.plataformaPosicionadaVR)
             {
                 SnapPoint snap = other.GetComponent<SnapPoint>(); // Obtenemos el script del objeto que colisiona
                 if (snapID == snap.snapID) // Si coinciden los ID de los snapPoint
@@ -35,7 +35,7 @@ public class SnapPoint : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
         // Verificamos por tag
-        if (other.CompareTag("SnapPoint"))
+        if (other.CompareTag("SnapPoint") && !ManagerMinijuego.singleton.minijuegoActivo && EntornoMecanica.singleton.plataformaPosicionadaVR)
         {
             SnapPoint snap = other.GetComponent<SnapPoint>(); // Obtenemos el script del objeto que salió de la colision
             if (snapID == snap.snapID) // Si coinciden los ID de los snapPoint

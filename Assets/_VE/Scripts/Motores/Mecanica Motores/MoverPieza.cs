@@ -36,7 +36,8 @@ public class MoverPieza : MonoBehaviour
     public int sizeMinijuego; // Para indicar el tamaño de la llave para dicho minijuego
     public MessageOnly mensaje4 = new MessageOnly("Unicamente para las piezas con tornillos", MessageTypeCustom.Info);
     public AsignarTornillos asignarTornillos; // unicamente para las piezas que activen minijuego
-    
+    public GameObject[] inputEsferasVR; //Solo VR
+
     [Header("PIEZAS QUE ACTIVAN MINIJUEGOS DE ACEITAR")]
     public MessageOnly mensaje6 = new MessageOnly("Para las piezas de lubricación", MessageTypeCustom.Info);
     public bool esLubricada; // unicamente para las piezas que activen minijuego de lubricación
@@ -317,11 +318,13 @@ public class MoverPieza : MonoBehaviour
                 if (AudioManagerMotores.singleton != null) AudioManagerMotores.singleton.PlayEfectString("minijuego", 1f); // Ejecutamos el efecto nombrado 
                 if (asignarTornillos != null)
                 {
+                    AsignarEsferasVR();
                     ManagerMinijuego.singleton.ActivarMinijuego(asignarTornillos);
                 }
                 else 
                 {
-                    ManagerMinijuego.singleton.ActivarMinijuego();
+                    AsignarEsferasVR();
+                    ManagerMinijuego.singleton.ActivarMinijuego();         
                 }   
                 ManagerMinijuego.singleton.sizeHerramienta = sizeMinijuego;
             }
@@ -377,6 +380,22 @@ public class MoverPieza : MonoBehaviour
         }    
     }
 
+    [ContextMenu("provi")]
+    public void AsignarEsferasVR()
+    {
+
+        for (int i = 0; i < 4; i++)
+        {
+            if (asignarTornillos != null)
+            {
+                ManagerMinijuego.singleton.esferasVR.Add(asignarTornillos.inputEsferasVR[i]);
+            }
+            else
+            {
+                ManagerMinijuego.singleton.esferasVR.Add(inputEsferasVR[i]);
+            }
+        }
+    }
     /// <summary>
     /// Metodo encargado de desactivar los collider de los snapPoint
     /// </summary>

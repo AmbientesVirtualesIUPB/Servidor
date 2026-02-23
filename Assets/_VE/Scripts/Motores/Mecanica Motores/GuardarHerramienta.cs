@@ -5,6 +5,7 @@ public class GuardarHerramienta : MonoBehaviour
 {
 
     public RotacionAngularObjeto rotacionAngularObjeto;
+    public bool llave;
     public bool llaveInglesa;
     public bool prensaValvula;
     public string nombreHerramientaImagen; // Nombre para asignarle a la imagen
@@ -85,11 +86,18 @@ public class GuardarHerramienta : MonoBehaviour
                 rotacionAngularObjeto.ReiniciarHerramientasRotatorias();
                 rotacionAngularObjeto.herramientasManipulables[1].SetActive(true);
             }
+            else if (llave)
+            {
+                rotacionAngularObjeto.ReiniciarHerramientasRotatorias();
+                rotacionAngularObjeto.herramientasManipulables[3].SetActive(true);
+            }
             else if (prensaValvula)
             {
                 rotacionAngularObjeto.ReiniciarHerramientasRotatorias();
+                rotacionAngularObjeto.herramientasManipulables[2].SetActive(true);
             }  
             StartCoroutine(AgregarMaterialDisolver());
+            RotacionAngularObjeto.singleton.herramientaTomada = true;
         }    
     }
 

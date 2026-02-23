@@ -15,8 +15,8 @@ public class RotacionAngularObjeto : MonoBehaviour
     [HideInInspector]
     public float velocidad = 0f; // valor que se actualizará desde fuera
     [HideInInspector]
-    public bool estaManipulando; 
-
+    public bool estaManipulando;
+    public bool herramientaTomada;
     private float anguloInicial;
     private float tiempoAnimacion = 0f;
 
@@ -96,5 +96,6 @@ public class RotacionAngularObjeto : MonoBehaviour
         {
             herramientasManipulables[i].SetActive(false);
         }
+        herramientaTomada = false;
     }
 }

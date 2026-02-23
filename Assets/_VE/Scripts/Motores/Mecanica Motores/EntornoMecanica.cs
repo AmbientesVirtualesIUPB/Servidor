@@ -64,7 +64,7 @@ public class EntornoMecanica : MonoBehaviour
 
     private IEnumerator IniciarAnimacionAbrirCompuertas()
     {
-        if (AudioManagerMotores.singleton != null) AudioManagerMotores.singleton.PlayEfectString("Compuerta", 0.4f); // Ejecutamos el efecto nombrado
+        if (AudioManagerMotores.singleton != null) AudioManagerMotores.singleton.PlayEfectString("Compuerta", 0.6f); // Ejecutamos el efecto nombrado
 
         if (ManagerMinijuego.singleton.minijuegoTerminado && !MesaMotor.singleton.motorRotando && !expansionRadialPiezasInternas.expandir)
         {
@@ -101,7 +101,7 @@ public class EntornoMecanica : MonoBehaviour
 
         yield return new WaitForSeconds(1f);
 
-        if (AudioManagerMotores.singleton != null) AudioManagerMotores.singleton.PlayEfectString("Particulas", 0.4f); // Ejecutamos el efecto nombrado
+        if (AudioManagerMotores.singleton != null) AudioManagerMotores.singleton.PlayEfectString("Particulas", 0.6f); // Ejecutamos el efecto nombrado
         if (VibracionCamara.singleton != null && !noAbroYo)
         {
             VibracionCamara.singleton.MoverCamaraConVibracion(posicionDeseada[1],5f,0.007f);
@@ -225,7 +225,7 @@ public class EntornoMecanica : MonoBehaviour
 
     private IEnumerator IniciarAnimacionCerrarCompuertas()
     {
-        if (AudioManagerMotores.singleton != null) AudioManagerMotores.singleton.PlayEfectString("Particulas", 0.4f); // Ejecutamos el efecto nombrado
+        if (AudioManagerMotores.singleton != null) AudioManagerMotores.singleton.PlayEfectString("Particulas", 0.6f); // Ejecutamos el efecto nombrado
 
         if (ManagerMinijuego.singleton.minijuegoTerminado && !MesaMotor.singleton.motorRotando && !expansionRadialPiezasInternas.expandir)
         {
@@ -297,7 +297,7 @@ public class EntornoMecanica : MonoBehaviour
        
         yield return new WaitForSeconds(3f);
 
-        if (AudioManagerMotores.singleton != null) AudioManagerMotores.singleton.PlayEfectString("Compuerta", 0.4f); // Ejecutamos el efecto nombrado
+        if (AudioManagerMotores.singleton != null) AudioManagerMotores.singleton.PlayEfectString("Compuerta", 0.6f); // Ejecutamos el efecto nombrado
 
         mesa.RetornarPosicionOriginal();
         if (MesaMotor.singleton.estoyArmando) ControlCamaraMotor.singleton.IniciarMovimientoCamara(posicionDeseada[0], 1.5f);

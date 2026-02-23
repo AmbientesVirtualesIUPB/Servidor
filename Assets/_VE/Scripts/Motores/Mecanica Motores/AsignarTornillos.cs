@@ -7,6 +7,7 @@ public class AsignarTornillos : MonoBehaviour
 {
     public Material[] materialesSeleccion; // Para los materiales de seleccion verde y rojo
     public ApretarTornillos[] apretarTornillos;
+    public GameObject[] inputEsferasVR;
     public MeshRenderer[] meshRendererHijos; // Para los mesh de los hijos de este objeto
 
     private Material[] materialesOriginales;

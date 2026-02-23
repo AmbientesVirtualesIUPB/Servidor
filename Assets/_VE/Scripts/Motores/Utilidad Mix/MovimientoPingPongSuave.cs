@@ -3,7 +3,8 @@ using UnityEngine;
 public class MovimientoPingPongSuave : MonoBehaviour
 {
     [Header("Destino")]
-    public Transform objetivo;
+    public Transform[] objetivos;
+    int indice;
 
     [Header("Movimiento")]
     public float velocidad = 3f;
@@ -14,9 +15,12 @@ public class MovimientoPingPongSuave : MonoBehaviour
     public bool loop = true;
     public bool iniciarAutomatico = true;
 
+    float t;
     Vector3 posicionInicial;
     Quaternion rotacionInicial;
     bool activo;
+
+    float velocidadAjuste;
 
     void Start()
     {
@@ -24,31 +28,35 @@ public class MovimientoPingPongSuave : MonoBehaviour
         rotacionInicial = transform.localRotation;
 
         activo = iniciarAutomatico;
+
+        velocidadAjuste = (posicionInicial - objetivos[0].localPosition).magnitude;
     }
 
     void Update()
     {
-        if (!activo || objetivo == null)
+        if (!activo || objetivos == null)
             return;
 
         // Movimiento suave hacia objetivo
         transform.localPosition = Vector3.Lerp(
-            transform.localPosition,
-            objetivo.localPosition,
-            Time.deltaTime * velocidad
+            (indice == 0) ? posicionInicial : objetivos[indice - 1].localPosition,
+            objetivos[indice].localPosition,
+            t
         );
 
         if (usarRotacion)
         {
             transform.localRotation = Quaternion.Slerp(
-                transform.localRotation,
-                objetivo.localRotation,
-                Time.deltaTime * suavidadRotacion
+                (indice == 0) ? rotacionInicial : objetivos[indice - 1].localRotation,
+                objetivos[indice].localRotation,
+                t
             );
         }
 
+        t += Time.deltaTime * velocidad / velocidadAjuste;
+
         // Detectar llegada
-        if (Vector3.Distance(transform.localPosition, objetivo.localPosition) < 0.02f)
+        if (t > 1)
         {
             if (!loop)
             {
@@ -59,6 +67,9 @@ public class MovimientoPingPongSuave : MonoBehaviour
             // TELETRANSPORTE instantáneo al inicio
             transform.localPosition = posicionInicial;
             transform.localRotation = rotacionInicial;
+            t = 0;
+            indice = (indice + 1) % objetivos.Length;
+            velocidadAjuste = ((indice == 0) ? posicionInicial : objetivos[indice - 1].localPosition - objetivos[indice].localPosition).magnitude;
         }
     }
 

@@ -104,6 +104,7 @@ public class HerramientaArmable : MonoBehaviour
             {
                 rotacionAngularObjeto.ReiniciarHerramientasRotatorias();
                 rotacionAngularObjeto.herramientasManipulables[0].SetActive(true);
+                RotacionAngularObjeto.singleton.herramientaTomada = true;
             }         
         }
     }
