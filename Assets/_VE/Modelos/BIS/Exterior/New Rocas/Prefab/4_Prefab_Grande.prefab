@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3510074318210102127}
   - component: {fileID: 5690445104100359645}
+  - component: {fileID: 2586877262256589426}
   m_Layer: 0
   m_Name: 4_Prefab_Grande
   m_TagString: Untagged
@@ -62,6 +63,22 @@ LODGroup:
     renderers:
     - renderer: {fileID: 6522555538223613332}
   m_Enabled: 1
+--- !u!208 &2586877262256589426
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1892518948152008633}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1001 &2905723932677297394
 PrefabInstance:
   m_ObjectHideFlags: 0
