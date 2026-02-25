@@ -5,15 +5,16 @@ public class ControladorAnimalIA : MonoBehaviour
 {
     public enum EstadoAnimal
     {
-        Quieto,
-        Caminar,
-        Alerta,
-        Huir
+        Quieto = 0,
+        Caminar = 1,
+        Alerta = 3,
+        Huir = 2
     }
 
     [Header("Referencias")]
     public NavMeshAgent agente;
     public string tagJugador = "Player";
+    public Animator animator;
 
     [Header("Puntos de interes (asignar en inspector)")]
     public Transform[] puntosInteres;
@@ -115,6 +116,8 @@ public class ControladorAnimalIA : MonoBehaviour
     void CambiarEstado(EstadoAnimal nuevoEstado)
     {
         if (nuevoEstado == estadoActual) return;
+
+        if (animator != null) animator.SetInteger("estado", ((int)nuevoEstado) % 3);
 
         // Salir estado actual
         switch (estadoActual)
