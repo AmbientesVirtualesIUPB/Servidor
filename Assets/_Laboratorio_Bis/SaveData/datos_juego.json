@@ -1,11 +1,11 @@
 {
     "misiones": {
-        "misionActivaID": -1,
+        "misionActivaID": 0,
         "faseActiva": 0,
-        "progresoFase": [],
-        "misionesCompletadas": [
+        "progresoFase": [
             1
-        ]
+        ],
+        "misionesCompletadas": []
     },
     "objetos": {
         "objetos": [
@@ -55,7 +55,7 @@
                 "idObjeto": "1011",
                 "descubierto": true,
                 "infoDesbloqueada": true,
-                "cantidad": 6
+                "cantidad": 7
             }
         ]
     },

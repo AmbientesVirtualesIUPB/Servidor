@@ -1,4 +1,6 @@
+using UnityEngine.UI;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class Miccroscopio : MonoBehaviour
 {
@@ -10,6 +12,8 @@ public class Miccroscopio : MonoBehaviour
 
     [Range(0f, 1f)] public float t0;
     [Range(0f, 1f)] public float t1;
+    public Slider slider0;
+    public Slider slider1;
 
     public Material m;
     float desenfoque;
@@ -22,21 +26,27 @@ public class Miccroscopio : MonoBehaviour
     public float intensidadMax = 2.5f;
     public float suavizadoIntensidad = 10f;
 
-    public void SetT0(float value) => t0 = Mathf.Clamp01(value);
+    public bool puedoActualizar;
+    public void SetT0(float value) => slider0.value = Mathf.Clamp01(value);
     public void SetT1(float value) => t1 = Mathf.Clamp01(value);
 
     void Update()
     {
         for (int i = 0; i < lente.Length; i++)
         {
-            lente[i].position = Vector3.Lerp(p0.position, p1.position, t0); 
+            lente[i].position = Vector3.Lerp(p0.position, p1.position, slider0.value); 
 
-            desenfoque = (Mathf.Abs(t1 - t0)) * 0.03f;
+            desenfoque = (Mathf.Abs(slider1.value - slider0.value)) * 0.03f;
             m.SetFloat("_Desenfoque", desenfoque);
         }
 
-        float anguloZoom = t0 * 180f;
-        float anguloEnfoque = t1 * 180f;
+        if (puedoActualizar)
+        {
+            GestionMensajesServidor.singeton.EnviarMensaje("BS01", slider0.value.ToString("F3") + "*" + slider1.value.ToString("F3"));
+        }
+
+        float anguloZoom = slider0.value * 180f;
+        float anguloEnfoque = slider1.value * 180f;
 
         Quaternion rotZoomObj = Quaternion.Euler(anguloZoom, 0f, 0f);
         Quaternion rotEnfObj = Quaternion.Euler(anguloEnfoque, 0f, 0f);
@@ -46,7 +56,7 @@ public class Miccroscopio : MonoBehaviour
 
         if (luzMicroscopio != null)
         {
-            float objetivo = Mathf.Lerp(intensidadMin, intensidadMax, t0);
+            float objetivo = Mathf.Lerp(intensidadMin, intensidadMax, slider0.value);
             luzMicroscopio.intensity = Mathf.Lerp(
                 luzMicroscopio.intensity,
                 objetivo,
