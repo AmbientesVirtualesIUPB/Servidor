@@ -9,6 +9,13 @@ public class ControlGeneralIdioma : MonoBehaviour
     public string idioma = "ESP";
     public List<ControlIdioma> listaIdiomas;
 
+    public GameObject español;
+    public GameObject ingles;
+    public GameObject portugues;
+    public GameObject frances;
+
+    public GameObject contenedor;
+
     private void Awake()
     {
         if (singleton == null)
@@ -46,17 +53,38 @@ public class ControlGeneralIdioma : MonoBehaviour
     public void Español() 
     {
         CambiarIdioma("ESP");
+        español.SetActive(true);
+        ingles.SetActive(false);
+        portugues.SetActive(false);
+        frances.SetActive(false);
+        contenedor.SetActive(false);
     }
     public void Ingles()
     {
         CambiarIdioma("ENG");
-    }
-    public void Frances()
-    {
-        CambiarIdioma("FRA");
+        español.SetActive(false);
+        ingles.SetActive(true);
+        portugues.SetActive(false);
+        frances.SetActive(false);
+        contenedor.SetActive(false);
     }
     public void Portuges()
     {
         CambiarIdioma("POR");
+        español.SetActive(false);
+        ingles.SetActive(false);
+        portugues.SetActive(true);
+        frances.SetActive(false);
+        contenedor.SetActive(false);
     }
+    public void Frances()
+    {
+        CambiarIdioma("FRA");
+        español.SetActive(false);
+        ingles.SetActive(false);
+        portugues.SetActive(false);
+        frances.SetActive(true);
+        contenedor.SetActive(false);
+    }
+  
 }

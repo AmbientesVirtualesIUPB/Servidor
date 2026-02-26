@@ -12,11 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10b3c7fa575959b4c86f82c087a5fe77, type: 3}
   m_Name: Mision # 1
   m_EditorClassIdentifier: 
-  idMision: 1
-  nombreMision: Recorre tu mundo
-  descripcionMision: "Han llegado informes preocupantes: el Lago Sagrado est\xE1
-    contaminado. El agua ya no brilla como antes y la vida a su alrededor empieza
-    a verse afectada. Nuestra misi\xF3n es clara: debemos limpiarlo y restaurar su
-    equilibrio."
+  IdMision: 0
+  IdNombreMision: 4
+  IdDescripcionMision: 5
   fases:
   - {fileID: 11400000, guid: 53ead3afab482d34cad2d83c456ba5f2, type: 2}
