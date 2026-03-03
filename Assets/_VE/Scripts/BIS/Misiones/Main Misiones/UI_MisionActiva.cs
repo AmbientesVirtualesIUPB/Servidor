@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using Unity.VisualScripting;
 
 public class UI_MisionActiva : MonoBehaviour
 {
@@ -10,10 +11,11 @@ public class UI_MisionActiva : MonoBehaviour
     public GameObject panel;
 
     [Header("Campos de UI (TextMeshPro)")]
-    public TMP_Text textoNombreMision;
-    public TMP_Text textoFase;
-    public TMP_Text textoDescripcionFase;
-    public TMP_Text textoObjetivos;
+    public GameObject textoNombreMision;
+    public GameObject textoFase;
+    public GameObject textoDescripcionFase;
+    public GameObject textoObjetivos;
+
 
     private void Awake()
     {
@@ -31,19 +33,31 @@ public class UI_MisionActiva : MonoBehaviour
         if (panel != null)
             panel.SetActive(true);
 
-        textoNombreMision.text = mision.nombreMision;
-        textoFase.text = fase.nombreFase;
-        textoDescripcionFase.text = fase.descripcionFase;
+        var ciNombre = textoNombreMision.GetComponent<ControlIdioma>();
+        ciNombre.texto = mision.IdNombreMision;
+        ciNombre.tmp = textoNombreMision.GetComponent<TextMeshProUGUI>();
+        ciNombre.ActualizarTexto();
+
+        var ciFase = textoFase.GetComponent<ControlIdioma>();
+        ciFase.texto = fase.idNombreFase;
+        ciFase.tmp = textoFase.GetComponent<TextMeshProUGUI>();
+        ciFase.ActualizarTexto();
+
+        var ciDesc = textoDescripcionFase.GetComponent<ControlIdioma>();
+        ciDesc.texto = fase.idDescripcionFase;
+        ciDesc.tmp = textoDescripcionFase.GetComponent<TextMeshProUGUI>();
+        ciDesc.ActualizarTexto();
+
 
     }
 
     // -------------------------------------------
-    // Cuando el gestor cambia fase → se llama esto
+    // Cuando el gestor cambia fase → se llama esto 
     // -------------------------------------------
     public void ActualizarFase(FaseBase fase)
     {
-        textoFase.text = fase.nombreFase;
-        textoDescripcionFase.text = fase.descripcionFase;
+        textoFase.GetComponent<ControlIdioma>().texto = fase.idNombreFase;
+        textoDescripcionFase.GetComponent<ControlIdioma>().texto = fase.idDescripcionFase;
     }
 
     // -------------------------------------------

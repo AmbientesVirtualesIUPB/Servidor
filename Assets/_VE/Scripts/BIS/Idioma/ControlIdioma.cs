@@ -3,13 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using Best.HTTP.SecureProtocol.Org.BouncyCastle.Security;
 
 public class ControlIdioma : MonoBehaviour
 {
     //public Text txt;
     public TextMeshProUGUI tmp;
     public int texto;
-    
+    private void Awake()
+    {
+        
+    }
     private void Start()
     {     
         ActualizarTexto();

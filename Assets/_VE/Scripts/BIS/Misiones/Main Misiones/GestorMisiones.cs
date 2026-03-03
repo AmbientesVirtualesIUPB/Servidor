@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 
 public class GestorMisiones : MonoBehaviour
 {
@@ -43,7 +44,7 @@ public class GestorMisiones : MonoBehaviour
         progresoRecoleccionActual = null;
         faseRecoleccionActual = null;
 
-        Debug.Log("Misión iniciada: " + misionActual.nombreMision);
+        Debug.Log("Misión iniciada: " + BaseDeTextosPorIdioma.configuracionDefault.ObtenerTexto(misionActual.IdNombreMision));
 
         UI_MisionActiva.instancia.MostrarMision(misionActual, misionActual.fases[0]);
 
@@ -72,7 +73,7 @@ public class GestorMisiones : MonoBehaviour
         UI_MisionActiva.instancia.ActualizarFase(fase);
         ActualizarObjetivosEnUI();
 
-        Debug.Log("Iniciando fase: " + fase.nombreFase);
+        Debug.Log("Iniciando fase: " + BaseDeTextosPorIdioma.configuracionDefault.ObtenerTexto(fase.idNombreFase));
 
         // Cancelar rutina anterior
         if (rutinaActual != null)
@@ -129,7 +130,7 @@ public class GestorMisiones : MonoBehaviour
     {
         if (misionActual == null) return;
 
-        Debug.Log("Fase completada: " + misionActual.fases[indiceFaseActual].nombreFase);
+        Debug.Log("Fase completada: " + BaseDeTextosPorIdioma.configuracionDefault.ObtenerTexto(misionActual.fases[indiceFaseActual].idNombreFase));
 
         indiceFaseActual++;
 
@@ -152,9 +153,9 @@ public class GestorMisiones : MonoBehaviour
     // ------------------------------------------------------
     private void FinalizarMision()
     {
-        Debug.Log("¡Misión COMPLETADA!: " + misionActual.nombreMision);
+        Debug.Log("¡Misión COMPLETADA!: " + BaseDeTextosPorIdioma.configuracionDefault.ObtenerTexto(misionActual.IdNombreMision));
 
-        misionesCompletadas[misionActual.idMision] = true;
+        misionesCompletadas[misionActual.IdMision] = true;
 
         misionActual = null;
         indiceFaseActual = 0;
@@ -162,7 +163,10 @@ public class GestorMisiones : MonoBehaviour
         faseRecoleccionActual = null;
 
         UI_MisionActiva.instancia.OcultarMision();
-        UI_MisionActiva.instancia.textoObjetivos.text = "";
+
+        var ciObj = UI_MisionActiva.instancia.textoObjetivos.GetComponent<ControlIdioma>();
+        ciObj.texto = 20;          // info debe ser int (ID)
+        ciObj.ActualizarTexto();     // refresca el texto ya mismo
 
         // Guardar estado sin misión activa
         if (SistemaGuardado.instancia != null)
@@ -177,7 +181,7 @@ public class GestorMisiones : MonoBehaviour
     public int MisionActualID()
     {
         if (misionActual == null) return -1;
-        return misionActual.idMision;
+        return misionActual.IdMision;
     }
 
     public bool MisionYaCompletada(int id) => misionesCompletadas[id];
@@ -265,11 +269,15 @@ public class GestorMisiones : MonoBehaviour
                 info += $"• {fr.objetivos[i].objeto.nombreObjeto} ({progresoRecoleccionActual[i]}/{fr.objetivos[i].cantidadRequerida})\n";
             }
 
-            UI_MisionActiva.instancia.textoObjetivos.text = info;
+            var ciObj = UI_MisionActiva.instancia.textoObjetivos.GetComponent<ControlIdioma>();
+            ciObj.texto = 20;          // info debe ser int (ID)
+            ciObj.ActualizarTexto();     // refresca el texto ya mismo
         }
         else
         {
-            UI_MisionActiva.instancia.textoObjetivos.text = "";
+            var ciObj = UI_MisionActiva.instancia.textoObjetivos.GetComponent<ControlIdioma>();
+            ciObj.texto = 20;          // info debe ser int (ID)
+            ciObj.ActualizarTexto();     // refresca el texto ya mismo
         }
     }
 
@@ -354,7 +362,7 @@ public class GestorMisiones : MonoBehaviour
     {
         foreach (var m in todasLasMisiones)
         {
-            if (m != null && m.idMision == id)
+            if (m != null && m.IdMision == id)
                 return m;
         }
         return null;
@@ -369,7 +377,7 @@ public class GestorMisiones : MonoBehaviour
 
         indiceFaseActual = Mathf.Clamp(faseGuardada, 0, misionActual.fases.Length - 1);
 
-        Debug.Log("Cargando misión desde datos: " + misionActual.nombreMision);
+        Debug.Log("Cargando misión desde datos: " + BaseDeTextosPorIdioma.configuracionDefault.ObtenerTexto(misionActual.IdNombreMision));
 
         FaseBase fase = misionActual.fases[indiceFaseActual];
 

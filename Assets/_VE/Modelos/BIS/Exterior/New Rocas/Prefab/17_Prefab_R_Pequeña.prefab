@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 408525347084784318}
   - component: {fileID: 2238106795218774173}
+  - component: {fileID: 8682633781539759991}
   m_Layer: 0
   m_Name: "17_Prefab_R_Peque\xF1a"
   m_TagString: Untagged
@@ -62,6 +63,22 @@ LODGroup:
     renderers:
     - renderer: {fileID: 4002232066417770576}
   m_Enabled: 1
+--- !u!208 &8682633781539759991
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1684725716755008541}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1001 &2327056427159444692
 PrefabInstance:
   m_ObjectHideFlags: 0
