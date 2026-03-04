@@ -773,6 +773,7 @@ MonoBehaviour:
     message: Unicamente para las piezas con tornillos
     type: 0
   asignarTornillos: {fileID: 0}
+  inputEsferasVR: []
   mensaje6:
     message: "Para las piezas de lubricaci\xF3n"
     type: 0
@@ -2932,7 +2933,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0.7018361, y: 0.08617464, z: 0.08617463, w: 0.70183617}
   m_LocalPosition: {x: -0.05086233, y: 0.17026275, z: 0.27804983}
-  m_LocalScale: {x: 519.94, y: 305.40753, z: 409.79245}
+  m_LocalScale: {x: 674.2, y: 259.8, z: 459.4}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 9024721770967390106}
@@ -3331,7 +3332,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0.7018361, y: 0.08617464, z: 0.08617463, w: 0.70183617}
   m_LocalPosition: {x: -0.05086233, y: 0.17026275, z: 0.2218222}
-  m_LocalScale: {x: 519.94, y: 305.40753, z: 409.79245}
+  m_LocalScale: {x: 537.5, y: 272.4, z: 468}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 9024721770967390106}
@@ -5824,7 +5825,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0.7018361, y: 0.08617464, z: 0.08617463, w: 0.70183617}
   m_LocalPosition: {x: -0.05086233, y: 0.17026275, z: 0.16624947}
-  m_LocalScale: {x: 519.94, y: 305.40753, z: 409.79245}
+  m_LocalScale: {x: 466.9, y: 282.8, z: 490.4}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 9024721770967390106}
@@ -7418,13 +7419,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8942502293909473325}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.7018361, y: 0.08617464, z: 0.08617463, w: 0.70183617}
-  m_LocalPosition: {x: -0.05086233, y: 0.17026275, z: 0.3340223}
-  m_LocalScale: {x: 519.94, y: 305.40753, z: 409.79245}
+  m_LocalRotation: {x: -0.7064899, y: 0.029529462, z: 0.029529465, w: 0.70649}
+  m_LocalPosition: {x: -0.05086233, y: 0.158, z: 0.3340223}
+  m_LocalScale: {x: 826.3, y: 305.40753, z: 548.1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 9024721770967390106}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 4.787}
 --- !u!33 &9152738912485815841
 MeshFilter:
   m_ObjectHideFlags: 0

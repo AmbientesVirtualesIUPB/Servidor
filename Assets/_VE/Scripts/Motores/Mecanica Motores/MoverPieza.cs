@@ -41,6 +41,7 @@ public class MoverPieza : MonoBehaviour
     [Header("PIEZAS QUE ACTIVAN MINIJUEGOS DE ACEITAR")]
     public MessageOnly mensaje6 = new MessageOnly("Para las piezas de lubricación", MessageTypeCustom.Info);
     public bool esLubricada; // unicamente para las piezas que activen minijuego de lubricación
+    public string nombrePiezaAceitada;
     public int numeroPieza;
     public bool desactivaExternas;
 
@@ -287,6 +288,7 @@ public class MoverPieza : MonoBehaviour
             {
                 ManagerMinijuego.singleton.ActivarMinijuegoAceite(numeroPieza, desactivaExternas);
                 ManagerMinijuego.singleton.btnAplicarAceite.interactable = false;
+                ManagerMinijuego.singleton.txtInfoAceite.text = nombrePiezaAceitada;
             }
         }
         else

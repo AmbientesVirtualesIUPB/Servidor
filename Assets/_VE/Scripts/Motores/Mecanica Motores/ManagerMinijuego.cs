@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -109,6 +108,8 @@ public class ManagerMinijuego : MonoBehaviour
     public ExpansionRadial piezasExternas;
     public MoverObjeto botellaAceite;
     public ParticleSystem aceite;
+    public TextMeshProUGUI txtInfoAceite;
+    public EscaladorUI infoAceite;
     private bool desactivarExternas;
 
     [HideInInspector]
@@ -590,6 +591,8 @@ public class ManagerMinijuego : MonoBehaviour
 
     IEnumerator AplicarAceiteCorrutine()
     {
+        infoAceite.Escalar();
+
         btnAplicarAceite.gameObject.SetActive(false); // Desactivamos el boton para aplicar aceite
         puntajeAceite += 1; // Damos un punto por aplicar aceite
 
@@ -604,16 +607,16 @@ public class ManagerMinijuego : MonoBehaviour
 
         ControlCamaraMotor.singleton.noMover = true; // Indicamos que no podemos mover la camara
 
-        if (motorActivo == "Diesel")
-        {
-            ControlCamaraMotor.singleton.IniciarMovimientoCamara(posicionesMinijuegoAceiteDiesel[piezaAceitadaActual], 1);
-        }
-        else if (motorActivo == "Nissan")
-        {
-            ControlCamaraMotor.singleton.IniciarMovimientoCamara(posicionesMinijuegoAceiteNissan[piezaAceitadaActual], 1);
-        }
+        //if (motorActivo == "Diesel")
+        //{
+        //    ControlCamaraMotor.singleton.IniciarMovimientoCamara(posicionesMinijuegoAceiteDiesel[piezaAceitadaActual], 1);
+        //}
+        //else if (motorActivo == "Nissan")
+        //{
+        //    ControlCamaraMotor.singleton.IniciarMovimientoCamara(posicionesMinijuegoAceiteNissan[piezaAceitadaActual], 1);
+        //}
         
-        ControlCamaraMotor.singleton.ReestablecerPosicionCamara(); // Reiniciamos el indice para que la posicion de la camara sea correcta
+        //ControlCamaraMotor.singleton.ReestablecerPosicionCamara(); // Reiniciamos el indice para que la posicion de la camara sea correcta
 
         yield return new WaitForSeconds(1f);
 
@@ -637,6 +640,7 @@ public class ManagerMinijuego : MonoBehaviour
 
         //Activamos nuevamente los botones de salir 
         ManagerCanvas.singleton.DeshabilitarImgPantallaBloqueoCanvasMotorVR();
+        infoAceite.Restaurar();
 
         minijuegoActivo = false;
 

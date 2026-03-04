@@ -291,8 +291,8 @@ MonoBehaviour:
   inputEsferasVR:
   - {fileID: 3246421005829628538}
   - {fileID: 8832100034671819078}
-  - {fileID: 431062486282283957}
   - {fileID: 2943341557384364168}
+  - {fileID: 431062486282283957}
   meshRendererHijos:
   - {fileID: 7489334363649445658}
   - {fileID: 3102153194784123504}
@@ -757,6 +757,9 @@ MonoBehaviour:
   agarrarPresionado: 0
   botonPresionado: 0
   botonNoPresionado: 0
+  desatornillar: 0
+  desatornillando: 0
+  primeraInteraccion: 0
   slider: {fileID: 0}
   velocidad: 0.3
 --- !u!54 &5417685621310801594
@@ -1074,6 +1077,9 @@ MonoBehaviour:
   agarrarPresionado: 0
   botonPresionado: 0
   botonNoPresionado: 0
+  desatornillar: 0
+  desatornillando: 0
+  primeraInteraccion: 0
   slider: {fileID: 0}
   velocidad: 0.3
 --- !u!54 &1261632573835171406
@@ -1358,6 +1364,9 @@ MonoBehaviour:
   agarrarPresionado: 0
   botonPresionado: 0
   botonNoPresionado: 0
+  desatornillar: 0
+  desatornillando: 0
+  primeraInteraccion: 0
   slider: {fileID: 0}
   velocidad: 0.3
 --- !u!54 &6764079712132680734
@@ -1979,6 +1988,9 @@ MonoBehaviour:
   agarrarPresionado: 0
   botonPresionado: 0
   botonNoPresionado: 0
+  desatornillar: 0
+  desatornillando: 0
+  primeraInteraccion: 0
   slider: {fileID: 0}
   velocidad: 0.3
 --- !u!54 &9098758549308772694

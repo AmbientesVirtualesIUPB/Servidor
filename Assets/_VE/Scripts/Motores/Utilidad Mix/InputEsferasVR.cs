@@ -11,6 +11,8 @@ public class InputEsferasVR : MonoBehaviour
     public bool botonPresionado;
     public bool botonNoPresionado;
     public bool desatornillar;
+    public bool desatornillando;
+    public bool primeraInteraccion;
 
     public Slider slider;
     public float velocidad = 0.5f; // unidades por segundo
@@ -33,16 +35,21 @@ public class InputEsferasVR : MonoBehaviour
             slider.value += - velocidad * Time.deltaTime;
         }
 
-        if (botonPresionado && !sonidoEjecutado)
+        if (desatornillando && ManagerMinijuego.singleton.sliderTorqueMinijuego.value > 0)
+        {
+            if (AudioManagerMotores.singleton != null) AudioManagerMotores.singleton.PlayEfectLoopInt(0, 1f); // Ejecutamos el efecto de tuerca
+            desatornillando = false;
+        }
+
+        if (botonPresionado && !sonidoEjecutado && ManagerMinijuego.singleton.sliderTorqueMinijuego.value < 100)
         {
             if (AudioManagerMotores.singleton != null) AudioManagerMotores.singleton.PlayEfectLoopInt(0, 1f); // Ejecutamos el efecto de tuerca
             sonidoEjecutado = true;
         }
 
-        if (desatornillar && !sonidoEjecutado)
+        if (ManagerMinijuego.singleton.sliderTorqueMinijuego.value >= 100 || ManagerMinijuego.singleton.sliderTorqueMinijuego.value <= 0)
         {
-            if (AudioManagerMotores.singleton != null) AudioManagerMotores.singleton.PlayEfectLoopInt(0, 1f); // Ejecutamos el efecto de tuerca
-            sonidoEjecutado = true;
+            if (AudioManagerMotores.singleton != null) AudioManagerMotores.singleton.DetenerLoop(); // Detenemos el efecto 
         }
     }
     private void OnTriggerStay(Collider collision)
@@ -54,14 +61,15 @@ public class InputEsferasVR : MonoBehaviour
                 if (agarrarPresionado)
                 {
                     botonPresionado = true;
+                    primeraInteraccion = true;
                     botonNoPresionado = false;
                     desatornillar = false;
-                    sonidoEjecutado = false;
                 }
                 else
                 {
-                    if (AudioManagerMotores.singleton != null) AudioManagerMotores.singleton.DetenerLoop(); // Detenemos el efecto 
+                    if (AudioManagerMotores.singleton != null && primeraInteraccion) AudioManagerMotores.singleton.DetenerLoop(); // Detenemos el efecto 
                     botonPresionado = false;
+                    sonidoEjecutado = false;
                     botonNoPresionado = true;
                 }
             }
@@ -75,13 +83,13 @@ public class InputEsferasVR : MonoBehaviour
             if (InventarioUI.singleton.tamanoHerramienta == ManagerMinijuego.singleton.sizeHerramienta)
             {
                 desatornillar = true;
-                sonidoEjecutado = false;
+                desatornillando = true;
             }
             else
             {
                 if (ManagerCanvas.singleton != null)
                 {
-                    if (AudioManagerMotores.singleton != null) AudioManagerMotores.singleton.PlayEfectString("Error", 1f); // Ejecutamos el efecto nombrado
+                    if (AudioManagerMotores.singleton != null) AudioManagerMotores.singleton.PlayEfectString("Error", 0.6f); // Ejecutamos el efecto nombrado
 
                     if (ManagerMinijuego.singleton.sizeHerramienta == 1)
                     {
@@ -119,6 +127,7 @@ public class InputEsferasVR : MonoBehaviour
             botonPresionado = false;
             botonNoPresionado = false;
             desatornillar = false;
+            primeraInteraccion = false;
         }
     }
 }

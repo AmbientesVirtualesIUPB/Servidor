@@ -186,6 +186,9 @@ public class ValoresDinamometro : MonoBehaviour, IPointerDownHandler, IPointerUp
         {
             objetosRotatoriosNegativos[i].velocidadRotacion = 0f;
         }
+
+        var emission = particulasAire.emission;
+        emission.rateOverTime = 0;
     }
 
     /// <summary>
