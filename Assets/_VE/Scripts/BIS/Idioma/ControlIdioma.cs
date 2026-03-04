@@ -7,7 +7,7 @@ using Best.HTTP.SecureProtocol.Org.BouncyCastle.Security;
 
 public class ControlIdioma : MonoBehaviour
 {
-    //public Text txt;
+    public Text txt;
     public TextMeshProUGUI tmp;
     public int texto;
     private void Awake()
@@ -25,14 +25,19 @@ public class ControlIdioma : MonoBehaviour
 
     public void ActualizarTexto()
     {
-        /*if (txt != null)
+        if (txt != null)
         {
             txt.text = BaseDeTextosPorIdioma.configuracionDefault.ObtenerTexto(texto);
-        }*/
-        if(tmp != null)
+        }
+        if (tmp != null)
         {
             tmp.text = BaseDeTextosPorIdioma.configuracionDefault.ObtenerTexto(texto);
         }
+    }
+    public void ActualizarTexto(int nuevo)
+    {
+        texto = nuevo;
+        ActualizarTexto();
     }
 
     private void OnDrawGizmosSelected()
