@@ -50,7 +50,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 417558397783343432}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -153,7 +153,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519103869534093921}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -221,7 +221,7 @@ GameObject:
   - component: {fileID: 1037819865561628388}
   - component: {fileID: 3020130170091835037}
   m_Layer: 7
-  m_Name: SPcadenaDistribucion (1)
+  m_Name: SPInyectores
   m_TagString: SnapPoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -236,7 +236,7 @@ Transform:
   m_GameObject: {fileID: 591637958690250656}
   serializedVersion: 2
   m_LocalRotation: {x: -0.7069834, y: -0, z: -0, w: 0.70723015}
-  m_LocalPosition: {x: 0.010023341, y: -5.570715, z: 0.52951044}
+  m_LocalPosition: {x: 0.025, y: 0.75, z: -0.017}
   m_LocalScale: {x: 0.11667185, y: 0.074995324, z: 0.8650005}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -257,7 +257,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 591637958690250656}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -352,7 +352,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 934e722f2e5e3dd4291d8b20d864432a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  snapID: cadenaDistribucion
+  snapID: Inyectores
 --- !u!1 &810903530165195941
 GameObject:
   m_ObjectHideFlags: 0
@@ -403,7 +403,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 810903530165195941}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -876,8 +876,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 56
-  idSiguiente: 43
-  piezaSiguiente: "La cadena de distribuci\xF3n."
+  idSiguiente: 63
+  piezaSiguiente: Los Inyectores.
   piezaExterna: 0
   puedoValidar: 0
   piezaColocada: 0
@@ -893,10 +893,10 @@ MonoBehaviour:
   snappsParaDesactivar:
   - {fileID: 8341109800884188973}
   esferaDisolver: {fileID: 4273594449484658167}
-  pista: "Este es el v\xEDnculo que sincroniza el movimiento del cig\xFCe\xF1al con
-    el \xE1rbol de levas. Lubricala e inst\xE1lala asegur\xE1ndote de alinear las
-    marcas de tiempo en ambos engranajes. Una sincronizaci\xF3n incorrecta puede
-    provocar fallos graves en el funcionamiento."
+  pista: "El sistema de combusti\xF3n no puede funcionar si el combustible no entra
+    pulverizado y en la cantidad exacta. Antes de cerrar el sistema de admisi\xF3n,
+    instala los componentes encargados de dosificar y atomizar el combustible dentro
+    de la c\xE1mara."
   usarLimites: 1
   limiteMin: {x: -0.6, y: -0.5, z: -0.7}
   limiteMax: {x: 0.6, y: 0.1, z: 0.8}
@@ -1315,7 +1315,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4039435206631496544}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -2260,7 +2260,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8341109800884188973}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1

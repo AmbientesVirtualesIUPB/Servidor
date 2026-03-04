@@ -67,7 +67,7 @@ public class ValoresDinamometro : MonoBehaviour, IPointerDownHandler, IPointerUp
     // Update is called once per frame
     void Update()
     {
-        if (!ManagerDesplazamientoMotor.singleton.desplazamientoFinalizado)
+        if (ManagerDesplazamientoMotor.singleton.desplazamientoFinalizado)
         {
             if (puedoActualizar)
             {
@@ -185,6 +185,9 @@ public class ValoresDinamometro : MonoBehaviour, IPointerDownHandler, IPointerUp
         {
             objetosRotatoriosNegativos[i].velocidadRotacion = 0f;
         }
+
+        var emission = particulasAire.emission;
+        emission.rateOverTime = 0;
     }
 
     /// <summary>
@@ -193,7 +196,7 @@ public class ValoresDinamometro : MonoBehaviour, IPointerDownHandler, IPointerUp
     /// <param name="eventData"></param>
     public void OnPointerDown(PointerEventData eventData)
     {
-        if (!ManagerDesplazamientoMotor.singleton.desplazamientoFinalizado) puedoActualizar = true;
+        if (ManagerDesplazamientoMotor.singleton.desplazamientoFinalizado) puedoActualizar = true;
     }
 
     /// <summary>
@@ -202,6 +205,6 @@ public class ValoresDinamometro : MonoBehaviour, IPointerDownHandler, IPointerUp
     /// <param name="eventData"></param>
     public void OnPointerUp(PointerEventData eventData)
     {
-        if (!ManagerDesplazamientoMotor.singleton.desplazamientoFinalizado) puedoActualizar = false;
+        if (ManagerDesplazamientoMotor.singleton.desplazamientoFinalizado) puedoActualizar = false;
     }
 }
