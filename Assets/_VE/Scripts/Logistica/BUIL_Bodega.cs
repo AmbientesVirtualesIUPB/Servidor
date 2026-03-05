@@ -4,15 +4,21 @@ using UnityEngine;
 
 public class BUIL_Bodega : MonoBehaviour
 {
+    public static BUIL_Bodega singleton;
+
     public PlanoInicial planoInicial;
     public float offsetParedes;
     public GameObject   pared;
 
+    public ModosConstruccionBodega modo;
+
+    public int cualPared;
+
     public List<BUILD_Pared> paredes;
 
-    void Start()
+    void Awake()
     {
-        
+        singleton = this;
     }
     [ContextMenu("Construir")]
     public void Construir()
@@ -41,4 +47,36 @@ public class BUIL_Bodega : MonoBehaviour
 
 
     }
+
+    public void CambiarCualPared(int cual)
+    {
+        cualPared = cual;
+    }
+
+    public void CambiarModoNumero(int cual)
+    {
+        switch (cual)
+        {
+            case 0:
+                CambiarModo(ModosConstruccionBodega.espera);
+                break;
+            case 1:
+                CambiarModo(ModosConstruccionBodega.emparedando);
+                break;
+            default:
+                break;
+        }
+    }
+
+    public void CambiarModo(ModosConstruccionBodega m)
+    {
+        modo = m;
+    }
+}
+
+
+public enum ModosConstruccionBodega
+{
+    espera,
+    emparedando
 }

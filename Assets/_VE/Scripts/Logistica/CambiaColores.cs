@@ -13,8 +13,7 @@ public class CambiaColores : MonoBehaviour
         for (int i = 0; i < rends.Length; i++)
         {
             MatRen mr = new MatRen();
-            mr.renderer = rends[i];
-            mr.mat = rends[i].material;
+            mr.Inicializar(rends[i]);
             renderMateriales.Add(mr);
         }
     }
@@ -43,15 +42,39 @@ public class CambiaColores : MonoBehaviour
 public class MatRen
 {
     public Renderer renderer;
+    public Material[] mats;
     public Material mat;
+
+    public void Inicializar(Renderer r)
+    {
+        renderer = r;
+
+        // Guardar materiales originales
+        mats = renderer.materials;
+
+        // Guardar el primer material por compatibilidad con tu variable mat
+        if (mats.Length > 0)
+            mat = mats[0];
+    }
 
     public void CambiarMaterial(Material m)
     {
-        renderer.material = m;
+        if (renderer == null) return;
+
+        Material[] nuevos = new Material[renderer.materials.Length];
+
+        for (int i = 0; i < nuevos.Length; i++)
+        {
+            nuevos[i] = m;
+        }
+
+        renderer.materials = nuevos;
     }
 
     public void RestaurarMaterial()
     {
-        renderer.material = mat;
+        if (renderer == null || mats == null) return;
+
+        renderer.materials = mats;
     }
 }
