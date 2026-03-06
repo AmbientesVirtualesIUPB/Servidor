@@ -23,7 +23,7 @@ public class ControlUsuarios : MonoBehaviour
     }
 
 	/// <summary>
-	/// Solicitud de que todos se presenten para crear la lista de usuarios
+	/// Solicitud de que todos se presenten para noCrearManager la lista de usuarios
 	/// </summary>
 	/// <param name="msj"></param>
 	public void AC00(string msj)

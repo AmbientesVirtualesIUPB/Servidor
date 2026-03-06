@@ -22,7 +22,7 @@ public class MorionTransformManager : MonoBehaviour
                     _singleton = obj.GetComponent<MorionTransformManager>();
                 }
 
-                // Si no se encuentra, mostrar advertencia o crear un nuevo objeto
+                // Si no se encuentra, mostrar advertencia o noCrearManager un nuevo objeto
                 if (_singleton == null)
                 {
                     Debug.LogWarning("MorionTransformManager no encontrado, creando nuevo objeto.");
