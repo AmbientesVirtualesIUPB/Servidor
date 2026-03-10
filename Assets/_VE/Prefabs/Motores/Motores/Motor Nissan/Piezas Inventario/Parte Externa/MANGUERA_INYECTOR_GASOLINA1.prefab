@@ -119,6 +119,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   idPieza: 64
+  idCanvasInfoPieza: 2
   nombrePiezaBoton: MANGUERA
   nombrePieza: "Mnaguera De Inyecci\xF3n"
   descripcionPieza: "Conducto flexible que transporta el combustible desde la bomba
@@ -128,7 +129,7 @@ MonoBehaviour:
   tiempoDisolver: 1.5
   prefabInstancia: {fileID: 86657420589491179, guid: 69f18bbcd35c04c40aa9643453385ced,
     type: 3}
-  icono: {fileID: 21300000, guid: 1b4b426c4c475094094136fb44bcec04, type: 3}
+  icono: {fileID: 21300000, guid: dce9671574d2dae4eb7542c6b0a91fe3, type: 3}
   piezaExterna: 1
   mensaje1:
     message: Si lo que deseas es modificarle el material a los hijos

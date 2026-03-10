@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7843364894183130938}
   - component: {fileID: 2309654637196645484}
   - component: {fileID: 7951730182927439198}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: BOMBA_PRESION_Y_ECU1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -151,7 +151,7 @@ GameObject:
   - component: {fileID: 380220283563866905}
   - component: {fileID: -304546162472372946}
   - component: {fileID: 414436708754060937}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: BOMBA-PRESION-ECU
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -327,6 +327,7 @@ MonoBehaviour:
     message: "Para las piezas de lubricaci\xF3n"
     type: 0
   esLubricada: 0
+  nombrePiezaAceitada: 
   numeroPieza: 0
   desactivaExternas: 0
   mensaje3:

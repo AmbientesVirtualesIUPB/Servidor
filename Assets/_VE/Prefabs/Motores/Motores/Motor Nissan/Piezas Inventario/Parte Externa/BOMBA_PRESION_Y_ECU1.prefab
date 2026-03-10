@@ -119,6 +119,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   idPieza: 65
+  idCanvasInfoPieza: 2
   nombrePiezaBoton: "BOMBA PRESI\xD3N"
   nombrePieza: "Bomba De Presi\xF3n"
   descripcionPieza: "Dispositivo encargado de impulsar el combustible y mantener
@@ -128,7 +129,7 @@ MonoBehaviour:
   tiempoDisolver: 1.5
   prefabInstancia: {fileID: 6844224141176089317, guid: 22ce0d75047a91d4b955c340046e32f8,
     type: 3}
-  icono: {fileID: 21300000, guid: 145d7ce758be21542abde9cb8f6f3d82, type: 3}
+  icono: {fileID: 21300000, guid: 896019f8b81254d45a1eb21af20b41c5, type: 3}
   piezaExterna: 1
   mensaje1:
     message: Si lo que deseas es modificarle el material a los hijos

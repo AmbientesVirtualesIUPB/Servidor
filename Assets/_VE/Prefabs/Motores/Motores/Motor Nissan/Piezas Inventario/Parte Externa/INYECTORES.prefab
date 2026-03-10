@@ -119,6 +119,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   idPieza: 63
+  idCanvasInfoPieza: 2
   nombrePiezaBoton: INYECTORES
   nombrePieza: Inyectores
   descripcionPieza: "Dispositivo que pulveriza el combustible en forma de niebla
@@ -129,7 +130,7 @@ MonoBehaviour:
   tiempoDisolver: 1.5
   prefabInstancia: {fileID: 5778330605561989625, guid: 2e0b8f7f387fdac4abde0dd89400500a,
     type: 3}
-  icono: {fileID: 21300000, guid: 6d8758de402d2174bb70919db4214dd6, type: 3}
+  icono: {fileID: 21300000, guid: 0fdcdb24e57435f40998e399f76ae79e, type: 3}
   piezaExterna: 1
   mensaje1:
     message: Si lo que deseas es modificarle el material a los hijos

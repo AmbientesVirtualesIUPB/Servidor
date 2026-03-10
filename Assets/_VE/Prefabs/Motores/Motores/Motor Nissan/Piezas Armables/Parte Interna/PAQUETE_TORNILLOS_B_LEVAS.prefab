@@ -2862,7 +2862,7 @@ MonoBehaviour:
   puedoValidar: 0
   piezaColocada: 0
   piezaFinal: 0
-  posicionObjetivo: {x: -0.0177, y: 0.0366, z: 0.0503}
+  posicionObjetivo: {x: -0.0025, y: 0.0366, z: 0.0503}
   materialesSeleccion:
   - {fileID: 2100000, guid: 7fedf1846e15ef44099bb4888249ade4, type: 2}
   - {fileID: 2100000, guid: 6ef22ed9796e48d4aa57da4ce20dfb02, type: 2}
@@ -2895,6 +2895,7 @@ MonoBehaviour:
     message: "Para las piezas de lubricaci\xF3n"
     type: 0
   esLubricada: 0
+  nombrePiezaAceitada: 
   numeroPieza: 0
   desactivaExternas: 0
   mensaje3:

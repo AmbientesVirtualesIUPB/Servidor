@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1536420678403699319}
   - component: {fileID: 6774277765556893817}
   - component: {fileID: 8592685550892064737}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: INYECTORES
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -270,7 +270,7 @@ GameObject:
   - component: {fileID: 1099994833003875265}
   - component: {fileID: -6154464344449865332}
   - component: {fileID: -1564297410438637265}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: INYECTORES
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -286,7 +286,7 @@ Transform:
   m_GameObject: {fileID: 5778330605561989625}
   serializedVersion: 2
   m_LocalRotation: {x: 1, y: -0, z: -0, w: 0}
-  m_LocalPosition: {x: -0.02893, y: 0.061419964, z: 0.023950577}
+  m_LocalPosition: {x: -0.0055, y: 0.0598, z: 0.0252}
   m_LocalScale: {x: 0.3269115, y: 0.065568626, z: 0.26942226}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -415,7 +415,7 @@ MonoBehaviour:
   puedoValidar: 0
   piezaColocada: 0
   piezaFinal: 0
-  posicionObjetivo: {x: -0.02893, y: 0.06141996, z: 0.02395058}
+  posicionObjetivo: {x: -0.0064, y: 0.06107366, z: 0.0241}
   materialesSeleccion:
   - {fileID: 2100000, guid: 7fedf1846e15ef44099bb4888249ade4, type: 2}
   - {fileID: 2100000, guid: 6ef22ed9796e48d4aa57da4ce20dfb02, type: 2}
@@ -447,6 +447,7 @@ MonoBehaviour:
     message: "Para las piezas de lubricaci\xF3n"
     type: 0
   esLubricada: 0
+  nombrePiezaAceitada: 
   numeroPieza: 0
   desactivaExternas: 0
   mensaje3:

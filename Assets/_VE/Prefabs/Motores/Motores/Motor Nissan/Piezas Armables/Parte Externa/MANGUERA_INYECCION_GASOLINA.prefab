@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 6476563308868538983}
   - component: {fileID: 4510502131560242888}
   - component: {fileID: -4526261915095581745}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: MANGUERA_INYECCION_GASOLINA
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -163,7 +163,7 @@ MonoBehaviour:
   puedoValidar: 0
   piezaColocada: 0
   piezaFinal: 0
-  posicionObjetivo: {x: -0.02882, y: 0.07085001, z: -0.01972961}
+  posicionObjetivo: {x: -0.0108, y: 0.072, z: -0.021}
   materialesSeleccion:
   - {fileID: 2100000, guid: 7fedf1846e15ef44099bb4888249ade4, type: 2}
   - {fileID: 2100000, guid: 6ef22ed9796e48d4aa57da4ce20dfb02, type: 2}
@@ -196,6 +196,7 @@ MonoBehaviour:
     message: "Para las piezas de lubricaci\xF3n"
     type: 0
   esLubricada: 0
+  nombrePiezaAceitada: 
   numeroPieza: 0
   desactivaExternas: 0
   mensaje3:
@@ -595,7 +596,7 @@ GameObject:
   - component: {fileID: 8938351344481684022}
   - component: {fileID: 6746334373558465898}
   - component: {fileID: 6368212210400995459}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: MANGUERA_INYECTOR_GASOLINA1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
