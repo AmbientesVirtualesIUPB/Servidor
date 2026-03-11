@@ -9,6 +9,7 @@ public class BUIL_Bodega : MonoBehaviour
     public PlanoInicial planoInicial;
     public float offsetParedes;
     public GameObject   pared;
+    public List<BUILD_Techo> bTechos;
 
     public ModosConstruccionBodega modo;
 
@@ -44,7 +45,10 @@ public class BUIL_Bodega : MonoBehaviour
                 bpared.Inicializar(indice, planoInicial.escalas.y);
             }
         }
-
+        for (int i = 0; i < bTechos.Count; i++)
+        {
+            bTechos[i].Inicializar(tamX* offsetParedes, planoInicial.escalas.y, tamZ* offsetParedes);
+        }
 
     }
 
