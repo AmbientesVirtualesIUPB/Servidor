@@ -134,12 +134,12 @@ public class ControlCamaraMotor : MonoBehaviour
     public void IniciarMovimientoCamara(Transform posicionDeseada, float duracion)
     {
         posicionActual = posicionDeseada; // guardamos la posicion actual
-        if (miCoroutine != null)
-        {
-            StopCoroutine(miCoroutine);
-        }
+        //if (miCoroutine != null)
+        //{
+        //    StopCoroutine(miCoroutine);
+        //}
 
-        miCoroutine = StartCoroutine(MoverCamara(posicionDeseada, duracion));
+        //miCoroutine = StartCoroutine(MoverCamara(posicionDeseada, duracion));
     }
 
     public void DetenerMovimientosCamara()
@@ -175,9 +175,6 @@ public class ControlCamaraMotor : MonoBehaviour
         camara.transform.position = posicionDeseada.position; // Aseguramos la posición final
         camara.transform.rotation = posicionDeseada.rotation; // Aseguramos la rotacion final
 
-        if (ManagerMinijuego.singleton != null)
-        {
-            ManagerMinijuego.singleton.aplicandoTorque = false;
-        }
+
     }
 }

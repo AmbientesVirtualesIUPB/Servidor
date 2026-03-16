@@ -16,6 +16,7 @@ public class MoverPieza : MonoBehaviour
     [Header("CONFIGURACION INICIAL")]
     public bool piezaFinal; // Para validar si es la ultima pieza del motor
     public Vector3 posicionObjetivo;  // La posicion en la cual dejaremos la pieza colocada
+    public Vector3 rotacionObjetivo;  // Rotacion final de la pieza
     public Material[] materialesSeleccion; // Para los materiales de seleccion verde y rojo
     public Material materialDisolver; // Para el material de disolucion
     public float tiempoDisolver; // Para controlar el tiempo de disolver 

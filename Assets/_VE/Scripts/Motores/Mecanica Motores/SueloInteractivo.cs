@@ -442,7 +442,7 @@ public class SueloInteractivo : MonoBehaviour
                     EntornoMecanica.singleton.BajarIntensidadLuzPrincipal();
                 } 
 
-                if (ControlCamaraMotor.singleton != null) ControlCamaraMotor.singleton.enabled = true;
+                //if (ControlCamaraMotor.singleton != null) ControlCamaraMotor.singleton.enabled = true;
 
                 MesaMotor.singleton.mesaMotorActiva = true;
             }      
@@ -498,7 +498,7 @@ public class SueloInteractivo : MonoBehaviour
                 EntornoMecanica.singleton.SubirIntensidadLuzPrincipal();
             } 
 
-            if (ControlCamaraMotor.singleton != null) ControlCamaraMotor.singleton.enabled = false;
+            //if (ControlCamaraMotor.singleton != null) ControlCamaraMotor.singleton.enabled = false;
 
             MesaMotor.singleton.mesaMotorActiva = false;
             MesaMotor.singleton.estoyArmando = false;

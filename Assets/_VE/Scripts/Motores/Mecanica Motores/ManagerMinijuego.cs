@@ -605,7 +605,7 @@ public class ManagerMinijuego : MonoBehaviour
             ExplosionObjetosHijos.singleton.DesactivarHijos(ExplosionObjetosHijos.singleton.objetosPadres[2]); // Desactivamos las piezas externas mientras aplicamos aceite
         }
 
-        ControlCamaraMotor.singleton.noMover = true; // Indicamos que no podemos mover la camara
+        //ControlCamaraMotor.singleton.noMover = true; // Indicamos que no podemos mover la camara
 
         //if (motorActivo == "Diesel")
         //{
@@ -636,7 +636,7 @@ public class ManagerMinijuego : MonoBehaviour
 
         botellaAceite.gameObject.SetActive(false);
         ControlCamaraMotor.singleton.noMover = false;
-        ControlCamaraMotor.singleton.IniciarMovimientoCamara(ControlCamaraMotor.singleton.posicionFrontal, 1);
+        //ControlCamaraMotor.singleton.IniciarMovimientoCamara(ControlCamaraMotor.singleton.posicionFrontal, 1);
 
         //Activamos nuevamente los botones de salir 
         ManagerCanvas.singleton.DeshabilitarImgPantallaBloqueoCanvasMotorVR();

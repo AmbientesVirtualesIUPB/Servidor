@@ -28,13 +28,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 14176453824267194}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.10637258, y: 2.9132729, z: -7.590197}
+  m_LocalRotation: {x: 0, y: 0, z: -1, w: 0}
+  m_LocalPosition: {x: -0.117, y: -2.899, z: -7.68}
   m_LocalScale: {x: 1.0118675, y: 1.9566936, z: 9.065622}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3976735038080465549}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 180, y: 180, z: 0}
 --- !u!33 &7106505032269573206
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -166,8 +166,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6844224141176089317}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -1, w: 0}
-  m_LocalPosition: {x: 0.00123, y: 0.03283, z: -0.19205952}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.01867, y: 0.0312, z: -0.1882}
   m_LocalScale: {x: 0.2371852, y: 0.12265589, z: 0.026473636}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -175,7 +175,7 @@ Transform:
   - {fileID: 1984508898261949662}
   - {fileID: 597221962986807106}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 180, y: 180, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &925363898948533741
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -295,7 +295,8 @@ MonoBehaviour:
   puedoValidar: 0
   piezaColocada: 0
   piezaFinal: 1
-  posicionObjetivo: {x: 0.00123, y: 0.03283, z: -0.1920595}
+  posicionObjetivo: {x: -0.01867, y: 0.0312, z: -0.1882}
+  rotacionObjetivo: {x: 0, y: 0, z: 0}
   materialesSeleccion:
   - {fileID: 2100000, guid: 7fedf1846e15ef44099bb4888249ade4, type: 2}
   - {fileID: 2100000, guid: 6ef22ed9796e48d4aa57da4ce20dfb02, type: 2}
@@ -699,7 +700,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.5
+  m_Radius: 2
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &8076328983562060162
 MonoBehaviour:

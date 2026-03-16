@@ -28,13 +28,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3401251107835004675}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.0005200238, y: 5.872016, z: 0.09075086}
+  m_LocalRotation: {x: 1, y: 0, z: 0, w: 0}
+  m_LocalPosition: {x: -0.0005200238, y: -5.89, z: -0.086}
   m_LocalScale: {x: 0.7341436, y: 3.6602871, z: 0.8536785}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2566823721195449434}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 180}
 --- !u!33 &4844915697018474131
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -162,7 +162,7 @@ Transform:
   m_GameObject: {fileID: 4703429670025839548}
   serializedVersion: 2
   m_LocalRotation: {x: -0.70723015, y: -0, z: -0, w: -0.7069834}
-  m_LocalPosition: {x: -0.00207989, y: -0.16973999, z: 0.016979946}
+  m_LocalPosition: {x: 0.0584, y: -0.16973999, z: -0.015}
   m_LocalScale: {x: 0.09613622, y: 0.11664952, z: 0.47931406}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -237,7 +237,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.5
+  m_Radius: 2
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &5482111072624329900
 MonoBehaviour:
@@ -285,8 +285,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5778330605561989625}
   serializedVersion: 2
-  m_LocalRotation: {x: 1, y: -0, z: -0, w: 0}
-  m_LocalPosition: {x: -0.0055, y: 0.0598, z: 0.0252}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.0254, y: 0.0598, z: 0.0221}
   m_LocalScale: {x: 0.3269115, y: 0.065568626, z: 0.26942226}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -295,7 +295,7 @@ Transform:
   - {fileID: 4536917609397635793}
   - {fileID: 4259527885981542124}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 180}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &8072915386086742972
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -415,7 +415,8 @@ MonoBehaviour:
   puedoValidar: 0
   piezaColocada: 0
   piezaFinal: 0
-  posicionObjetivo: {x: -0.0064, y: 0.06107366, z: 0.0241}
+  posicionObjetivo: {x: -0.0254, y: 0.0598, z: 0.0221}
+  rotacionObjetivo: {x: 0, y: 0, z: 0}
   materialesSeleccion:
   - {fileID: 2100000, guid: 7fedf1846e15ef44099bb4888249ade4, type: 2}
   - {fileID: 2100000, guid: 6ef22ed9796e48d4aa57da4ce20dfb02, type: 2}
@@ -819,7 +820,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.5
+  m_Radius: 2
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &1237274434875952038
 MonoBehaviour:

@@ -153,7 +153,7 @@ Transform:
   m_GameObject: {fileID: 3583032471585666081}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.0167, y: 0.0182, z: 0.0535}
+  m_LocalPosition: {x: -0.021, y: 0.0182, z: 0.0535}
   m_LocalScale: {x: 0.14327475, y: 0.09584208, z: 0.47599527}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -282,7 +282,8 @@ MonoBehaviour:
   puedoValidar: 0
   piezaColocada: 0
   piezaFinal: 0
-  posicionObjetivo: {x: 0.001, y: 0.0182, z: 0.0535}
+  posicionObjetivo: {x: -0.021, y: 0.0182, z: 0.0535}
+  rotacionObjetivo: {x: 0, y: 0, z: 0}
   materialesSeleccion:
   - {fileID: 2100000, guid: 7fedf1846e15ef44099bb4888249ade4, type: 2}
   - {fileID: 2100000, guid: 6ef22ed9796e48d4aa57da4ce20dfb02, type: 2}
@@ -745,7 +746,7 @@ Transform:
   m_GameObject: {fileID: 9153305289162051442}
   serializedVersion: 2
   m_LocalRotation: {x: -0.7069834, y: -0, z: -0, w: 0.70723015}
-  m_LocalPosition: {x: 0.06770208, y: 0.10767556, z: -0.062187154}
+  m_LocalPosition: {x: 0.089, y: 0.10767556, z: -0.062187154}
   m_LocalScale: {x: 0.17, y: 0.05116998, z: 0.25413316}
   m_ConstrainProportionsScale: 1
   m_Children: []

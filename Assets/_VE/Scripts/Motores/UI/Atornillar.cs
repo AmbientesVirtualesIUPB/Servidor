@@ -65,5 +65,10 @@ public class Atornillar : MonoBehaviour
         valorSliderActual = 0f;
         sliderVelocidad.value = 0f;
         torque.text = "0";
+
+        if (ManagerMinijuego.singleton != null)
+        {
+            ManagerMinijuego.singleton.aplicandoTorque = false;
+        }
     }
 }

@@ -162,7 +162,7 @@ Transform:
   m_GameObject: {fileID: 5199144984911281795}
   serializedVersion: 2
   m_LocalRotation: {x: -0.7069834, y: -0, z: -0, w: 0.70723015}
-  m_LocalPosition: {x: 0.005640785, y: 0.055772115, z: 0.17416461}
+  m_LocalPosition: {x: -0.076, y: 0.055772115, z: 0.17416461}
   m_LocalScale: {x: 0.120000005, y: 0.29192117, z: 0.05608748}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -281,7 +281,7 @@ Transform:
   m_GameObject: {fileID: 7883658554358934737}
   serializedVersion: 2
   m_LocalRotation: {x: -0.7069834, y: -0, z: -0, w: 0.70723015}
-  m_LocalPosition: {x: 0.005640785, y: 0.5222267, z: -2.000276}
+  m_LocalPosition: {x: -0.1, y: 0.5222267, z: -2.000276}
   m_LocalScale: {x: 0.12000001, y: 0.2919212, z: 0.056087483}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -507,7 +507,8 @@ MonoBehaviour:
   puedoValidar: 0
   piezaColocada: 0
   piezaFinal: 0
-  posicionObjetivo: {x: 0.0079, y: -0.1847, z: 0.2319}
+  posicionObjetivo: {x: -0.0105, y: -0.1847, z: 0.2319}
+  rotacionObjetivo: {x: 0, y: 0, z: 0}
   materialesSeleccion:
   - {fileID: 2100000, guid: 7fedf1846e15ef44099bb4888249ade4, type: 2}
   - {fileID: 2100000, guid: 6ef22ed9796e48d4aa57da4ce20dfb02, type: 2}

@@ -230,7 +230,7 @@ public class ExpansionRadial : MonoBehaviour
                         ManagerMinijuego.singleton.motorAnimadoActivo.SetActive(true); // Activamos motor animado luego de expandir   
                     }
 
-                    if (ManagerMinijuego.singleton.minijuegoTerminado)
+                    if (ManagerMinijuego.singleton.minijuegoTerminado && ManagerMinijuego.singleton.minijuegoValidadoCorrectamente)
                     {
                         if (ExplosionObjetosHijos.singleton != null) ExplosionObjetosHijos.singleton.DesactivarHijos(ExplosionObjetosHijos.singleton.objetosPadres[1]); // Desactivamos los hijos antes de volver a expandir 
                         if (ExplosionObjetosHijos.singleton != null) ExplosionObjetosHijos.singleton.DesactivarHijos(ExplosionObjetosHijos.singleton.objetosPadres[3]); // Desactivamos los hijos antes de volver a expandir 
