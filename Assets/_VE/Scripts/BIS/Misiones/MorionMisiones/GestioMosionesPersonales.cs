@@ -61,6 +61,8 @@ public class GestioMosionesPersonales : MonoBehaviour
                     print("COMPLETADA LA MISION " + _mision + " Y LA SUBMISION " + _submision + " CON EL PUNTO " + MorionMisiones.singleton.misiones[_mision].subMisions[_submision].puntoObjetivo.ToString());
                     if (VerificarMisionCompleta(_mision))
                     {
+                        UIBotonera.singleton.ActualizarMisiones();
+                        print("PASO POR AQUI ");
                         eventoCompletaMision.Invoke();
                         MorionMisiones.singleton.misiones[_mision].misionCumplida.Invoke();
                     }

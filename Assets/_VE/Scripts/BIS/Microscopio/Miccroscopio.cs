@@ -36,7 +36,7 @@ public class Miccroscopio : MonoBehaviour
         {
             lente[i].position = Vector3.Lerp(p0.position, p1.position, slider0.value); 
 
-            desenfoque = (Mathf.Abs(slider1.value - slider0.value)) * 0.03f;
+            desenfoque = (Mathf.Abs(slider1.value - slider0.value)) * 0.01f;
             m.SetFloat("_Desenfoque", desenfoque);
         }
 
