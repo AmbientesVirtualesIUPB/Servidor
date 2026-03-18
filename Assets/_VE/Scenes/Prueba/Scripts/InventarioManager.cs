@@ -1,24 +1,50 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class InventarioManager : MonoBehaviour
 {
-    public static InventarioManager Singleton;
+    public Transform contentPanel;
+    public GameObject buttonPrefab; // Prefab del botón
+    public List<ObjetoAlmacenable> objetosAlmacenados;
 
-    public ObjetoAlmacenable ItemSeleccionado;
+    public static InventarioManager singleton;
+    private Coroutine coroutine; 
 
     private void Awake()
     {
-        Singleton = this;
+        singleton = this;
     }
 
-    public void SeleccionarItem(ObjetoAlmacenable itemPrefab)
+    public void DestruirInstanciados()
     {
-        ItemSeleccionado = itemPrefab;
-        Debug.Log("Seleccionaste: " + itemPrefab.itemNombre);
+        if (coroutine != null)
+        {
+            StopCoroutine(coroutine);
+        }
+
+        coroutine = StartCoroutine(DestruirInstancias());
     }
 
-    public void LimpiarSeleccion()
+    private IEnumerator DestruirInstancias()
     {
-        ItemSeleccionado = null;
+        objetosAlmacenados.Clear(); // Vaciamos los objetos almacenados
+
+        for (int i = transform.childCount - 1; i >= 0; i--)
+        {
+            MaterialDisolver[] materialDisolver = transform.GetChild(i).GetComponents<MaterialDisolver>();
+
+            for (int j = 0; j < materialDisolver.Length; j++)
+            {
+                materialDisolver[j].AgregarDisolver(materialDisolver[j].tiempoDisolver, false);
+            }
+        }
+
+        yield return new WaitForSeconds(1f);
+
+        for (int i = transform.childCount - 1; i >= 0; i--)
+        {
+            Destroy(transform.GetChild(i).gameObject);
+        }
     }
 }

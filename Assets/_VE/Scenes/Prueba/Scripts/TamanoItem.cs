@@ -1,11 +1,7 @@
-using UnityEngine;
 
-public class TamanoItem : MonoBehaviour
+public enum ItemTamano
 {
-    public enum ItemTamano
-    {
-        Pequeno,
-        Mediano,
-        Grande
-    }
+    Pequeno,
+    Mediano,
+    Grande
 }
