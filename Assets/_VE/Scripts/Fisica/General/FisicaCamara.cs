@@ -19,7 +19,7 @@ public class FisicaCamara : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
         transform.position = Vector3.Lerp(transform.position, target.position, velocidad * Time.deltaTime);
         if (Input.GetMouseButton(2))

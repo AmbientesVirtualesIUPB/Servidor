@@ -31,16 +31,19 @@ public class ControlGeneralFriccion : MonoBehaviour
     public MaterialFriccion[] matFric;
     public Renderer cuboRenderer;
 
+    Coroutine c;
     private void Start()
     {
+        c = null;
         CambiarMaterial(0);
     }
 
 
     public void CalcularResultado()
     {
+        if (c != null) return;
         CreadorPerros.singleton.Generar();
-        StartCoroutine(CalculandoResultado());
+        c = StartCoroutine(CalculandoResultado());
     }
 
     public void CambiarMaterial(int cual)
@@ -82,6 +85,7 @@ public class ControlGeneralFriccion : MonoBehaviour
         }
         yield return new WaitForSeconds(8);
         MSGBox.singleton.Mensaje(titulo, retroalimentacion);
+        c = null;
     }
 
     void Victoria()
