@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class InteractuadorMisiones : MonoBehaviour
 {
@@ -11,11 +12,13 @@ public class InteractuadorMisiones : MonoBehaviour
     [ConditionalHide("requiereTecla", true)]
     public KeyCode keyCode;
     bool activado = false;
+    public UnityEvent eventoAccionar;
 
     public void Activar()
     {
         bool o = subObjetivo.CompletarObjetivo();    
         activado = activado || o;
+        eventoAccionar.Invoke();
     }
 
     private void OnTriggerStay(Collider other)

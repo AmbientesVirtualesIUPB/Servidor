@@ -20,6 +20,11 @@ public class GestioMosionesPersonales : MonoBehaviour
         if (!ValidarMisionPorID(id))
         {
             misiones.Add(MorionMisiones.singleton.misiones[id]);
+            for (int i = 0; i < MorionMisiones.singleton.misiones[id].subMisions.Length; i++)
+            {
+                PuntoMisionMiniMapa.singleton.AgregarMision(MorionMisiones.singleton.misiones[id].subMisions[i].puntoObjetivo);
+                UIBotonera.singleton.ActualizarMisiones();
+            }
         }
     }
     
@@ -52,9 +57,12 @@ public class GestioMosionesPersonales : MonoBehaviour
                 if(!misiones[i].subMisions[_submision].rescatada)
                 {
                     misiones[i].subMisions[_submision].rescatada = true;
+                    PuntoMisionMiniMapa.singleton.EliminarMision(MorionMisiones.singleton.misiones[_mision].subMisions[_submision].puntoObjetivo);
+                    print("COMPLETADA LA MISION " + _mision + " Y LA SUBMISION " + _submision + " CON EL PUNTO " + MorionMisiones.singleton.misiones[_mision].subMisions[_submision].puntoObjetivo.ToString());
                     if (VerificarMisionCompleta(_mision))
                     {
                         eventoCompletaMision.Invoke();
+                        MorionMisiones.singleton.misiones[_mision].misionCumplida.Invoke();
                     }
                     else
                     {

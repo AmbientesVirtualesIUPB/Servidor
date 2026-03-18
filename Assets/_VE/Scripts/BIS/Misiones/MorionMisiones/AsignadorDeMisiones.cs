@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class AsignadorDeMisiones : MonoBehaviour
 {
+    public bool acutoAsignar = false;
     public int idMision;
 
     private void Start()
     {
-        ///////////temporal
-        ///
+        if (acutoAsignar)
         AsignarMision();
     }
     [ContextMenu("Asignar")]
