@@ -107,7 +107,7 @@ public class CamaraOrbital : MonoBehaviour
     /// <summary>
     /// Para detener la rotacion de la camara
     /// </summary>
-    public void DeneterCamara()
+    public void DetenerCamara()
     {
         detenerRotacion = true;
     }

@@ -14,6 +14,7 @@ public class InteractuadorMisiones : MonoBehaviour
     bool activado = false;
     public UnityEvent eventoAccionar;
 
+    [ContextMenu("completar")]
     public void Activar()
     {
         bool o = subObjetivo.CompletarObjetivo();    
