@@ -62,7 +62,6 @@ public class GestioMosionesPersonales : MonoBehaviour
                     if (VerificarMisionCompleta(_mision))
                     {
                         UIBotonera.singleton.ActualizarMisiones();
-                        print("PASO POR AQUI ");
                         eventoCompletaMision.Invoke();
                         MorionMisiones.singleton.misiones[_mision].misionCumplida.Invoke();
                     }

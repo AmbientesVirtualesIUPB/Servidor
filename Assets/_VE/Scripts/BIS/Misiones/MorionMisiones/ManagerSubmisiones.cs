@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ManagerSubmisiones : MonoBehaviour
 {
+    public MovimientoJugador movimientoJugador; // Referencia al movimiento jugador principal
     [Header("Submision Microscopio")]
     public Sprite[] iconosMuestra;
     public Image imagenMuestra;
@@ -19,9 +20,9 @@ public class ManagerSubmisiones : MonoBehaviour
     public GameObject btnSalirMicroscopio;
 
     [HideInInspector]
-    public float rangoZoom = 0.03f;
+    public float rangoZoom = 0.04f;
     [HideInInspector]
-    public float rangoEnfoque = 0.03f;
+    public float rangoEnfoque = 0.04f;
 
     [HideInInspector]
     public Vector3 posInicialCamara;
@@ -53,11 +54,14 @@ public class ManagerSubmisiones : MonoBehaviour
         {
             camara = Camera.main.transform; // Toma la cámara automáticamente
         }
+
+        movimientoJugador = ControlUsuarios.singleton.usuarioLocal.GetComponent<MovimientoJugador>();
     }
 
     public void HabilitarMicroscopio()
     {
         CamaraOrbital.singleton.DetenerCamara();
+        movimientoJugador.DeneterJugador();
         if (movimiento != null)
         {
             StopCoroutine(movimiento);
@@ -143,6 +147,7 @@ public class ManagerSubmisiones : MonoBehaviour
         camara.position = posInicialCamara;
         camara.rotation = rotInicialCamara;
         CamaraOrbital.singleton.HabilitarCamara();
+        movimientoJugador.HabilitarJugador();
         movimiento = null;
     }
 
@@ -179,8 +184,8 @@ public class ManagerSubmisiones : MonoBehaviour
         }
         else if (idMision == 2)
         {
-            zoomObjetivo = 0.67f;
-            enfoqueObjetivo = 0.7f;
+            zoomObjetivo = 0.7f;
+            enfoqueObjetivo = 0.6f;
             imagenMuestra.sprite = iconosMuestra[1];
         }
     }
